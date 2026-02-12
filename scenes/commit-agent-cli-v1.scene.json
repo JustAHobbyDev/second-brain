@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/commit_agent_cli_v1_2026_02_12",
+      "type": "artifact",
+      "artifact_type": "infrastructure_design",
+      "title": "Standalone second-brain CLI commit agent (v1)",
+      "summary": {
+        "high_level": "Designed a standalone CLI tool (sb) to handle scene and session commits, JSON validation, and index rebuilding. Establishes minimal 3-capability commit agent contract.",
+        "key_decisions": [
+          "Use standalone CLI (not embedded in Codex or project repo).",
+          "Agent contract limited to grounding (read), commit (write), and index/validation (maintain).",
+          "Projects remain structured locally; second-brain references them via Project Map scenes.",
+          "Adopt Intake \u2192 Draft \u2192 Publish conceptual pipeline for future automation."
+        ],
+        "architectural_shift": "Transition from structured-manual workflow to automatable commit-layer infrastructure."
+      }
+    },
+    {
+      "id": "concept/commit_agent_contract",
+      "type": "concept",
+      "label": "Commit agent contract (3-capability model)",
+      "definition": "Minimal agent interface: grounding access (read project docs), commit access (write scenes/session artifacts), and maintenance access (reindex + validate)."
+    },
+    {
+      "id": "pattern/standalone_cli_commit_pattern",
+      "type": "pattern",
+      "label": "Standalone CLI commit pattern",
+      "description": "A local-first command-line tool that writes scene/session JSON, validates structure, and maintains indexes without requiring database infrastructure."
+    },
+    {
+      "id": "concept/project_map_grounding_model",
+      "type": "concept",
+      "label": "Project map grounding model",
+      "definition": "Graph node defining repo location, canonical documents, and grounding order for agents before reasoning about a project."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/commit_agent_cli_v1_2026_02_12",
+      "to": "concept/commit_agent_contract",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/commit_agent_cli_v1_2026_02_12",
+      "to": "pattern/standalone_cli_commit_pattern",
+      "type": "implements"
+    },
+    {
+      "from": "artifact/commit_agent_cli_v1_2026_02_12",
+      "to": "concept/project_map_grounding_model",
+      "type": "extends"
+    },
+    {
+      "from": "pattern/standalone_cli_commit_pattern",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "supports"
+    }
+  ]
+}

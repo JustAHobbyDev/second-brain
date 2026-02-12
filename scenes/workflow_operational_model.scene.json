@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/workflow_operational_model_2026_02_11",
+      "type": "artifact",
+      "artifact_type": "workflow_refinement",
+      "title": "Operational workflow model for second-brain sessions",
+      "summary": {
+        "high_level": "Formalized the working workflow into a disciplined operational model. Clarified that sessions are state transitions, artifacts are durable state snapshots, and resumption is deterministic rehydration.",
+        "key_points": [
+          "Work must always attach to a project ID.",
+          "Sessions operate under explicit principle constraints.",
+          "Patterns provide structural bias and prevent architectural drift.",
+          "Every meaningful session must emit a structured artifact.",
+          "Artifacts encode decisions, deltas, and open questions.",
+          "Resumption loads prior state instead of restarting from memory."
+        ]
+      }
+    },
+    {
+      "id": "concept/workflow_as_state_machine",
+      "type": "concept",
+      "label": "Workflow as cognitive state machine",
+      "definition": "Each session transitions a project from State_n to State_n+1. Structured artifacts encode the transition and enable deterministic re-entry."
+    },
+    {
+      "id": "pattern/session_artifact_resumption_loop",
+      "type": "pattern",
+      "label": "Session → Artifact → Resumption loop",
+      "description": "A disciplined loop where sessions begin with declared constraints, end with structured artifacts, and future sessions resume from those artifacts."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/workflow_operational_model_2026_02_11",
+      "to": "concept/workflow_as_state_machine",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/workflow_operational_model_2026_02_11",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "codifies"
+    },
+    {
+      "from": "pattern/session_artifact_resumption_loop",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "evolves"
+    },
+    {
+      "from": "artifact/workflow_operational_model_2026_02_11",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "refines"
+    }
+  ]
+}
+

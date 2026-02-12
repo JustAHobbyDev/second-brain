@@ -1,0 +1,24 @@
+{
+  "id": "artifact/codex_session_YYYY_MM_DD_slug",
+  "type": "artifact",
+  "artifact_type": "codex_session_summary",
+  "source": "codex",
+  "created_at": "",
+  "title": "",
+  "summary": {
+    "high_level": "",
+    "key_decisions": [],
+    "changes_made": [],
+    "open_questions": []
+  },
+  "links": {
+    "projects": [],
+    "principles": [],
+    "patterns_used": [],
+    "tools_touched": [],
+    "related_artifacts": []
+  },
+  "tags": [],
+  "notes_for_future_agents": []
+}
+

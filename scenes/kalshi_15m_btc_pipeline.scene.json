@@ -1,0 +1,68 @@
+{
+  "nodes": [
+    {
+      "id": "project/kalshi_15m_btc_pipeline",
+      "type": "project",
+      "label": "Kalshi 15m BTC Pipeline",
+      "repo": {
+        "type": "github",
+        "url": "https://github.com/JustAHobbyDev/kalshi-15m-btc-pipeline",
+        "default_branch": "main"
+      },
+      "purpose": "Reliable, reproducible, and auditable pipeline for ingesting, normalizing, and validating Kalshi BTC 15-minute market data.",
+      "grounding_order": [
+        "artifact_pointer/kalshi_15m_readme",
+        "artifact_pointer/kalshi_15m_plan",
+        "artifact_pointer/kalshi_15m_open_questions",
+        "artifact_pointer/kalshi_15m_agents",
+        "artifact_pointer/kalshi_15m_latest_checkpoint",
+        "artifact_pointer/kalshi_15m_specs_dir",
+        "artifact_pointer/kalshi_15m_reports_dir",
+        "artifact_pointer/kalshi_15m_scripts_dir"
+      ],
+      "notes_for_agents": [
+        "Treat README as the entrypoint for intent + commands.",
+        "Treat PLAN as the canonical roadmap / planning truth.",
+        "Treat OPEN_QUESTIONS as the canonical unresolved decision space.",
+        "Treat AGENTS as durable workflow + execution rules.",
+        "Use checkpoints as milestone snapshots; use specs for architecture contracts; use reports for results."
+      ]
+    },
+
+    { "id": "artifact_pointer/kalshi_15m_readme", "type": "artifact_pointer", "label": "README", "path": "README.md" },
+    { "id": "artifact_pointer/kalshi_15m_plan", "type": "artifact_pointer", "label": "PLAN", "path": "PLAN.md" },
+    { "id": "artifact_pointer/kalshi_15m_open_questions", "type": "artifact_pointer", "label": "OPEN_QUESTIONS", "path": "OPEN_QUESTIONS.md" },
+    { "id": "artifact_pointer/kalshi_15m_agents", "type": "artifact_pointer", "label": "AGENTS", "path": "AGENTS.md" },
+    { "id": "artifact_pointer/kalshi_15m_knowledge_base", "type": "artifact_pointer", "label": "KNOWLEDGE_BASE", "path": "KNOWLEDGE_BASE.md" },
+    { "id": "artifact_pointer/kalshi_15m_checkpoint_template", "type": "artifact_pointer", "label": "CHECKPOINT_TEMPLATE", "path": "CHECKPOINT_TEMPLATE.md" },
+    { "id": "artifact_pointer/kalshi_15m_justfile", "type": "artifact_pointer", "label": "Justfile", "path": "Justfile" },
+
+    { "id": "artifact_pointer/kalshi_15m_checkpoints_dir", "type": "artifact_pointer", "label": "checkpoints/", "path": "checkpoints/" },
+    { "id": "artifact_pointer/kalshi_15m_specs_dir", "type": "artifact_pointer", "label": "specs/", "path": "specs/" },
+    { "id": "artifact_pointer/kalshi_15m_scripts_dir", "type": "artifact_pointer", "label": "scripts/", "path": "scripts/" },
+    { "id": "artifact_pointer/kalshi_15m_reports_dir", "type": "artifact_pointer", "label": "reports/", "path": "reports/" },
+    { "id": "artifact_pointer/kalshi_15m_tests_dir", "type": "artifact_pointer", "label": "tests/", "path": "tests/" },
+
+    {
+      "id": "artifact_pointer/kalshi_15m_latest_checkpoint",
+      "type": "artifact_pointer",
+      "label": "Latest checkpoint (resolve dynamically)",
+      "path_policy": {
+        "type": "latest_by_filename_or_mtime",
+        "dir": "checkpoints/",
+        "match": "*.md"
+      }
+    }
+  ],
+  "edges": [
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_readme", "type": "has_entrypoint" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_plan", "type": "has_plan" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_open_questions", "type": "has_open_questions" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_agents", "type": "has_agent_rules" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_checkpoints_dir", "type": "stores_checkpoints" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_specs_dir", "type": "stores_specs" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_scripts_dir", "type": "stores_scripts" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_reports_dir", "type": "stores_reports" }
+  ]
+}
+

@@ -1,0 +1,49 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/workflow_state_machine_model_2026_02_11",
+      "type": "artifact",
+      "artifact_type": "architecture_refinement",
+      "title": "Second-brain workflow as state machine",
+      "summary": {
+        "high_level": "Refined understanding of the working workflow. Clarified that sessions function as state transitions in a cognitive state machine. Artifacts act as durable state snapshots enabling deterministic re-entry and agent replay.",
+        "core_insight": "The second brain is not a note system; it is a state machine for cognition. Each session represents a transition from State_n to State_n+1. Artifacts encode the transition."
+      }
+    },
+    {
+      "id": "concept/workflow_as_state_machine",
+      "type": "concept",
+      "label": "Workflow as cognitive state machine",
+      "definition": "A model in which each session transitions a project from one defined cognitive state to another, with structured artifacts capturing the delta."
+    },
+    {
+      "id": "pattern/session_state_transition_pattern",
+      "type": "pattern",
+      "label": "Session → Artifact → Resumption loop",
+      "description": "Each work session emits a structured artifact capturing decisions, changes, and open questions. Future sessions begin by rehydrating from that artifact."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/workflow_state_machine_model_2026_02_11",
+      "to": "concept/workflow_as_state_machine",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/workflow_state_machine_model_2026_02_11",
+      "to": "pattern/session_state_transition_pattern",
+      "type": "formalizes"
+    },
+    {
+      "from": "pattern/session_state_transition_pattern",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "evolves"
+    },
+    {
+      "from": "artifact/workflow_state_machine_model_2026_02_11",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "refines"
+    }
+  ]
+}
+

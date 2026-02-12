@@ -1,0 +1,126 @@
+{
+  "nodes": [
+    {
+      "id": "project/dan_personal_cognitive_infrastructure",
+      "type": "project",
+      "label": "Dan's personal cognitive infrastructure",
+      "description": "Long-term effort to build a second brain-like system that connects Codex, ChatGPT, agents, and knowledge graph structures for trading, research, and workflow meta-analysis."
+    },
+    {
+      "id": "pattern/dan_codex_meta_workflow_v1",
+      "type": "pattern",
+      "label": "Dan's Codex + ChatGPT meta-workflow (v1)",
+      "description": "Current working pattern where Dan uses Codex and ChatGPT as primary thinking surfaces: Codex for live project work, specs, and pipeline design; ChatGPT for higher-level reflection, summaries, and second-brain architecture thinking. Knowledge currently lives mostly in conversations and ad-hoc notes, with an emerging intention to turn high-value threads into graph-structured artifacts.",
+      "properties": {
+        "capture_points": [
+          "Codex conversations for active builds (specs, trading pipeline design, ML ideas)",
+          "ChatGPT threads for meta-analysis, second brain architecture, and workflow reflection",
+          "Occasional external docs/notes (e.g., Neovim config, trading research, YouTube/video transcripts)"
+        ],
+        "storage_today": [
+          "Conversation histories in Codex",
+          "ChatGPT threads",
+          "Local config/code repos (e.g., Neovim, trading infra)",
+          "Ad-hoc notes/docs when something feels important"
+        ],
+        "intended_future_storage": [
+          "Graph-structured knowledge base (principles, patterns, concepts, projects, tools)",
+          "Artifacts like this video summary encoded as nodes/edges",
+          "Project-scoped state snapshots for resumption and meta-analysis"
+        ],
+        "ai_roles": [
+          "Spec drafting and refinement partner (Codex + ChatGPT)",
+          "Workflow/meta-analysis partner (ChatGPT meta-threads)",
+          "Future: graph-aware agent that can traverse principles/patterns/projects and propose changes"
+        ],
+        "human_roles": [
+          "Define intent and constraints for projects (trading, infra, second brain)",
+          "Curate which artifacts become first-class graph nodes",
+          "Decide when to standardize patterns vs leave things experimental"
+        ],
+        "notable_characteristics": [
+          "Session-based interactions with Codex tied to concrete work (coding, specs, trading pipeline design)",
+          "Higher-level, cross-project reflection done in separate meta threads with ChatGPT",
+          "Growing preference for principled, architecture-first thinking over tool-first setups",
+          "Explicit interest in resilience to tool churn and context-window limits"
+        ]
+      }
+    },
+    {
+      "id": "tool/codex_meta_environment",
+      "type": "tool",
+      "label": "Codex (project + spec environment)",
+      "description": "Codex environment where Dan runs active builds, specs, and pipeline design work, often in longer-running threads focused on specific projects."
+    },
+    {
+      "id": "tool/chatgpt_meta_reflection",
+      "type": "tool",
+      "label": "ChatGPT (meta-reflection + architecture)",
+      "description": "ChatGPT used primarily for higher-level reflection, second-brain architecture, and workflow/meta-analysis separate from day-to-day execution."
+    }
+  ],
+
+  "edges": [
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "includes_pattern"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "tool/codex_meta_environment",
+      "type": "uses_tool"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "tool/chatgpt_meta_reflection",
+      "type": "uses_tool"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "tool/chatgpt",
+      "type": "uses_tool"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "tool/codex",
+      "type": "uses_tool"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "principle/architecture_portable_tools_not",
+      "type": "aligns_with"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "principle/principles_over_rules",
+      "type": "aligns_with"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aims_toward"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "principle/system_as_infrastructure",
+      "type": "aims_toward"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "concept/session_based_processing",
+      "type": "implements"
+    },
+    {
+      "from": "pattern/dan_codex_meta_workflow_v1",
+      "to": "concept/community_as_pattern_library",
+      "type": "informed_by"
+    },
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "concept/second_brain_as_infrastructure",
+      "type": "pursues_concept"
+    }
+  ]
+}
+
