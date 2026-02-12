@@ -1,0 +1,97 @@
+{
+  "id": "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
+  "type": "artifact",
+  "artifact_type": "codex_session_summary",
+  "source": "codex",
+  "created_at": "2026-02-12T09:10:00Z",
+  "title": "Kalshi ML Pipeline: Phase 8 Completed with Robust Classification and Phase 9 Handoff",
+  "summary": {
+    "high_level": "Completed Phase 8 end-to-end (tasks 4-8), including full 10-window execution, replication aggregation, robustness gating, model-family stress testing, effect-size diagnostics, and final closeout with a Phase 9 recommendation.",
+    "key_decisions": [
+      "Phase 8 replication gate uses contract `phase8_evaluation_contract_v1` with `oof_row_weighted` as primary and `equal_window` as required sensitivity view.",
+      "Phase 8 task 5 decision finalized as `robust`, weighting-invariant across both pooled weighting modes.",
+      "Model-family stress test retained `logistic_regression_gd` as incumbent after challenger comparison.",
+      "Diagnostics-trigger inputs for gating remained false (`leakage_guard_any_fail=false`, `permutation_persistent_improvement=false`).",
+      "Closeout explicitly records that classification is robust but feature-dependent based on ablation sensitivity."
+    ],
+    "changes_made": [
+      "Fixed concurrent temp-file collision in `scripts/kalshi_backfill.py` by using unique tmp names and cleanup-on-error.",
+      "Added Phase 8 aggregation and gate tooling: `scripts/phase8_aggregate_replication.py`, `scripts/phase8_apply_robustness_gate.py`.",
+      "Added model-family stress tooling: `scripts/phase8_model_family_stress.py`.",
+      "Added effect-size diagnostics tooling: `scripts/phase8_effect_size_diagnostics.py`.",
+      "Extended `Justfile` with `phase8-aggregate-replication`, `phase8-apply-robustness-gate`, `phase8-model-family-stress`, `phase8-effect-size-diagnostics`.",
+      "Updated `README.md` and `PLAN.md` to track Phase 8 workflows, artifacts, and completion status.",
+      "Published Phase 8 reports: aggregation, robustness decision, model-family stress, effect-size diagnostics, and final closeout.",
+      "Created checkpoints `v1.57` through `v1.61` and committed milestones (`8cd03e1`, `10e2a31`, `d673cd9`, `f5d6ed3`, `0ec1745`)."
+    ],
+    "open_questions": [
+      "Define Phase 9 scope/tasks and acceptance contract in `PLAN.md`.",
+      "Set explicit Phase 9 thresholds for feature-robustness under richer ablation ladders and non-overlapping holdouts.",
+      "Determine expanded challenger-family set and calibration requirements for Phase 9 policy-readiness evidence."
+    ]
+  },
+  "links": {
+    "projects": [
+      "kalshi-15m-btc-pipeline"
+    ],
+    "principles": [
+      "Use `just` tasks for reproducible workflows.",
+      "Checkpoint after completed plan steps and commit in the same work cycle.",
+      "Track unresolved decisions explicitly in `OPEN_QUESTIONS.md`.",
+      "Keep UTC-explicit bounds for windowed datasets in checkpoints/reports."
+    ],
+    "patterns_used": [
+      "Contract-driven phase gating",
+      "Walk-forward replication over rolling UTC windows",
+      "Dual pooled-weighting sensitivity with invariance rule",
+      "Deterministic artifact generation with schema-versioned JSON outputs",
+      "Diagnostics-first robustness validation (permutation, ablation, leakage)"
+    ],
+    "tools_touched": [
+      "Justfile",
+      "scripts/kalshi_backfill.py",
+      "scripts/phase8_aggregate_replication.py",
+      "scripts/phase8_apply_robustness_gate.py",
+      "scripts/phase8_model_family_stress.py",
+      "scripts/phase8_effect_size_diagnostics.py",
+      "PLAN.md",
+      "README.md",
+      "checkpoints/kalshi-ml-trading-pipeline-progress-v1.57.md",
+      "checkpoints/kalshi-ml-trading-pipeline-progress-v1.58.md",
+      "checkpoints/kalshi-ml-trading-pipeline-progress-v1.59.md",
+      "checkpoints/kalshi-ml-trading-pipeline-progress-v1.60.md",
+      "checkpoints/kalshi-ml-trading-pipeline-progress-v1.61.md"
+    ],
+    "related_artifacts": [
+      "reports/phase8-evaluation-contract-v1-2026-02-11.md",
+      "reports/phase8-replication-window-spec-v1-2026-02-11.md",
+      "reports/phase8-replication-run-profiles-v1-2026-02-11.json",
+      "data/kalshi_phase8_rep/phase8_replication_aggregate_summary_v1.json",
+      "reports/phase8-replication-aggregation-summary-v1-2026-02-12.md",
+      "data/kalshi_phase8_rep/phase8_robustness_decision_v1.json",
+      "reports/phase8-robustness-decision-v1-2026-02-12.md",
+      "data/kalshi_phase8_rep/phase8_model_family_stress_summary_v1.json",
+      "reports/phase8-model-family-stress-summary-v1-2026-02-12.md",
+      "data/kalshi_phase8_rep/phase8_effect_size_diagnostics_summary_v1.json",
+      "reports/phase8-effect-size-diagnostics-summary-v1-2026-02-12.md",
+      "reports/phase8-closeout-report-v1-2026-02-12.md"
+    ]
+  },
+  "tags": [
+    "kalshi",
+    "ml-pipeline",
+    "phase-8",
+    "walk-forward",
+    "robustness-gate",
+    "model-stress-test",
+    "effect-size-diagnostics",
+    "checkpointed"
+  ],
+  "notes_for_future_agents": [
+    "Phase 8 is complete and marked complete in `PLAN.md`; start from Phase 9 planning, not Phase 8 reruns.",
+    "Use existing Phase 8 just tasks instead of ad-hoc commands to preserve reproducibility.",
+    "When referencing Phase 8 windowed outputs, use UTC bounds `2025-12-10T22:00:00Z` to `2026-02-07T22:00:00Z`.",
+    "Diagnostics show strong feature dependence; Phase 9 should harden robustness around feature-group sensitivity and non-overlapping holdouts.",
+    "If rerunning diagnostics, `scripts/phase8_effect_size_diagnostics.py` now suppresses verbose subprocess stdout and writes per-window artifacts under `phase8_diagnostics_v1` subdirectories."
+  ]
+}
