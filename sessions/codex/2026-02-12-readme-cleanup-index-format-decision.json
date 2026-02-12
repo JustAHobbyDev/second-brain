@@ -1,0 +1,55 @@
+{
+  "id": "artifact/codex_session_2026_02_12_readme_cleanup_index_format_decision",
+  "type": "artifact",
+  "artifact_type": "codex_session_summary",
+  "source": "codex",
+  "created_at": "2026-02-12T09:42:12Z",
+  "title": "README Cleanup and Session Index Documentation Decision",
+  "summary": {
+    "high_level": "Captured and cleaned README hygiene issues, preserved relevant project context, and recorded the decision to document session index format in the README sessions section.",
+    "key_decisions": [
+      "Remove assistant-conversation residue from README after preserving any meaningful repository/project information.",
+      "Keep repository layout in README aligned with tracked directories only, excluding ignored paths such as `misc/`.",
+      "Document `sessions/<tool>/index.json` format under the README `sessions/` section as the contributor entry point."
+    ],
+    "changes_made": [
+      "Removed conversational preface lines from the top of `README.md` and assistant prompt text from the end.",
+      "Added `kalshi_15m_btc_pipeline.scene.json` to README scene examples.",
+      "Added `session_closing_checklist.md` to README templates examples.",
+      "Updated README repository layout tree to include `prompts/` and `tools/`, while omitting ignored `misc/`.",
+      "Identified and documented remaining follow-up to add the explicit index file format subsection."
+    ],
+    "open_questions": [
+      "Finalize the exact README example snippet for `sessions/codex/index.json` and `sessions/chatgpt/index.json`."
+    ]
+  },
+  "links": {
+    "projects": [
+      "project/dan_personal_cognitive_infrastructure"
+    ],
+    "principles": [
+      "principle/principles_over_rules",
+      "principle/system_as_infrastructure"
+    ],
+    "patterns_used": [
+      "pattern/session_artifact_resumption_loop"
+    ],
+    "tools_touched": [
+      "README.md",
+      "sessions/codex/index.json"
+    ],
+    "related_artifacts": [
+      "artifact/codex_session_2026_02_12_phase8_closeout_handoff"
+    ]
+  },
+  "tags": [
+    "documentation",
+    "readme",
+    "session-index",
+    "repo-hygiene"
+  ],
+  "notes_for_future_agents": [
+    "README cleanup intentionally removed chat-style scaffolding and preserved project-relevant information only.",
+    "The next documentation step is to add the concrete `sessions/<tool>/index.json` format example in the `sessions/` section."
+  ]
+}

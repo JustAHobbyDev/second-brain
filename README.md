@@ -1,8 +1,3 @@
-Perfect catch. I’ll rewrite it cleanly, no inline backticks.
-Code blocks will use triple-backtick fenced blocks only.
-
----
-
 # 🧠 Second Brain — Graph-Ready Personal Knowledge Infrastructure
 
 This repository contains a portable, graph-friendly, agent-compatible second brain.
@@ -42,12 +37,14 @@ This repository is designed around the idea that:
 ```bash
 .
 ├── graph
+├── prompts
 ├── scenes
 ├── scripts
 ├── sessions
 │   ├── chatgpt
 │   └── codex
-└── templates
+├── templates
+└── tools
 ```
 
 ---
@@ -72,6 +69,7 @@ Examples:
 
 * four_principles_second_brain.scene.json
 * dan_codex_meta_workflow_v1.scene.json
+* kalshi_15m_btc_pipeline.scene.json
 
 A scene represents one conceptual unit.
 
@@ -115,6 +113,7 @@ Contains reusable schemas.
 Example:
 
 codex_session_template.json
+session_closing_checklist.md
 
 This defines the structure for session closure artifacts.
 
@@ -288,11 +287,3 @@ The graph becomes infrastructure.
 Dan — building long-horizon, agent-compatible cognitive infrastructure.
 
 This repository reflects current architecture and is expected to evolve.
-
----
-
-If you'd like, I can now:
-
-* Write a minimal “Session Closing Checklist” file to live beside the template
-* Or define your first formal project node for trading so we can immediately test the closing ritual with a real artifact
-
