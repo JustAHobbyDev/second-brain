@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/session_index_contract_v1_2026_02_12",
+      "type": "artifact",
+      "artifact_type": "index_contract",
+      "title": "Session index contract v1",
+      "summary": {
+        "high_level": "Defines structure and maintenance rules for sessions/<tool>/index.json files."
+      }
+    },
+    {
+      "id": "concept/session_index_array_schema",
+      "type": "concept",
+      "label": "Session index array schema",
+      "definition": "Each sessions/<tool>/index.json file is a JSON array of artifact IDs (strings), not an object."
+    },
+    {
+      "id": "concept/session_index_rebuild_rule",
+      "type": "concept",
+      "label": "Session index rebuild rule",
+      "definition": "Index entries are derived from artifact IDs discovered in sessions/<tool>/*.json excluding index.json."
+    },
+    {
+      "id": "artifact_pointer/codex_session_index",
+      "type": "artifact_pointer",
+      "label": "Codex session index",
+      "path": "sessions/codex/index.json"
+    },
+    {
+      "id": "artifact_pointer/chatgpt_session_index",
+      "type": "artifact_pointer",
+      "label": "ChatGPT session index",
+      "path": "sessions/chatgpt/index.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/session_index_contract_v1_2026_02_12",
+      "to": "concept/session_index_array_schema",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/session_index_contract_v1_2026_02_12",
+      "to": "concept/session_index_rebuild_rule",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/session_index_contract_v1_2026_02_12",
+      "to": "artifact_pointer/codex_session_index",
+      "type": "applies_to"
+    },
+    {
+      "from": "artifact/session_index_contract_v1_2026_02_12",
+      "to": "artifact_pointer/chatgpt_session_index",
+      "type": "applies_to"
+    },
+    {
+      "from": "concept/session_index_rebuild_rule",
+      "to": "tool/second_brain_cli_sb",
+      "type": "codified_in"
+    },
+    {
+      "from": "concept/session_index_rebuild_rule",
+      "to": "tool/session_index_updater_script",
+      "type": "codified_in"
+    },
+    {
+      "from": "concept/session_index_array_schema",
+      "to": "pattern/standalone_cli_commit_pattern",
+      "type": "supports"
+    },
+    {
+      "from": "artifact_pointer/codex_session_index",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "indexes_sessions_for"
+    },
+    {
+      "from": "artifact_pointer/chatgpt_session_index",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "indexes_sessions_for"
+    }
+  ]
+}

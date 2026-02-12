@@ -1,0 +1,63 @@
+{
+  "id": "artifact/codex_session_2026_02_12_unlinked_prompts_inventory",
+  "type": "artifact",
+  "artifact_type": "codex_session_summary",
+  "source": "codex",
+  "created_at": "2026-02-12T09:53:13Z",
+  "title": "Inventory of Prompt Files Not Linked in Knowledge Graph",
+  "summary": {
+    "high_level": "Identified prompt files in `prompts/` that are not currently represented or referenced in the knowledge graph content.",
+    "key_decisions": [
+      "Treat `scenes/*.json` and `graph/graph.json` as the active graph representation for this inventory.",
+      "Capture the prompt gap as a session artifact so future agents can add graph nodes or links deliberately."
+    ],
+    "changes_made": [
+      "Scanned prompt files and checked for references in `scenes/*.json` and `graph/graph.json`.",
+      "Confirmed all current prompt files are unlinked: `prompts/codex_session_ending_prompt.md`, `prompts/session_archiver_prompt_template.md`, `prompts/session_archiver_prompt_template_copy.md`, `prompts/session_preamble.md`.",
+      "Created this session artifact to record the unlinked-prompt inventory."
+    ],
+    "open_questions": [
+      "Should prompt files become first-class graph nodes (for example `artifact/*` or `concept/*`) with edges to projects and workflows?",
+      "Should `prompts/session_archiver_prompt_template_copy.md` be retained as a separate tracked prompt or consolidated with a single canonical template?"
+    ]
+  },
+  "links": {
+    "projects": [
+      "project/second_brain_build"
+    ],
+    "principles": [
+      "principle/system_as_infrastructure",
+      "principle/agent_builds_agent_maintains"
+    ],
+    "patterns_used": [
+      "pattern/session_artifact_resumption_loop"
+    ],
+    "tools_touched": [
+      "tool/codex",
+      "prompts/codex_session_ending_prompt.md",
+      "prompts/session_archiver_prompt_template.md",
+      "prompts/session_archiver_prompt_template_copy.md",
+      "prompts/session_preamble.md",
+      "scenes/commit-agent-cli-v1.scene.json",
+      "scenes/dan_codex_meta_workflow_v1.scene.json",
+      "scenes/four_principles_second_brain.scene.json",
+      "scenes/kalshi_15m_btc_pipeline.scene.json",
+      "scenes/workflow_operational_model.scene.json",
+      "scenes/workflow_state_machine_model.scene.json",
+      "graph/graph.json"
+    ],
+    "related_artifacts": [
+      "artifact/codex_session_2026_02_12_readme_cleanup_index_format_decision"
+    ]
+  },
+  "tags": [
+    "prompts",
+    "graph-gap",
+    "inventory",
+    "documentation"
+  ],
+  "notes_for_future_agents": [
+    "When new prompt files are added, repeat this check and either link them in scenes or explicitly document why they remain external.",
+    "Graph linkage can be minimal: one node per prompt and one edge to a relevant project, pattern, or workflow scene."
+  ]
+}

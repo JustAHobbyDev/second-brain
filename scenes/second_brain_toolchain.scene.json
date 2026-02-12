@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/second_brain_toolchain_map_2026_02_12",
+      "type": "artifact",
+      "artifact_type": "tooling_map",
+      "title": "Second-brain commit and index toolchain map",
+      "summary": {
+        "high_level": "Maps the concrete local tooling that commits session artifacts and maintains index files."
+      }
+    },
+    {
+      "id": "tool/second_brain_cli_sb",
+      "type": "tool",
+      "label": "Second-brain CLI (sb)",
+      "description": "Local CLI for committing scenes/sessions, validating JSON, and rebuilding session indexes."
+    },
+    {
+      "id": "tool/session_index_updater_script",
+      "type": "tool",
+      "label": "Session index updater script",
+      "description": "Script that scans sessions directories and updates per-tool index.json files."
+    },
+    {
+      "id": "artifact_pointer/tool_sb_py",
+      "type": "artifact_pointer",
+      "label": "sb CLI source",
+      "path": "tools/sb.py"
+    },
+    {
+      "id": "artifact_pointer/script_update_index_py",
+      "type": "artifact_pointer",
+      "label": "update_index script source",
+      "path": "scripts/update_index.py"
+    },
+    {
+      "id": "concept/session_index_maintenance",
+      "type": "concept",
+      "label": "Session index maintenance",
+      "definition": "Keep sessions/<tool>/index.json synchronized with artifact IDs present in each sessions/<tool>/ directory."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/second_brain_toolchain_map_2026_02_12",
+      "to": "tool/second_brain_cli_sb",
+      "type": "documents"
+    },
+    {
+      "from": "artifact/second_brain_toolchain_map_2026_02_12",
+      "to": "tool/session_index_updater_script",
+      "type": "documents"
+    },
+    {
+      "from": "tool/second_brain_cli_sb",
+      "to": "artifact_pointer/tool_sb_py",
+      "type": "implemented_by"
+    },
+    {
+      "from": "tool/session_index_updater_script",
+      "to": "artifact_pointer/script_update_index_py",
+      "type": "implemented_by"
+    },
+    {
+      "from": "tool/second_brain_cli_sb",
+      "to": "concept/session_index_maintenance",
+      "type": "maintains"
+    },
+    {
+      "from": "tool/session_index_updater_script",
+      "to": "concept/session_index_maintenance",
+      "type": "maintains"
+    },
+    {
+      "from": "tool/second_brain_cli_sb",
+      "to": "pattern/standalone_cli_commit_pattern",
+      "type": "implements"
+    },
+    {
+      "from": "tool/second_brain_cli_sb",
+      "to": "concept/commit_agent_contract",
+      "type": "realizes"
+    },
+    {
+      "from": "tool/session_index_updater_script",
+      "to": "tool/second_brain_cli_sb",
+      "type": "supplements"
+    }
+  ]
+}

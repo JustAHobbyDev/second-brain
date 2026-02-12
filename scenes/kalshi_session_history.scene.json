@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/kalshi_session_history_2026_02_12",
+      "type": "artifact",
+      "artifact_type": "session_history_index",
+      "title": "Kalshi session history mapping",
+      "summary": {
+        "high_level": "Indexes Kalshi pipeline session artifacts and preserves the handoff context toward Phase 9 planning."
+      }
+    },
+    {
+      "id": "artifact_pointer/kalshi_phase8_closeout_session",
+      "type": "artifact_pointer",
+      "label": "Phase 8 closeout handoff session artifact",
+      "path": "sessions/codex/2026-02-12-phase8-closeout-handoff.json"
+    },
+    {
+      "id": "concept/kalshi_phase9_handoff_state",
+      "type": "concept",
+      "label": "Kalshi Phase 9 handoff state",
+      "definition": "State reached after Phase 8 closeout where Phase 9 scope, thresholds, and challenger policy-readiness criteria must be defined."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/kalshi_session_history_2026_02_12",
+      "to": "artifact_pointer/kalshi_phase8_closeout_session",
+      "type": "indexes"
+    },
+    {
+      "from": "artifact_pointer/kalshi_phase8_closeout_session",
+      "to": "project/kalshi_15m_btc_pipeline",
+      "type": "session_for_project"
+    },
+    {
+      "from": "artifact_pointer/kalshi_phase8_closeout_session",
+      "to": "tool/codex",
+      "type": "produced_by"
+    },
+    {
+      "from": "artifact_pointer/kalshi_phase8_closeout_session",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "follows_pattern"
+    },
+    {
+      "from": "artifact_pointer/kalshi_phase8_closeout_session",
+      "to": "concept/kalshi_phase9_handoff_state",
+      "type": "hands_off_to"
+    },
+    {
+      "from": "concept/kalshi_phase9_handoff_state",
+      "to": "project/kalshi_15m_btc_pipeline",
+      "type": "next_phase_for"
+    }
+  ]
+}

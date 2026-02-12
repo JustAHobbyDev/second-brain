@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/prompt_workflows_inventory_2026_02_12",
+      "type": "artifact",
+      "artifact_type": "workflow_mapping",
+      "title": "Prompt workflow inventory for session lifecycle",
+      "summary": {
+        "high_level": "Maps prompt files used to start and close sessions, including Kalshi-focused closure prompts and schema-driven archive prompts."
+      }
+    },
+    {
+      "id": "concept/prompt_driven_session_closure",
+      "type": "concept",
+      "label": "Prompt-driven session closure",
+      "definition": "Reusable prompts encode the required output contract so session closeout artifacts remain consistent and machine-parseable."
+    },
+    {
+      "id": "artifact_pointer/prompt_session_preamble",
+      "type": "artifact_pointer",
+      "label": "Session preamble prompt",
+      "path": "prompts/session_preamble.md"
+    },
+    {
+      "id": "artifact_pointer/prompt_session_archiver_template",
+      "type": "artifact_pointer",
+      "label": "Session archiver prompt template",
+      "path": "prompts/session_archiver_prompt_template.md"
+    },
+    {
+      "id": "artifact_pointer/prompt_session_archiver_template_copy",
+      "type": "artifact_pointer",
+      "label": "Session archiver prompt template (filled schema copy)",
+      "path": "prompts/session_archiver_prompt_template_copy.md"
+    },
+    {
+      "id": "artifact_pointer/prompt_codex_session_ending",
+      "type": "artifact_pointer",
+      "label": "Codex session ending prompt",
+      "path": "prompts/codex_session_ending_prompt.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/prompt_workflows_inventory_2026_02_12",
+      "to": "artifact_pointer/prompt_session_preamble",
+      "type": "indexes"
+    },
+    {
+      "from": "artifact/prompt_workflows_inventory_2026_02_12",
+      "to": "artifact_pointer/prompt_session_archiver_template",
+      "type": "indexes"
+    },
+    {
+      "from": "artifact/prompt_workflows_inventory_2026_02_12",
+      "to": "artifact_pointer/prompt_session_archiver_template_copy",
+      "type": "indexes"
+    },
+    {
+      "from": "artifact/prompt_workflows_inventory_2026_02_12",
+      "to": "artifact_pointer/prompt_codex_session_ending",
+      "type": "indexes"
+    },
+    {
+      "from": "concept/prompt_driven_session_closure",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "extends"
+    },
+    {
+      "from": "artifact_pointer/prompt_session_preamble",
+      "to": "concept/prompt_driven_session_closure",
+      "type": "supports"
+    },
+    {
+      "from": "artifact_pointer/prompt_session_archiver_template",
+      "to": "concept/prompt_driven_session_closure",
+      "type": "supports"
+    },
+    {
+      "from": "artifact_pointer/prompt_session_archiver_template_copy",
+      "to": "concept/prompt_driven_session_closure",
+      "type": "supports"
+    },
+    {
+      "from": "artifact_pointer/prompt_codex_session_ending",
+      "to": "concept/prompt_driven_session_closure",
+      "type": "implements"
+    },
+    {
+      "from": "artifact_pointer/prompt_codex_session_ending",
+      "to": "project/kalshi_15m_btc_pipeline",
+      "type": "targets_project"
+    },
+    {
+      "from": "artifact_pointer/prompt_codex_session_ending",
+      "to": "tool/codex",
+      "type": "instructs_tool"
+    }
+  ]
+}
