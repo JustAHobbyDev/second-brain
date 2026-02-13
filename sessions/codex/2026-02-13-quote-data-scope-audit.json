@@ -1,0 +1,76 @@
+{
+  "id": "artifact/codex_session_2026_02_13_quote_data_scope_audit",
+  "type": "artifact",
+  "artifact_type": "codex_session_summary",
+  "source": "codex",
+  "created_at": "2026-02-13T09:04:50Z",
+  "title": "Kalshi 15m quote-data availability audit and scope clarification",
+  "summary": {
+    "high_level": "Session focused on inventorying available market data types in the current pipeline, assessing feasibility of adding missing quote datasets, and tightening the project one-line description.",
+    "key_decisions": [
+      "Current pipeline availability: trades are ingested and persisted; bid/ask/orderbook snapshots and dedicated mid series are not currently ingested/persisted.",
+      "Feasibility assessment: acquiring missing datasets is high for forward capture (top-of-book and derived mid), medium-high for live depth capture, and low for deep historical L2 reconstruction.",
+      "Project scope statement updated conceptually: repository has expanded beyond ingest/normalize/validate into modeling and robustness evaluation.",
+      "Adopted concise description: \"Reproducible, auditable research pipeline for Kalshi BTC 15m market data and model robustness.\""
+    ],
+    "changes_made": [
+      "No repo-tracked files were modified in this session.",
+      "Performed non-mutating codebase/data audit via search and file inspection only."
+    ],
+    "open_questions": [
+      "What sampling cadence and retention policy should be used for future orderbook/top-of-book capture under account rate limits?"
+    ]
+  },
+  "links": {
+    "projects": [
+      "project/kalshi_15m_btc_pipeline"
+    ],
+    "principles": [
+      "principle/reproducibility",
+      "principle/auditability",
+      "principle/robustness_first"
+    ],
+    "patterns_used": [
+      "pattern/non_mutating_repo_audit",
+      "pattern/source_of_truth_file_verification"
+    ],
+    "tools": [
+      "tool/codex"
+    ],
+    "tools_touched": [
+      "tool/codex",
+      "tool/rg",
+      "tool/find",
+      "tool/shell"
+    ],
+    "related_artifacts": [
+      "README.md",
+      "PLAN.md",
+      "OPEN_QUESTIONS.md",
+      "scripts/kalshi_backfill.py",
+      "scripts/features_v2_build.py",
+      "scripts/phase9_feature_ablation_ladder.py",
+      "scripts/walkforward_experiment.py",
+      "scripts/phase9_anchor_additive_promotion.py",
+      "scripts/phase9_feat_group_isolation_probe.py",
+      "scripts/phase9_price_shape_stability_probe.py",
+      "checkpoints/kalshi-ml-trading-pipeline-early-brainstorming-v0.1.md",
+      "reports/project-structure-audit-2026-02-09.md",
+      "data/kalshi_phase5_rep/trades_KXBTC15M-26FEB040415-15.jsonl",
+      "../second-brain/templates/codex_session_template.json"
+    ]
+  },
+  "tags": [
+    "kalshi",
+    "btc-15m",
+    "data-inventory",
+    "quotes",
+    "orderbook",
+    "session-summary"
+  ],
+  "notes_for_future_agents": [
+    "When asked what quote data exists, anchor answer to code paths: `/markets/trades` ingestion exists; no active orderbook/quote ingestion path found in scripts.",
+    "Distinguish clearly between available trade JSONL fields (including yes_price/no_price per trade) and absent persistent top-of-book/orderbook history.",
+    "If implementing quote ingestion next, propose two-track plan: historical L1 via candlesticks plus forward live recorder via websocket ticker/orderbook_delta."
+  ]
+}
