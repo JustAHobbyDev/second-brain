@@ -1,0 +1,560 @@
+{
+  "artifact": "hyperfast_programming_ontology",
+  "type": "ontology",
+  "version": "1.0",
+  "scope": "principles, mechanisms, outcomes, anti_patterns, feedback_loops",
+  "nodes": [
+    {
+      "id": "N:Goal:HyperfastProgramming",
+      "type": "goal",
+      "label": "Hyperfast Programming"
+    },
+    {
+      "id": "N:Outcome:Speed",
+      "type": "outcome",
+      "label": "Development Speed"
+    },
+    {
+      "id": "N:Outcome:Quality",
+      "type": "outcome",
+      "label": "System Quality"
+    },
+    {
+      "id": "N:Outcome:Maintainability",
+      "type": "outcome",
+      "label": "Maintainability"
+    },
+    {
+      "id": "N:Outcome:Reliability",
+      "type": "outcome",
+      "label": "Reliability"
+    },
+    {
+      "id": "N:Outcome:CompoundingReuse",
+      "type": "outcome",
+      "label": "Compounding Reuse"
+    },
+    {
+      "id": "N:Constraint:CognitiveLoad",
+      "type": "constraint",
+      "label": "Cognitive Load"
+    },
+    {
+      "id": "N:Constraint:ContextSwitching",
+      "type": "constraint",
+      "label": "Context Switching Cost"
+    },
+    {
+      "id": "N:Constraint:CompileLatency",
+      "type": "constraint",
+      "label": "Compile / Feedback Latency"
+    },
+    {
+      "id": "N:Constraint:Friction",
+      "type": "constraint",
+      "label": "Workflow Friction"
+    },
+    {
+      "id": "N:Constraint:BurnoutRisk",
+      "type": "constraint",
+      "label": "Burnout Risk"
+    },
+    {
+      "id": "N:Principle:NoCode",
+      "type": "principle",
+      "label": "Fastest code is code that doesn't exist"
+    },
+    {
+      "id": "N:Principle:Prethink",
+      "type": "principle",
+      "label": "Think before typing"
+    },
+    {
+      "id": "N:Principle:Reuse",
+      "type": "principle",
+      "label": "Reuse aggressively"
+    },
+    {
+      "id": "N:Principle:Simplicity",
+      "type": "principle",
+      "label": "Radical simplicity"
+    },
+    {
+      "id": "N:Principle:ToolStability",
+      "type": "principle",
+      "label": "Use tools that work / prefer stability"
+    },
+    {
+      "id": "N:Principle:TightLoops",
+      "type": "principle",
+      "label": "Tight feedback loops"
+    },
+    {
+      "id": "N:Principle:SingleContext",
+      "type": "principle",
+      "label": "Stay in one mental context"
+    },
+    {
+      "id": "N:Principle:AIChunking",
+      "type": "principle",
+      "label": "AI: small verifiable tasks"
+    },
+    {
+      "id": "N:Principle:Batching",
+      "type": "principle",
+      "label": "Batch related work"
+    },
+    {
+      "id": "N:Principle:TempSolutions",
+      "type": "principle",
+      "label": "Temporary solutions for momentum"
+    },
+    {
+      "id": "N:Principle:EnergyProtection",
+      "type": "principle",
+      "label": "Protect energy / work in bursts"
+    },
+    {
+      "id": "N:Principle:MetaSystems",
+      "type": "principle",
+      "label": "Build systems that build systems"
+    },
+    {
+      "id": "N:Mechanism:FrameworkLeverage",
+      "type": "mechanism",
+      "label": "Leverage framework capabilities"
+    },
+    {
+      "id": "N:Mechanism:EliminateFeatures",
+      "type": "mechanism",
+      "label": "Eliminate unnecessary features"
+    },
+    {
+      "id": "N:Mechanism:UpfrontDesign",
+      "type": "mechanism",
+      "label": "Upfront conceptual design"
+    },
+    {
+      "id": "N:Mechanism:ReuseLibrary",
+      "type": "mechanism",
+      "label": "Reusable library/components"
+    },
+    {
+      "id": "N:Mechanism:Templates",
+      "type": "mechanism",
+      "label": "Templates (screens/reports/emails)"
+    },
+    {
+      "id": "N:Mechanism:Generators",
+      "type": "mechanism",
+      "label": "Generators (screen/report/workflow)"
+    },
+    {
+      "id": "N:Mechanism:Readability",
+      "type": "mechanism",
+      "label": "Readable code structure"
+    },
+    {
+      "id": "N:Mechanism:HotReload",
+      "type": "mechanism",
+      "label": "Hot reload / instant preview"
+    },
+    {
+      "id": "N:Mechanism:SplitScreen",
+      "type": "mechanism",
+      "label": "Split-screen: code + output"
+    },
+    {
+      "id": "N:Mechanism:OneProjectPerDay",
+      "type": "mechanism",
+      "label": "One project focus per day"
+    },
+    {
+      "id": "N:Mechanism:StackContinuity",
+      "type": "mechanism",
+      "label": "Stack continuity"
+    },
+    {
+      "id": "N:Mechanism:SmallAIUnits",
+      "type": "mechanism",
+      "label": "Small AI work units"
+    },
+    {
+      "id": "N:Mechanism:VerifiableTasks",
+      "type": "mechanism",
+      "label": "Explicit success criteria"
+    },
+    {
+      "id": "N:Mechanism:WorkBursts",
+      "type": "mechanism",
+      "label": "Work in bursts / pacing"
+    },
+    {
+      "id": "N:Environment:TouchTyping",
+      "type": "environment",
+      "label": "Touch typing proficiency"
+    },
+    {
+      "id": "N:Environment:ConsistentKeyboard",
+      "type": "environment",
+      "label": "Consistent keyboard across machines"
+    },
+    {
+      "id": "N:Environment:LargeMonitor",
+      "type": "environment",
+      "label": "Large / 4K monitor"
+    },
+    {
+      "id": "N:AntiPattern:Overbuild",
+      "type": "anti_pattern",
+      "label": "Overbuilding / unnecessary features"
+    },
+    {
+      "id": "N:AntiPattern:MonsterAIOutput",
+      "type": "anti_pattern",
+      "label": "AI generates massive unreviewable code"
+    },
+    {
+      "id": "N:AntiPattern:ToolChurn",
+      "type": "anti_pattern",
+      "label": "Constant platform/tool churn"
+    },
+    {
+      "id": "N:AntiPattern:ContextThrash",
+      "type": "anti_pattern",
+      "label": "Multi-project / multi-language thrashing"
+    },
+    {
+      "id": "N:AntiPattern:SlowFeedback",
+      "type": "anti_pattern",
+      "label": "Slow compile / delayed feedback"
+    },
+    {
+      "id": "N:Heuristic:3AMTest",
+      "type": "heuristic",
+      "label": "3AM Readability Test"
+    }
+  ],
+  "edges": [
+    {
+      "from": "N:Goal:HyperfastProgramming",
+      "to": "N:Outcome:Speed",
+      "type": "optimizes_for"
+    },
+    {
+      "from": "N:Goal:HyperfastProgramming",
+      "to": "N:Outcome:Quality",
+      "type": "optimizes_for"
+    },
+    {
+      "from": "N:Goal:HyperfastProgramming",
+      "to": "N:Outcome:Maintainability",
+      "type": "optimizes_for"
+    },
+    {
+      "from": "N:Goal:HyperfastProgramming",
+      "to": "N:Outcome:Reliability",
+      "type": "optimizes_for"
+    },
+    {
+      "from": "N:Goal:HyperfastProgramming",
+      "to": "N:Outcome:CompoundingReuse",
+      "type": "optimizes_for"
+    },
+    {
+      "from": "N:Principle:NoCode",
+      "to": "N:Mechanism:EliminateFeatures",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:NoCode",
+      "to": "N:Mechanism:FrameworkLeverage",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:EliminateFeatures",
+      "to": "N:AntiPattern:Overbuild",
+      "type": "mitigates"
+    },
+    {
+      "from": "N:Principle:NoCode",
+      "to": "N:Outcome:Maintainability",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:NoCode",
+      "to": "N:Outcome:Reliability",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:NoCode",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Prethink",
+      "to": "N:Mechanism:UpfrontDesign",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:UpfrontDesign",
+      "to": "N:Constraint:CognitiveLoad",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Principle:Prethink",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Prethink",
+      "to": "N:Outcome:Quality",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Reuse",
+      "to": "N:Mechanism:ReuseLibrary",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:Reuse",
+      "to": "N:Mechanism:Templates",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:Reuse",
+      "to": "N:Mechanism:Generators",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:ReuseLibrary",
+      "to": "N:Outcome:CompoundingReuse",
+      "type": "drives"
+    },
+    {
+      "from": "N:Mechanism:Generators",
+      "to": "N:Outcome:CompoundingReuse",
+      "type": "drives"
+    },
+    {
+      "from": "N:Outcome:CompoundingReuse",
+      "to": "N:Outcome:Speed",
+      "type": "increases"
+    },
+    {
+      "from": "N:Principle:Simplicity",
+      "to": "N:Mechanism:Readability",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:Readability",
+      "to": "N:Heuristic:3AMTest",
+      "type": "validated_by"
+    },
+    {
+      "from": "N:Principle:Simplicity",
+      "to": "N:Outcome:Maintainability",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Simplicity",
+      "to": "N:Outcome:Reliability",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Simplicity",
+      "to": "N:Constraint:CognitiveLoad",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Principle:TightLoops",
+      "to": "N:Mechanism:HotReload",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:TightLoops",
+      "to": "N:Mechanism:SplitScreen",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:HotReload",
+      "to": "N:Constraint:CompileLatency",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Mechanism:SplitScreen",
+      "to": "N:Constraint:Friction",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Constraint:CompileLatency",
+      "to": "N:Outcome:Speed",
+      "type": "decreases",
+      "polarity": "negative"
+    },
+    {
+      "from": "N:Principle:TightLoops",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:SingleContext",
+      "to": "N:Mechanism:OneProjectPerDay",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:SingleContext",
+      "to": "N:Mechanism:StackContinuity",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:OneProjectPerDay",
+      "to": "N:Constraint:ContextSwitching",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Constraint:ContextSwitching",
+      "to": "N:Outcome:Speed",
+      "type": "decreases",
+      "polarity": "negative"
+    },
+    {
+      "from": "N:Principle:AIChunking",
+      "to": "N:Mechanism:SmallAIUnits",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:AIChunking",
+      "to": "N:Mechanism:VerifiableTasks",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:SmallAIUnits",
+      "to": "N:AntiPattern:MonsterAIOutput",
+      "type": "mitigates"
+    },
+    {
+      "from": "N:Principle:AIChunking",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:AIChunking",
+      "to": "N:Outcome:Quality",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:Batching",
+      "to": "N:Constraint:ContextSwitching",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Principle:TempSolutions",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:TempSolutions",
+      "to": "N:Outcome:Quality",
+      "type": "can_reduce",
+      "polarity": "risk"
+    },
+    {
+      "from": "N:Principle:EnergyProtection",
+      "to": "N:Mechanism:WorkBursts",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Mechanism:WorkBursts",
+      "to": "N:Constraint:BurnoutRisk",
+      "type": "reduces"
+    },
+    {
+      "from": "N:Constraint:BurnoutRisk",
+      "to": "N:Outcome:Speed",
+      "type": "decreases",
+      "polarity": "negative"
+    },
+    {
+      "from": "N:Principle:ToolStability",
+      "to": "N:AntiPattern:ToolChurn",
+      "type": "mitigates"
+    },
+    {
+      "from": "N:AntiPattern:ToolChurn",
+      "to": "N:Mechanism:StackContinuity",
+      "type": "opposes"
+    },
+    {
+      "from": "N:Principle:MetaSystems",
+      "to": "N:Mechanism:Generators",
+      "type": "implemented_by"
+    },
+    {
+      "from": "N:Principle:MetaSystems",
+      "to": "N:Outcome:CompoundingReuse",
+      "type": "improves"
+    },
+    {
+      "from": "N:Principle:MetaSystems",
+      "to": "N:Outcome:Speed",
+      "type": "improves"
+    }
+  ],
+  "feedback_loops": [
+    {
+      "id": "L1",
+      "name": "Tight Feedback Loop -> Faster Iteration Loop",
+      "type": "reinforcing",
+      "sequence": [
+        "N:Mechanism:HotReload",
+        "N:Constraint:CompileLatency (reduced)",
+        "N:Outcome:Speed (increased)",
+        "N:Principle:TightLoops (more feasible)",
+        "N:Mechanism:HotReload (more used)"
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "Reuse Compounding Loop",
+      "type": "reinforcing",
+      "sequence": [
+        "N:Mechanism:ReuseLibrary",
+        "N:Outcome:CompoundingReuse",
+        "N:Outcome:Speed",
+        "N:Mechanism:ReuseLibrary (expanded)"
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "Meta-Systems Compounding Loop",
+      "type": "reinforcing",
+      "sequence": [
+        "N:Mechanism:Generators",
+        "N:Outcome:CompoundingReuse",
+        "N:Outcome:Speed",
+        "N:Mechanism:Generators (investment justified)"
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "Context Stability Loop",
+      "type": "reinforcing",
+      "sequence": [
+        "N:Mechanism:OneProjectPerDay",
+        "N:Constraint:ContextSwitching (reduced)",
+        "N:Outcome:Speed (increased)",
+        "N:Mechanism:OneProjectPerDay (more likely to maintain)"
+      ]
+    }
+  ],
+  "graph_notes": {
+    "design_intent": "This ontology separates principles (normative rules) from mechanisms (implementations) and constraints (friction sources). Outcomes capture optimization targets. Anti-patterns are modeled as opposing forces. Feedback loops encode compounding dynamics.",
+    "recommended_queries": [
+      "Which mechanisms most reduce cognitive load?",
+      "What anti-patterns most threaten speed?",
+      "What principles drive compounding reuse?",
+      "Which loops are reinforcing vs risk loops?"
+    ]
+  }
+}
