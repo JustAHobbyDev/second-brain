@@ -1,0 +1,32 @@
+{
+  "schema_version": "v0",
+  "project_id": "kalshi",
+  "phase_events": [
+    {
+      "phase": "discovery",
+      "entered_on": "2026-02-01",
+      "trigger_artifact": "scenes/kalshi_15m_btc_pipeline.scene.json",
+      "confidence_score": 0.78,
+      "notes": "Initial problem framing and candidate signal inventory."
+    },
+    {
+      "phase": "implementation",
+      "entered_on": "2026-02-11",
+      "trigger_artifact": "sessions/codex/2026-02-12-phase8-closeout-handoff.json",
+      "confidence_score": 0.83
+    },
+    {
+      "phase": "stabilization",
+      "entered_on": "2026-02-13",
+      "trigger_artifact": "meta/META_PROGRAM_SPEC_v0.md",
+      "confidence_score": 0.74,
+      "notes": "Workflow converging on deterministic, schema-backed operations."
+    }
+  ],
+  "drift_signals": {
+    "regression": false,
+    "oscillation": "Prompt conventions shifted twice before schema freeze.",
+    "stagnation": false
+  },
+  "generated_on": "2026-02-13"
+}

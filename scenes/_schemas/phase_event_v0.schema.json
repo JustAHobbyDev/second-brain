@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scenes/_schemas/phase_event_v0.schema.json",
+  "title": "Phase Event v0",
+  "description": "Experimental v0 phase event contract for deterministic phase-history construction.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "phase": {
+      "type": "string",
+      "enum": [
+        "discovery",
+        "framing",
+        "implementation",
+        "validation",
+        "stabilization",
+        "closeout"
+      ],
+      "description": "v0 phase enum."
+    },
+    "entered_on": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO-8601 calendar date (`YYYY-MM-DD`)."
+    },
+    "trigger_artifact": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Primary artifact that triggered phase entry."
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in phase assignment, inclusive range [0,1]."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional operator notes."
+    }
+  },
+  "required": [
+    "phase",
+    "entered_on",
+    "trigger_artifact",
+    "confidence_score"
+  ]
+}

@@ -36,6 +36,9 @@ This repository is designed around the idea that:
 
 ```bash
 .
+├── meta
+├── operations
+├── profiles
 ├── graph
 ├── prompts
 ├── scenes
@@ -46,6 +49,17 @@ This repository is designed around the idea that:
 ├── templates
 └── tools
 ```
+
+---
+
+## Meta
+
+* [Meta Program Spec v0](meta/META_PROGRAM_SPEC_v0.md)
+* [Generate Project History Operation v0](operations/generate_project_history_v0.md)
+* [Dan Cognitive Operating Model Template v0](profiles/dan_cognitive_operating_model_v0.md)
+* [Session Closing Checklist](templates/session_closing_checklist.md)
+* [Phase Event Schema v0](scenes/_schemas/phase_event_v0.schema.json)
+* [Phase History Schema v0](scenes/_schemas/phase_history_v0.schema.json)
 
 ---
 

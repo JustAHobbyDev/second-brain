@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scenes/_schemas/phase_history_v0.schema.json",
+  "title": "Phase History v0",
+  "description": "Experimental v0 project phase history contract with documentation-friendly drift signaling.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "v0"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase_events": {
+      "type": "array",
+      "description": "Deterministically sorted by entered_on ascending, then trigger_artifact lexical ascending.",
+      "items": {
+        "$ref": "phase_event_v0.schema.json"
+      }
+    },
+    "drift_signals": {
+      "type": "object",
+      "description": "Drift notes may be booleans or strings for regression/oscillation/stagnation and related diagnostics.",
+      "properties": {
+        "regression": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "oscillation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "stagnation": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "generated_on": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "phase_events",
+    "drift_signals",
+    "generated_on"
+  ]
+}
