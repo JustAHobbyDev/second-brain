@@ -1,0 +1,61 @@
+{
+  "artifact": "hyperfast_session_pocket_card",
+  "type": "compressed_checklist",
+  "version": "1.0",
+  "belongs_to_playbook": "hyperfast_protocol_v1",
+  "compression_level": "ultra_compact",
+  "purpose": "7-line runtime guardrail for maintaining hyperfast development velocity during live coding sessions.",
+  "card": [
+    {
+      "id": "PC-01",
+      "line": "Hot loop ready",
+      "expansion": "Fast run/build cycle; split view code <-> output; friction minimized."
+    },
+    {
+      "id": "PC-02",
+      "line": "No-code gate",
+      "expansion": "Eliminate/simplify; use framework/config/data before writing custom code."
+    },
+    {
+      "id": "PC-03",
+      "line": "Micro-spec",
+      "expansion": "Define outcome, minimal slice, inputs/outputs, top risks, verification method."
+    },
+    {
+      "id": "PC-04",
+      "line": "Slice small",
+      "expansion": "One-screen unit; explicit success criteria; independently verifiable."
+    },
+    {
+      "id": "PC-05",
+      "line": "Tight loop",
+      "expansion": "Change -> observe quickly; if loop slows, reduce scope or improve tooling."
+    },
+    {
+      "id": "PC-06",
+      "line": "3AM readable",
+      "expansion": "Simple structure; obvious names; shallow control flow; no clever opacity."
+    },
+    {
+      "id": "PC-07",
+      "line": "Harvest + protect",
+      "expansion": "Promote reuse patterns; batch related work; tag temporary hacks; work in bursts."
+    }
+  ],
+  "usage": {
+    "intended_surface": [
+      "session start ritual",
+      "mid-session drift correction",
+      "pre-commit self-audit",
+      "AI task boundary check"
+    ],
+    "execution_time_seconds": 30,
+    "expected_effect": [
+      "maintain velocity",
+      "prevent scope creep",
+      "reduce cognitive thrash",
+      "increase compounding reuse"
+    ]
+  },
+  "design_note": "This artifact is intentionally compressed. Each line maps to multiple deeper playbook steps. It is meant to stabilize behavior under cognitive load."
+}
