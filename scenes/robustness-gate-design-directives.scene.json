@@ -1,0 +1,67 @@
+{
+  "artifact": "robustness_gate_design_directives",
+  "type": "directive_list",
+  "version": "1.0",
+  "purpose": "Define and operationalize a robustness gate with reproducible promotion decisions.",
+  "directives": [
+    {
+      "id": "RG-01",
+      "directive": "define perturbation tiers",
+      "intent": "Establish a graded stress hierarchy for robustness testing."
+    },
+    {
+      "id": "RG-02",
+      "directive": "define strict gate thresholds",
+      "intent": "Set explicit numeric pass/fail criteria for gate enforcement."
+    },
+    {
+      "id": "RG-03",
+      "directive": "define invariance requirements",
+      "intent": "Specify metrics and behaviors that must remain stable under perturbation."
+    },
+    {
+      "id": "RG-04",
+      "directive": "design ablation ladders",
+      "intent": "Order feature/component removals to measure marginal contribution and failure points."
+    },
+    {
+      "id": "RG-05",
+      "directive": "identify instability injectors",
+      "intent": "Catalog factors likely to trigger brittleness or variance blow-ups."
+    },
+    {
+      "id": "RG-06",
+      "directive": "design bounded transform experiments",
+      "intent": "Run controlled transformations with constrained ranges to isolate causal effects."
+    },
+    {
+      "id": "RG-07",
+      "directive": "formalize promotion criteria",
+      "intent": "Define exact conditions required for advancement to production or next stage."
+    },
+    {
+      "id": "RG-08",
+      "directive": "emit reproducible decision artifacts",
+      "intent": "Produce durable, machine-readable decision records with evidence and parameters."
+    }
+  ],
+  "execution_order": [
+    "RG-01",
+    "RG-02",
+    "RG-03",
+    "RG-04",
+    "RG-05",
+    "RG-06",
+    "RG-07",
+    "RG-08"
+  ],
+  "outputs": {
+    "primary": "reproducible_decision_artifact",
+    "properties": [
+      "machine_readable",
+      "parameterized",
+      "evidence_linked",
+      "re-runnable"
+    ]
+  }
+}
