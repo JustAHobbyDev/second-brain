@@ -33,6 +33,12 @@ def read_json_from_stdin() -> JsonObj:
     return cast(JsonObj, value)
 
 
+def read_json_input(json_file: str | None) -> JsonObj:
+    if json_file:
+        return read_json_file(Path(json_file))
+    return read_json_from_stdin()
+
+
 def read_index_file(path: Path) -> list[str]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -127,7 +133,7 @@ def rebuild_indexes() -> None:
 
 
 def cmd_commit_session(args: argparse.Namespace) -> None:
-    data = read_json_from_stdin()
+    data = read_json_input(cast(str | None, args.json_file))
     artifact_id = data.get("id")
     if not isinstance(artifact_id, str):
         die("session JSON must contain a string field 'id' (artifact/...)")
@@ -147,7 +153,7 @@ def cmd_commit_session(args: argparse.Namespace) -> None:
 
 
 def cmd_commit_scene(args: argparse.Namespace) -> None:
-    data = read_json_from_stdin()
+    data = read_json_input(cast(str | None, args.json_file))
     name = cast(str, args.name)
     if not name:
         die("scene name required (example: workflow_operational_model)")
@@ -192,13 +198,18 @@ def main() -> None:
     p = argparse.ArgumentParser(prog="sb", description="Second-brain CLI")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    s1 = sub.add_parser("commit-session", help="Commit a session artifact from stdin JSON and rebuild indexes")
+    s1 = sub.add_parser(
+        "commit-session",
+        help="Commit a session artifact from stdin JSON (or --json-file) and rebuild indexes",
+    )
     _ = s1.add_argument("--tool", required=True, choices=["codex", "chatgpt"])
     _ = s1.add_argument("--filename", help="Override output filename")
+    _ = s1.add_argument("--json-file", help="Read input JSON from a file instead of stdin")
     s1.set_defaults(func=cmd_commit_session)
 
-    s2 = sub.add_parser("commit-scene", help="Commit a scene JSON from stdin")
+    s2 = sub.add_parser("commit-scene", help="Commit a scene JSON from stdin (or --json-file)")
     _ = s2.add_argument("--name", required=True, help="Scene name (used for filename)")
+    _ = s2.add_argument("--json-file", help="Read input JSON from a file instead of stdin")
     s2.set_defaults(func=cmd_commit_scene)
 
     s3 = sub.add_parser("validate", help="Validate JSON in scenes/ and sessions/")
@@ -216,4 +227,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

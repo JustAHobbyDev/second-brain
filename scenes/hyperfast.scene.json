@@ -1,0 +1,154 @@
+{
+  "artifact": "hyperfast_programming_principles",
+  "type": "development_philosophy",
+  "version": "1.0",
+  "core_meta_pattern": {
+    "summary": "Minimize cognitive friction, maximize reuse, shorten feedback loops, preserve clarity, exploit compounding systems.",
+    "optimization_targets": [
+      "cognitive_load",
+      "iteration_speed",
+      "reuse_density",
+      "mental_context_stability",
+      "long_term_compounding"
+    ]
+  },
+  "principles": [
+    {
+      "id": "P1",
+      "name": "Eliminate Unnecessary Code",
+      "rule": "The fastest code is code that does not exist.",
+      "mechanisms": [
+        "Use framework capabilities",
+        "Avoid premature abstraction",
+        "Avoid redundant logic"
+      ],
+      "benefits": [
+        "Fewer bugs",
+        "Less maintenance",
+        "Lower complexity"
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Think Before Typing",
+      "rule": "Separate design from implementation.",
+      "mechanisms": [
+        "Pre-coding conceptualization",
+        "Micro-architecture sketching",
+        "10-minute pre-planning"
+      ],
+      "benefits": [
+        "Reduced rework",
+        "Cleaner implementation",
+        "Lower mental thrash"
+      ]
+    },
+    {
+      "id": "P3",
+      "name": "Aggressive Reuse",
+      "rule": "Steal from yourself first.",
+      "mechanisms": [
+        "Reusable templates",
+        "Workflow reuse",
+        "Code libraries",
+        "Generators"
+      ],
+      "benefits": [
+        "Compounding speed",
+        "Reduced design overhead",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "P4",
+      "name": "Radical Simplicity",
+      "rule": "Simplest solution that works is often correct.",
+      "mechanisms": [
+        "Readable structure",
+        "Low abstraction depth",
+        "3AM readability test"
+      ],
+      "benefits": [
+        "Maintainability",
+        "Error reduction",
+        "Faster debugging"
+      ]
+    },
+    {
+      "id": "P5",
+      "name": "Tight Feedback Loops",
+      "rule": "Small change \u2192 immediate observable result.",
+      "mechanisms": [
+        "Hot reload",
+        "Split-screen coding",
+        "Small incremental edits"
+      ],
+      "benefits": [
+        "Rapid iteration",
+        "Low uncertainty",
+        "Faster validation"
+      ]
+    },
+    {
+      "id": "P6",
+      "name": "Single Mental Context",
+      "rule": "Avoid project and language switching.",
+      "mechanisms": [
+        "One project focus per day",
+        "Stack continuity",
+        "Task batching"
+      ],
+      "benefits": [
+        "Reduced cognitive switching cost",
+        "Increased velocity"
+      ]
+    },
+    {
+      "id": "P7",
+      "name": "AI as Modular Accelerator",
+      "rule": "Give AI small, verifiable chunks.",
+      "mechanisms": [
+        "20-50 line bounded tasks",
+        "Clear success criteria",
+        "Independent modules"
+      ],
+      "anti_patterns": [
+        "Generate entire project at once",
+        "Unverifiable massive outputs"
+      ],
+      "benefits": [
+        "High signal collaboration",
+        "Error containment",
+        "Fast refinement"
+      ]
+    },
+    {
+      "id": "P8",
+      "name": "Build Systems That Build Systems",
+      "rule": "Invest in generators and meta-systems.",
+      "mechanisms": [
+        "Screen generators",
+        "Report generators",
+        "Template engines",
+        "Workflow scaffolding"
+      ],
+      "benefits": [
+        "Exponential productivity",
+        "Long-term compounding",
+        "Cross-project leverage"
+      ]
+    }
+  ],
+  "operational_patterns": [
+    "Batch related work",
+    "Use temporary solutions strategically",
+    "Protect energy and avoid burnout",
+    "Favor stable tools over trendy ones"
+  ],
+  "long_term_strategy": {
+    "stack_continuity": true,
+    "reuse_accumulation": true,
+    "generator_investment": true,
+    "cognitive_friction_minimization": true
+  }
+}

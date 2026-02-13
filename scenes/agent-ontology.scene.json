@@ -1,0 +1,327 @@
+{
+  "meta": {
+    "name": "Agent Ontology",
+    "version": "0.1.0",
+    "status": "draft",
+    "purpose": "A minimal, practical ontology for LLM-powered agents: what exists in the agent's world model, how it plans, acts, remembers, and learns.",
+    "design_principles": [
+      "Implementation-first (fits real systems)",
+      "Traceable (everything can be logged and replayed)",
+      "Composable (works with many tool stacks)",
+      "Versioned (schema evolves via changelogs/diffs)"
+    ]
+  },
+
+  "core_entities": {
+    "Agent": {
+      "description": "An autonomous/semiautonomous system that perceives, reasons, acts via tools, and updates memory.",
+      "fields": {
+        "agent_id": "string",
+        "profile": "AgentProfile",
+        "capabilities": "Capability[]",
+        "policies": "Policy[]",
+        "state": "AgentState"
+      }
+    },
+
+    "AgentProfile": {
+      "description": "Identity + operating style. This is not 'memory'; it's configuration.",
+      "fields": {
+        "name": "string",
+        "role": "string",
+        "tone": "string",
+        "values": "string[]",
+        "constraints": "string[]"
+      }
+    },
+
+    "AgentState": {
+      "description": "Mutable runtime state (what the agent believes about itself and the session now).",
+      "fields": {
+        "mode": "string",
+        "focus": "string",
+        "confidence": "number",
+        "open_questions": "OpenQuestion[]",
+        "active_task_id": "string|null"
+      }
+    },
+
+    "Task": {
+      "description": "A unit of work with goals, constraints, and evaluation.",
+      "fields": {
+        "task_id": "string",
+        "title": "string",
+        "goal": "Goal",
+        "constraints": "Constraint[]",
+        "definition_of_done": "Criterion[]",
+        "priority": "number",
+        "status": "string",
+        "inputs": "ArtifactRef[]",
+        "outputs": "ArtifactRef[]",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+
+    "Goal": {
+      "description": "An intended outcome. Can be decomposed into subgoals.",
+      "fields": {
+        "statement": "string",
+        "subgoals": "Goal[]",
+        "success_criteria": "Criterion[]"
+      }
+    },
+
+    "Plan": {
+      "description": "An ordered set of steps the agent intends to execute.",
+      "fields": {
+        "plan_id": "string",
+        "task_id": "string",
+        "steps": "PlanStep[]",
+        "assumptions": "Assumption[]",
+        "risks": "Risk[]"
+      }
+    },
+
+    "PlanStep": {
+      "description": "A single step that may involve tools, decisions, and intermediate artifacts.",
+      "fields": {
+        "step_id": "string",
+        "intent": "string",
+        "action": "Action",
+        "depends_on": "string[]",
+        "expected_output": "ArtifactRef[]",
+        "validation": "Criterion[]",
+        "status": "string"
+      }
+    },
+
+    "Action": {
+      "description": "A concrete operation: think, ask, retrieve, transform, tool-call, or publish.",
+      "fields": {
+        "type": "string",
+        "tool_ref": "ToolRef|null",
+        "parameters": "object",
+        "side_effects": "SideEffect[]"
+      }
+    },
+
+    "ToolRef": {
+      "description": "A reference to an external capability (API, script, UI operation).",
+      "fields": {
+        "tool_id": "string",
+        "name": "string",
+        "interface": "string",
+        "inputs_schema": "object",
+        "outputs_schema": "object"
+      }
+    },
+
+    "Constraint": {
+      "description": "A hard requirement or limit that must not be violated.",
+      "fields": {
+        "constraint_id": "string",
+        "type": "string",
+        "statement": "string",
+        "scope": "string",
+        "priority": "number"
+      }
+    },
+
+    "Policy": {
+      "description": "Rules of engagement for behavior (safety, style, compliance, operating norms).",
+      "fields": {
+        "policy_id": "string",
+        "type": "string",
+        "statement": "string",
+        "enforcement": "string"
+      }
+    },
+
+    "Memory": {
+      "description": "A system for storing and retrieving information across time.",
+      "fields": {
+        "memory_id": "string",
+        "stores": "MemoryStore[]",
+        "retrieval_strategies": "RetrievalStrategy[]"
+      }
+    },
+
+    "MemoryStore": {
+      "description": "A concrete memory container (notes, vector DB, graph DB, filesystem).",
+      "fields": {
+        "store_id": "string",
+        "type": "string",
+        "retention": "string",
+        "indexing": "string[]",
+        "access": "AccessPolicy"
+      }
+    },
+
+    "RetrievalStrategy": {
+      "description": "How the agent searches memory (keyword, embedding, graph traversal).",
+      "fields": {
+        "strategy_id": "string",
+        "type": "string",
+        "query_template": "string",
+        "ranking": "string",
+        "filters": "object"
+      }
+    },
+
+    "Artifact": {
+      "description": "A produced or referenced object: spec, code, transcript, dataset, diagram, post.",
+      "fields": {
+        "artifact_id": "string",
+        "type": "string",
+        "title": "string",
+        "uri": "string|null",
+        "content_hash": "string|null",
+        "metadata": "object",
+        "provenance": "Provenance"
+      }
+    },
+
+    "ArtifactRef": {
+      "description": "A lightweight reference to an artifact.",
+      "fields": {
+        "artifact_id": "string",
+        "role": "string"
+      }
+    },
+
+    "Provenance": {
+      "description": "Where an artifact came from and how it changed.",
+      "fields": {
+        "source": "string",
+        "created_by": "string",
+        "created_at": "datetime",
+        "transformations": "Transformation[]"
+      }
+    },
+
+    "Transformation": {
+      "description": "A logged change to an artifact (summarize, extract, rewrite, convert).",
+      "fields": {
+        "type": "string",
+        "agent_id": "string",
+        "timestamp": "datetime",
+        "inputs": "ArtifactRef[]",
+        "outputs": "ArtifactRef[]",
+        "notes": "string"
+      }
+    },
+
+    "Observation": {
+      "description": "An input to the agent from the world: user message, tool output, file read.",
+      "fields": {
+        "observation_id": "string",
+        "type": "string",
+        "timestamp": "datetime",
+        "source": "string",
+        "payload": "object",
+        "linked_artifacts": "ArtifactRef[]"
+      }
+    },
+
+    "OpenQuestion": {
+      "description": "Unresolved unknowns that should be tracked, not forgotten.",
+      "fields": {
+        "question_id": "string",
+        "question": "string",
+        "why_it_matters": "string",
+        "status": "string"
+      }
+    },
+
+    "Assumption": {
+      "description": "A working assumption used for planning that may be wrong.",
+      "fields": {
+        "assumption_id": "string",
+        "statement": "string",
+        "confidence": "number",
+        "validation_plan": "string"
+      }
+    },
+
+    "Risk": {
+      "description": "A potential failure mode and mitigation.",
+      "fields": {
+        "risk_id": "string",
+        "statement": "string",
+        "likelihood": "string",
+        "impact": "string",
+        "mitigation": "string"
+      }
+    },
+
+    "Criterion": {
+      "description": "An evaluatable check (definition of done, validation, or guardrail).",
+      "fields": {
+        "criterion_id": "string",
+        "statement": "string",
+        "method": "string",
+        "threshold": "string|null"
+      }
+    },
+
+    "SideEffect": {
+      "description": "A deliberate external change caused by an action.",
+      "fields": {
+        "type": "string",
+        "description": "string",
+        "reversible": "boolean"
+      }
+    },
+
+    "AccessPolicy": {
+      "description": "Rules for reading/writing stores or artifacts.",
+      "fields": {
+        "read": "string[]",
+        "write": "string[]",
+        "notes": "string"
+      }
+    }
+  },
+
+  "relations": [
+    { "from": "Agent", "to": "Task", "type": "owns" },
+    { "from": "Task", "to": "Plan", "type": "has_plan" },
+    { "from": "Plan", "to": "PlanStep", "type": "has_steps" },
+    { "from": "PlanStep", "to": "Action", "type": "executes" },
+    { "from": "Action", "to": "ToolRef", "type": "may_call" },
+    { "from": "Task", "to": "Artifact", "type": "consumes_or_produces" },
+    { "from": "Observation", "to": "Artifact", "type": "references" },
+    { "from": "Artifact", "to": "Transformation", "type": "has_provenance" },
+    { "from": "AgentState", "to": "OpenQuestion", "type": "tracks" }
+  ],
+
+  "execution_loop": {
+    "description": "A minimal control loop that maps to most agent implementations.",
+    "stages": [
+      "Observe (ingest user/tool/world inputs as Observations)",
+      "Orient (update AgentState, surface OpenQuestions/Constraints)",
+      "Plan (create or update Plan for active Task)",
+      "Act (execute Action(s), possibly tool calls)",
+      "Evaluate (check Criteria; update status/confidence)",
+      "Store (write Artifacts + Provenance; update Memory)",
+      "Reflect (log Assumptions/Risks; update next actions)"
+    ]
+  },
+
+  "notes": {
+    "what_v0_1_omits": [
+      "Explicit belief models (beyond confidence + open questions)",
+      "Multi-agent coordination primitives (delegation, consensus, voting)",
+      "Temporal reasoning primitives (schedules, deadlines, recurrence)",
+      "Security/permissions beyond basic access policy",
+      "Formal semantics for graph traversal and query languages"
+    ],
+    "intended_use": [
+      "Logging + replay of agent runs",
+      "Designing memory layers beyond vector search",
+      "Grounding agent frameworks in explicit entities",
+      "Providing a shared language for collaborators"
+    ]
+  }
+}
