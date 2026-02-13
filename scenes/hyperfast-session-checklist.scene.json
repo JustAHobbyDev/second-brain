@@ -1,0 +1,129 @@
+{
+  "artifact": "hyperfast_session_checklist",
+  "type": "checklist",
+  "version": "1.0",
+  "belongs_to_playbook": "hyperfast_protocol_v1",
+  "purpose": "Runtime compression of the playbook for fast self-audit and drift prevention during a coding session.",
+  "scope": {
+    "covers_protocol_sections": [
+      "Setup Phase",
+      "No-Code Gate",
+      "Micro-Spec",
+      "Smallest Slice Selection",
+      "AI Collaboration Loop",
+      "Tight Feedback Loop",
+      "3AM Simplicity Test",
+      "Reuse Trigger",
+      "Batch Mode",
+      "Temporary Solutions Guard",
+      "Energy Protection"
+    ]
+  },
+  "checklist": [
+    {
+      "id": "HF-01",
+      "item": "Setup friction removed (hot loop ready)",
+      "verify": [
+        "run/build loop < ~10s",
+        "split view code <-> output ready"
+      ]
+    },
+    {
+      "id": "HF-02",
+      "item": "No-code gate passed (or requirement reduced/deleted)",
+      "verify": [
+        "framework/config/data option considered",
+        "unnecessary feature eliminated if possible"
+      ]
+    },
+    {
+      "id": "HF-03",
+      "item": "Micro-spec written (5 bullets)",
+      "verify": [
+        "outcome",
+        "minimal proof slice",
+        "inputs/outputs",
+        "top 2 failure modes",
+        "verification method"
+      ]
+    },
+    {
+      "id": "HF-04",
+      "item": "Work split into verifiable slices",
+      "verify": [
+        "each slice has explicit success criteria",
+        "each slice is independently testable"
+      ]
+    },
+    {
+      "id": "HF-05",
+      "item": "AI tasks constrained (one-screen + success criteria)",
+      "verify": [
+        "20-80 lines typical",
+        "clear output format (diff/code/steps)",
+        "easy review and rollback"
+      ]
+    },
+    {
+      "id": "HF-06",
+      "item": "Tight feedback loops maintained",
+      "verify": [
+        "change -> observe quickly",
+        "loop time not creeping upward"
+      ]
+    },
+    {
+      "id": "HF-07",
+      "item": "3AM test passed each slice",
+      "verify": [
+        "names obvious",
+        "control flow shallow",
+        "intent readable in 10 seconds"
+      ]
+    },
+    {
+      "id": "HF-08",
+      "item": "Reuse captured (helpers/templates/generators)",
+      "verify": [
+        "repeatable pattern promoted after first working instance",
+        "reusable primitive identified if applicable"
+      ]
+    },
+    {
+      "id": "HF-09",
+      "item": "Batched work (no thrash)",
+      "verify": [
+        "one category per block (UI, reports, model, refactor, perf)"
+      ]
+    },
+    {
+      "id": "HF-10",
+      "item": "Temporary hacks tagged + planned",
+      "verify": [
+        "TODO includes removal condition/date",
+        "no silent temporary forever"
+      ]
+    },
+    {
+      "id": "HF-11",
+      "item": "Energy protected (bursts)",
+      "verify": [
+        "work in focus blocks + breaks",
+        "stop when error rate rises"
+      ]
+    }
+  ],
+  "usage": {
+    "when_to_run": [
+      "session_start",
+      "before committing",
+      "when velocity drops",
+      "before handing work to AI/agent"
+    ],
+    "recommended_outputs": [
+      "pass/fail per item",
+      "notes on any failures",
+      "action to restore tight loop"
+    ]
+  }
+}
