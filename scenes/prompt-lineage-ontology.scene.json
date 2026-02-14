@@ -1,0 +1,203 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/prompt_lineage_ontology_spec_v0",
+      "type": "artifact",
+      "label": "Prompt Lineage Ontology Spec v0",
+      "artifact_type": "spec",
+      "source_path": "meta/PROMPT_LINEAGE_ONTOLOGY_SPEC_v0.md",
+      "version": "v0",
+      "status": "experimental"
+    },
+
+    {
+      "id": "concept/prompt_artifact",
+      "type": "concept",
+      "label": "PromptArtifact",
+      "description": "Canonical prompt content unit (base or materialized). Required fields: id, type, title, content, version, status."
+    },
+    {
+      "id": "concept/prompt_delta",
+      "type": "concept",
+      "label": "PromptDelta",
+      "description": "Incremental transformation over a base prompt. Required fields: id, delta_type, patch, order, version, status."
+    },
+    {
+      "id": "concept/prompt_variant",
+      "type": "concept",
+      "label": "PromptVariant",
+      "description": "Named target variant for tool/context/domain specialization. Required fields: id, target_context, version, status."
+    },
+    {
+      "id": "concept/prompt_materialization_run",
+      "type": "concept",
+      "label": "PromptMaterializationRun",
+      "description": "Deterministic replay execution record. Required fields: id, base_prompt_id, applied_delta_ids[], output_prompt_id, generated_on."
+    },
+
+    {
+      "id": "concept/deterministic_materialization",
+      "type": "concept",
+      "label": "Deterministic materialization",
+      "description": "Same base + same ordered deltas must produce byte-identical output. Delta order: ascending numeric order, tie-break by id lexical order."
+    },
+    {
+      "id": "concept/base_delta_materialized_lineage",
+      "type": "concept",
+      "label": "base -> delta -> materialized lineage",
+      "description": "Core derivation chain: a base prompt is transformed by ordered deltas into a materialized output with full replay metadata."
+    },
+
+    {
+      "id": "principle/explicit_lineage",
+      "type": "principle",
+      "label": "Lineage is explicit, not inferred"
+    },
+    {
+      "id": "principle/no_inplace_mutation",
+      "type": "principle",
+      "label": "No in-place semantic mutation of historical prompts"
+    },
+    {
+      "id": "principle/fail_closed",
+      "type": "principle",
+      "label": "Unsupported or missing operations fail closed"
+    },
+
+    {
+      "id": "pattern/prompt_id_convention",
+      "type": "pattern",
+      "label": "Prompt ID naming convention",
+      "description": "Prompt IDs: prompt/<domain>_<purpose>_vN. Delta IDs: prompt_delta/<base>_<order>_<intent>_vN. Materialized IDs: prompt/<base>__<variant>_vN."
+    },
+    {
+      "id": "pattern/drift_testing",
+      "type": "pattern",
+      "label": "Prompt lineage drift tests",
+      "description": "Four invariance tests: repeat-run stability, permutation invariance, supersession stability, missing-delta failure."
+    },
+
+    {
+      "id": "project/dan_personal_cognitive_infrastructure",
+      "type": "project",
+      "label": "Personal cognitive infrastructure"
+    }
+  ],
+
+  "edges": [
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/prompt_artifact",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/prompt_delta",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/prompt_variant",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/prompt_materialization_run",
+      "type": "defines"
+    },
+
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/deterministic_materialization",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/base_delta_materialized_lineage",
+      "type": "introduces"
+    },
+
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "principle/explicit_lineage",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "principle/no_inplace_mutation",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "principle/fail_closed",
+      "type": "introduces"
+    },
+
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "pattern/prompt_id_convention",
+      "type": "describes"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "pattern/drift_testing",
+      "type": "describes"
+    },
+
+    {
+      "from": "concept/prompt_delta",
+      "to": "concept/prompt_artifact",
+      "type": "expands",
+      "description": "A delta transforms a base PromptArtifact."
+    },
+    {
+      "from": "concept/prompt_delta",
+      "to": "concept/prompt_variant",
+      "type": "concretizes",
+      "description": "A delta specializes toward a named variant."
+    },
+    {
+      "from": "concept/prompt_materialization_run",
+      "to": "concept/prompt_artifact",
+      "type": "produces",
+      "description": "A run produces a materialized PromptArtifact from base + deltas."
+    },
+    {
+      "from": "concept/prompt_materialization_run",
+      "to": "concept/prompt_delta",
+      "type": "applies_delta"
+    },
+
+    {
+      "from": "concept/base_delta_materialized_lineage",
+      "to": "concept/deterministic_materialization",
+      "type": "requires"
+    },
+    {
+      "from": "concept/deterministic_materialization",
+      "to": "pattern/drift_testing",
+      "type": "verified_by"
+    },
+    {
+      "from": "principle/explicit_lineage",
+      "to": "concept/base_delta_materialized_lineage",
+      "type": "governs"
+    },
+    {
+      "from": "principle/no_inplace_mutation",
+      "to": "concept/prompt_artifact",
+      "type": "constrains"
+    },
+    {
+      "from": "principle/fail_closed",
+      "to": "concept/prompt_materialization_run",
+      "type": "constrains"
+    },
+
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "artifact/prompt_lineage_ontology_spec_v0",
+      "type": "documents"
+    }
+  ]
+}

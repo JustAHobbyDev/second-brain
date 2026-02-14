@@ -1,12 +1,6 @@
 {
   "nodes": [
     {
-      "id": "project/dan_personal_cognitive_infrastructure",
-      "type": "project",
-      "label": "Dan's personal cognitive infrastructure",
-      "description": "Long-term effort to build a second brain-like system that connects Codex, ChatGPT, agents, and knowledge graph structures for trading, research, and workflow meta-analysis."
-    },
-    {
       "id": "pattern/dan_codex_meta_workflow_v1",
       "type": "pattern",
       "label": "Dan's Codex + ChatGPT meta-workflow (v1)",
@@ -62,11 +56,6 @@
 
   "edges": [
     {
-      "from": "project/dan_personal_cognitive_infrastructure",
-      "to": "pattern/dan_codex_meta_workflow_v1",
-      "type": "includes_pattern"
-    },
-    {
       "from": "pattern/dan_codex_meta_workflow_v1",
       "to": "tool/codex_meta_environment",
       "type": "uses_tool"
@@ -115,12 +104,6 @@
       "from": "pattern/dan_codex_meta_workflow_v1",
       "to": "concept/community_as_pattern_library",
       "type": "informed_by"
-    },
-    {
-      "from": "project/dan_personal_cognitive_infrastructure",
-      "to": "concept/second_brain_as_infrastructure",
-      "type": "pursues_concept"
     }
   ]
 }
-

@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "project/dan_personal_cognitive_infrastructure",
+      "type": "project",
+      "label": "Dan's personal cognitive infrastructure",
+      "description": "Long-term effort to build a second brain-like system that connects Codex, ChatGPT, agents, and knowledge graph structures for trading, research, and workflow meta-analysis.",
+      "north_star": {
+        "title": "North Star (Concise, Durable)",
+        "statement": "To build a durable, AI-native knowledge system that compounds in intelligence over time - where ideas become structured artifacts, artifacts become connected meaning, and meaning becomes executable reasoning for both humans and autonomous agents.",
+        "qualities": [
+          "Stable over years",
+          "Technology-agnostic",
+          "Clear about compounding",
+          "Explicit about AI + agent interoperability",
+          "Focused on transformation, not storage"
+        ]
+      },
+      "design_charter": {
+        "statement": "The Second Brain exists to transform raw information into structured, semantically linked knowledge that can be reasoned over by humans and AI systems alike - enabling long-term cognitive compounding, agent interoperability, and the systematic expansion of insight.",
+        "is_not": "A note-taking system.",
+        "designed_to": [
+          "Convert conversations, research, and execution into durable knowledge objects",
+          "Encode relationships explicitly",
+          "Enable graph traversal and semantic transformation",
+          "Support autonomous and collaborative AI reasoning",
+          "Improve decision-making and project execution over time"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "includes_pattern"
+    },
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "concept/second_brain_as_infrastructure",
+      "type": "pursues_concept"
+    }
+  ]
+}

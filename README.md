@@ -54,6 +54,7 @@ This repository is designed around the idea that:
 
 ## Meta
 
+* [Spec Spec v0](meta/SPEC_SPEC_v0.md)
 * [Meta Workflow Execution Spec v0](meta/META_PROGRAM_SPEC_v0.md)
 * [Scene Graph Integration Spec v0](meta/SCENE_GRAPH_INTEGRATION_SPEC_v0.md)
 * [Prompt Lineage Ontology Spec v0](meta/PROMPT_LINEAGE_ONTOLOGY_SPEC_v0.md)

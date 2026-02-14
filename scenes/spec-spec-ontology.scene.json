@@ -1,0 +1,338 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/spec_spec_v0",
+      "type": "artifact",
+      "label": "Spec Spec v0",
+      "artifact_type": "spec",
+      "source_path": "meta/SPEC_SPEC_v0.md",
+      "version": "v0",
+      "status": "experimental",
+      "description": "Higher-order spec from which all other specs derive. Defines required sections, governance invariants, naming, versioning, and status lifecycle."
+    },
+
+    {
+      "id": "artifact/meta_program_spec_v0",
+      "type": "artifact",
+      "label": "Meta Workflow Execution Spec v0",
+      "artifact_type": "spec",
+      "source_path": "meta/META_PROGRAM_SPEC_v0.md",
+      "version": "v0",
+      "status": "experimental"
+    },
+    {
+      "id": "artifact/scene_graph_integration_spec_v0",
+      "type": "artifact",
+      "label": "Scene Graph Integration Spec v0",
+      "artifact_type": "spec",
+      "source_path": "meta/SCENE_GRAPH_INTEGRATION_SPEC_v0.md",
+      "version": "v0",
+      "status": "experimental"
+    },
+    {
+      "id": "artifact/prompt_lineage_ontology_spec_v0",
+      "type": "artifact",
+      "label": "Prompt Lineage Ontology Spec v0",
+      "artifact_type": "spec",
+      "source_path": "meta/PROMPT_LINEAGE_ONTOLOGY_SPEC_v0.md",
+      "version": "v0",
+      "status": "experimental"
+    },
+
+    {
+      "id": "concept/spec",
+      "type": "concept",
+      "label": "Spec",
+      "description": "A versioned governance document with required sections: Title, Version, Status, Inputs, Purpose, Scope, Core Definitions, Determinism & Drift Tests, Governance Rules, Failure Modes, Success Criteria, Immediate Next Step."
+    },
+    {
+      "id": "concept/spec_required_sections_ordered",
+      "type": "concept",
+      "label": "Spec required sections in canonical order",
+      "description": "Canonical order: 1) Title, 2) Version, 3) Status, 4) Inputs, 5) Purpose, 6) Scope, 7) Core Definitions, 8) Determinism & Drift Tests, 9) Governance Rules, 10) Failure Modes, 11) Success Criteria (vN), 12) Immediate Next Step."
+    },
+    {
+      "id": "concept/spec_status",
+      "type": "concept",
+      "label": "Spec status lifecycle",
+      "description": "Experimental -> Stable -> Deprecated. Experimental allows breaking changes; Stable requires version bumps; Deprecated is read-only."
+    },
+    {
+      "id": "concept/spec_allowed_status_values",
+      "type": "concept",
+      "label": "Allowed spec status values",
+      "description": "Allowed values: Experimental, Stable, Deprecated."
+    },
+    {
+      "id": "concept/spec_version",
+      "type": "concept",
+      "label": "Spec versioning",
+      "description": "Monotonically increasing vN integer per subject. Semantic/governance changes require a bump; editorial fixes do not."
+    },
+    {
+      "id": "concept/spec_version_pattern",
+      "type": "concept",
+      "label": "Spec version string pattern",
+      "description": "Version field must match pattern ^v[0-9]+$."
+    },
+    {
+      "id": "concept/spec_derivation",
+      "type": "concept",
+      "label": "Spec derivation",
+      "description": "Every spec is a concretion of the Spec Spec. Child specs must include all required sections and satisfy inherited governance invariants."
+    },
+    {
+      "id": "concept/spec_filename_pattern",
+      "type": "concept",
+      "label": "Spec filename pattern",
+      "description": "Filename regex for spec artifacts: ^[A-Z][A-Z_]*_SPEC_v[0-9]+\\.md$."
+    },
+
+    {
+      "id": "principle/no_silent_mutation",
+      "type": "principle",
+      "label": "No silent mutation"
+    },
+    {
+      "id": "principle/no_inplace_semantic_rewrite",
+      "type": "principle",
+      "label": "No in-place semantic rewrites"
+    },
+    {
+      "id": "principle/explicit_over_inferred",
+      "type": "principle",
+      "label": "Explicit over inferred"
+    },
+    {
+      "id": "principle/fail_closed",
+      "type": "principle",
+      "label": "Fail closed"
+    },
+    {
+      "id": "principle/deterministic_serialization",
+      "type": "principle",
+      "label": "Deterministic serialization (UTF-8, 2-space indent, stable keys)"
+    },
+
+    {
+      "id": "pattern/spec_naming_convention",
+      "type": "pattern",
+      "label": "Spec naming convention",
+      "description": "<SCOPE>_<SUBJECT>_SPEC_vN.md — uppercase scope, optional subject, version integer."
+    },
+    {
+      "id": "pattern/spec_required_sections",
+      "type": "pattern",
+      "label": "12 required spec sections",
+      "description": "Title, Version, Status, Inputs, Purpose, Scope, Core Definitions, Determinism & Drift Tests, Governance Rules, Failure Modes, Success Criteria, Immediate Next Step."
+    },
+    {
+      "id": "pattern/spec_optional_sections",
+      "type": "pattern",
+      "label": "Optional spec sections",
+      "description": "Optional sections: Architecture and Cross-Artifact Constraints. If present, place them between Scope and Determinism & Drift Tests."
+    },
+    {
+      "id": "pattern/spec_child_derivation_contract",
+      "type": "pattern",
+      "label": "Child spec derivation contract",
+      "description": "Child spec must include all required sections, follow filename/version/status constraints, inherit governance invariants, and only add domain-specific sections in optional placement."
+    },
+    {
+      "id": "pattern/spec_drift_test_suite",
+      "type": "pattern",
+      "label": "Spec drift test suite",
+      "description": "Minimum checks: repeat-run stability, required-section completeness, filename regex conformance, and deterministic rendering from structured form."
+    },
+
+    {
+      "id": "project/dan_personal_cognitive_infrastructure",
+      "type": "project",
+      "label": "Personal cognitive infrastructure"
+    }
+  ],
+
+  "edges": [
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_status",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_allowed_status_values",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_version",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_version_pattern",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_derivation",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_required_sections_ordered",
+      "type": "defines"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "concept/spec_filename_pattern",
+      "type": "defines"
+    },
+
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "principle/no_silent_mutation",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "principle/no_inplace_semantic_rewrite",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "principle/explicit_over_inferred",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "principle/fail_closed",
+      "type": "introduces"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "principle/deterministic_serialization",
+      "type": "introduces"
+    },
+
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "pattern/spec_naming_convention",
+      "type": "describes"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "pattern/spec_required_sections",
+      "type": "describes"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "pattern/spec_optional_sections",
+      "type": "describes"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "pattern/spec_child_derivation_contract",
+      "type": "describes"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "pattern/spec_drift_test_suite",
+      "type": "describes"
+    },
+
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "artifact/meta_program_spec_v0",
+      "type": "governs"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "artifact/scene_graph_integration_spec_v0",
+      "type": "governs"
+    },
+    {
+      "from": "artifact/spec_spec_v0",
+      "to": "artifact/prompt_lineage_ontology_spec_v0",
+      "type": "governs"
+    },
+
+    {
+      "from": "artifact/meta_program_spec_v0",
+      "to": "concept/spec",
+      "type": "instance_of"
+    },
+    {
+      "from": "artifact/scene_graph_integration_spec_v0",
+      "to": "concept/spec",
+      "type": "instance_of"
+    },
+    {
+      "from": "artifact/prompt_lineage_ontology_spec_v0",
+      "to": "concept/spec",
+      "type": "instance_of"
+    },
+
+    {
+      "from": "concept/spec_derivation",
+      "to": "pattern/spec_required_sections",
+      "type": "enforces"
+    },
+    {
+      "from": "concept/spec_derivation",
+      "to": "pattern/spec_child_derivation_contract",
+      "type": "enforces"
+    },
+    {
+      "from": "concept/spec_version",
+      "to": "principle/no_inplace_semantic_rewrite",
+      "type": "requires"
+    },
+    {
+      "from": "concept/spec_version",
+      "to": "concept/spec_version_pattern",
+      "type": "constrained_by"
+    },
+    {
+      "from": "pattern/spec_naming_convention",
+      "to": "concept/spec_filename_pattern",
+      "type": "formalized_by"
+    },
+    {
+      "from": "pattern/spec_required_sections",
+      "to": "concept/spec_required_sections_ordered",
+      "type": "formalized_by"
+    },
+    {
+      "from": "pattern/spec_optional_sections",
+      "to": "pattern/spec_required_sections",
+      "type": "extends"
+    },
+    {
+      "from": "pattern/spec_drift_test_suite",
+      "to": "principle/deterministic_serialization",
+      "type": "tests"
+    },
+    {
+      "from": "concept/spec_status",
+      "to": "concept/spec_version",
+      "type": "relates_to"
+    },
+    {
+      "from": "concept/spec_status",
+      "to": "concept/spec_allowed_status_values",
+      "type": "constrained_by"
+    },
+
+    {
+      "from": "project/dan_personal_cognitive_infrastructure",
+      "to": "artifact/spec_spec_v0",
+      "type": "documents"
+    }
+  ]
+}
