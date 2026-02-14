@@ -7,6 +7,7 @@ Inputs:
 - `scenes/*.scene.json` ontology and workflow scenes
 - `meta/*.md` governance and ontology specs
 - `operations/*.md` prompt generation and integration operations
+- `meta/ONTOLOGY_ARCHITECTURE_MAP_v0.md` layered semantic context
 
 ## Purpose
 Define canonical ontology entities and relations for representing prompt evolution from reusable base templates to context-specific concretions.
@@ -19,6 +20,11 @@ Define canonical ontology entities and relations for representing prompt evoluti
 - Out of scope:
   - LLM quality evaluation of prompt effectiveness
   - Automatic semantic merging of conflicting deltas
+
+## Layer Placement
+- This spec primarily inhabits **Layer L3 (Ontology)** from `meta/ONTOLOGY_ARCHITECTURE_MAP_v0.md`.
+- Serialization rules referenced here must defer to L4 schemas (e.g., prompt lineage artifact schemas) and cite them explicitly when required.
+- Governance references (L1) such as “no in-place mutation” inherit from `SPEC_SPEC_v0` and related governance specs; changes that alter governance intent must be codified there first.
 
 ## Core Entities
 - `PromptArtifact`

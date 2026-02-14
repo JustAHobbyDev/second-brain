@@ -51,3 +51,10 @@ There is no **vision-alignment audit** — something that would ask:
 #### Closest existing precedent
 
 The `drift_signals` object in `kalshi_phase_history.scene.json` (fields: `regression`, `oscillation`, `stagnation`) is the nearest structural analog. It would need to be generalized to the whole taxonomy and grounded against the declared vision rather than a single project's phase sequence.
+
+### 2026-02-14 — Codex — ASLB run blocked
+
+- **Event:** Tried to execute `python3 scripts/run_aslb.py --model gpt-4.1 --context-file README.md --run-slug 2026-02-14-drift-audit`.
+- **Result:** Script aborted with `API key is required unless running with --dry-run`.
+- **Implication:** Cannot produce a real ASLB benchmark snapshot until `OPENAI_API_KEY` (or compatible `--api-key`) is available.
+- **Next action:** Add a valid key and rerun the command above to capture artifacts under `operations/aslb_runs/2026-02-14-drift-audit/`.

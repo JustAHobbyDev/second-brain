@@ -7,6 +7,7 @@ Inputs:
 - `meta/*.md` existing spec artifacts
 - `scenes/spec-spec-ontology.scene.json` canonical spec ontology scene
 - `scenes/*.scene.json` linked principles, concepts, and patterns
+- `meta/ONTOLOGY_ARCHITECTURE_MAP_v0.md` layered semantic stack
 
 ## Purpose
 Define the foundational contract for all repository specs so governance, determinism, and evolution rules stay explicit and machine-checkable across domains.
@@ -42,6 +43,11 @@ Define the foundational contract for all repository specs so governance, determi
 10. Failure Modes
 11. Success Criteria
 12. Immediate Next Step
+
+### Layer Alignment
+- Every spec must declare which semantic layer(s) from `meta/ONTOLOGY_ARCHITECTURE_MAP_v0.md` it governs or instantiates.
+- Direction-only specs live at L0; governance specs at L1; meta-model definitions at L2; ontologies at L3; schemas at L4; operational specs affecting artifacts must reference the L5 instance layer.
+- Child specs that span multiple layers must clearly separate intent (higher layers) from enforcement/representation (lower layers) to preserve agent legibility.
 
 ## Determinism and Drift Tests
 - Structural determinism: required sections must appear exactly once and in canonical order.
