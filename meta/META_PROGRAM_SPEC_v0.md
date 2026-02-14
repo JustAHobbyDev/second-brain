@@ -1,4 +1,4 @@
-# Meta Program Spec
+# Meta Workflow Execution Spec
 
 Version: v0
 Status: Experimental
@@ -57,6 +57,7 @@ profiles/dan_cognitive_operating_model_v0.md + README index links
 
 ## Governance Rules
 - Versioning: new behavior requires new versioned files; no in-place semantic rewrites of prior versions.
+- Spec naming convention for future additions: `<SCOPE>_<SUBJECT>_SPEC_vN.md` where `N` is monotonically increasing per subject (for example, `META_WORKFLOW_EXECUTION_SPEC_v1.md`, `PROJECT_HISTORY_SPEC_v1.md`).
 - Schemas are mandatory contracts for scene history outputs.
 - No silent mutations: any changed artifact must be observable in git diff and accompanied by updated links if path is new.
 - Prompt files are executable governance documents; prompt order is normative.

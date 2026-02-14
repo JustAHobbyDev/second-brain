@@ -54,12 +54,17 @@ This repository is designed around the idea that:
 
 ## Meta
 
-* [Meta Program Spec v0](meta/META_PROGRAM_SPEC_v0.md)
+* [Meta Workflow Execution Spec v0](meta/META_PROGRAM_SPEC_v0.md)
+* [Scene Graph Integration Spec v0](meta/SCENE_GRAPH_INTEGRATION_SPEC_v0.md)
 * [Generate Project History Operation v0](operations/generate_project_history_v0.md)
+* [Incorporate Scene Into Graph Operation v0](operations/incorporate_scene_into_graph_v0.md)
 * [Dan Cognitive Operating Model Template v0](profiles/dan_cognitive_operating_model_v0.md)
 * [Session Closing Checklist](templates/session_closing_checklist.md)
+* [Graph Scene Schema v0](scenes/_schemas/graph_scene_v0.schema.json)
 * [Phase Event Schema v0](scenes/_schemas/phase_event_v0.schema.json)
 * [Phase History Schema v0](scenes/_schemas/phase_history_v0.schema.json)
+* [Scene Graph Ingest Script v0](tools/sb_graph_ingest_v0.sh)
+Graph export is optional and experimental; scenes remain the source of truth.
 
 ---
 

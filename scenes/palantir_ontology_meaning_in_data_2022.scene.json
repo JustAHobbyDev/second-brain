@@ -1,0 +1,90 @@
+{
+  "id": "palantir_ontology_meaning_in_data_2022",
+  "type": "concept_article",
+  "title": "Ontology: Finding Meaning in Data (Palantir RFx Blog Series #1)",
+  "summary": "Palantir defines ontology as a semantic layer that maps raw data into real-world objects, relationships, and logic. It decouples data pipelines from applications and embeds meaning, permissions, and operations directly into a shared object model.",
+  "content": {
+    "core_thesis": "Data has no inherent meaning. Meaning emerges when raw data is mapped into a structured ontology that defines objects, relationships, and behaviors aligned with real-world concepts.",
+    "key_components": [
+      {
+        "component": "Object Classes",
+        "description": "Enterprise-level conceptual entities such as Person, Account, Product, Facility. These are the semantic nouns of the system."
+      },
+      {
+        "component": "Instantiated Objects",
+        "description": "Concrete instances of object classes created by mapping raw data into ontology-defined structures."
+      },
+      {
+        "component": "Relationships",
+        "description": "Defined semantic connections between object classes (e.g., owns, belongs_to, transacts_with)."
+      },
+      {
+        "component": "Object Functions",
+        "description": "Logic applied to objects such as aggregations, transformations, and ML scoring."
+      },
+      {
+        "component": "Object Actions",
+        "description": "Defined state transitions and behaviors that govern how objects change."
+      }
+    ],
+    "architectural_pattern": {
+      "layers": [
+        "Raw Data Layer",
+        "Ontology Semantic Layer",
+        "Application Layer"
+      ],
+      "principle": "Applications interact with ontology-defined objects rather than raw tables."
+    },
+    "required_capabilities": [
+      "Dynamic metadata management",
+      "High-performance object access",
+      "Integrated security model",
+      "External system interoperability",
+      "Search and object-set services"
+    ],
+    "distinctions": {
+      "vs_schema": "Schemas define structure. Ontologies define meaning and relationships.",
+      "vs_taxonomy": "Taxonomies classify. Ontologies encode behavior, logic, and relationships."
+    }
+  },
+  "implications": [
+    "Semantic abstraction layer enables multi-agent reasoning over shared object definitions.",
+    "Embedding logic in ontology reduces semantic drift across applications.",
+    "Ontology-aware agents can operate at object-level abstraction instead of raw data parsing.",
+    "Knowledge graphs can serve as ontology infrastructure for AI-native systems."
+  ],
+  "relations": [
+    {
+      "type": "relates_to",
+      "target": "semantic_layer_architecture"
+    },
+    {
+      "type": "supports",
+      "target": "ai_agent_interoperability"
+    },
+    {
+      "type": "extends",
+      "target": "knowledge_graph_systems"
+    },
+    {
+      "type": "contrasts_with",
+      "target": "traditional_relational_schema_design"
+    }
+  ],
+  "tags": [
+    "ontology",
+    "semantic-layer",
+    "data-architecture",
+    "knowledge-graph",
+    "ai-agents",
+    "enterprise-systems",
+    "palantir"
+  ],
+  "source": {
+    "title": "Ontology: Finding Meaning in Data",
+    "author": "Palantir Technologies",
+    "url": "https://blog.palantir.com/ontology-finding-meaning-in-data-palantir-rfx-blog-series-1-399bd1a5971b",
+    "published": "2022-10-03"
+  },
+  "created_from": "article_ingestion"
+}
