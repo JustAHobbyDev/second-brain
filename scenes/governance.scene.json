@@ -1,0 +1,200 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "governance_spec",
+      "title": "Governance Gradient Spec v0",
+      "summary": {
+        "high_level": "Defines invariant-to-mechanism mappings, escalation policy, and anti-entropy ingest rules.",
+        "details": "Encodes one primary mechanism per invariant and downgrades overlap to track-only unless explicit core-gate escalation is approved."
+      }
+    },
+    {
+      "id": "artifact_pointer/governance_gradient_spec_v0",
+      "type": "artifact_pointer",
+      "label": "Governance Gradient Spec v0",
+      "path": "meta/GOVERNANCE_GRADIENT_SPEC_v0.md"
+    },
+    {
+      "id": "inv/link_density_min_2",
+      "type": "invariant",
+      "label": "Link density minimum",
+      "description": "Session closeout artifact must maintain minimum link density >=2."
+    },
+    {
+      "id": "inv/term_fidelity_post_v0",
+      "type": "invariant",
+      "label": "Terminology fidelity post-v0",
+      "description": "Terminology usage remains semantically consistent at 100% fidelity target."
+    },
+    {
+      "id": "inv/preload_ritual",
+      "type": "invariant",
+      "label": "Preload ritual",
+      "description": "Load Direction/Governance/Terminology context before action."
+    },
+    {
+      "id": "inv/vision_alignment",
+      "type": "invariant",
+      "label": "Vision alignment",
+      "description": "Artifacts remain aligned to core principles."
+    },
+    {
+      "id": "inv/observability_entropy",
+      "type": "invariant",
+      "label": "Observability entropy",
+      "description": "Track entropy indicators with KPI metrics and alerts."
+    },
+    {
+      "id": "inv/agent_resumption_min_8",
+      "type": "invariant",
+      "label": "Agent resumption minimum",
+      "description": "Target agent resumability score >=8 for delegated loops."
+    },
+    {
+      "id": "inv/derived_view_integrity",
+      "type": "invariant",
+      "label": "Derived view integrity",
+      "description": "Graph remains derived from scenes with dry-run-first ingest safety."
+    },
+    {
+      "id": "inv/structural_legibility_min_band",
+      "type": "invariant",
+      "label": "Structural legibility band",
+      "description": "Structural legibility score remains >=16 baseline band."
+    },
+    {
+      "id": "mechanism/closeout_contract",
+      "type": "mechanism",
+      "label": "Closeout Contract"
+    },
+    {
+      "id": "mechanism/terminology_standard",
+      "type": "mechanism",
+      "label": "Terminology Standard"
+    },
+    {
+      "id": "mechanism/usage_ritual",
+      "type": "mechanism",
+      "label": "Usage Ritual"
+    },
+    {
+      "id": "mechanism/vision_alignment_audit",
+      "type": "mechanism",
+      "label": "Vision Alignment Audit"
+    },
+    {
+      "id": "mechanism/kpi_system",
+      "type": "mechanism",
+      "label": "KPI System"
+    },
+    {
+      "id": "mechanism/meta_program_loop",
+      "type": "mechanism",
+      "label": "Meta-Program Loop"
+    },
+    {
+      "id": "mechanism/graph_ingest",
+      "type": "mechanism",
+      "label": "Graph Ingest"
+    },
+    {
+      "id": "mechanism/structural_audit_aslb",
+      "type": "mechanism",
+      "label": "Structural Audit (ASLB)"
+    },
+    {
+      "id": "constraint/one_mechanism_per_invariant",
+      "type": "constraint",
+      "label": "One mechanism per invariant"
+    },
+    {
+      "id": "constraint/no_auto_mutate",
+      "type": "constraint",
+      "label": "No auto-mutate in audits"
+    },
+    {
+      "id": "constraint/kpi_track_only_domain_invariants",
+      "type": "constraint",
+      "label": "KPI tracks, does not enforce domain invariants"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "artifact_pointer/governance_gradient_spec_v0",
+      "type": "materializes_to"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "governs"
+    },
+    {
+      "from": "mechanism/closeout_contract",
+      "to": "inv/link_density_min_2",
+      "type": "enforces"
+    },
+    {
+      "from": "mechanism/terminology_standard",
+      "to": "inv/term_fidelity_post_v0",
+      "type": "tracks"
+    },
+    {
+      "from": "mechanism/usage_ritual",
+      "to": "inv/preload_ritual",
+      "type": "operationalizes"
+    },
+    {
+      "from": "mechanism/vision_alignment_audit",
+      "to": "inv/vision_alignment",
+      "type": "proposes_for"
+    },
+    {
+      "from": "mechanism/kpi_system",
+      "to": "inv/observability_entropy",
+      "type": "tracks"
+    },
+    {
+      "from": "mechanism/meta_program_loop",
+      "to": "inv/agent_resumption_min_8",
+      "type": "enforces"
+    },
+    {
+      "from": "mechanism/graph_ingest",
+      "to": "inv/derived_view_integrity",
+      "type": "protects"
+    },
+    {
+      "from": "mechanism/structural_audit_aslb",
+      "to": "inv/structural_legibility_min_band",
+      "type": "tracks"
+    },
+    {
+      "from": "constraint/one_mechanism_per_invariant",
+      "to": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "type": "constrains"
+    },
+    {
+      "from": "constraint/no_auto_mutate",
+      "to": "mechanism/vision_alignment_audit",
+      "type": "constrains"
+    },
+    {
+      "from": "constraint/kpi_track_only_domain_invariants",
+      "to": "mechanism/kpi_system",
+      "type": "constrains"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    }
+  ]
+}
