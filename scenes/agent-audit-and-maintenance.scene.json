@@ -1,0 +1,72 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "audit_decision_record",
+      "title": "Agent audit and maintenance decisions v0",
+      "summary": {
+        "high_level": "Records resolved maintenance policy choices from the audit loop, including index update mode and first vision-alignment KPI anchor."
+      }
+    },
+    {
+      "id": "concept/session_index_update_policy_default_auto",
+      "type": "concept",
+      "label": "Session index update policy",
+      "definition": "On successful closeout, update sessions/<tool>/index.json automatically by default. Use --no-index only for bulk backfill, rollback, or controlled migration runs."
+    },
+    {
+      "id": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct",
+      "type": "concept",
+      "label": "Vision-alignment anchor KPI",
+      "definition": "principle_linked_artifact_pct = percent of non-trivial artifacts with at least one canonical principle link."
+    },
+    {
+      "id": "artifact/vision_alignment_kpi_targets_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "kpi_contract",
+      "title": "Vision-alignment KPI targets v0",
+      "targets": {
+        "pass": ">=75%",
+        "stretch": ">=85%"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15",
+      "to": "concept/session_index_update_policy_default_auto",
+      "type": "resolves"
+    },
+    {
+      "from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15",
+      "to": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct",
+      "type": "resolves"
+    },
+    {
+      "from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct",
+      "to": "artifact/vision_alignment_kpi_targets_v0_2026_02_15",
+      "type": "constrained_by"
+    },
+    {
+      "from": "concept/session_index_update_policy_default_auto",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "strengthens"
+    },
+    {
+      "from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct",
+      "to": "principle/system_as_infrastructure",
+      "type": "supports"
+    },
+    {
+      "from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "supports"
+    },
+    {
+      "from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "applies_to"
+    }
+  ]
+}

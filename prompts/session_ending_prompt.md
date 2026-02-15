@@ -28,7 +28,7 @@ Rules you MUST follow:
 - artifact_id MUST use the exact format above; invent a short, descriptive kebab-slug if needed.
 - Link aggressively: aim for >=2-3 principle_links and >=1-2 pattern_links minimum when relevant.
 - Use ONLY existing canonical IDs in links unless explicitly proposing a new one (then note it in summary/open_questions).
-- resumption_score: be brutally honest (<=5 means needs major context rebuild).
+- resumption_score must be >=6 for a passing closeout; if <6, treat as checklist failure and improve artifact quality before emitting.
 
 Before outputting JSON, self-verify against this checklist:
 - [ ] All IDs follow type/identifier format
@@ -36,6 +36,7 @@ Before outputting JSON, self-verify against this checklist:
 - [ ] Open questions are numbered and actionable
 - [ ] No syntax errors, valid JSON only
 - [ ] Strong agent resumability (links, score, notes)
+- [ ] resumption_score >= 6
 
 If any checklist item fails, fix it internally before emitting JSON.
 

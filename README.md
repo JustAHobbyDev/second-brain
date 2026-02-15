@@ -128,6 +128,10 @@ Each file contains one artifact node.
 
 These are durable state snapshots.
 
+Index policy:
+* Maintain a separate canonical index per tool at `sessions/<tool>/index.json`.
+* Keep indexing tool-local by default; global rollups should be derived artifacts, not primary indexes.
+
 ---
 
 ## templates/

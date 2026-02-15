@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/project_id_alias_map_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "id_alias_policy",
+      "title": "Project ID alias map v0",
+      "summary": {
+        "high_level": "Defines canonical project ID policy for second-brain core and deprecates legacy alias IDs while preserving historical artifacts."
+      }
+    },
+    {
+      "id": "concept/project_id_alias_map_v0",
+      "type": "concept",
+      "label": "Project ID alias map",
+      "definition": "Alias resolution map for project IDs. New links must use canonical IDs; legacy references remain valid for historical truth."
+    },
+    {
+      "id": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra",
+      "type": "artifact",
+      "artifact_type": "alias_mapping",
+      "title": "Alias: second_brain_build -> dan_personal_cognitive_infrastructure",
+      "mapping": {
+        "from": "project/second_brain_build",
+        "to": "project/dan_personal_cognitive_infrastructure",
+        "status": "deprecated_alias"
+      }
+    },
+    {
+      "id": "project/second_brain_build",
+      "type": "project",
+      "label": "Second Brain Build (deprecated alias)"
+    },
+    {
+      "id": "project/dan_personal_cognitive_infrastructure",
+      "type": "project",
+      "label": "Dan's personal cognitive infrastructure"
+    },
+    {
+      "id": "artifact_pointer/second_brain_taxonomy_v0",
+      "type": "artifact_pointer",
+      "label": "Second Brain Taxonomy v0",
+      "path": "meta/SECOND_BRAIN_TAXONOMY_v0.md"
+    },
+    {
+      "id": "artifact_pointer/second_brain_taxonomy_claude_variant",
+      "type": "artifact_pointer",
+      "label": "Second Brain Taxonomy Claude variant",
+      "path": "meta/SECOND_BRAIN_TAXONOMY_claude_opus_4_6_2026-02-14.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/project_id_alias_map_v0_2026_02_15",
+      "to": "concept/project_id_alias_map_v0",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/project_id_alias_map_v0_2026_02_15",
+      "to": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra",
+      "type": "contains_mapping"
+    },
+    {
+      "from": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra",
+      "to": "project/second_brain_build",
+      "type": "deprecates_alias"
+    },
+    {
+      "from": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "aliases_to"
+    },
+    {
+      "from": "artifact/project_id_alias_map_v0_2026_02_15",
+      "to": "artifact_pointer/second_brain_taxonomy_v0",
+      "type": "documented_in"
+    },
+    {
+      "from": "artifact/project_id_alias_map_v0_2026_02_15",
+      "to": "artifact_pointer/second_brain_taxonomy_claude_variant",
+      "type": "documented_in"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_id": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+  "session_date": "2026-02-13",
+  "llm_used": "claude",
+  "project_links": [
+    "project/kalshi_15m_btc_pipeline"
+  ],
+  "principle_links": [
+    "principle/contracts-first-development",
+    "principle/additive-feature-ladder",
+    "principle/strict-robustness-gate"
+  ],
+  "pattern_links": [
+    "pattern/anchor-plus-candidate-promotion",
+    "pattern/data-sufficiency-gate-before-ml"
+  ],
+  "tool_links": [
+    "tool/just",
+    "tool/uv",
+    "tool/pytest"
+  ],
+  "related_artifact_links": [
+    "artifact/claude_2026_02_13_phase9-exhaustion-phase10-infra"
+  ],
+  "summary": "Completed Phase 10 ladder prep in a continuation session. Added 4 L1 Tier 1 path feature columns (mid_change_rate, rv_front_half, rv_back_half, spread_mean) to FEATURE_COLUMNS_ALL, created L1_TIER1_COLUMNS group constant and position_plus_l1_tier1_v1 additive policy in the Phase 9 ladder. Built promotion script v5 (candidate=position_plus_l1_tier1_v1, anchor=price_position_only, same strict gate) with 11 offline contracts. 164/164 full suite passes. Committed 990f9ff. All pipeline scripts are ready to execute when data gate passes (>=200 usable aligned windows; last measured at 94). Daemon PID 1111491 running continuously for L1 capture.",
+  "key_decisions": [
+    "Phase 10 L1 columns are non-derived (no feat_ prefix) so they bypass the derived feature partition check cleanly",
+    "position_plus_l1_tier1_v1 policy = 4 SEVERE_PRICE + centered_position + 4 L1 Tier 1 = 9 columns total",
+    "Promotion v5 uses identical strict gate as v2-v4: floors 0.05/0.03/0.01/0.00, stability budget caps, min_delta_full 0.10",
+    "Pre-built all ladder infrastructure while blocked on data gate to avoid idle time"
+  ],
+  "open_questions": [
+    "1. Data gate status: 94/200 usable windows as of last check — need ~31 more hours of daemon capture at ~3.4 windows/hour",
+    "2. Is daemon PID 1111491 still running? Must verify before assuming data accumulation continues",
+    "3. After Tier 1 ladder result: if passes gate -> implement Tier 2 (t_to_high, t_to_low, coverage_ratio as feature, longest_gap); if fails -> wait for >=500 windows"
+  ],
+  "next_steps": [
+    "Run `just phase10-count-windows` to check if daemon has accumulated >=200 usable windows",
+    "Verify daemon PID 1111491 is still alive; restart if needed",
+    "When gate passes: execute phase10-build-features -> phase10-join-features -> phase9-anchor-additive-promotion-v5",
+    "Record ladder result in checkpoint v1.87 with promote/keep_anchor decision"
+  ],
+  "thinking_trace_attachments": [
+    "position_plus_l1_tier1_v1 resolves to: ('btc_open_first', 'btc_close_last', 'btc_high_max', 'btc_low_min', 'feat_price_position_in_range', 'mid_change_rate', 'rv_front_half', 'rv_back_half', 'spread_mean')",
+    "Execution sequence: phase10-count-windows (gate) -> phase10-build-features -> phase10-join-features --features-file <augmented> -> phase9-anchor-additive-promotion-v5",
+    "Join key: (ticker, close_ts*1000) == (market_id, window_close_ts_ms)"
+  ],
+  "prompt_lineage": [
+    {
+      "role": "system",
+      "ref": "prompts/claude-code-continuation.md",
+      "summary": "Session continuation from compacted context with full summary"
+    },
+    {
+      "role": "user",
+      "summary": "Continue Phase 10 ladder prep: add L1 columns to ladder, create promotion v5 script and contracts, commit"
+    }
+  ],
+  "resumption_score": 8,
+  "resumption_notes": "Load checkpoint v1.86, read scripts/phase9_feature_ablation_ladder.py (L1_TIER1_COLUMNS + position_plus_l1_tier1_v1 policy), scripts/phase9_anchor_additive_promotion_v5.py, plan file at Claude-plans/plans/purrfect-brewing-fiddle.md. Key state: 94/200 data gate, daemon PID 1111491 may or may not be alive, commit 990f9ff is HEAD. All 4 pipeline steps scripted and tested - just needs data."
+}
