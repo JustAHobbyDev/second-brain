@@ -1,0 +1,192 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/kpi_dashboard_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "metrics_and_audit_protocol",
+      "title": "KPI Dashboard v0",
+      "version": "0.1",
+      "summary": {
+        "high_level": "File-based KPI dashboard protocol for second-brain health, focused on agent-delegable metrics from sessions/scenes/graph artifacts.",
+        "details": "Computes principle-linked %, closeout pass rate, resumption quality, orphan ratio, and core-project coverage via local file scans. Outputs structured metrics JSON, alert candidates, and trend-ready fields."
+      },
+      "resumption_score": 9,
+      "resumption_notes": "Load taxonomy + alias policy, sessions/*/index.json, and graph artifacts. Recompute from files in under 2 minutes.",
+      "open_questions": [
+        "1. Should dashboard include rolling 7-day and 30-day deltas by default?",
+        "2. Should low KPI alerts auto-append to OPEN_QUESTIONS.md or remain agent-internal first?",
+        "3. Should KPI scope expand to project-specific profiles (e.g., kalshi_15m_btc_pipeline)?"
+      ],
+      "next_steps": [
+        "1. Run tools/sb_kpi_compute_v0.sh and validate report output.",
+        "2. Wire optional weekly trigger into meta-program sequence.",
+        "3. Fold dashboard deltas into vision alignment audit closeout."
+      ],
+      "thinking_trace_attachments": [
+        "Goal: keep KPI computation portable and deterministic with file-I/O only; defer external visualization dependencies."
+      ],
+      "prompt_lineage": [
+        {
+          "role": "system",
+          "ref": "prompts/meta_program/50_agent_owned_audit.txt",
+          "summary": "Audit execution scaffold"
+        },
+        {
+          "role": "user",
+          "summary": "Expand KPI dashboard into an agent-runnable protocol with alerts and trend hooks"
+        }
+      ],
+      "kpi_dashboard_protocol": {
+        "overview": "Agent-runnable protocol to compute/store/alert KPIs using local files only.",
+        "prerequisites": {
+          "load_sequence": [
+            "1. Taxonomy + canonical alias policy",
+            "2. sessions/*/*.json and sessions/*/index.json",
+            "3. graph/graph.json or graph/canonical.jsonl if available",
+            "4. Closeout thresholds from meta/CLOSEOUT_CONTRACT_v0.md"
+          ],
+          "assumptions": "No external APIs or databases; Bash/jq/Python allowed."
+        },
+        "computation_phases": {
+          "phase_1_aggregate_data": {
+            "description": "Collect raw counts and compute base KPIs from sessions and graph outputs."
+          },
+          "phase_2_evaluate_and_alert": {
+            "description": "Compare to targets and emit alert candidates when degraded."
+          },
+          "phase_3_store_and_visualize": {
+            "description": "Persist structured metrics JSON and optional markdown table for operator scan."
+          }
+        },
+        "targets_v0": {
+          "principle_linked_pct": ">=70%",
+          "closeout_pass_rate": ">=90%",
+          "resumption_avg": ">=7.0",
+          "orphan_ratio": "<=10%",
+          "coverage_from_core": ">=80%",
+          "health_score": ">=8.0"
+        },
+        "resumption_primitives": {
+          "cold_compute": "Run tools/sb_kpi_compute_v0.sh --full-scan",
+          "incremental_update": "Recompute after closeout/ingest events",
+          "audit_integration": "Feed KPI snapshot into vision-alignment audit loop"
+        },
+        "metrics_for_dashboard": {
+          "dashboard_delegability_score_current": 8,
+          "dashboard_delegability_score_target": 9
+        }
+      }
+    },
+    {
+      "id": "concept/kpi_dashboard_protocol_v0",
+      "type": "concept",
+      "label": "KPI dashboard protocol v0",
+      "definition": "Protocol for computing and evaluating second-brain health KPIs from local artifacts."
+    },
+    {
+      "id": "pattern/kpi_dashboard_audit_loop_v0",
+      "type": "pattern",
+      "label": "KPI dashboard audit loop",
+      "description": "Compute -> evaluate -> alert -> ingest -> iterate loop for infrastructure health."
+    },
+    {
+      "id": "tool/sb_kpi_compute_v0",
+      "type": "tool",
+      "label": "sb_kpi_compute_v0.sh"
+    },
+    {
+      "id": "tool/bash",
+      "type": "tool",
+      "label": "bash"
+    },
+    {
+      "id": "tool/jq",
+      "type": "tool",
+      "label": "jq"
+    },
+    {
+      "id": "artifact_pointer/vision_alignment_audit_report_v0",
+      "type": "artifact_pointer",
+      "label": "Vision alignment audit report",
+      "path": "reports/vision_alignment_audit_v0.json"
+    },
+    {
+      "id": "artifact_pointer/kpi_dashboard_metrics_v0",
+      "type": "artifact_pointer",
+      "label": "KPI dashboard metrics output",
+      "path": "reports/kpi_dashboard_metrics_v0.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "concept/kpi_dashboard_protocol_v0",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "pattern/kpi_dashboard_audit_loop_v0",
+      "type": "codifies"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "integrates_with"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "integrates_with"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "artifact_pointer/vision_alignment_audit_report_v0",
+      "type": "extends"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "monitors"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/architecture_portable_tools_not",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/system_as_infrastructure",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/sb_kpi_compute_v0",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/bash",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/jq",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "artifact_pointer/kpi_dashboard_metrics_v0",
+      "type": "materializes_to"
+    }
+  ]
+}

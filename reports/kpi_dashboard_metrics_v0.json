@@ -1,0 +1,27 @@
+{
+  "artifact_id": "artifact/kpi_dashboard_metrics_2026_02_15_v0",
+  "generated_at": "2026-02-15T14:42:01Z",
+  "targets": {
+    "principle_linked_pct": ">=70%",
+    "closeout_pass_rate": ">=90%",
+    "resumption_avg": ">=7.0",
+    "orphan_ratio": "<=10%",
+    "coverage_from_core": ">=80%",
+    "health_score": ">=8.0"
+  },
+  "metrics": {
+    "total_artifacts": 7,
+    "eligible_artifacts": 7,
+    "principle_linked_pct": 57.14,
+    "closeout_pass_rate": 100.0,
+    "resumption_avg": 8.0,
+    "orphan_ratio": 10.19,
+    "coverage_from_core": 22.82,
+    "health_score": 7.23
+  },
+  "alerts": [
+    "principle_linked_pct below 70%",
+    "orphan_ratio above 10%",
+    "coverage_from_core below 80%"
+  ]
+}
