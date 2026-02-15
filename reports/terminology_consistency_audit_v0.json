@@ -1,0 +1,22 @@
+{
+  "artifact_id": "artifact/terminology_consistency_audit_2026_02_15_v0",
+  "audit_date": "2026-02-15",
+  "scope": {
+    "sessions_dir": "second-brain/sessions",
+    "artifacts_scanned": 5,
+    "scan_limit": 5
+  },
+  "kpi": {
+    "name": "terminology_fidelity_pct",
+    "definition": "Percent of scanned artifacts without detected terminology-conflation patterns",
+    "target_pct": 100.0,
+    "value_pct": 100.0,
+    "status": "pass"
+  },
+  "violations": [],
+  "next_actions": [
+    "Review flagged snippets and rewrite term usage if conflation is real.",
+    "Run this scan in weekly audits and after terminology standard updates."
+  ],
+  "generated_at": "2026-02-15T19:43:02Z"
+}
