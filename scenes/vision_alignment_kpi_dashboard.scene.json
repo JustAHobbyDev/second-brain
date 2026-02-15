@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "kpi_dashboard",
+      "title": "Vision alignment KPI dashboard v0",
+      "summary": {
+        "high_level": "Tracks first-order vision-alignment KPI for session closure quality and principle-link discipline."
+      }
+    },
+    {
+      "id": "concept/kpi_principle_linked_artifact_pct",
+      "type": "concept",
+      "label": "principle_linked_artifact_pct",
+      "definition": "Percent of non-trivial session artifacts linked to at least one canonical principle."
+    },
+    {
+      "id": "artifact_pointer/vision_alignment_audit_report_v0",
+      "type": "artifact_pointer",
+      "label": "Vision alignment audit report",
+      "path": "reports/vision_alignment_audit_v0.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15",
+      "to": "concept/kpi_principle_linked_artifact_pct",
+      "type": "tracks"
+    },
+    {
+      "from": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15",
+      "to": "artifact_pointer/vision_alignment_audit_report_v0",
+      "type": "materializes_to"
+    },
+    {
+      "from": "concept/kpi_principle_linked_artifact_pct",
+      "to": "principle/system_as_infrastructure",
+      "type": "supports"
+    },
+    {
+      "from": "concept/kpi_principle_linked_artifact_pct",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "governs"
+    }
+  ]
+}

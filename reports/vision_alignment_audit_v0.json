@@ -1,0 +1,30 @@
+{
+  "artifact_id": "artifact/vision_alignment_audit_2026_02_15_v0",
+  "audit_date": "2026-02-15",
+  "kpi": {
+    "name": "principle_linked_artifact_pct",
+    "definition": "Percent of non-trivial session artifacts with >=1 canonical principle link",
+    "eligible_artifacts": 6,
+    "artifacts_with_principle_link": 3,
+    "value_pct": 50.0,
+    "targets": {
+      "pass": ">=75%",
+      "stretch": ">=85%"
+    },
+    "status": "fail"
+  },
+  "coverage": {
+    "total_artifacts_scanned": 6,
+    "canonical_principle_ids_detected": 11,
+    "artifacts_missing_principle_link": [
+      "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+      "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
+      "artifact/codex_session_2026_02_13_quote_data_scope_audit"
+    ]
+  },
+  "next_actions": [
+    "Require >=2 principle links in closeout unless explicitly justified",
+    "Add canonical principle IDs to artifacts currently missing principle links",
+    "Track week-over-week trend for principle_linked_artifact_pct"
+  ]
+}

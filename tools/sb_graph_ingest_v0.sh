@@ -6,15 +6,19 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 SCENE_INPUT=""
 GRAPH_PATH="${REPO_ROOT}/graph/graph.json"
+CANONICAL_JSONL=""
+INDEXES_DIR=""
 MODE="dry_run"
 
 usage() {
   cat <<USAGE
-Usage: $(basename "$0") --scene <file-or-dir> [--graph <path>] [--mode apply|dry_run]
+Usage: $(basename "$0") --scene <file-or-dir> [--graph <path>] [--canonical-jsonl <path>] [--include-session-indexes <dir>] [--mode apply|dry_run]
 
 Options:
   --scene   Required scene file or directory path.
   --graph   Optional graph output path (default: graph/graph.json).
+  --canonical-jsonl Optional canonical jsonl export path (written only in apply mode).
+  --include-session-indexes Optional sessions directory to ingest index.json files.
   --mode    dry_run (default) or apply.
 USAGE
 }
@@ -27,6 +31,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --graph)
       GRAPH_PATH="$2"
+      shift 2
+      ;;
+    --canonical-jsonl)
+      CANONICAL_JSONL="$2"
+      shift 2
+      ;;
+    --include-session-indexes)
+      INDEXES_DIR="$2"
       shift 2
       ;;
     --mode)
@@ -61,18 +73,27 @@ if [[ ! -e "${SCENE_INPUT}" ]]; then
   exit 1
 fi
 
+if [[ -n "${INDEXES_DIR}" && ! -d "${INDEXES_DIR}" ]]; then
+  echo "Session indexes directory does not exist: ${INDEXES_DIR}" >&2
+  exit 1
+fi
+
 mkdir -p "$(dirname "${GRAPH_PATH}")"
 if [[ "${MODE}" == "apply" && ! -f "${GRAPH_PATH}" ]]; then
   printf '{\n  "nodes": [],\n  "edges": []\n}\n' > "${GRAPH_PATH}"
 fi
 
-python3 - "$REPO_ROOT" "$SCENE_INPUT" "$GRAPH_PATH" "$MODE" <<'PY'
+if [[ -n "${CANONICAL_JSONL}" ]]; then
+  mkdir -p "$(dirname "${CANONICAL_JSONL}")"
+fi
+
+python3 - "$REPO_ROOT" "$SCENE_INPUT" "$GRAPH_PATH" "$MODE" "$CANONICAL_JSONL" "$INDEXES_DIR" <<'PY'
 import json
 import os
 import sys
 from typing import Any
 
-repo_root, scene_input, graph_path, mode = sys.argv[1:]
+repo_root, scene_input, graph_path, mode, canonical_jsonl, indexes_dir = sys.argv[1:]
 
 
 def die(msg: str) -> None:
@@ -316,6 +337,65 @@ def sort_nodes(nodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def sort_edges(edges: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(edges, key=lambda e: (str(e.get("from", "")), str(e.get("to", "")), str(e.get("type", ""))))
 
+def ingest_session_indexes(indexes_root: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]], int]:
+    if not indexes_root:
+        return [], [], 0
+    if not os.path.isdir(indexes_root):
+        die(f"session indexes directory not found: {indexes_root}")
+
+    nodes: list[dict[str, Any]] = []
+    edges: list[dict[str, Any]] = []
+    processed = 0
+
+    for name in sorted(os.listdir(indexes_root)):
+        tool_dir = os.path.join(indexes_root, name)
+        if not os.path.isdir(tool_dir):
+            continue
+        idx_path = os.path.join(tool_dir, "index.json")
+        if not os.path.isfile(idx_path):
+            continue
+
+        try:
+            with open(idx_path, "r", encoding="utf-8") as f:
+                idx = json.load(f)
+        except Exception as e:
+            die(f"invalid session index JSON: {idx_path} ({e})")
+
+        index_node_id = f"artifact/session_index_{name}"
+        nodes.append(
+            {
+                "id": index_node_id,
+                "type": "artifact",
+                "artifact_type": "session_index",
+                "label": f"{name} session index",
+                "source_scene": normalize_path(idx_path),
+            }
+        )
+
+        artifact_ids: list[str] = []
+        if isinstance(idx, list):
+            artifact_ids = [x for x in idx if isinstance(x, str)]
+        elif isinstance(idx, dict):
+            arts = idx.get("artifacts")
+            if isinstance(arts, list):
+                for item in arts:
+                    if isinstance(item, dict):
+                        aid = item.get("id")
+                        if isinstance(aid, str):
+                            artifact_ids.append(aid)
+                    elif isinstance(item, str):
+                        artifact_ids.append(item)
+        else:
+            die(f"session index must be list or object: {idx_path}")
+
+        for aid in artifact_ids:
+            if isinstance(aid, str) and aid.startswith("artifact/"):
+                edges.append({"from": index_node_id, "to": aid, "type": "indexes_session_artifact"})
+
+        processed += 1
+
+    return nodes, edges, processed
+
 
 if os.path.exists(graph_path):
     graph = load_json_obj(graph_path)
@@ -347,6 +427,7 @@ nodes_added = 0
 nodes_updated = 0
 edges_added = 0
 edges_deduped = 0
+indexes_processed = 0
 
 for scene_path in scene_files:
     scene_rel = normalize_path(scene_path)
@@ -380,6 +461,23 @@ for scene_path in scene_files:
             edges_added += 1
         edge_map[key] = edge
 
+idx_nodes, idx_edges, indexes_processed = ingest_session_indexes(indexes_dir)
+for node in sort_nodes(idx_nodes):
+    node_id = node["id"]
+    if node_id not in node_map:
+        nodes_added += 1
+    elif node_map[node_id] != node:
+        nodes_updated += 1
+    node_map[node_id] = node
+
+for edge in sort_edges(idx_edges):
+    key = (edge["from"], edge["to"], edge["type"])
+    if key in edge_map:
+        edges_deduped += 1
+    else:
+        edges_added += 1
+    edge_map[key] = edge
+
 final_graph = {
     "nodes": sort_nodes(list(node_map.values())),
     "edges": sort_edges(list(edge_map.values())),
@@ -393,12 +491,19 @@ summary = {
     "nodes_updated": nodes_updated,
     "edges_added": edges_added,
     "edges_deduped": edges_deduped,
+    "session_indexes_processed": indexes_processed,
 }
 
 if mode == "apply":
     with open(graph_path, "w", encoding="utf-8") as f:
         json.dump(final_graph, f, indent=2)
         f.write("\n")
+    if canonical_jsonl:
+        with open(canonical_jsonl, "w", encoding="utf-8") as f:
+            for node in final_graph["nodes"]:
+                f.write(json.dumps({"kind": "node", "data": node}, ensure_ascii=False) + "\n")
+            for edge in final_graph["edges"]:
+                f.write(json.dumps({"kind": "edge", "data": edge}, ensure_ascii=False) + "\n")
 
 print(json.dumps(summary, indent=2))
 PY

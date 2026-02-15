@@ -1,0 +1,85 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/hyperfast_agent_workflow_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "workflow_spec",
+      "title": "Hyperfast agent workflow v0",
+      "summary": {
+        "high_level": "Defines a repeatable agent-operated session loop: ground context, execute constrained tasks, close out with strict contract, and feed audit metrics back into planning."
+      }
+    },
+    {
+      "id": "pattern/hyperfast_agent_session_loop",
+      "type": "pattern",
+      "label": "Hyperfast agent session loop",
+      "description": "Ground -> Execute -> Validate -> Closeout -> Reindex -> Audit -> Plan."
+    },
+    {
+      "id": "concept/zero_shot_resumption_bundle",
+      "type": "concept",
+      "label": "Zero-shot resumption bundle",
+      "definition": "Minimal context load set for cold-start execution: core project scene + latest taxonomy + top 3 recent artifacts by resumption score."
+    },
+    {
+      "id": "artifact_pointer/session_closeout_prompt_v1",
+      "type": "artifact_pointer",
+      "label": "Session closeout prompt v1",
+      "path": "prompts/session_ending_prompt.md"
+    },
+    {
+      "id": "artifact_pointer/sb_closeout_script",
+      "type": "artifact_pointer",
+      "label": "sb_closeout helper",
+      "path": "tools/sb_closeout.sh"
+    },
+    {
+      "id": "artifact_pointer/vision_alignment_audit_operation",
+      "type": "artifact_pointer",
+      "label": "Vision alignment audit operation",
+      "path": "operations/vision_alignment_audit_v0.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/hyperfast_agent_workflow_v0_2026_02_15",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "codifies"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "extends"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "concept/zero_shot_resumption_bundle",
+      "type": "uses"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "artifact_pointer/session_closeout_prompt_v1",
+      "type": "executed_by"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "artifact_pointer/sb_closeout_script",
+      "type": "executed_by"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "artifact_pointer/vision_alignment_audit_operation",
+      "type": "feeds"
+    },
+    {
+      "from": "artifact/hyperfast_agent_workflow_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "applies_to"
+    },
+    {
+      "from": "pattern/hyperfast_agent_session_loop",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "supports"
+    }
+  ]
+}

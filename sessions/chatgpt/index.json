@@ -1,3 +1,12 @@
-[
-  "artifact/chatgpt_session_2026_02_11_second_brain_architecture"
-]
+{
+  "tool": "chatgpt",
+  "artifacts": [
+    {
+      "id": "artifact/chatgpt_session_2026_02_11_second_brain_architecture",
+      "date": "2026-02-11",
+      "resumption_score": null,
+      "summary_snippet": "Designed and implemented a local-first, scene-based, graph-ready second brain architecture. Established repository structure, node ID conventions, session ar..."
+    }
+  ],
+  "last_updated": "2026-02-15T10:54:39Z"
+}

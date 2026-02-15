@@ -1,3 +1,12 @@
-[
-  "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1"
-]
+{
+  "tool": "claude",
+  "artifacts": [
+    {
+      "id": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+      "date": "2026-02-13",
+      "resumption_score": 8,
+      "summary_snippet": "Completed Phase 10 ladder prep in a continuation session. Added 4 L1 Tier 1 path feature columns (mid_change_rate, rv_front_half, rv_back_half, spread_mean) ..."
+    }
+  ],
+  "last_updated": "2026-02-15T10:54:39Z"
+}

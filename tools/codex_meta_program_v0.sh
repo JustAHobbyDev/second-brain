@@ -11,6 +11,7 @@ PROMPTS=(
   "20_phase_model_and_schema.txt"
   "30_closeout_template_integration.txt"
   "40_cognitive_profile_spec.txt"
+  "50_agent_owned_audit.txt"
 )
 
 usage() {

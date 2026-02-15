@@ -1,0 +1,485 @@
+{"kind": "node", "data": {"id": "N:AntiPattern:ContextThrash", "type": "anti_pattern", "label": "Multi-project / multi-language thrashing"}}
+{"kind": "node", "data": {"id": "N:AntiPattern:MonsterAIOutput", "type": "anti_pattern", "label": "AI generates massive unreviewable code"}}
+{"kind": "node", "data": {"id": "N:AntiPattern:Overbuild", "type": "anti_pattern", "label": "Overbuilding / unnecessary features"}}
+{"kind": "node", "data": {"id": "N:AntiPattern:SlowFeedback", "type": "anti_pattern", "label": "Slow compile / delayed feedback"}}
+{"kind": "node", "data": {"id": "N:AntiPattern:ToolChurn", "type": "anti_pattern", "label": "Constant platform/tool churn"}}
+{"kind": "node", "data": {"id": "N:Constraint:BurnoutRisk", "type": "constraint", "label": "Burnout Risk"}}
+{"kind": "node", "data": {"id": "N:Constraint:CognitiveLoad", "type": "constraint", "label": "Cognitive Load"}}
+{"kind": "node", "data": {"id": "N:Constraint:CompileLatency", "type": "constraint", "label": "Compile / Feedback Latency"}}
+{"kind": "node", "data": {"id": "N:Constraint:ContextSwitching", "type": "constraint", "label": "Context Switching Cost"}}
+{"kind": "node", "data": {"id": "N:Constraint:Friction", "type": "constraint", "label": "Workflow Friction"}}
+{"kind": "node", "data": {"id": "N:Environment:ConsistentKeyboard", "type": "environment", "label": "Consistent keyboard across machines"}}
+{"kind": "node", "data": {"id": "N:Environment:LargeMonitor", "type": "environment", "label": "Large / 4K monitor"}}
+{"kind": "node", "data": {"id": "N:Environment:TouchTyping", "type": "environment", "label": "Touch typing proficiency"}}
+{"kind": "node", "data": {"id": "N:Goal:HyperfastProgramming", "type": "goal", "label": "Hyperfast Programming"}}
+{"kind": "node", "data": {"id": "N:Heuristic:3AMTest", "type": "heuristic", "label": "3AM Readability Test"}}
+{"kind": "node", "data": {"id": "N:Mechanism:EliminateFeatures", "type": "mechanism", "label": "Eliminate unnecessary features"}}
+{"kind": "node", "data": {"id": "N:Mechanism:FrameworkLeverage", "type": "mechanism", "label": "Leverage framework capabilities"}}
+{"kind": "node", "data": {"id": "N:Mechanism:Generators", "type": "mechanism", "label": "Generators (screen/report/workflow)"}}
+{"kind": "node", "data": {"id": "N:Mechanism:HotReload", "type": "mechanism", "label": "Hot reload / instant preview"}}
+{"kind": "node", "data": {"id": "N:Mechanism:OneProjectPerDay", "type": "mechanism", "label": "One project focus per day"}}
+{"kind": "node", "data": {"id": "N:Mechanism:Readability", "type": "mechanism", "label": "Readable code structure"}}
+{"kind": "node", "data": {"id": "N:Mechanism:ReuseLibrary", "type": "mechanism", "label": "Reusable library/components"}}
+{"kind": "node", "data": {"id": "N:Mechanism:SmallAIUnits", "type": "mechanism", "label": "Small AI work units"}}
+{"kind": "node", "data": {"id": "N:Mechanism:SplitScreen", "type": "mechanism", "label": "Split-screen: code + output"}}
+{"kind": "node", "data": {"id": "N:Mechanism:StackContinuity", "type": "mechanism", "label": "Stack continuity"}}
+{"kind": "node", "data": {"id": "N:Mechanism:Templates", "type": "mechanism", "label": "Templates (screens/reports/emails)"}}
+{"kind": "node", "data": {"id": "N:Mechanism:UpfrontDesign", "type": "mechanism", "label": "Upfront conceptual design"}}
+{"kind": "node", "data": {"id": "N:Mechanism:VerifiableTasks", "type": "mechanism", "label": "Explicit success criteria"}}
+{"kind": "node", "data": {"id": "N:Mechanism:WorkBursts", "type": "mechanism", "label": "Work in bursts / pacing"}}
+{"kind": "node", "data": {"id": "N:Outcome:CompoundingReuse", "type": "outcome", "label": "Compounding Reuse"}}
+{"kind": "node", "data": {"id": "N:Outcome:Maintainability", "type": "outcome", "label": "Maintainability"}}
+{"kind": "node", "data": {"id": "N:Outcome:Quality", "type": "outcome", "label": "System Quality"}}
+{"kind": "node", "data": {"id": "N:Outcome:Reliability", "type": "outcome", "label": "Reliability"}}
+{"kind": "node", "data": {"id": "N:Outcome:Speed", "type": "outcome", "label": "Development Speed"}}
+{"kind": "node", "data": {"id": "N:Principle:AIChunking", "type": "principle", "label": "AI: small verifiable tasks"}}
+{"kind": "node", "data": {"id": "N:Principle:Batching", "type": "principle", "label": "Batch related work"}}
+{"kind": "node", "data": {"id": "N:Principle:EnergyProtection", "type": "principle", "label": "Protect energy / work in bursts"}}
+{"kind": "node", "data": {"id": "N:Principle:MetaSystems", "type": "principle", "label": "Build systems that build systems"}}
+{"kind": "node", "data": {"id": "N:Principle:NoCode", "type": "principle", "label": "Fastest code is code that doesn't exist"}}
+{"kind": "node", "data": {"id": "N:Principle:Prethink", "type": "principle", "label": "Think before typing"}}
+{"kind": "node", "data": {"id": "N:Principle:Reuse", "type": "principle", "label": "Reuse aggressively"}}
+{"kind": "node", "data": {"id": "N:Principle:Simplicity", "type": "principle", "label": "Radical simplicity"}}
+{"kind": "node", "data": {"id": "N:Principle:SingleContext", "type": "principle", "label": "Stay in one mental context"}}
+{"kind": "node", "data": {"id": "N:Principle:TempSolutions", "type": "principle", "label": "Temporary solutions for momentum"}}
+{"kind": "node", "data": {"id": "N:Principle:TightLoops", "type": "principle", "label": "Tight feedback loops"}}
+{"kind": "node", "data": {"id": "N:Principle:ToolStability", "type": "principle", "label": "Use tools that work / prefer stability"}}
+{"kind": "node", "data": {"id": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15", "type": "artifact", "artifact_type": "audit_decision_record", "title": "Agent audit and maintenance decisions v0", "summary": {"high_level": "Records resolved maintenance policy choices from the audit loop, including index update mode and first vision-alignment KPI anchor."}}}
+{"kind": "node", "data": {"id": "artifact/commit_agent_cli_v1_2026_02_12", "type": "artifact", "artifact_type": "infrastructure_design", "title": "Standalone second-brain CLI commit agent (v1)", "summary": {"high_level": "Designed a standalone CLI tool (sb) to handle scene and session commits, JSON validation, and index rebuilding. Establishes minimal 3-capability commit agent contract.", "key_decisions": ["Use standalone CLI (not embedded in Codex or project repo).", "Agent contract limited to grounding (read), commit (write), and index/validation (maintain).", "Projects remain structured locally; second-brain references them via Project Map scenes.", "Adopt Intake → Draft → Publish conceptual pipeline for future automation."], "architectural_shift": "Transition from structured-manual workflow to automatable commit-layer infrastructure."}}}
+{"kind": "node", "data": {"id": "artifact/four_principles_second_brain", "type": "artifact", "label": "Four principles that separate successful AI builders (second brain case study)", "artifact_type": "video_summary", "source_url": "https://www.youtube.com/watch?v=_gPODg6br5w", "tags": ["second_brain", "ai_building", "knowledge_management", "2026"]}}
+{"kind": "node", "data": {"id": "artifact/hyperfast_agent_workflow_v0_2026_02_15", "type": "artifact", "artifact_type": "workflow_spec", "title": "Hyperfast agent workflow v0", "summary": {"high_level": "Defines a repeatable agent-operated session loop: ground context, execute constrained tasks, close out with strict contract, and feed audit metrics back into planning."}}}
+{"kind": "node", "data": {"id": "artifact/kalshi_session_history_2026_02_12", "type": "artifact", "artifact_type": "session_history_index", "title": "Kalshi session history mapping", "summary": {"high_level": "Indexes Kalshi pipeline session artifacts and preserves the handoff context toward Phase 9 planning."}}}
+{"kind": "node", "data": {"id": "artifact/meta_program_spec_v0", "type": "artifact", "label": "Meta Workflow Execution Spec v0", "artifact_type": "spec", "source_path": "meta/META_PROGRAM_SPEC_v0.md", "version": "v0", "status": "experimental"}}
+{"kind": "node", "data": {"id": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra", "type": "artifact", "artifact_type": "alias_mapping", "title": "Alias: second_brain_build -> dan_personal_cognitive_infrastructure", "mapping": {"from": "project/second_brain_build", "to": "project/dan_personal_cognitive_infrastructure", "status": "deprecated_alias"}}}
+{"kind": "node", "data": {"id": "artifact/project_id_alias_map_v0_2026_02_15", "type": "artifact", "artifact_type": "id_alias_policy", "title": "Project ID alias map v0", "summary": {"high_level": "Defines canonical project ID policy for second-brain core and deprecates legacy alias IDs while preserving historical artifacts."}}}
+{"kind": "node", "data": {"id": "artifact/prompt_lineage_ontology_spec_v0", "type": "artifact", "label": "Prompt Lineage Ontology Spec v0", "artifact_type": "spec", "source_path": "meta/PROMPT_LINEAGE_ONTOLOGY_SPEC_v0.md", "version": "v0", "status": "experimental"}}
+{"kind": "node", "data": {"id": "artifact/prompt_workflows_inventory_2026_02_12", "type": "artifact", "artifact_type": "workflow_mapping", "title": "Prompt workflow inventory for session lifecycle", "summary": {"high_level": "Maps prompt files used to start and close sessions, including Kalshi-focused closure prompts and schema-driven archive prompts."}}}
+{"kind": "node", "data": {"id": "artifact/scene_graph_integration_spec_v0", "type": "artifact", "label": "Scene Graph Integration Spec v0", "artifact_type": "spec", "source_path": "meta/SCENE_GRAPH_INTEGRATION_SPEC_v0.md", "version": "v0", "status": "experimental"}}
+{"kind": "node", "data": {"id": "artifact/second_brain_toolchain_map_2026_02_12", "type": "artifact", "artifact_type": "tooling_map", "title": "Second-brain commit and index toolchain map", "summary": {"high_level": "Maps the concrete local tooling that commits session artifacts and maintains index files."}}}
+{"kind": "node", "data": {"id": "artifact/session_index_chatgpt", "type": "artifact", "artifact_type": "session_index", "label": "chatgpt session index", "source_scene": "sessions/chatgpt/index.json"}}
+{"kind": "node", "data": {"id": "artifact/session_index_claude", "type": "artifact", "artifact_type": "session_index", "label": "claude session index", "source_scene": "sessions/claude/index.json"}}
+{"kind": "node", "data": {"id": "artifact/session_index_codex", "type": "artifact", "artifact_type": "session_index", "label": "codex session index", "source_scene": "sessions/codex/index.json"}}
+{"kind": "node", "data": {"id": "artifact/session_index_contract_v1_2026_02_12", "type": "artifact", "artifact_type": "index_contract", "title": "Session index contract v1", "summary": {"high_level": "Defines structure and maintenance rules for sessions/<tool>/index.json files."}}}
+{"kind": "node", "data": {"id": "artifact/spec_spec_v0", "type": "artifact", "label": "Spec Spec v0", "artifact_type": "spec", "source_path": "meta/SPEC_SPEC_v0.md", "version": "v0", "status": "experimental", "description": "Higher-order spec from which all other specs derive. Defines required sections, governance invariants, naming, versioning, and status lifecycle."}}
+{"kind": "node", "data": {"id": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15", "type": "artifact", "artifact_type": "kpi_dashboard", "title": "Vision alignment KPI dashboard v0", "summary": {"high_level": "Tracks first-order vision-alignment KPI for session closure quality and principle-link discipline."}}}
+{"kind": "node", "data": {"id": "artifact/vision_alignment_kpi_targets_v0_2026_02_15", "type": "artifact", "artifact_type": "kpi_contract", "title": "Vision-alignment KPI targets v0", "targets": {"pass": ">=75%", "stretch": ">=85%"}}}
+{"kind": "node", "data": {"id": "artifact/workflow_operational_model_2026_02_11", "type": "artifact", "artifact_type": "workflow_refinement", "title": "Operational workflow model for second-brain sessions", "summary": {"high_level": "Formalized the working workflow into a disciplined operational model. Clarified that sessions are state transitions, artifacts are durable state snapshots, and resumption is deterministic rehydration.", "key_points": ["Work must always attach to a project ID.", "Sessions operate under explicit principle constraints.", "Patterns provide structural bias and prevent architectural drift.", "Every meaningful session must emit a structured artifact.", "Artifacts encode decisions, deltas, and open questions.", "Resumption loads prior state instead of restarting from memory."]}}}
+{"kind": "node", "data": {"id": "artifact/workflow_state_machine_model_2026_02_11", "type": "artifact", "artifact_type": "architecture_refinement", "title": "Second-brain workflow as state machine", "summary": {"high_level": "Refined understanding of the working workflow. Clarified that sessions function as state transitions in a cognitive state machine. Artifacts act as durable state snapshots enabling deterministic re-entry and agent replay.", "core_insight": "The second brain is not a note system; it is a state machine for cognition. Each session represents a transition from State_n to State_n+1. Artifacts encode the transition."}}}
+{"kind": "node", "data": {"id": "artifact_pointer/chatgpt_session_index", "type": "artifact_pointer", "label": "ChatGPT session index", "path": "sessions/chatgpt/index.json"}}
+{"kind": "node", "data": {"id": "artifact_pointer/claude_session_index", "type": "artifact_pointer", "label": "Claude session index", "path": "sessions/claude/index.json"}}
+{"kind": "node", "data": {"id": "artifact_pointer/codex_session_index", "type": "artifact_pointer", "label": "Codex session index", "path": "sessions/codex/index.json"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_agents", "type": "artifact_pointer", "label": "AGENTS", "path": "AGENTS.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_checkpoint_template", "type": "artifact_pointer", "label": "CHECKPOINT_TEMPLATE", "path": "CHECKPOINT_TEMPLATE.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_checkpoints_dir", "type": "artifact_pointer", "label": "checkpoints/", "path": "checkpoints/"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_justfile", "type": "artifact_pointer", "label": "Justfile", "path": "Justfile"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_knowledge_base", "type": "artifact_pointer", "label": "KNOWLEDGE_BASE", "path": "KNOWLEDGE_BASE.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_latest_checkpoint", "type": "artifact_pointer", "label": "Latest checkpoint (resolve dynamically)", "path_policy": {"type": "latest_by_filename_or_mtime", "dir": "checkpoints/", "match": "*.md"}}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_open_questions", "type": "artifact_pointer", "label": "OPEN_QUESTIONS", "path": "OPEN_QUESTIONS.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_plan", "type": "artifact_pointer", "label": "PLAN", "path": "PLAN.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_readme", "type": "artifact_pointer", "label": "README", "path": "README.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_reports_dir", "type": "artifact_pointer", "label": "reports/", "path": "reports/"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_scripts_dir", "type": "artifact_pointer", "label": "scripts/", "path": "scripts/"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_specs_dir", "type": "artifact_pointer", "label": "specs/", "path": "specs/"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_15m_tests_dir", "type": "artifact_pointer", "label": "tests/", "path": "tests/"}}
+{"kind": "node", "data": {"id": "artifact_pointer/kalshi_phase8_closeout_session", "type": "artifact_pointer", "label": "Phase 8 closeout handoff session artifact", "path": "sessions/codex/2026-02-12-phase8-closeout-handoff.json"}}
+{"kind": "node", "data": {"id": "artifact_pointer/prompt_codex_session_ending", "type": "artifact_pointer", "label": "Codex session ending prompt", "path": "prompts/codex_session_ending_prompt.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/prompt_session_archiver_template", "type": "artifact_pointer", "label": "Session archiver prompt template", "path": "prompts/session_archiver_prompt_template.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/prompt_session_archiver_template_copy", "type": "artifact_pointer", "label": "Session archiver prompt template (filled schema copy)", "path": "prompts/session_archiver_prompt_template_copy.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/prompt_session_preamble", "type": "artifact_pointer", "label": "Session preamble prompt", "path": "prompts/session_preamble.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/sb_closeout_script", "type": "artifact_pointer", "label": "sb_closeout helper", "path": "tools/sb_closeout.sh"}}
+{"kind": "node", "data": {"id": "artifact_pointer/script_update_index_py", "type": "artifact_pointer", "label": "update_index script source", "path": "scripts/update_index.py"}}
+{"kind": "node", "data": {"id": "artifact_pointer/second_brain_taxonomy_claude_variant", "type": "artifact_pointer", "label": "Second Brain Taxonomy Claude variant", "path": "meta/SECOND_BRAIN_TAXONOMY_claude_opus_4_6_2026-02-14.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/second_brain_taxonomy_v0", "type": "artifact_pointer", "label": "Second Brain Taxonomy v0", "path": "meta/SECOND_BRAIN_TAXONOMY_v0.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/session_closeout_prompt_v1", "type": "artifact_pointer", "label": "Session closeout prompt v1", "path": "prompts/session_ending_prompt.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/tool_sb_py", "type": "artifact_pointer", "label": "sb CLI source", "path": "tools/sb.py"}}
+{"kind": "node", "data": {"id": "artifact_pointer/vision_alignment_audit_operation", "type": "artifact_pointer", "label": "Vision alignment audit operation", "path": "operations/vision_alignment_audit_v0.md"}}
+{"kind": "node", "data": {"id": "artifact_pointer/vision_alignment_audit_report_v0", "type": "artifact_pointer", "label": "Vision alignment audit report", "path": "reports/vision_alignment_audit_v0.json"}}
+{"kind": "node", "data": {"id": "checklist/hyperfast_session_checklist", "type": "checklist", "label": "hyperfast_session_checklist", "summary": null, "tags": [], "source_scene": "scenes/hyperfast-session-checklist.scene.json"}}
+{"kind": "node", "data": {"id": "compressed_checklist/hyperfast_session_pocket_card", "type": "compressed_checklist", "label": "hyperfast_session_pocket_card", "summary": null, "tags": [], "source_scene": "scenes/hyperfast-session-pocket-card.scene.json"}}
+{"kind": "node", "data": {"id": "concept/agent_maintainability", "type": "concept", "label": "Agent maintainability"}}
+{"kind": "node", "data": {"id": "concept/ai_as_implementation_muscle", "type": "concept", "label": "AI as implementation muscle"}}
+{"kind": "node", "data": {"id": "concept/always_on_processing", "type": "concept", "label": "Always-on processing"}}
+{"kind": "node", "data": {"id": "concept/base_delta_materialized_lineage", "type": "concept", "label": "base -> delta -> materialized lineage", "description": "Core derivation chain: a base prompt is transformed by ordered deltas into a materialized output with full replay metadata."}}
+{"kind": "node", "data": {"id": "concept/capture_sort_store_retrieve_architecture", "type": "concept", "label": "Capture → sort/structure → store → intelligent retrieval"}}
+{"kind": "node", "data": {"id": "concept/commit_agent_contract", "type": "concept", "label": "Commit agent contract (3-capability model)", "definition": "Minimal agent interface: grounding access (read project docs), commit access (write scenes/session artifacts), and maintenance access (reindex + validate)."}}
+{"kind": "node", "data": {"id": "concept/community_as_pattern_library", "type": "concept", "label": "Community as pattern library"}}
+{"kind": "node", "data": {"id": "concept/deterministic_materialization", "type": "concept", "label": "Deterministic materialization", "description": "Same base + same ordered deltas must produce byte-identical output. Delta order: ascending numeric order, tie-break by id lexical order."}}
+{"kind": "node", "data": {"id": "concept/kalshi_phase9_handoff_state", "type": "concept", "label": "Kalshi Phase 9 handoff state", "definition": "State reached after Phase 8 closeout where Phase 9 scope, thresholds, and challenger policy-readiness criteria must be defined."}}
+{"kind": "node", "data": {"id": "concept/kpi_principle_linked_artifact_pct", "type": "concept", "label": "principle_linked_artifact_pct", "definition": "Percent of non-trivial session artifacts linked to at least one canonical principle."}}
+{"kind": "node", "data": {"id": "concept/project_id_alias_map_v0", "type": "concept", "label": "Project ID alias map", "definition": "Alias resolution map for project IDs. New links must use canonical IDs; legacy references remain valid for historical truth."}}
+{"kind": "node", "data": {"id": "concept/project_map_grounding_model", "type": "concept", "label": "Project map grounding model", "definition": "Graph node defining repo location, canonical documents, and grounding order for agents before reasoning about a project."}}
+{"kind": "node", "data": {"id": "concept/prompt_artifact", "type": "concept", "label": "PromptArtifact", "description": "Canonical prompt content unit (base or materialized). Required fields: id, type, title, content, version, status."}}
+{"kind": "node", "data": {"id": "concept/prompt_delta", "type": "concept", "label": "PromptDelta", "description": "Incremental transformation over a base prompt. Required fields: id, delta_type, patch, order, version, status."}}
+{"kind": "node", "data": {"id": "concept/prompt_driven_session_closure", "type": "concept", "label": "Prompt-driven session closure", "definition": "Reusable prompts encode the required output contract so session closeout artifacts remain consistent and machine-parseable."}}
+{"kind": "node", "data": {"id": "concept/prompt_materialization_run", "type": "concept", "label": "PromptMaterializationRun", "description": "Deterministic replay execution record. Required fields: id, base_prompt_id, applied_delta_ids[], output_prompt_id, generated_on."}}
+{"kind": "node", "data": {"id": "concept/prompt_variant", "type": "concept", "label": "PromptVariant", "description": "Named target variant for tool/context/domain specialization. Required fields: id, target_context, version, status."}}
+{"kind": "node", "data": {"id": "concept/second_brain_as_infrastructure", "type": "concept", "label": "Second brain as infrastructure"}}
+{"kind": "node", "data": {"id": "concept/session_based_processing", "type": "concept", "label": "Session-based processing"}}
+{"kind": "node", "data": {"id": "concept/session_index_array_schema", "type": "concept", "label": "Session index object schema", "definition": "Each sessions/<tool>/index.json file is a JSON object with fields: tool, artifacts[], last_updated."}}
+{"kind": "node", "data": {"id": "concept/session_index_maintenance", "type": "concept", "label": "Session index maintenance", "definition": "Keep sessions/<tool>/index.json synchronized with artifact IDs present in each sessions/<tool>/ directory."}}
+{"kind": "node", "data": {"id": "concept/session_index_rebuild_rule", "type": "concept", "label": "Session index rebuild rule", "definition": "Index entries are derived from sessions/<tool>/*.json excluding index.json, producing artifacts[] records with id/date/resumption_score/summary_snippet."}}
+{"kind": "node", "data": {"id": "concept/session_index_update_policy_default_auto", "type": "concept", "label": "Session index update policy", "definition": "On successful closeout, update sessions/<tool>/index.json automatically by default. Use --no-index only for bulk backfill, rollback, or controlled migration runs."}}
+{"kind": "node", "data": {"id": "concept/spec", "type": "concept", "label": "Spec", "description": "A versioned governance document with required sections: Title, Version, Status, Inputs, Purpose, Scope, Core Definitions, Determinism & Drift Tests, Governance Rules, Failure Modes, Success Criteria, Immediate Next Step."}}
+{"kind": "node", "data": {"id": "concept/spec_allowed_status_values", "type": "concept", "label": "Allowed spec status values", "description": "Allowed values: Experimental, Stable, Deprecated."}}
+{"kind": "node", "data": {"id": "concept/spec_derivation", "type": "concept", "label": "Spec derivation", "description": "Every spec is a concretion of the Spec Spec. Child specs must include all required sections and satisfy inherited governance invariants."}}
+{"kind": "node", "data": {"id": "concept/spec_filename_pattern", "type": "concept", "label": "Spec filename pattern", "description": "Filename regex for spec artifacts: ^[A-Z][A-Z_]*_SPEC_v[0-9]+\\.md$."}}
+{"kind": "node", "data": {"id": "concept/spec_required_sections_ordered", "type": "concept", "label": "Spec required sections in canonical order", "description": "Canonical order: 1) Title, 2) Version, 3) Status, 4) Inputs, 5) Purpose, 6) Scope, 7) Core Definitions, 8) Determinism & Drift Tests, 9) Governance Rules, 10) Failure Modes, 11) Success Criteria (vN), 12) Immediate Next Step."}}
+{"kind": "node", "data": {"id": "concept/spec_status", "type": "concept", "label": "Spec status lifecycle", "description": "Experimental -> Stable -> Deprecated. Experimental allows breaking changes; Stable requires version bumps; Deprecated is read-only."}}
+{"kind": "node", "data": {"id": "concept/spec_version", "type": "concept", "label": "Spec versioning", "description": "Monotonically increasing vN integer per subject. Semantic/governance changes require a bump; editorial fixes do not."}}
+{"kind": "node", "data": {"id": "concept/spec_version_pattern", "type": "concept", "label": "Spec version string pattern", "description": "Version field must match pattern ^v[0-9]+$."}}
+{"kind": "node", "data": {"id": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct", "type": "concept", "label": "Vision-alignment anchor KPI", "definition": "principle_linked_artifact_pct = percent of non-trivial artifacts with at least one canonical principle link."}}
+{"kind": "node", "data": {"id": "concept/workflow_as_state_machine", "type": "concept", "label": "Workflow as cognitive state machine", "definition": "A model in which each session transitions a project from one defined cognitive state to another, with structured artifacts capturing the delta."}}
+{"kind": "node", "data": {"id": "concept/writer_critic_loop", "type": "concept", "label": "Writer–critic loop for reliability"}}
+{"kind": "node", "data": {"id": "concept/zero_shot_resumption_bundle", "type": "concept", "label": "Zero-shot resumption bundle", "definition": "Minimal context load set for cold-start execution: core project scene + latest taxonomy + top 3 recent artifacts by resumption score."}}
+{"kind": "node", "data": {"id": "concept_article/palantir_ontology_meaning_in_data_2022", "type": "concept_article", "label": "Ontology: Finding Meaning in Data (Palantir RFx Blog Series #1)", "summary": "Palantir defines ontology as a semantic layer that maps raw data into real-world objects, relationships, and logic. It decouples data pipelines from applications and embeds meaning, permissions, and operations directly into a shared object model.", "tags": ["ontology", "semantic-layer", "data-architecture", "knowledge-graph", "ai-agents", "enterprise-systems", "palantir"], "source_scene": "scenes/palantir_ontology_meaning_in_data_2022.scene.json"}}
+{"kind": "node", "data": {"id": "development_philosophy/hyperfast_programming_principles", "type": "development_philosophy", "label": "hyperfast_programming_principles", "summary": null, "tags": [], "source_scene": "scenes/hyperfast.scene.json"}}
+{"kind": "node", "data": {"id": "directive_list/robustness_gate_design_directives", "type": "directive_list", "label": "robustness_gate_design_directives", "summary": null, "tags": [], "source_scene": "scenes/robustness-gate-design-directives.scene.json"}}
+{"kind": "node", "data": {"id": "pattern/claude_computer_use_obsidian_typescript_vps", "type": "pattern", "label": "Claude computer-use + Obsidian + TypeScript agent on VPS", "description": "Claude’s computer-use plus a custom TypeScript agent on a VPS with Obsidian, guided by principle-level architectural best practices."}}
+{"kind": "node", "data": {"id": "pattern/dan_codex_meta_workflow_v1", "type": "pattern", "label": "Dan's Codex + ChatGPT meta-workflow (v1)", "description": "Current working pattern where Dan uses Codex and ChatGPT as primary thinking surfaces: Codex for live project work, specs, and pipeline design; ChatGPT for higher-level reflection, summaries, and second-brain architecture thinking. Knowledge currently lives mostly in conversations and ad-hoc notes, with an emerging intention to turn high-value threads into graph-structured artifacts.", "properties": {"capture_points": ["Codex conversations for active builds (specs, trading pipeline design, ML ideas)", "ChatGPT threads for meta-analysis, second brain architecture, and workflow reflection", "Occasional external docs/notes (e.g., Neovim config, trading research, YouTube/video transcripts)"], "storage_today": ["Conversation histories in Codex", "ChatGPT threads", "Local config/code repos (e.g., Neovim, trading infra)", "Ad-hoc notes/docs when something feels important"], "intended_future_storage": ["Graph-structured knowledge base (principles, patterns, concepts, projects, tools)", "Artifacts like this video summary encoded as nodes/edges", "Project-scoped state snapshots for resumption and meta-analysis"], "ai_roles": ["Spec drafting and refinement partner (Codex + ChatGPT)", "Workflow/meta-analysis partner (ChatGPT meta-threads)", "Future: graph-aware agent that can traverse principles/patterns/projects and propose changes"], "human_roles": ["Define intent and constraints for projects (trading, infra, second brain)", "Curate which artifacts become first-class graph nodes", "Decide when to standardize patterns vs leave things experimental"], "notable_characteristics": ["Session-based interactions with Codex tied to concrete work (coding, specs, trading pipeline design)", "Higher-level, cross-project reflection done in separate meta threads with ChatGPT", "Growing preference for principled, architecture-first thinking over tool-first setups", "Explicit interest in resilience to tool churn and context-window limits"]}}}
+{"kind": "node", "data": {"id": "pattern/discord_obsidian_macwhisper_stack", "type": "pattern", "label": "Discord + Obsidian + MacWhisper capture stack", "description": "Discord as capture surface, MacWhisper for local transcription, and Obsidian for storage; slash commands trigger processing and filing by project."}}
+{"kind": "node", "data": {"id": "pattern/drift_testing", "type": "pattern", "label": "Prompt lineage drift tests", "description": "Four invariance tests: repeat-run stability, permutation invariance, supersession stability, missing-delta failure."}}
+{"kind": "node", "data": {"id": "pattern/hyperfast_agent_session_loop", "type": "pattern", "label": "Hyperfast agent session loop", "description": "Ground -> Execute -> Validate -> Closeout -> Reindex -> Audit -> Plan."}}
+{"kind": "node", "data": {"id": "pattern/meta_agent_multi_coding_assistants", "type": "pattern", "label": "Meta-agent framework orchestrating multiple coding assistants", "description": "A meta-agent coordinating Claude Code, Codex, Copilot, and Goose using a writer–critic loop, capable of setting up infra and generating UIs."}}
+{"kind": "node", "data": {"id": "pattern/notion_mobile_inbox_claude_scheduled", "type": "pattern", "label": "Notion mobile capture + scheduled Claude processing", "description": "Notion mobile export as capture mechanism, with Claude periodically processing an inbox and sorting into structured views."}}
+{"kind": "node", "data": {"id": "pattern/notion_zapier_claude_stack", "type": "pattern", "label": "Notion + Zapier + Claude/ChatGPT second brain stack", "description": "Capture and route notes using Notion for storage, Zapier for automation, and Claude or ChatGPT as the intelligence layer."}}
+{"kind": "node", "data": {"id": "pattern/postgres_vector_graph_infrastructure", "type": "pattern", "label": "Postgres + vector DB + graph DB as second brain infrastructure", "description": "Hybrid database system: Postgres for structured data, vector DB for semantic search, and Neo4j for relationships, exposed via API/SDK."}}
+{"kind": "node", "data": {"id": "pattern/prompt_id_convention", "type": "pattern", "label": "Prompt ID naming convention", "description": "Prompt IDs: prompt/<domain>_<purpose>_vN. Delta IDs: prompt_delta/<base>_<order>_<intent>_vN. Materialized IDs: prompt/<base>__<variant>_vN."}}
+{"kind": "node", "data": {"id": "pattern/session_artifact_resumption_loop", "type": "pattern", "label": "Session → Artifact → Resumption loop", "description": "A disciplined loop where sessions begin with declared constraints, end with structured artifacts, and future sessions resume from those artifacts."}}
+{"kind": "node", "data": {"id": "pattern/session_state_transition_pattern", "type": "pattern", "label": "Session → Artifact → Resumption loop", "description": "Each work session emits a structured artifact capturing decisions, changes, and open questions. Future sessions begin by rehydrating from that artifact."}}
+{"kind": "node", "data": {"id": "pattern/slack_yaml_claude_code_session", "type": "pattern", "label": "Slack capture + local YAML + Claude Code session-based processing", "description": "Slack as capture, local YAML files as storage, and Claude Code sessions that process inbox items, classify them, and write YAML on demand."}}
+{"kind": "node", "data": {"id": "pattern/spec_child_derivation_contract", "type": "pattern", "label": "Child spec derivation contract", "description": "Child spec must include all required sections, follow filename/version/status constraints, inherit governance invariants, and only add domain-specific sections in optional placement."}}
+{"kind": "node", "data": {"id": "pattern/spec_drift_test_suite", "type": "pattern", "label": "Spec drift test suite", "description": "Minimum checks: repeat-run stability, required-section completeness, filename regex conformance, and deterministic rendering from structured form."}}
+{"kind": "node", "data": {"id": "pattern/spec_naming_convention", "type": "pattern", "label": "Spec naming convention", "description": "<SCOPE>_<SUBJECT>_SPEC_vN.md — uppercase scope, optional subject, version integer."}}
+{"kind": "node", "data": {"id": "pattern/spec_optional_sections", "type": "pattern", "label": "Optional spec sections", "description": "Optional sections: Architecture and Cross-Artifact Constraints. If present, place them between Scope and Determinism & Drift Tests."}}
+{"kind": "node", "data": {"id": "pattern/spec_required_sections", "type": "pattern", "label": "12 required spec sections", "description": "Title, Version, Status, Inputs, Purpose, Scope, Core Definitions, Determinism & Drift Tests, Governance Rules, Failure Modes, Success Criteria, Immediate Next Step."}}
+{"kind": "node", "data": {"id": "pattern/standalone_cli_commit_pattern", "type": "pattern", "label": "Standalone CLI commit pattern", "description": "A local-first command-line tool that writes scene/session JSON, validates structure, and maintains indexes without requiring database infrastructure."}}
+{"kind": "node", "data": {"id": "pattern/zapier_slack_to_notion_classifier", "type": "pattern", "label": "Zapier Slack → Claude → Notion classification flow", "description": "Slack messages trigger a Zapier flow that calls Claude for JSON classification, cleans/parses results, routes to Notion DBs, logs inbox entries, and replies in Slack."}}
+{"kind": "node", "data": {"id": "phase_event/kalshi/2026-02-01/discovery", "type": "phase_event", "label": "kalshi discovery 2026-02-01", "phase": "discovery", "entered_on": "2026-02-01", "trigger_artifact": "scenes/kalshi_15m_btc_pipeline.scene.json", "confidence_score": 0.78, "source_scene": "scenes/kalshi_phase_history.scene.json"}}
+{"kind": "node", "data": {"id": "phase_event/kalshi/2026-02-11/implementation", "type": "phase_event", "label": "kalshi implementation 2026-02-11", "phase": "implementation", "entered_on": "2026-02-11", "trigger_artifact": "sessions/codex/2026-02-12-phase8-closeout-handoff.json", "confidence_score": 0.83, "source_scene": "scenes/kalshi_phase_history.scene.json"}}
+{"kind": "node", "data": {"id": "phase_event/kalshi/2026-02-13/stabilization", "type": "phase_event", "label": "kalshi stabilization 2026-02-13", "phase": "stabilization", "entered_on": "2026-02-13", "trigger_artifact": "meta/META_PROGRAM_SPEC_v0.md", "confidence_score": 0.74, "source_scene": "scenes/kalshi_phase_history.scene.json"}}
+{"kind": "node", "data": {"id": "principle/agent_builds_agent_maintains", "type": "principle", "label": "If the agent builds it, the agent can maintain it"}}
+{"kind": "node", "data": {"id": "principle/architecture_portable_tools_not", "type": "principle", "label": "Architecture is portable, tools are not"}}
+{"kind": "node", "data": {"id": "principle/deterministic_serialization", "type": "principle", "label": "Deterministic serialization (UTF-8, 2-space indent, stable keys)"}}
+{"kind": "node", "data": {"id": "principle/explicit_lineage", "type": "principle", "label": "Lineage is explicit, not inferred"}}
+{"kind": "node", "data": {"id": "principle/explicit_over_inferred", "type": "principle", "label": "Explicit over inferred"}}
+{"kind": "node", "data": {"id": "principle/fail_closed", "type": "principle", "label": "Fail closed"}}
+{"kind": "node", "data": {"id": "principle/no_inplace_mutation", "type": "principle", "label": "No in-place semantic mutation of historical prompts"}}
+{"kind": "node", "data": {"id": "principle/no_inplace_semantic_rewrite", "type": "principle", "label": "No in-place semantic rewrites"}}
+{"kind": "node", "data": {"id": "principle/no_silent_mutation", "type": "principle", "label": "No silent mutation"}}
+{"kind": "node", "data": {"id": "principle/principles_over_rules", "type": "principle", "label": "Principles-based guidance scales better than rules"}}
+{"kind": "node", "data": {"id": "principle/system_as_infrastructure", "type": "principle", "label": "Your system can be infrastructure, not just a tool"}}
+{"kind": "node", "data": {"id": "project/dan_personal_cognitive_infrastructure", "type": "project", "label": "Personal cognitive infrastructure"}}
+{"kind": "node", "data": {"id": "project/kalshi", "type": "project", "label": "kalshi", "source_scene": "scenes/kalshi_phase_history.scene.json"}}
+{"kind": "node", "data": {"id": "project/kalshi_15m_btc_pipeline", "type": "project", "label": "Kalshi 15m BTC Pipeline", "repo": {"type": "github", "url": "https://github.com/JustAHobbyDev/kalshi-15m-btc-pipeline", "default_branch": "main"}, "purpose": "Reliable, reproducible, and auditable pipeline for ingesting, normalizing, and validating Kalshi BTC 15-minute market data.", "grounding_order": ["artifact_pointer/kalshi_15m_readme", "artifact_pointer/kalshi_15m_plan", "artifact_pointer/kalshi_15m_open_questions", "artifact_pointer/kalshi_15m_agents", "artifact_pointer/kalshi_15m_latest_checkpoint", "artifact_pointer/kalshi_15m_specs_dir", "artifact_pointer/kalshi_15m_reports_dir", "artifact_pointer/kalshi_15m_scripts_dir"], "notes_for_agents": ["Treat README as the entrypoint for intent + commands.", "Treat PLAN as the canonical roadmap / planning truth.", "Treat OPEN_QUESTIONS as the canonical unresolved decision space.", "Treat AGENTS as durable workflow + execution rules.", "Use checkpoints as milestone snapshots; use specs for architecture contracts; use reports for results."]}}
+{"kind": "node", "data": {"id": "project/second_brain_build", "type": "project", "label": "Second Brain Build (deprecated alias)"}}
+{"kind": "node", "data": {"id": "scene_document/agent_ontology", "type": "scene_document", "label": "Agent Ontology", "summary": "A minimal, practical ontology for LLM-powered agents: what exists in the agent's world model, how it plans, acts, remembers, and learns.", "tags": [], "source_scene": "scenes/agent-ontology.scene.json"}}
+{"kind": "node", "data": {"id": "tool/chatgpt", "type": "tool", "label": "ChatGPT"}}
+{"kind": "node", "data": {"id": "tool/chatgpt_meta_reflection", "type": "tool", "label": "ChatGPT (meta-reflection + architecture)", "description": "ChatGPT used primarily for higher-level reflection, second-brain architecture, and workflow/meta-analysis separate from day-to-day execution."}}
+{"kind": "node", "data": {"id": "tool/chrome", "type": "tool", "label": "Chrome"}}
+{"kind": "node", "data": {"id": "tool/claude", "type": "tool", "label": "Claude"}}
+{"kind": "node", "data": {"id": "tool/claude_code", "type": "tool", "label": "Claude Code"}}
+{"kind": "node", "data": {"id": "tool/claude_cowork", "type": "tool", "label": "Claude Co-Work"}}
+{"kind": "node", "data": {"id": "tool/codex", "type": "tool", "label": "Codex"}}
+{"kind": "node", "data": {"id": "tool/codex_meta_environment", "type": "tool", "label": "Codex (project + spec environment)", "description": "Codex environment where Dan runs active builds, specs, and pipeline design work, often in longer-running threads focused on specific projects."}}
+{"kind": "node", "data": {"id": "tool/discord", "type": "tool", "label": "Discord"}}
+{"kind": "node", "data": {"id": "tool/github_copilot", "type": "tool", "label": "GitHub Copilot"}}
+{"kind": "node", "data": {"id": "tool/google_chat", "type": "tool", "label": "Google Chat"}}
+{"kind": "node", "data": {"id": "tool/goose", "type": "tool", "label": "Goose (coding assistant)"}}
+{"kind": "node", "data": {"id": "tool/macwhisper", "type": "tool", "label": "MacWhisper"}}
+{"kind": "node", "data": {"id": "tool/make", "type": "tool", "label": "Make (Integromat)"}}
+{"kind": "node", "data": {"id": "tool/nadn", "type": "tool", "label": "NADN"}}
+{"kind": "node", "data": {"id": "tool/neo4j", "type": "tool", "label": "Neo4j"}}
+{"kind": "node", "data": {"id": "tool/notion", "type": "tool", "label": "Notion"}}
+{"kind": "node", "data": {"id": "tool/obsidian", "type": "tool", "label": "Obsidian"}}
+{"kind": "node", "data": {"id": "tool/postgres", "type": "tool", "label": "PostgreSQL"}}
+{"kind": "node", "data": {"id": "tool/second_brain_cli_sb", "type": "tool", "label": "Second-brain CLI (sb)", "description": "Local CLI for committing scenes/sessions, validating JSON, and rebuilding session indexes."}}
+{"kind": "node", "data": {"id": "tool/session_index_updater_script", "type": "tool", "label": "Session index updater script", "description": "Script that scans sessions directories and updates per-tool index.json files."}}
+{"kind": "node", "data": {"id": "tool/slack", "type": "tool", "label": "Slack"}}
+{"kind": "node", "data": {"id": "tool/vector_db_generic", "type": "tool", "label": "Vector database (e.g., Qdrant)"}}
+{"kind": "node", "data": {"id": "tool/yaml_files", "type": "tool", "label": "Local YAML files"}}
+{"kind": "node", "data": {"id": "tool/zapier", "type": "tool", "label": "Zapier"}}
+{"kind": "edge", "data": {"from": "N:AntiPattern:ToolChurn", "to": "N:Mechanism:StackContinuity", "type": "opposes"}}
+{"kind": "edge", "data": {"from": "N:Constraint:BurnoutRisk", "to": "N:Outcome:Speed", "type": "decreases", "polarity": "negative"}}
+{"kind": "edge", "data": {"from": "N:Constraint:CompileLatency", "to": "N:Outcome:Speed", "type": "decreases", "polarity": "negative"}}
+{"kind": "edge", "data": {"from": "N:Constraint:ContextSwitching", "to": "N:Outcome:Speed", "type": "decreases", "polarity": "negative"}}
+{"kind": "edge", "data": {"from": "N:Goal:HyperfastProgramming", "to": "N:Outcome:CompoundingReuse", "type": "optimizes_for"}}
+{"kind": "edge", "data": {"from": "N:Goal:HyperfastProgramming", "to": "N:Outcome:Maintainability", "type": "optimizes_for"}}
+{"kind": "edge", "data": {"from": "N:Goal:HyperfastProgramming", "to": "N:Outcome:Quality", "type": "optimizes_for"}}
+{"kind": "edge", "data": {"from": "N:Goal:HyperfastProgramming", "to": "N:Outcome:Reliability", "type": "optimizes_for"}}
+{"kind": "edge", "data": {"from": "N:Goal:HyperfastProgramming", "to": "N:Outcome:Speed", "type": "optimizes_for"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:EliminateFeatures", "to": "N:AntiPattern:Overbuild", "type": "mitigates"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:Generators", "to": "N:Outcome:CompoundingReuse", "type": "drives"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:HotReload", "to": "N:Constraint:CompileLatency", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:OneProjectPerDay", "to": "N:Constraint:ContextSwitching", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:Readability", "to": "N:Heuristic:3AMTest", "type": "validated_by"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:ReuseLibrary", "to": "N:Outcome:CompoundingReuse", "type": "drives"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:SmallAIUnits", "to": "N:AntiPattern:MonsterAIOutput", "type": "mitigates"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:SplitScreen", "to": "N:Constraint:Friction", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:UpfrontDesign", "to": "N:Constraint:CognitiveLoad", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Mechanism:WorkBursts", "to": "N:Constraint:BurnoutRisk", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Outcome:CompoundingReuse", "to": "N:Outcome:Speed", "type": "increases"}}
+{"kind": "edge", "data": {"from": "N:Principle:AIChunking", "to": "N:Mechanism:SmallAIUnits", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:AIChunking", "to": "N:Mechanism:VerifiableTasks", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:AIChunking", "to": "N:Outcome:Quality", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:AIChunking", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:Batching", "to": "N:Constraint:ContextSwitching", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Principle:EnergyProtection", "to": "N:Mechanism:WorkBursts", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:MetaSystems", "to": "N:Mechanism:Generators", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:MetaSystems", "to": "N:Outcome:CompoundingReuse", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:MetaSystems", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:NoCode", "to": "N:Mechanism:EliminateFeatures", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:NoCode", "to": "N:Mechanism:FrameworkLeverage", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:NoCode", "to": "N:Outcome:Maintainability", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:NoCode", "to": "N:Outcome:Reliability", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:NoCode", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:Prethink", "to": "N:Mechanism:UpfrontDesign", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:Prethink", "to": "N:Outcome:Quality", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:Prethink", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:Reuse", "to": "N:Mechanism:Generators", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:Reuse", "to": "N:Mechanism:ReuseLibrary", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:Reuse", "to": "N:Mechanism:Templates", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:Simplicity", "to": "N:Constraint:CognitiveLoad", "type": "reduces"}}
+{"kind": "edge", "data": {"from": "N:Principle:Simplicity", "to": "N:Mechanism:Readability", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:Simplicity", "to": "N:Outcome:Maintainability", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:Simplicity", "to": "N:Outcome:Reliability", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:SingleContext", "to": "N:Mechanism:OneProjectPerDay", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:SingleContext", "to": "N:Mechanism:StackContinuity", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:TempSolutions", "to": "N:Outcome:Quality", "type": "can_reduce", "polarity": "risk"}}
+{"kind": "edge", "data": {"from": "N:Principle:TempSolutions", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:TightLoops", "to": "N:Mechanism:HotReload", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:TightLoops", "to": "N:Mechanism:SplitScreen", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "N:Principle:TightLoops", "to": "N:Outcome:Speed", "type": "improves"}}
+{"kind": "edge", "data": {"from": "N:Principle:ToolStability", "to": "N:AntiPattern:ToolChurn", "type": "mitigates"}}
+{"kind": "edge", "data": {"from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15", "to": "concept/session_index_update_policy_default_auto", "type": "resolves"}}
+{"kind": "edge", "data": {"from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15", "to": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct", "type": "resolves"}}
+{"kind": "edge", "data": {"from": "artifact/agent_audit_and_maintenance_decisions_v0_2026_02_15", "to": "project/dan_personal_cognitive_infrastructure", "type": "applies_to"}}
+{"kind": "edge", "data": {"from": "artifact/commit_agent_cli_v1_2026_02_12", "to": "concept/commit_agent_contract", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/commit_agent_cli_v1_2026_02_12", "to": "concept/project_map_grounding_model", "type": "extends"}}
+{"kind": "edge", "data": {"from": "artifact/commit_agent_cli_v1_2026_02_12", "to": "pattern/standalone_cli_commit_pattern", "type": "implements"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/claude_computer_use_obsidian_typescript_vps", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/discord_obsidian_macwhisper_stack", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/meta_agent_multi_coding_assistants", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/notion_mobile_inbox_claude_scheduled", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/notion_zapier_claude_stack", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/postgres_vector_graph_infrastructure", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/slack_yaml_claude_code_session", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "pattern/zapier_slack_to_notion_classifier", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "principle/agent_builds_agent_maintains", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "principle/architecture_portable_tools_not", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "principle/principles_over_rules", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/four_principles_second_brain", "to": "principle/system_as_infrastructure", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/hyperfast_agent_workflow_v0_2026_02_15", "to": "pattern/hyperfast_agent_session_loop", "type": "codifies"}}
+{"kind": "edge", "data": {"from": "artifact/hyperfast_agent_workflow_v0_2026_02_15", "to": "project/dan_personal_cognitive_infrastructure", "type": "applies_to"}}
+{"kind": "edge", "data": {"from": "artifact/kalshi_session_history_2026_02_12", "to": "artifact_pointer/kalshi_phase8_closeout_session", "type": "indexes"}}
+{"kind": "edge", "data": {"from": "artifact/meta_program_spec_v0", "to": "concept/spec", "type": "instance_of"}}
+{"kind": "edge", "data": {"from": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra", "to": "project/dan_personal_cognitive_infrastructure", "type": "aliases_to"}}
+{"kind": "edge", "data": {"from": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra", "to": "project/second_brain_build", "type": "deprecates_alias"}}
+{"kind": "edge", "data": {"from": "artifact/project_id_alias_map_v0_2026_02_15", "to": "artifact/project_alias_second_brain_build_to_dan_cognitive_infra", "type": "contains_mapping"}}
+{"kind": "edge", "data": {"from": "artifact/project_id_alias_map_v0_2026_02_15", "to": "artifact_pointer/second_brain_taxonomy_claude_variant", "type": "documented_in"}}
+{"kind": "edge", "data": {"from": "artifact/project_id_alias_map_v0_2026_02_15", "to": "artifact_pointer/second_brain_taxonomy_v0", "type": "documented_in"}}
+{"kind": "edge", "data": {"from": "artifact/project_id_alias_map_v0_2026_02_15", "to": "concept/project_id_alias_map_v0", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/base_delta_materialized_lineage", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/deterministic_materialization", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/prompt_artifact", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/prompt_delta", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/prompt_materialization_run", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/prompt_variant", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "concept/spec", "type": "instance_of"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "pattern/drift_testing", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "pattern/prompt_id_convention", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "principle/explicit_lineage", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "principle/fail_closed", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_lineage_ontology_spec_v0", "to": "principle/no_inplace_mutation", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_workflows_inventory_2026_02_12", "to": "artifact_pointer/prompt_codex_session_ending", "type": "indexes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_workflows_inventory_2026_02_12", "to": "artifact_pointer/prompt_session_archiver_template", "type": "indexes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_workflows_inventory_2026_02_12", "to": "artifact_pointer/prompt_session_archiver_template_copy", "type": "indexes"}}
+{"kind": "edge", "data": {"from": "artifact/prompt_workflows_inventory_2026_02_12", "to": "artifact_pointer/prompt_session_preamble", "type": "indexes"}}
+{"kind": "edge", "data": {"from": "artifact/scene_graph_integration_spec_v0", "to": "concept/spec", "type": "instance_of"}}
+{"kind": "edge", "data": {"from": "artifact/second_brain_toolchain_map_2026_02_12", "to": "tool/second_brain_cli_sb", "type": "documents"}}
+{"kind": "edge", "data": {"from": "artifact/second_brain_toolchain_map_2026_02_12", "to": "tool/session_index_updater_script", "type": "documents"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_chatgpt", "to": "artifact/chatgpt_session_2026_02_11_second_brain_architecture", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_claude", "to": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_codex", "to": "artifact/codex_session_2026_02_12_phase8_closeout_handoff", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_codex", "to": "artifact/codex_session_2026_02_12_readme_cleanup_index_format_decision", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_codex", "to": "artifact/codex_session_2026_02_12_unlinked_prompts_inventory", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_codex", "to": "artifact/codex_session_2026_02_13_quote_data_scope_audit", "type": "indexes_session_artifact"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_contract_v1_2026_02_12", "to": "artifact_pointer/chatgpt_session_index", "type": "applies_to"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_contract_v1_2026_02_12", "to": "artifact_pointer/claude_session_index", "type": "applies_to"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_contract_v1_2026_02_12", "to": "artifact_pointer/codex_session_index", "type": "applies_to"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_contract_v1_2026_02_12", "to": "concept/session_index_array_schema", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/session_index_contract_v1_2026_02_12", "to": "concept/session_index_rebuild_rule", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "artifact/meta_program_spec_v0", "type": "governs"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "artifact/prompt_lineage_ontology_spec_v0", "type": "governs"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "artifact/scene_graph_integration_spec_v0", "type": "governs"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_allowed_status_values", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_derivation", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_filename_pattern", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_required_sections_ordered", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_status", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_version", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "concept/spec_version_pattern", "type": "defines"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "pattern/spec_child_derivation_contract", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "pattern/spec_drift_test_suite", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "pattern/spec_naming_convention", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "pattern/spec_optional_sections", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "pattern/spec_required_sections", "type": "describes"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "principle/deterministic_serialization", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "principle/explicit_over_inferred", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "principle/fail_closed", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "principle/no_inplace_semantic_rewrite", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/spec_spec_v0", "to": "principle/no_silent_mutation", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15", "to": "artifact_pointer/vision_alignment_audit_report_v0", "type": "materializes_to"}}
+{"kind": "edge", "data": {"from": "artifact/vision_alignment_kpi_dashboard_v0_2026_02_15", "to": "concept/kpi_principle_linked_artifact_pct", "type": "tracks"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_operational_model_2026_02_11", "to": "concept/workflow_as_state_machine", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_operational_model_2026_02_11", "to": "pattern/session_artifact_resumption_loop", "type": "codifies"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_operational_model_2026_02_11", "to": "project/dan_personal_cognitive_infrastructure", "type": "refines"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_state_machine_model_2026_02_11", "to": "concept/workflow_as_state_machine", "type": "introduces"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_state_machine_model_2026_02_11", "to": "pattern/session_state_transition_pattern", "type": "formalizes"}}
+{"kind": "edge", "data": {"from": "artifact/workflow_state_machine_model_2026_02_11", "to": "project/dan_personal_cognitive_infrastructure", "type": "refines"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/chatgpt_session_index", "to": "project/dan_personal_cognitive_infrastructure", "type": "indexes_sessions_for"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/claude_session_index", "to": "project/dan_personal_cognitive_infrastructure", "type": "indexes_sessions_for"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/codex_session_index", "to": "project/dan_personal_cognitive_infrastructure", "type": "indexes_sessions_for"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/kalshi_phase8_closeout_session", "to": "concept/kalshi_phase9_handoff_state", "type": "hands_off_to"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/kalshi_phase8_closeout_session", "to": "pattern/session_artifact_resumption_loop", "type": "follows_pattern"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/kalshi_phase8_closeout_session", "to": "project/kalshi_15m_btc_pipeline", "type": "session_for_project"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/kalshi_phase8_closeout_session", "to": "tool/codex", "type": "produced_by"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_codex_session_ending", "to": "concept/prompt_driven_session_closure", "type": "implements"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_codex_session_ending", "to": "project/kalshi_15m_btc_pipeline", "type": "targets_project"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_codex_session_ending", "to": "tool/codex", "type": "instructs_tool"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_session_archiver_template", "to": "concept/prompt_driven_session_closure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_session_archiver_template_copy", "to": "concept/prompt_driven_session_closure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "artifact_pointer/prompt_session_preamble", "to": "concept/prompt_driven_session_closure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept/Action", "to": "concept/ToolRef", "type": "may_call"}}
+{"kind": "edge", "data": {"from": "concept/Agent", "to": "concept/Task", "type": "owns"}}
+{"kind": "edge", "data": {"from": "concept/AgentState", "to": "concept/OpenQuestion", "type": "tracks"}}
+{"kind": "edge", "data": {"from": "concept/Artifact", "to": "concept/Transformation", "type": "has_provenance"}}
+{"kind": "edge", "data": {"from": "concept/Observation", "to": "concept/Artifact", "type": "references"}}
+{"kind": "edge", "data": {"from": "concept/Plan", "to": "concept/PlanStep", "type": "has_steps"}}
+{"kind": "edge", "data": {"from": "concept/PlanStep", "to": "concept/Action", "type": "executes"}}
+{"kind": "edge", "data": {"from": "concept/Task", "to": "concept/Artifact", "type": "consumes_or_produces"}}
+{"kind": "edge", "data": {"from": "concept/Task", "to": "concept/Plan", "type": "has_plan"}}
+{"kind": "edge", "data": {"from": "concept/base_delta_materialized_lineage", "to": "concept/deterministic_materialization", "type": "requires"}}
+{"kind": "edge", "data": {"from": "concept/deterministic_materialization", "to": "pattern/drift_testing", "type": "verified_by"}}
+{"kind": "edge", "data": {"from": "concept/kalshi_phase9_handoff_state", "to": "project/kalshi_15m_btc_pipeline", "type": "next_phase_for"}}
+{"kind": "edge", "data": {"from": "concept/kpi_principle_linked_artifact_pct", "to": "principle/system_as_infrastructure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept/kpi_principle_linked_artifact_pct", "to": "project/dan_personal_cognitive_infrastructure", "type": "governs"}}
+{"kind": "edge", "data": {"from": "concept/prompt_delta", "to": "concept/prompt_artifact", "type": "expands", "description": "A delta transforms a base PromptArtifact."}}
+{"kind": "edge", "data": {"from": "concept/prompt_delta", "to": "concept/prompt_variant", "type": "concretizes", "description": "A delta specializes toward a named variant."}}
+{"kind": "edge", "data": {"from": "concept/prompt_driven_session_closure", "to": "pattern/session_artifact_resumption_loop", "type": "extends"}}
+{"kind": "edge", "data": {"from": "concept/prompt_materialization_run", "to": "concept/prompt_artifact", "type": "produces", "description": "A run produces a materialized PromptArtifact from base + deltas."}}
+{"kind": "edge", "data": {"from": "concept/prompt_materialization_run", "to": "concept/prompt_delta", "type": "applies_delta"}}
+{"kind": "edge", "data": {"from": "concept/session_index_array_schema", "to": "pattern/standalone_cli_commit_pattern", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept/session_index_rebuild_rule", "to": "tool/second_brain_cli_sb", "type": "codified_in"}}
+{"kind": "edge", "data": {"from": "concept/session_index_rebuild_rule", "to": "tool/session_index_updater_script", "type": "codified_in"}}
+{"kind": "edge", "data": {"from": "concept/session_index_update_policy_default_auto", "to": "pattern/session_artifact_resumption_loop", "type": "strengthens"}}
+{"kind": "edge", "data": {"from": "concept/spec_derivation", "to": "pattern/spec_child_derivation_contract", "type": "enforces"}}
+{"kind": "edge", "data": {"from": "concept/spec_derivation", "to": "pattern/spec_required_sections", "type": "enforces"}}
+{"kind": "edge", "data": {"from": "concept/spec_status", "to": "concept/spec_allowed_status_values", "type": "constrained_by"}}
+{"kind": "edge", "data": {"from": "concept/spec_status", "to": "concept/spec_version", "type": "relates_to"}}
+{"kind": "edge", "data": {"from": "concept/spec_version", "to": "concept/spec_version_pattern", "type": "constrained_by"}}
+{"kind": "edge", "data": {"from": "concept/spec_version", "to": "principle/no_inplace_semantic_rewrite", "type": "requires"}}
+{"kind": "edge", "data": {"from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct", "to": "artifact/vision_alignment_kpi_targets_v0_2026_02_15", "type": "constrained_by"}}
+{"kind": "edge", "data": {"from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct", "to": "principle/agent_builds_agent_maintains", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept/vision_alignment_anchor_kpi_principle_linked_artifact_pct", "to": "principle/system_as_infrastructure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept_article/palantir_ontology_meaning_in_data_2022", "to": "concept/ai_agent_interoperability", "type": "supports"}}
+{"kind": "edge", "data": {"from": "concept_article/palantir_ontology_meaning_in_data_2022", "to": "concept/knowledge_graph_systems", "type": "extends"}}
+{"kind": "edge", "data": {"from": "concept_article/palantir_ontology_meaning_in_data_2022", "to": "concept/semantic_layer_architecture", "type": "relates_to"}}
+{"kind": "edge", "data": {"from": "concept_article/palantir_ontology_meaning_in_data_2022", "to": "concept/traditional_relational_schema_design", "type": "contrasts_with"}}
+{"kind": "edge", "data": {"from": "pattern/claude_computer_use_obsidian_typescript_vps", "to": "principle/principles_over_rules", "type": "illustrates"}}
+{"kind": "edge", "data": {"from": "pattern/claude_computer_use_obsidian_typescript_vps", "to": "tool/claude", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/claude_computer_use_obsidian_typescript_vps", "to": "tool/obsidian", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "concept/community_as_pattern_library", "type": "informed_by"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "concept/session_based_processing", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "principle/agent_builds_agent_maintains", "type": "aims_toward"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "principle/architecture_portable_tools_not", "type": "aligns_with"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "principle/principles_over_rules", "type": "aligns_with"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "principle/system_as_infrastructure", "type": "aims_toward"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "tool/chatgpt", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "tool/chatgpt_meta_reflection", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "tool/codex", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/dan_codex_meta_workflow_v1", "to": "tool/codex_meta_environment", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/discord_obsidian_macwhisper_stack", "to": "principle/architecture_portable_tools_not", "type": "illustrates"}}
+{"kind": "edge", "data": {"from": "pattern/discord_obsidian_macwhisper_stack", "to": "tool/discord", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/discord_obsidian_macwhisper_stack", "to": "tool/macwhisper", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/discord_obsidian_macwhisper_stack", "to": "tool/obsidian", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "artifact_pointer/sb_closeout_script", "type": "executed_by"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "artifact_pointer/session_closeout_prompt_v1", "type": "executed_by"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "artifact_pointer/vision_alignment_audit_operation", "type": "feeds"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "concept/zero_shot_resumption_bundle", "type": "uses"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "pattern/session_artifact_resumption_loop", "type": "extends"}}
+{"kind": "edge", "data": {"from": "pattern/hyperfast_agent_session_loop", "to": "principle/agent_builds_agent_maintains", "type": "supports"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "concept/writer_critic_loop", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "principle/agent_builds_agent_maintains", "type": "illustrates"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "tool/claude_code", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "tool/codex", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "tool/github_copilot", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/meta_agent_multi_coding_assistants", "to": "tool/goose", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_mobile_inbox_claude_scheduled", "to": "concept/always_on_processing", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/notion_mobile_inbox_claude_scheduled", "to": "tool/claude", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_mobile_inbox_claude_scheduled", "to": "tool/notion", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_zapier_claude_stack", "to": "principle/architecture_portable_tools_not", "type": "illustrates"}}
+{"kind": "edge", "data": {"from": "pattern/notion_zapier_claude_stack", "to": "tool/chatgpt", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_zapier_claude_stack", "to": "tool/claude", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_zapier_claude_stack", "to": "tool/notion", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/notion_zapier_claude_stack", "to": "tool/zapier", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/postgres_vector_graph_infrastructure", "to": "concept/second_brain_as_infrastructure", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/postgres_vector_graph_infrastructure", "to": "principle/system_as_infrastructure", "type": "illustrates"}}
+{"kind": "edge", "data": {"from": "pattern/postgres_vector_graph_infrastructure", "to": "tool/neo4j", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/postgres_vector_graph_infrastructure", "to": "tool/postgres", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/postgres_vector_graph_infrastructure", "to": "tool/vector_db_generic", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/session_artifact_resumption_loop", "to": "pattern/dan_codex_meta_workflow_v1", "type": "evolves"}}
+{"kind": "edge", "data": {"from": "pattern/session_state_transition_pattern", "to": "pattern/dan_codex_meta_workflow_v1", "type": "evolves"}}
+{"kind": "edge", "data": {"from": "pattern/slack_yaml_claude_code_session", "to": "concept/session_based_processing", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/slack_yaml_claude_code_session", "to": "tool/claude_code", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/slack_yaml_claude_code_session", "to": "tool/slack", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/slack_yaml_claude_code_session", "to": "tool/yaml_files", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/spec_drift_test_suite", "to": "principle/deterministic_serialization", "type": "tests"}}
+{"kind": "edge", "data": {"from": "pattern/spec_naming_convention", "to": "concept/spec_filename_pattern", "type": "formalized_by"}}
+{"kind": "edge", "data": {"from": "pattern/spec_optional_sections", "to": "pattern/spec_required_sections", "type": "extends"}}
+{"kind": "edge", "data": {"from": "pattern/spec_required_sections", "to": "concept/spec_required_sections_ordered", "type": "formalized_by"}}
+{"kind": "edge", "data": {"from": "pattern/standalone_cli_commit_pattern", "to": "project/dan_personal_cognitive_infrastructure", "type": "supports"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "concept/always_on_processing", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "concept/capture_sort_store_retrieve_architecture", "type": "implements"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "tool/claude", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "tool/notion", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "tool/slack", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "pattern/zapier_slack_to_notion_classifier", "to": "tool/zapier", "type": "uses_tool"}}
+{"kind": "edge", "data": {"from": "principle/agent_builds_agent_maintains", "to": "concept/agent_maintainability", "type": "clarifies"}}
+{"kind": "edge", "data": {"from": "principle/architecture_portable_tools_not", "to": "concept/capture_sort_store_retrieve_architecture", "type": "clarifies"}}
+{"kind": "edge", "data": {"from": "principle/explicit_lineage", "to": "concept/base_delta_materialized_lineage", "type": "governs"}}
+{"kind": "edge", "data": {"from": "principle/fail_closed", "to": "concept/prompt_materialization_run", "type": "constrains"}}
+{"kind": "edge", "data": {"from": "principle/no_inplace_mutation", "to": "concept/prompt_artifact", "type": "constrains"}}
+{"kind": "edge", "data": {"from": "principle/principles_over_rules", "to": "concept/community_as_pattern_library", "type": "relates_to"}}
+{"kind": "edge", "data": {"from": "principle/system_as_infrastructure", "to": "concept/second_brain_as_infrastructure", "type": "clarifies"}}
+{"kind": "edge", "data": {"from": "project/dan_personal_cognitive_infrastructure", "to": "artifact/prompt_lineage_ontology_spec_v0", "type": "documents"}}
+{"kind": "edge", "data": {"from": "project/dan_personal_cognitive_infrastructure", "to": "artifact/spec_spec_v0", "type": "documents"}}
+{"kind": "edge", "data": {"from": "project/dan_personal_cognitive_infrastructure", "to": "concept/second_brain_as_infrastructure", "type": "pursues_concept"}}
+{"kind": "edge", "data": {"from": "project/dan_personal_cognitive_infrastructure", "to": "pattern/dan_codex_meta_workflow_v1", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/kalshi", "to": "phase_event/kalshi/2026-02-01/discovery", "type": "has_phase_event"}}
+{"kind": "edge", "data": {"from": "project/kalshi", "to": "phase_event/kalshi/2026-02-11/implementation", "type": "has_phase_event"}}
+{"kind": "edge", "data": {"from": "project/kalshi", "to": "phase_event/kalshi/2026-02-13/stabilization", "type": "has_phase_event"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_agents", "type": "has_agent_rules"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_checkpoints_dir", "type": "stores_checkpoints"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_open_questions", "type": "has_open_questions"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_plan", "type": "has_plan"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_readme", "type": "has_entrypoint"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_reports_dir", "type": "stores_reports"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_scripts_dir", "type": "stores_scripts"}}
+{"kind": "edge", "data": {"from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_specs_dir", "type": "stores_specs"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "artifact/four_principles_second_brain", "type": "documents"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/claude_computer_use_obsidian_typescript_vps", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/discord_obsidian_macwhisper_stack", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/meta_agent_multi_coding_assistants", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/notion_mobile_inbox_claude_scheduled", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/notion_zapier_claude_stack", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/postgres_vector_graph_infrastructure", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/slack_yaml_claude_code_session", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "project/second_brain_build", "to": "pattern/zapier_slack_to_notion_classifier", "type": "includes_pattern"}}
+{"kind": "edge", "data": {"from": "tool/second_brain_cli_sb", "to": "artifact_pointer/tool_sb_py", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "tool/second_brain_cli_sb", "to": "concept/commit_agent_contract", "type": "realizes"}}
+{"kind": "edge", "data": {"from": "tool/second_brain_cli_sb", "to": "concept/session_index_maintenance", "type": "maintains"}}
+{"kind": "edge", "data": {"from": "tool/second_brain_cli_sb", "to": "pattern/standalone_cli_commit_pattern", "type": "implements"}}
+{"kind": "edge", "data": {"from": "tool/session_index_updater_script", "to": "artifact_pointer/script_update_index_py", "type": "implemented_by"}}
+{"kind": "edge", "data": {"from": "tool/session_index_updater_script", "to": "concept/session_index_maintenance", "type": "maintains"}}
+{"kind": "edge", "data": {"from": "tool/session_index_updater_script", "to": "tool/second_brain_cli_sb", "type": "supplements"}}

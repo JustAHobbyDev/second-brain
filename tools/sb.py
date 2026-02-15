@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -44,14 +45,29 @@ def read_index_file(path: Path) -> list[str]:
         value = json.loads(path.read_text(encoding="utf-8"))
     except Exception as e:
         die(f"invalid JSON file: {path} ({e})")
-    if not isinstance(value, list):
-        die(f"index.json must be a JSON array: {path}")
     out: list[str] = []
-    for i, item in enumerate(value):
-        if not isinstance(item, str):
-            die(f"index.json item #{i} must be a string: {path}")
-        out.append(item)
-    return out
+    if isinstance(value, list):
+        for i, item in enumerate(value):
+            if not isinstance(item, str):
+                die(f"index.json item #{i} must be a string: {path}")
+            out.append(item)
+        return out
+    if isinstance(value, dict):
+        artifacts = value.get("artifacts")
+        if not isinstance(artifacts, list):
+            die(f"index.json object form requires artifacts[]: {path}")
+        for i, item in enumerate(artifacts):
+            if isinstance(item, str):
+                out.append(item)
+            elif isinstance(item, dict):
+                aid = item.get("id")
+                if not isinstance(aid, str):
+                    die(f"index.json artifacts[{i}].id must be string: {path}")
+                out.append(aid)
+            else:
+                die(f"index.json artifacts[{i}] must be string or object: {path}")
+        return out
+    die(f"index.json must be a JSON array or object: {path}")
 
 
 def read_json_file(path: Path) -> JsonObj:
@@ -115,32 +131,62 @@ def rebuild_indexes() -> None:
 
     for tool_dir in sorted([p for p in SESSIONS_DIR.iterdir() if p.is_dir()]):
         idx_path = tool_dir / "index.json"
-        ids: set[str] = set()
+        records_by_id: dict[str, dict[str, Any]] = {}
 
         for f in sorted(tool_dir.glob("*.json")):
             if f.name == "index.json":
                 continue
             try:
                 data = read_json_file(f)
-                artifact_id = data.get("id")
+                artifact_id = data.get("artifact_id") or data.get("id")
                 if isinstance(artifact_id, str) and artifact_id.startswith("artifact/"):
-                    ids.add(artifact_id)
+                    session_date = data.get("session_date")
+                    if not isinstance(session_date, str):
+                        mm = re.search(r"([0-9]{4})_([0-9]{2})_([0-9]{2})", artifact_id)
+                        session_date = f"{mm.group(1)}-{mm.group(2)}-{mm.group(3)}" if mm else ""
+                    score = data.get("resumption_score")
+                    if not isinstance(score, int):
+                        score = None
+                    summary = data.get("summary")
+                    snippet = ""
+                    if isinstance(summary, str):
+                        snippet = summary.strip()
+                    elif isinstance(summary, dict):
+                        hl = summary.get("high_level")
+                        if isinstance(hl, str):
+                            snippet = hl.strip()
+                    if len(snippet) > 160:
+                        snippet = snippet[:157] + "..."
+                    records_by_id[artifact_id] = {
+                        "id": artifact_id,
+                        "date": session_date,
+                        "resumption_score": score,
+                        "summary_snippet": snippet,
+                    }
             except SystemExit:
                 # skip invalid JSON; validate will catch
                 continue
 
-        write_json_file(idx_path, sorted(ids))
+        artifacts = sorted(records_by_id.values(), key=lambda r: (str(r.get("date", "")), r["id"]))
+        write_json_file(
+            idx_path,
+            {
+                "tool": tool_dir.name,
+                "artifacts": artifacts,
+                "last_updated": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            },
+        )
 
 
 def cmd_commit_session(args: argparse.Namespace) -> None:
     data = read_json_input(cast(str | None, args.json_file))
-    artifact_id = data.get("id")
+    artifact_id = data.get("artifact_id") or data.get("id")
     if not isinstance(artifact_id, str):
-        die("session JSON must contain a string field 'id' (artifact/...)")
+        die("session JSON must contain a string field 'artifact_id' or 'id' (artifact/...)")
 
     tool = cast(str, args.tool)
-    if tool not in ("codex", "chatgpt"):
-        die("tool must be one of: codex, chatgpt")
+    if not tool.strip():
+        die("tool must be non-empty")
 
     out_dir = SESSIONS_DIR / tool
     filename_arg = cast(str | None, args.filename)
@@ -202,7 +248,7 @@ def main() -> None:
         "commit-session",
         help="Commit a session artifact from stdin JSON (or --json-file) and rebuild indexes",
     )
-    _ = s1.add_argument("--tool", required=True, choices=["codex", "chatgpt"])
+    _ = s1.add_argument("--tool", required=True, help="Session tool name (e.g. codex, chatgpt, claude)")
     _ = s1.add_argument("--filename", help="Override output filename")
     _ = s1.add_argument("--json-file", help="Read input JSON from a file instead of stdin")
     s1.set_defaults(func=cmd_commit_session)

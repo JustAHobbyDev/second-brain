@@ -12,14 +12,14 @@
     {
       "id": "concept/session_index_array_schema",
       "type": "concept",
-      "label": "Session index array schema",
-      "definition": "Each sessions/<tool>/index.json file is a JSON array of artifact IDs (strings), not an object."
+      "label": "Session index object schema",
+      "definition": "Each sessions/<tool>/index.json file is a JSON object with fields: tool, artifacts[], last_updated."
     },
     {
       "id": "concept/session_index_rebuild_rule",
       "type": "concept",
       "label": "Session index rebuild rule",
-      "definition": "Index entries are derived from artifact IDs discovered in sessions/<tool>/*.json excluding index.json."
+      "definition": "Index entries are derived from sessions/<tool>/*.json excluding index.json, producing artifacts[] records with id/date/resumption_score/summary_snippet."
     },
     {
       "id": "artifact_pointer/codex_session_index",
@@ -32,6 +32,12 @@
       "type": "artifact_pointer",
       "label": "ChatGPT session index",
       "path": "sessions/chatgpt/index.json"
+    },
+    {
+      "id": "artifact_pointer/claude_session_index",
+      "type": "artifact_pointer",
+      "label": "Claude session index",
+      "path": "sessions/claude/index.json"
     }
   ],
   "edges": [
@@ -56,6 +62,11 @@
       "type": "applies_to"
     },
     {
+      "from": "artifact/session_index_contract_v1_2026_02_12",
+      "to": "artifact_pointer/claude_session_index",
+      "type": "applies_to"
+    },
+    {
       "from": "concept/session_index_rebuild_rule",
       "to": "tool/second_brain_cli_sb",
       "type": "codified_in"
@@ -77,6 +88,11 @@
     },
     {
       "from": "artifact_pointer/chatgpt_session_index",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "indexes_sessions_for"
+    },
+    {
+      "from": "artifact_pointer/claude_session_index",
       "to": "project/dan_personal_cognitive_infrastructure",
       "type": "indexes_sessions_for"
     }

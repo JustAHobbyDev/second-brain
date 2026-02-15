@@ -1,6 +1,30 @@
-[
-  "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
-  "artifact/codex_session_2026_02_12_readme_cleanup_index_format_decision",
-  "artifact/codex_session_2026_02_12_unlinked_prompts_inventory",
-  "artifact/codex_session_2026_02_13_quote_data_scope_audit"
-]
+{
+  "tool": "codex",
+  "artifacts": [
+    {
+      "id": "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
+      "date": "2026-02-12",
+      "resumption_score": null,
+      "summary_snippet": "Completed Phase 8 end-to-end (tasks 4-8), including full 10-window execution, replication aggregation, robustness gating, model-family stress testing, effect..."
+    },
+    {
+      "id": "artifact/codex_session_2026_02_12_readme_cleanup_index_format_decision",
+      "date": "2026-02-12",
+      "resumption_score": null,
+      "summary_snippet": "Captured and cleaned README hygiene issues, preserved relevant project context, and recorded the decision to document session index format in the README sess..."
+    },
+    {
+      "id": "artifact/codex_session_2026_02_12_unlinked_prompts_inventory",
+      "date": "2026-02-12",
+      "resumption_score": null,
+      "summary_snippet": "Identified prompt files in `prompts/` that are not currently represented or referenced in the knowledge graph content."
+    },
+    {
+      "id": "artifact/codex_session_2026_02_13_quote_data_scope_audit",
+      "date": "2026-02-13",
+      "resumption_score": null,
+      "summary_snippet": "Session focused on inventorying available market data types in the current pipeline, assessing feasibility of adding missing quote datasets, and tightening t..."
+    }
+  ],
+  "last_updated": "2026-02-15T10:54:39Z"
+}
