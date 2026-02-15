@@ -1,0 +1,56 @@
+{
+  "artifact_id": "artifact/codex_2026_02_15_agent-owned-vision-audit-loop",
+  "session_date": "2026-02-15",
+  "llm_used": "codex",
+  "project_links": [
+    "project/dan_personal_cognitive_infrastructure"
+  ],
+  "principle_links": [
+    "principle/agent_builds_agent_maintains",
+    "principle/system_as_infrastructure"
+  ],
+  "pattern_links": [
+    "pattern/session_artifact_resumption_loop"
+  ],
+  "tool_links": [
+    "tool/codex",
+    "tool/python3",
+    "tool/sb_closeout"
+  ],
+  "related_artifact_links": [
+    "artifact/vision_alignment_audit_2026_02_15_v0",
+    "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+    "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
+    "artifact/codex_session_2026_02_13_quote_data_scope_audit"
+  ],
+  "summary": "Ran agent-owned vision-alignment audit loop. KPI principle_linked_artifact_pct=50.0% with status=fail. Missing-principle artifacts: 3.",
+  "key_decisions": [
+    "Execute audit via script first, then close out via sb_closeout to keep loop deterministic",
+    "Use principle_linked_artifact_pct as primary anchor KPI until broader graph KPIs stabilize"
+  ],
+  "open_questions": [
+    "1. Which missing-principle artifacts should be remediated first by business impact?",
+    "2. Should closeout require strict canonical-ID existence checks in all environments?"
+  ],
+  "next_steps": [
+    "Require >=2 principle links in closeout unless explicitly justified",
+    "Add canonical principle IDs to artifacts currently missing principle links",
+    "Track week-over-week trend for principle_linked_artifact_pct"
+  ],
+  "thinking_trace_attachments": [
+    "reports/vision_alignment_audit_v0.json"
+  ],
+  "prompt_lineage": [
+    {
+      "role": "system",
+      "ref": "prompts/meta_program/50_agent_owned_audit.txt",
+      "summary": "agent-owned audit execution contract"
+    },
+    {
+      "role": "user",
+      "summary": "Run agent-owned audit loop end-to-end and persist closeout"
+    }
+  ],
+  "resumption_score": 8,
+  "resumption_notes": "Load reports/vision_alignment_audit_v0.json first, then remediate listed artifacts and rerun this script."
+}

@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "deferred_backlog",
+      "title": "Deferred Nice-to-Haves v0",
+      "summary": {
+        "high_level": "Tracks intentionally deferred enhancements that are useful long-term but lower leverage than current agent-maintainability priorities."
+      }
+    },
+    {
+      "id": "concept/deferred_full_sb_cli",
+      "type": "concept",
+      "label": "Full sb command suite",
+      "status": "deferred",
+      "defer_reason": "Core closeout/audit automation is in place; broad CLI expansion is lower leverage right now."
+    },
+    {
+      "id": "concept/deferred_vector_index",
+      "type": "concept",
+      "label": "Vector index",
+      "status": "deferred",
+      "defer_reason": "Graph linkage and deterministic closeout discipline should mature first."
+    },
+    {
+      "id": "concept/deferred_web_ui",
+      "type": "concept",
+      "label": "Web UI",
+      "status": "deferred",
+      "defer_reason": "Current priority is agent-resumability and self-maintaining workflows, not presentation layer."
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "concept/deferred_full_sb_cli",
+      "type": "defers"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "concept/deferred_vector_index",
+      "type": "defers"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "concept/deferred_web_ui",
+      "type": "defers"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "applies_to"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "guided_by"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "principle/system_as_infrastructure",
+      "type": "guided_by"
+    },
+    {
+      "from": "artifact/deferred_nice_to_haves_v0_2026_02_15",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "sequenced_after"
+    }
+  ]
+}

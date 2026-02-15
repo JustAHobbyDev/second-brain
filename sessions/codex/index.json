@@ -24,7 +24,13 @@
       "date": "2026-02-13",
       "resumption_score": null,
       "summary_snippet": "Session focused on inventorying available market data types in the current pipeline, assessing feasibility of adding missing quote datasets, and tightening t..."
+    },
+    {
+      "id": "artifact/codex_2026_02_15_agent-owned-vision-audit-loop",
+      "date": "2026-02-15",
+      "resumption_score": 8,
+      "summary_snippet": "Ran agent-owned vision-alignment audit loop. KPI principle_linked_artifact_pct=50.0% with status=fail. Missing-principle artifacts: 3."
     }
   ],
-  "last_updated": "2026-02-15T10:54:39Z"
+  "last_updated": "2026-02-15T14:11:24Z"
 }
