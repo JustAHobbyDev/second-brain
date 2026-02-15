@@ -44,3 +44,22 @@ JSON
 ```
 
 If any invariant maps to multiple primary mechanisms, downgrade overlaps to track-only and keep a single gate owner.
+
+## Invariant Mapping Table
+Maps mechanisms to exactly one invariant (canonical ID + description).
+Redundancy -> downgrade secondary mechanism to Track-only (Level 2).
+Core gates (Level 3) require explicit decision artifact if overlap occurs.
+KPI never enforces domain invariants - only tracks/alerts.
+
+| Mechanism | Invariant ID | Description | Level | Action |
+|---|---|---|---|---|
+| Closeout Contract | inv/link_density_min_2 | Link density >=2 | 3 | Gate only |
+| Terminology Standard | inv/term_fidelity_post_v0 | Term fidelity 100% (post-v0) | 2 | Audit + Alert |
+| Usage Ritual | inv/preload_ritual | Pre-load (Direction/Gov/Term) | 1 | Ritual / Checklist |
+| Vision Alignment Audit | inv/vision_alignment | Alignment to core principles | 2 | Propose change |
+| KPI System | inv/observability_entropy | Observable entropy metrics | 2 | Track only |
+| Meta-Program Loop | inv/agent_resumption_min_8 | Agent resumption >=8 | 3 | Gate on score |
+| Graph Ingest | inv/derived_view_integrity | Derived view integrity | 2 | Dry-run default |
+| Structural Audit (ASLB) | inv/structural_legibility_min_band | Structural legibility score >=16 (band) | 2 | Track + Refactor proposals |
+
+Rule: One mechanism per invariant_id. Overlap -> downgrade secondary to Level 2 unless core_gate=true. Escalate if violation frequency >2 in 7 days.
