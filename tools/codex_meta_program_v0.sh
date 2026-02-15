@@ -26,6 +26,7 @@ Usage:
 Behavior:
   - Runs prompts/meta_program/*.txt in deterministic order.
   - Pipes each prompt file to the provided LLM command via stdin.
+  - If TEST_LOOP=true, runs tools/sb_test_agent_loop_v0.sh before prompts.
   - If HYPERFAST_MODE=true, appends hyperfast route prompt:
       prompts/meta_program/60_hyperfast_mode_route.txt
   - If no command is provided:
@@ -36,6 +37,7 @@ Examples:
   tools/codex_meta_program_v0.sh -- codex exec
   tools/codex_meta_program_v0.sh -- your-llm-cli run --stdin
   LLM_CMD='codex exec' tools/codex_meta_program_v0.sh
+  TEST_LOOP=true tools/codex_meta_program_v0.sh -- codex exec
   HYPERFAST_MODE=true tools/codex_meta_program_v0.sh -- codex exec
 EOF
 }
@@ -61,6 +63,11 @@ else
 fi
 
 cd "${REPO_ROOT}"
+
+if [[ "${TEST_LOOP:-false}" == "true" ]]; then
+  echo "Running agent loop tests via tools/sb_test_agent_loop_v0.sh"
+  "${REPO_ROOT}/tools/sb_test_agent_loop_v0.sh" --full --tool "${TEST_TOOL:-codex}"
+fi
 
 for prompt in "${PROMPTS[@]}"; do
   prompt_path="${PROMPT_DIR}/${prompt}"

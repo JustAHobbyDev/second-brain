@@ -1,0 +1,279 @@
+{
+  "nodes": [
+    {
+      "id": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "testing_and_validation_protocol",
+      "title": "Agent Loop Testing Protocol v0",
+      "version": "0.1",
+      "summary": {
+        "high_level": "Defines a structured, agent-runnable protocol for end-to-end testing of agent-owned loops in the second-brain infrastructure.",
+        "details": "Targets the hyperfast closeout loop end-to-end: trigger -> init -> hyperfast execution -> closeout validation -> scene suggestion -> ingest. Includes mock setup, edge-case coverage, error injection, and KPI checks."
+      },
+      "core_principles_linked": [
+        "principle/architecture_portable_tools_not",
+        "principle/agent_builds_agent_maintains",
+        "principle/principles_over_rules",
+        "principle/system_as_infrastructure"
+      ],
+      "pattern_links": [
+        "pattern/dan_codex_meta_workflow_v1",
+        "pattern/hyperfast_agent_session_loop",
+        "pattern/vision_alignment_audit_v0",
+        "pattern/agent_loop_testing_protocol_v0"
+      ],
+      "tool_links": [
+        "tool/sb_closeout",
+        "tool/sb_graph_ingest_v0",
+        "tool/jq",
+        "tool/bash",
+        "tool/sb_test_agent_loop_v0"
+      ],
+      "project_links": [
+        "project/dan_personal_cognitive_infrastructure"
+      ],
+      "related_artifact_links": [
+        "artifact/hyperfast_agent_workflow_v0_2026_02_15",
+        "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+        "artifact/vision_alignment_audit_2026_02_15_v0"
+      ],
+      "resumption_score": 9,
+      "resumption_notes": "Load taxonomy + alias map, hyperfast closeout scene, and sessions/*/index.json baseline metrics before running scenarios.",
+      "open_questions": [
+        "1. Should default testing be mock-only, live-only, or mixed by scenario?",
+        "2. Should low-score rejection retries auto-fix links or stop for manual review?",
+        "3. Should KPI dashboard ingest include test pass-rate as a first-class KPI?"
+      ],
+      "next_steps": [
+        "1. Implement tools/sb_test_agent_loop_v0.sh with scenarios: happy_path, edge_low_links, edge_alias_fail.",
+        "2. Add meta-program route flag test_loop=true to invoke the test script.",
+        "3. Run one end-to-end cycle and attach report in reports/agent_loop_test_run_YYYY-MM-DD.json."
+      ],
+      "thinking_trace_attachments": [
+        "Protocol separated from workflow scene to keep testing modular and agent-runnable.",
+        "Prioritizes deterministic file-I/O assertions and threshold gates before scale."
+      ],
+      "prompt_lineage": [
+        {
+          "role": "system",
+          "ref": "prompts/meta_program/50_agent_owned_audit.txt",
+          "summary": "Agent-owned execution scaffold"
+        },
+        {
+          "role": "user",
+          "summary": "Create an end-to-end testing protocol for agent-owned hyperfast loops"
+        }
+      ],
+      "agent_loop_testing_protocol": {
+        "overview": "Agent-runnable E2E testing protocol for validating hyperfast closeout loops with file-I/O only.",
+        "prerequisites": {
+          "load_sequence": [
+            "1. Core infra: meta/SECOND_BRAIN_TAXONOMY_v0.md, scenes/project_id_alias_map.scene.json, meta/CLOSEOUT_CONTRACT_v0.md",
+            "2. Workflow under test: scenes/hyperfast-agent-closeout.scene.json",
+            "3. Baseline data: sessions/*/index.json and graph/canonical.jsonl",
+            "4. Test environment: bash + jq; optional deterministic fixture replay for mocked LLM output"
+          ],
+          "assumptions": "Tests are non-destructive and use temporary files/directories."
+        },
+        "test_phases": {
+          "phase_0_setup": {
+            "description": "Create trigger, capture baseline KPIs, initialize temp workspace.",
+            "outputs": [
+              "setup.json"
+            ]
+          },
+          "phase_1_trigger_and_init": {
+            "description": "Validate trigger and initialize session state.",
+            "outputs": [
+              "init_log.json",
+              "session_state.json"
+            ],
+            "assertions": [
+              "session_state is valid JSON",
+              "initial_context is non-empty"
+            ]
+          },
+          "phase_2_hyperfast_execution": {
+            "description": "Run 3-5 constrained iterations and collect traces/decisions.",
+            "outputs": [
+              "execution_traces.json",
+              "final_session_state.json"
+            ],
+            "assertions": [
+              "at least 3 iterations executed",
+              "open_questions remain actionable and numbered"
+            ]
+          },
+          "phase_3_closeout_validation": {
+            "description": "Generate closeout artifact and enforce contract thresholds.",
+            "outputs": [
+              "closeout_report.json",
+              "sessions/<tool>/<date>-<slug>.json",
+              "sessions/<tool>/index.json"
+            ],
+            "assertions": [
+              "artifact validates as JSON",
+              "resumption_score >= 6 on pass"
+            ]
+          },
+          "phase_4_ingest_and_teardown": {
+            "description": "Dry-run ingest, compute KPI deltas, and cleanup temp data.",
+            "outputs": [
+              "ingest_delta.json",
+              "teardown_log.txt"
+            ],
+            "assertions": [
+              "no temp files remain",
+              "ingest dry-run has no hard conflicts"
+            ]
+          },
+          "phase_5_report_and_tweaks": {
+            "description": "Aggregate results into report artifact and propose tweaks.",
+            "outputs": [
+              "reports/agent_loop_test_run_YYYY-MM-DD.json",
+              "tweaks.md"
+            ]
+          }
+        },
+        "test_scenarios": {
+          "happy_path": "Valid trigger; expect pass and score >= 8.",
+          "edge_low_links": "Inject insufficient principle links; expect rejection then remediation path.",
+          "edge_alias_fail": "Inject legacy ID; expect alias remap + warning log.",
+          "edge_max_loop": "Force iteration ceiling and verify graceful exit."
+        },
+        "metrics_for_testing": {
+          "core_kpis": [
+            {
+              "name": "pass_rate",
+              "formula": "(passed_phases / total_phases) * 100",
+              "target": 90
+            },
+            {
+              "name": "resumption_score_avg",
+              "formula": "mean(test_artifact_scores)",
+              "target": 8.0
+            },
+            {
+              "name": "time_to_complete_minutes",
+              "formula": "sum(phase_durations_minutes)",
+              "target": 5
+            },
+            {
+              "name": "edge_coverage_pct",
+              "formula": "(scenarios_executed / scenarios_defined) * 100",
+              "target": 80
+            }
+          ],
+          "test_delegability_score_current": 8,
+          "test_delegability_score_target": 9
+        },
+        "error_handling": {
+          "common_failures": [
+            "assertion failure in phase execution",
+            "file lock contention during index updates",
+            "mock fixture parse errors"
+          ],
+          "rollback": "On failure, cleanup temp workspace and keep failed run snapshot for audit."
+        }
+      }
+    },
+    {
+      "id": "pattern/agent_loop_testing_protocol_v0",
+      "type": "pattern",
+      "label": "Agent loop testing protocol v0",
+      "description": "Operational testing pattern for validating agent-owned hyperfast loops with deterministic gates."
+    },
+    {
+      "id": "tool/sb_test_agent_loop_v0",
+      "type": "tool",
+      "label": "sb_test_agent_loop_v0.sh"
+    },
+    {
+      "id": "tool/bash",
+      "type": "tool",
+      "label": "bash"
+    },
+    {
+      "id": "tool/jq",
+      "type": "tool",
+      "label": "jq"
+    }
+  ],
+  "edges": [
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "type": "validates"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "artifact_pointer/closeout_contract_v0",
+      "type": "enforces"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "integrates_with"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "tests"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "pattern/agent_loop_testing_protocol_v0",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "strengthens"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "principle/architecture_portable_tools_not",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "principle/system_as_infrastructure",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "tool/sb_closeout",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "tool/sb_graph_ingest_v0",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "tool/jq",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "tool/bash",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/agent_loop_testing_protocol_v0_2026_02_15",
+      "to": "tool/sb_test_agent_loop_v0",
+      "type": "implemented_by"
+    }
+  ]
+}
