@@ -1,0 +1,27 @@
+{
+  "artifact_id": "artifact/codex_2026_02_15_agent-loop-test-run",
+  "report_date": "2026-02-15",
+  "tool": "codex",
+  "summary": {
+    "total_scenarios": 1,
+    "matched_expectation": 1,
+    "pass_rate": 100.0,
+    "avg_duration_ms": 288.0
+  },
+  "results": [
+    {
+      "scenario": "happy_path",
+      "expected": "pass",
+      "status": "pass",
+      "matched_expectation": true,
+      "duration_ms": 288,
+      "stdout": "/tmp/tmp.CVDmLvQkIR/sessions/codex/2026-02-15-agent-loop-happy-path.json\n/tmp/tmp.CVDmLvQkIR/sessions/codex/index.json\nSCENE_SUGGESTIONS=[\"four_principles_second_brain.scene.json\", \"workflow_operational_model.scene.json\", \"agent-audit-and-maintenance.scene.json\", \"agent-loop-testing.scene.json\", \"dan_personal_cognitive_infrastructure.scene.json\", \"deferred-nice-to-haves.scene.json\", \"kpi-dashboard.scene.json\", \"project_id_alias_map.scene.json\"]",
+      "stderr": ""
+    }
+  ],
+  "next_actions": [
+    "If pass_rate < 90%, inspect failed scenario stderr and patch closeout/test workflow.",
+    "Wire this script into periodic test loop runs via TEST_LOOP=true meta-program route."
+  ],
+  "generated_at": "2026-02-15T21:13:22Z"
+}

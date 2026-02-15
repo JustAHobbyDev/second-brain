@@ -196,6 +196,13 @@ Do not split nodes across files just to satisfy folder symmetry.
 
 Architecture > aesthetics.
 
+## Boundary Rule
+
+Default agent constraint:
+* Cross-repo edits are human-gated.
+* Agents may edit only the active repository unless explicit cross-repo authorization is provided in-session.
+* Reading other local repos for context is allowed; writing is not allowed without explicit grant.
+
 ---
 
 ## 3. Session Closing Ritual

@@ -269,6 +269,16 @@
       ]
     },
     {
+      "id": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "governance_spec",
+      "title": "Governance Gradient Spec v0",
+      "summary": {
+        "high_level": "Defines invariant-to-mechanism mappings, escalation policy, and anti-entropy ingest rules.",
+        "details": "Encodes one primary mechanism per invariant and downgrades overlap to track-only unless explicit core-gate escalation is approved."
+      }
+    },
+    {
       "id": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
       "type": "artifact",
       "artifact_type": "definition_and_protocol",
@@ -383,6 +393,189 @@
       "title": "Kalshi session history mapping",
       "summary": {
         "high_level": "Indexes Kalshi pipeline session artifacts and preserves the handoff context toward Phase 9 planning."
+      }
+    },
+    {
+      "id": "artifact/kpi_dashboard_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "metrics_and_audit_protocol",
+      "title": "KPI Dashboard v0",
+      "version": "0.1",
+      "summary": {
+        "high_level": "Defines a file-based KPI dashboard for second-brain health with agent-delegable metrics computed from workflows.",
+        "details": "Computes principle-linked %, closeout pass rate, resumption quality, orphan ratio, core-project coverage, health score, and trend deltas using sessions/scenes/graph outputs. Produces metrics JSON + alert candidates with high cold-start resumability."
+      },
+      "core_principles_linked": [
+        "principle/architecture_portable_tools_not",
+        "principle/agent_builds_agent_maintains",
+        "principle/principles_over_rules",
+        "principle/system_as_infrastructure"
+      ],
+      "pattern_links": [
+        "pattern/dan_codex_meta_workflow_v1",
+        "pattern/hyperfast_agent_session_loop",
+        "pattern/kpi_dashboard_audit_loop_v0"
+      ],
+      "tool_links": [
+        "tool/sb_graph_ingest_v0",
+        "tool/sb_kpi_compute_v0",
+        "tool/jq",
+        "tool/bash"
+      ],
+      "project_links": [
+        "project/dan_personal_cognitive_infrastructure"
+      ],
+      "related_artifact_links": [
+        "artifact/vision_alignment_audit_2026_02_15_v0",
+        "artifact/hyperfast_agent_workflow_v0_2026_02_15"
+      ],
+      "resumption_score": 9,
+      "resumption_notes": "Load taxonomy + alias policy, sessions indexes/artifacts, and graph/canonical outputs. Recompute from scratch in under two minutes.",
+      "open_questions": [
+        "1. Should dashboard include rolling 7-day and 30-day deltas by default?",
+        "2. Should low KPI alerts auto-append to OPEN_QUESTIONS.md or remain agent-internal first?",
+        "3. Should KPI scope expand to sub-project profiles (for example kalshi_15m_btc_pipeline)?"
+      ],
+      "next_steps": [
+        "1. Run tools/sb_kpi_compute_v0.sh and validate metrics/alerts output.",
+        "2. Add optional weekly trigger in meta-program flow for periodic dashboard recompute.",
+        "3. Feed dashboard deltas into vision-alignment audit closeout."
+      ],
+      "thinking_trace_attachments": [
+        "Keep KPI compute portable (file-I/O only), deterministic, and agent-runnable; defer visualization dependencies."
+      ],
+      "prompt_lineage": [
+        {
+          "role": "system",
+          "ref": "prompts/meta_program/50_agent_owned_audit.txt",
+          "summary": "Audit execution scaffold"
+        },
+        {
+          "role": "user",
+          "summary": "Expand KPI dashboard into agent-consumable protocol with alerts and trends"
+        }
+      ],
+      "kpi_dashboard_protocol": {
+        "overview": "Agent-runnable protocol to compute, store, and alert on KPI health with file-I/O only.",
+        "invariant_id": "inv/observability_entropy",
+        "enforcement_mode": "track_only",
+        "non_goals": [
+          "KPIs never gate commits, closeouts, or merges.",
+          "KPIs may raise alerts and propose actions only.",
+          "Alerts never mutate artifacts automatically."
+        ],
+        "prerequisites": {
+          "load_sequence": [
+            "1. Taxonomy + canonical alias policy",
+            "2. sessions/*/index.json and sessions/*/*.json",
+            "3. graph/graph.json (or graph/canonical.jsonl)",
+            "4. Closeout thresholds from meta/CLOSEOUT_CONTRACT_v0.md",
+            "5. (Optional) Terminology standard from meta/TERMINOLOGY_STANDARD_v0.md for term fidelity tracking"
+          ],
+          "assumptions": "No external APIs/DB; Bash/jq/Python available locally."
+        },
+        "computation_phases": {
+          "phase_1_aggregate_data": {
+            "description": "Scan raw sources and compute base metrics.",
+            "actions": [
+              "Count total and eligible artifacts",
+              "Compute principle_linked_pct",
+              "Compute closeout_pass_rate",
+              "Compute resumption_avg, resumption_p50, and resumption_pct_ge_8",
+              "Compute orphan_ratio",
+              "Compute coverage_from_core when graph is available",
+              "Compute health_score rollup"
+            ],
+            "output": "raw_metrics.json"
+          },
+          "phase_2_evaluate_and_alert": {
+            "description": "Compare metrics to alert thresholds and generate actionable alerts (track-only).",
+            "alert_thresholds": {
+              "principle_linked_pct": ">=70%",
+              "closeout_pass_rate": ">=90%",
+              "resumption_avg": ">=7.0",
+              "resumption_pct_ge_8": ">=60%",
+              "orphan_ratio": "<=10%",
+              "coverage_from_core": ">=80%",
+              "health_score": ">=8.0"
+            },
+            "alert_policy": {
+              "on_violation": [
+                "Emit alert item with kpi_name, value, threshold, severity, suggested_actions"
+              ],
+              "on_repeat_violation": [
+                "Escalate severity if violated in >=2 consecutive runs"
+              ],
+              "mutation_rule": "Alerts never mutate artifacts automatically."
+            },
+            "actions": [
+              "Mark degraded KPIs",
+              "Generate remediation suggestions",
+              "For KPI violations that are artifact-attributable, include top offenders as artifact IDs",
+              "Escalate repeated declines per alert_policy"
+            ],
+            "output": "alerts.json"
+          },
+          "phase_3_store_and_visualize": {
+            "description": "Persist structured metrics and provide lightweight operator-friendly view.",
+            "actions": [
+              "Write reports/kpi_dashboard_metrics_v0.json (or v1 if upgraded)",
+              "Optionally generate markdown table",
+              "Ingest updated scene/report pointers via graph ingest"
+            ],
+            "output": "metrics JSON + optional markdown"
+          }
+        },
+        "trends": {
+          "comparison": "previous_run",
+          "window_policy": {
+            "artifact_window": 10,
+            "time_window_days": 7,
+            "mode": "prefer_time_window_else_artifact_window"
+          },
+          "outputs": [
+            "delta",
+            "delta_pct",
+            "direction"
+          ]
+        },
+        "resumption_primitives": {
+          "cold_compute": "Run tools/sb_kpi_compute_v0.sh --full-scan",
+          "incremental_update": "Recompute after closeout or ingest",
+          "audit_integration": "Feed metrics into vision-alignment audit loop"
+        },
+        "metrics_for_dashboard": {
+          "core_kpis": [
+            "principle_linked_pct",
+            "closeout_pass_rate",
+            "resumption_avg",
+            "resumption_p50",
+            "resumption_pct_ge_8",
+            "orphan_ratio",
+            "coverage_from_core",
+            "health_score"
+          ],
+          "derived_kpis": {
+            "delegability_pct": {
+              "definition": "Pct of artifacts in window that are executable by a fresh agent/human (actionable handoff).",
+              "formula": "count(artifact where resumption_score>=8 AND next_steps_count>=1 AND (principle_links_count>=2 OR tool_links_count>=1)) / total * 100",
+              "alert_threshold": ">=70%",
+              "notes": "Delegability is not identical to resumption; it requires actionability."
+            }
+          },
+          "optional_kpis": {
+            "term_fidelity_pct": {
+              "enforcement_mode": "track_only",
+              "alert_threshold": "==100% (post-standard artifacts only)",
+              "notes": "Track-only. Do not gate. Prefer counting violations with offender IDs."
+            },
+            "governance_interruptions_per_run": {
+              "definition": "Count of hard-gate failures + required manual fixups per run (avoid time-based friction).",
+              "alert_threshold": "<=1",
+              "notes": "Optional. Only include if it reduces entropy without adding upkeep."
+            }
+          }
+        }
       }
     },
     {
@@ -561,6 +754,12 @@
       "path": "sessions/codex/index.json"
     },
     {
+      "id": "artifact_pointer/governance_gradient_spec_v0",
+      "type": "artifact_pointer",
+      "label": "Governance Gradient Spec v0",
+      "path": "meta/GOVERNANCE_GRADIENT_SPEC_v0.md"
+    },
+    {
       "id": "artifact_pointer/kalshi_15m_agents",
       "type": "artifact_pointer",
       "label": "AGENTS",
@@ -647,6 +846,12 @@
       "type": "artifact_pointer",
       "label": "Phase 8 closeout handoff session artifact",
       "path": "sessions/codex/2026-02-12-phase8-closeout-handoff.json"
+    },
+    {
+      "id": "artifact_pointer/kpi_dashboard_metrics_v0",
+      "type": "artifact_pointer",
+      "label": "KPI dashboard metrics output",
+      "path": "reports/kpi_dashboard_metrics_v0.json"
     },
     {
       "id": "artifact_pointer/prompt_codex_session_ending",
@@ -790,6 +995,12 @@
       "type": "concept",
       "label": "Kalshi Phase 9 handoff state",
       "definition": "State reached after Phase 8 closeout where Phase 9 scope, thresholds, and challenger policy-readiness criteria must be defined."
+    },
+    {
+      "id": "concept/kpi_dashboard_protocol_v0",
+      "type": "concept",
+      "label": "KPI dashboard protocol v0",
+      "definition": "Protocol for computing and evaluating second-brain health KPIs from local artifacts."
     },
     {
       "id": "concept/kpi_principle_linked_artifact_pct",
@@ -961,6 +1172,21 @@
       "source_scene": "scenes/palantir_ontology_meaning_in_data_2022.scene.json"
     },
     {
+      "id": "constraint/kpi_track_only_domain_invariants",
+      "type": "constraint",
+      "label": "KPI tracks, does not enforce domain invariants"
+    },
+    {
+      "id": "constraint/no_auto_mutate",
+      "type": "constraint",
+      "label": "No auto-mutate in audits"
+    },
+    {
+      "id": "constraint/one_mechanism_per_invariant",
+      "type": "constraint",
+      "label": "One mechanism per invariant"
+    },
+    {
       "id": "development_philosophy/hyperfast_programming_principles",
       "type": "development_philosophy",
       "label": "hyperfast_programming_principles",
@@ -975,6 +1201,94 @@
       "summary": null,
       "tags": [],
       "source_scene": "scenes/robustness-gate-design-directives.scene.json"
+    },
+    {
+      "id": "inv/agent_resumption_min_8",
+      "type": "invariant",
+      "label": "Agent resumption minimum",
+      "description": "Target agent resumability score >=8 for delegated loops."
+    },
+    {
+      "id": "inv/derived_view_integrity",
+      "type": "invariant",
+      "label": "Derived view integrity",
+      "description": "Graph remains derived from scenes with dry-run-first ingest safety."
+    },
+    {
+      "id": "inv/link_density_min_2",
+      "type": "invariant",
+      "label": "Link density minimum",
+      "description": "Session closeout artifact must maintain minimum link density >=2."
+    },
+    {
+      "id": "inv/observability_entropy",
+      "type": "invariant",
+      "label": "Observability entropy",
+      "description": "Track entropy indicators with KPI metrics and alerts."
+    },
+    {
+      "id": "inv/preload_ritual",
+      "type": "invariant",
+      "label": "Preload ritual",
+      "description": "Load Direction/Governance/Terminology context before action."
+    },
+    {
+      "id": "inv/structural_legibility_min_band",
+      "type": "invariant",
+      "label": "Structural legibility band",
+      "description": "Structural legibility score remains >=16 baseline band."
+    },
+    {
+      "id": "inv/term_fidelity_post_v0",
+      "type": "invariant",
+      "label": "Terminology fidelity post-v0",
+      "description": "Terminology usage remains semantically consistent at 100% fidelity target."
+    },
+    {
+      "id": "inv/vision_alignment",
+      "type": "invariant",
+      "label": "Vision alignment",
+      "description": "Artifacts remain aligned to core principles."
+    },
+    {
+      "id": "mechanism/closeout_contract",
+      "type": "mechanism",
+      "label": "Closeout Contract"
+    },
+    {
+      "id": "mechanism/graph_ingest",
+      "type": "mechanism",
+      "label": "Graph Ingest"
+    },
+    {
+      "id": "mechanism/kpi_system",
+      "type": "mechanism",
+      "label": "KPI System"
+    },
+    {
+      "id": "mechanism/meta_program_loop",
+      "type": "mechanism",
+      "label": "Meta-Program Loop"
+    },
+    {
+      "id": "mechanism/structural_audit_aslb",
+      "type": "mechanism",
+      "label": "Structural Audit (ASLB)"
+    },
+    {
+      "id": "mechanism/terminology_standard",
+      "type": "mechanism",
+      "label": "Terminology Standard"
+    },
+    {
+      "id": "mechanism/usage_ritual",
+      "type": "mechanism",
+      "label": "Usage Ritual"
+    },
+    {
+      "id": "mechanism/vision_alignment_audit",
+      "type": "mechanism",
+      "label": "Vision Alignment Audit"
     },
     {
       "id": "pattern/claude_computer_use_obsidian_typescript_vps",
@@ -1039,6 +1353,12 @@
       "type": "pattern",
       "label": "Hyperfast agent session loop",
       "description": "Ground -> Execute -> Validate -> Closeout -> Reindex -> Audit -> Plan."
+    },
+    {
+      "id": "pattern/kpi_dashboard_audit_loop_v0",
+      "type": "pattern",
+      "label": "KPI dashboard audit loop",
+      "description": "Compute -> evaluate -> alert -> ingest -> iterate loop for infrastructure health."
     },
     {
       "id": "pattern/meta_agent_multi_coding_assistants",
@@ -1268,6 +1588,11 @@
       "source_scene": "scenes/agent-ontology.scene.json"
     },
     {
+      "id": "tool/bash",
+      "type": "tool",
+      "label": "bash"
+    },
+    {
       "id": "tool/chatgpt",
       "type": "tool",
       "label": "ChatGPT"
@@ -1378,6 +1703,11 @@
       "id": "tool/sb_graph_ingest_v0",
       "type": "tool",
       "label": "sb_graph_ingest_v0.sh"
+    },
+    {
+      "id": "tool/sb_kpi_compute_v0",
+      "type": "tool",
+      "label": "sb_kpi_compute_v0.sh"
     },
     {
       "id": "tool/second_brain_cli_sb",
@@ -1768,6 +2098,26 @@
       "type": "introduces"
     },
     {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "artifact_pointer/governance_gradient_spec_v0",
+      "type": "materializes_to"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "governs"
+    },
+    {
       "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
       "to": "artifact/agent_audit_2026_02_15_v0",
       "type": "derived_from"
@@ -1841,6 +2191,61 @@
       "from": "artifact/kalshi_session_history_2026_02_12",
       "to": "artifact_pointer/kalshi_phase8_closeout_session",
       "type": "indexes"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "artifact_pointer/kpi_dashboard_metrics_v0",
+      "type": "materializes_to"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "concept/kpi_dashboard_protocol_v0",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "pattern/kpi_dashboard_audit_loop_v0",
+      "type": "codifies"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/architecture_portable_tools_not",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "principle/system_as_infrastructure",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "monitors"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/bash",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/jq",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/kpi_dashboard_v0_2026_02_15",
+      "to": "tool/sb_kpi_compute_v0",
+      "type": "executed_by"
     },
     {
       "from": "artifact/meta_program_spec_v0",
@@ -2426,6 +2831,61 @@
       "type": "contrasts_with"
     },
     {
+      "from": "constraint/kpi_track_only_domain_invariants",
+      "to": "mechanism/kpi_system",
+      "type": "constrains"
+    },
+    {
+      "from": "constraint/no_auto_mutate",
+      "to": "mechanism/vision_alignment_audit",
+      "type": "constrains"
+    },
+    {
+      "from": "constraint/one_mechanism_per_invariant",
+      "to": "artifact/governance_gradient_spec_v0_2026_02_15",
+      "type": "constrains"
+    },
+    {
+      "from": "mechanism/closeout_contract",
+      "to": "inv/link_density_min_2",
+      "type": "enforces"
+    },
+    {
+      "from": "mechanism/graph_ingest",
+      "to": "inv/derived_view_integrity",
+      "type": "protects"
+    },
+    {
+      "from": "mechanism/kpi_system",
+      "to": "inv/observability_entropy",
+      "type": "tracks"
+    },
+    {
+      "from": "mechanism/meta_program_loop",
+      "to": "inv/agent_resumption_min_8",
+      "type": "enforces"
+    },
+    {
+      "from": "mechanism/structural_audit_aslb",
+      "to": "inv/structural_legibility_min_band",
+      "type": "tracks"
+    },
+    {
+      "from": "mechanism/terminology_standard",
+      "to": "inv/term_fidelity_post_v0",
+      "type": "tracks"
+    },
+    {
+      "from": "mechanism/usage_ritual",
+      "to": "inv/preload_ritual",
+      "type": "operationalizes"
+    },
+    {
+      "from": "mechanism/vision_alignment_audit",
+      "to": "inv/vision_alignment",
+      "type": "proposes_for"
+    },
+    {
       "from": "pattern/claude_computer_use_obsidian_typescript_vps",
       "to": "principle/principles_over_rules",
       "type": "illustrates"
@@ -2539,6 +2999,21 @@
       "from": "pattern/hyperfast_agent_session_loop",
       "to": "principle/agent_builds_agent_maintains",
       "type": "supports"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "artifact_pointer/vision_alignment_audit_report_v0",
+      "type": "extends"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "integrates_with"
+    },
+    {
+      "from": "pattern/kpi_dashboard_audit_loop_v0",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "integrates_with"
     },
     {
       "from": "pattern/meta_agent_multi_coding_assistants",

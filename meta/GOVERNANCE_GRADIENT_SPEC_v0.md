@@ -7,6 +7,17 @@ Define a restrained governance gradient that reduces entropy without introducing
 - Binary governance target at stable state: 100% contract adherence for gated flows.
 - Audits propose; audits do not auto-mutate project state.
 - Ingest only traversable knowledge into graph exports; non-traversable guidance remains in `meta/`.
+- Cross-repo edits are human-gated by default.
+
+## Cross-Repo Edit Gate
+Default boundary rule:
+- The active repository is the only writable target for agent edits.
+- Any edit outside the active repository requires explicit human authorization in the current session before changes are made.
+- Absence of explicit authorization means no cross-repo file edits, even if related policy exists in another repo.
+
+Operational note:
+- Cross-repo reads for context are allowed when needed.
+- Cross-repo writes remain blocked unless explicitly granted.
 
 ## Invariant Mapping (1:1)
 Each invariant must map to one primary enforcement mechanism.
