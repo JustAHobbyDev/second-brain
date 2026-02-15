@@ -24,6 +24,20 @@
 - **Decision detail:** Measure `% of non-trivial session artifacts with >=1 canonical principle link`.
 - **Initial targets:** pass `>=75%`, stretch `>=85%`.
 
+### OQ-3: Should hyperfast agent execution require a human-approval gate when `next_steps` exceeds 3 items?
+
+- **Raised by:** Dan
+- **Date:** 2026-02-15
+- **Status:** Open
+- **Why it matters:** Could prevent scope spill and keep delegated loops aligned with hyperfast constraints.
+
+### OQ-4: How should multi-agent coordination be controlled (audit agent vs execution agent) to avoid scene/file contention?
+
+- **Raised by:** Dan
+- **Date:** 2026-02-15
+- **Status:** Open
+- **Why it matters:** Without locking/ownership rules, concurrent agents can create non-deterministic edits.
+
 ---
 
 ## Journal

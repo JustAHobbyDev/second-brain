@@ -23,6 +23,8 @@ class ArtifactEval:
     principles_canonical: int
     patterns_total: int
     is_non_trivial: bool
+    has_v1_contract_shape: bool
+    resumption_score: int | None
 
 
 def load_json(path: Path) -> Any:
@@ -94,6 +96,28 @@ def extract_eval(obj: dict[str, Any], canonical: set[str]) -> ArtifactEval | Non
 
     non_trivial = has_summary and has_decision_or_step
 
+    v1_keys = {
+        "artifact_id",
+        "session_date",
+        "llm_used",
+        "project_links",
+        "principle_links",
+        "pattern_links",
+        "tool_links",
+        "related_artifact_links",
+        "summary",
+        "key_decisions",
+        "open_questions",
+        "next_steps",
+        "thinking_trace_attachments",
+        "prompt_lineage",
+        "resumption_score",
+        "resumption_notes",
+    }
+    has_v1_contract_shape = v1_keys.issubset(set(obj.keys()))
+    rs = obj.get("resumption_score")
+    resumption_score = rs if isinstance(rs, int) and 0 <= rs <= 10 else None
+
     canon_count = sum(1 for p in principles if p in canonical)
     return ArtifactEval(
         artifact_id=artifact_id,
@@ -102,6 +126,8 @@ def extract_eval(obj: dict[str, Any], canonical: set[str]) -> ArtifactEval | Non
         principles_canonical=canon_count,
         patterns_total=len(patterns),
         is_non_trivial=non_trivial,
+        has_v1_contract_shape=has_v1_contract_shape,
+        resumption_score=resumption_score,
     )
 
 
@@ -142,6 +168,22 @@ def run_audit(sessions_dir: Path, out_file: Path) -> dict[str, Any]:
         status = "pass"
 
     weak_ids = [e.artifact_id for e in eligible if not e.has_principle_link]
+    v1_artifacts = [e for e in evals if e.has_v1_contract_shape]
+    contract_compliance_pct = round(100.0 * len(v1_artifacts) / len(evals), 2) if evals else 0.0
+    quality_pass = [e for e in eligible if e.has_principle_link and (e.resumption_score is not None and e.resumption_score >= 6)]
+    quality_pass_pct = round(100.0 * len(quality_pass) / len(eligible), 2) if eligible else 0.0
+    rs_values = [e.resumption_score for e in evals if e.resumption_score is not None]
+    avg_resumption = round(sum(rs_values) / len(rs_values), 2) if rs_values else 6.0
+    delegability_score = round(
+        min(
+            10.0,
+            0.4 * (pct / 10.0)
+            + 0.2 * (contract_compliance_pct / 10.0)
+            + 0.2 * (quality_pass_pct / 10.0)
+            + 0.2 * avg_resumption,
+        ),
+        2,
+    )
 
     report = {
         "artifact_id": f"artifact/vision_alignment_audit_{date.today().strftime('%Y_%m_%d')}_v0",
@@ -154,6 +196,17 @@ def run_audit(sessions_dir: Path, out_file: Path) -> dict[str, Any]:
             "value_pct": pct,
             "targets": bucket,
             "status": status,
+        },
+        "agent_delegability": {
+            "name": "agent_delegability_score",
+            "value": delegability_score,
+            "target": 9.0,
+            "components": {
+                "principle_linked_artifact_pct": pct,
+                "contract_compliance_pct": contract_compliance_pct,
+                "quality_pass_pct": quality_pass_pct,
+                "avg_resumption_score": avg_resumption,
+            },
         },
         "coverage": {
             "total_artifacts_scanned": len(evals),

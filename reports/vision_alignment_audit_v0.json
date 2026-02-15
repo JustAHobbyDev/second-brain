@@ -4,17 +4,28 @@
   "kpi": {
     "name": "principle_linked_artifact_pct",
     "definition": "Percent of non-trivial session artifacts with >=1 canonical principle link",
-    "eligible_artifacts": 6,
-    "artifacts_with_principle_link": 3,
-    "value_pct": 50.0,
+    "eligible_artifacts": 7,
+    "artifacts_with_principle_link": 4,
+    "value_pct": 57.14,
     "targets": {
       "pass": ">=75%",
       "stretch": ">=85%"
     },
     "status": "fail"
   },
+  "agent_delegability": {
+    "name": "agent_delegability_score",
+    "value": 4.74,
+    "target": 9.0,
+    "components": {
+      "principle_linked_artifact_pct": 57.14,
+      "contract_compliance_pct": 28.57,
+      "quality_pass_pct": 14.29,
+      "avg_resumption_score": 8.0
+    }
+  },
   "coverage": {
-    "total_artifacts_scanned": 6,
+    "total_artifacts_scanned": 7,
     "canonical_principle_ids_detected": 11,
     "artifacts_missing_principle_link": [
       "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",

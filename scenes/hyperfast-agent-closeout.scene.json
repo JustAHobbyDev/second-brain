@@ -44,7 +44,12 @@
             "3. Closeout contract from meta/CLOSEOUT_CONTRACT_v0.md",
             "4. Recent context from sessions/*/index.json (prefer resumption_score >= 7)"
           ],
-          "environment_assumptions": "Bash/Python with local file access."
+          "environment_assumptions": "Bash/Python with local file access.",
+          "llm_simulation_placeholder": {
+            "enabled_by_default": false,
+            "description": "For offline testing, replace live LLM calls with deterministic fixture replay from local JSON/text files.",
+            "fixture_path_pattern": "tests/fixtures/llm/<session_id>/<step>.json"
+          }
         },
         "execution_phases": {
           "phase_1_init": {

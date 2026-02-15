@@ -14,6 +14,10 @@ PROMPTS=(
   "50_agent_owned_audit.txt"
 )
 
+if [[ "${HYPERFAST_MODE:-false}" == "true" ]]; then
+  PROMPTS+=("60_hyperfast_mode_route.txt")
+fi
+
 usage() {
   cat <<'EOF'
 Usage:
@@ -22,6 +26,8 @@ Usage:
 Behavior:
   - Runs prompts/meta_program/*.txt in deterministic order.
   - Pipes each prompt file to the provided LLM command via stdin.
+  - If HYPERFAST_MODE=true, appends hyperfast route prompt:
+      prompts/meta_program/60_hyperfast_mode_route.txt
   - If no command is provided:
       1) Uses LLM_CMD env var if set (executed via: bash -lc "$LLM_CMD")
       2) Falls back to: codex exec
@@ -30,6 +36,7 @@ Examples:
   tools/codex_meta_program_v0.sh -- codex exec
   tools/codex_meta_program_v0.sh -- your-llm-cli run --stdin
   LLM_CMD='codex exec' tools/codex_meta_program_v0.sh
+  HYPERFAST_MODE=true tools/codex_meta_program_v0.sh -- codex exec
 EOF
 }
 
