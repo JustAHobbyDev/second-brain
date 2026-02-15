@@ -269,6 +269,105 @@
       ]
     },
     {
+      "id": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "type": "artifact",
+      "artifact_type": "definition_and_protocol",
+      "title": "Hyperfast Agent Closeout v0",
+      "version": "0.1",
+      "summary": {
+        "high_level": "Defines protocol for agent-executed hyperfast sessions inside second-brain: file-I/O only, zero-dependency resumption, threshold-gated closeout, auto-indexing, and scene-fold suggestions.",
+        "details": "Builds on hyperfast pocket card/checklist/ontology and the generalized closeout contract. Targets delegation where agents can self-initiate, execute, close, and maintain with human approval only at explicit gates."
+      },
+      "resumption_score": 8,
+      "resumption_notes": "Load taxonomy + alias map policy, last three high-score artifacts from sessions/*/index.json, and this scene before executing.",
+      "open_questions": [
+        "1. Should agent execution include optional human-approval gate for next_steps > 3 items?",
+        "2. How should multi-agent coordination (audit agent vs execution agent) use scene locking semantics?"
+      ],
+      "next_steps": [
+        "1. Run agent-owned loop via tools/sb_agent_audit_loop.sh and review scene suggestions.",
+        "2. Validate protocol assumptions against one live project session.",
+        "3. Ingest updated scenes using tools/sb_graph_ingest_v0.sh and compare KPI delta."
+      ],
+      "thinking_trace_attachments": [
+        "Rationale: hyperfast patterns accelerate human loops; explicit file-I/O protocol and closeout gates enable agent delegation while staying tool-agnostic."
+      ],
+      "prompt_lineage": [
+        {
+          "role": "system",
+          "ref": "prompts/meta_program/50_agent_owned_audit.txt",
+          "summary": "Agent-owned audit scaffold"
+        },
+        {
+          "role": "user",
+          "summary": "Expand hyperfast integration for agent delegation per audit resolutions"
+        }
+      ],
+      "hyperfast_agent_protocol": {
+        "overview": "Step-by-step file-driven protocol for hyperfast agent sessions. No external APIs or DB required.",
+        "prerequisites": {
+          "load_sequence": [
+            "1. Core taxonomy + canonical alias policy",
+            "2. Hyperfast kit scenes (pocket card, checklist, ontology)",
+            "3. Closeout contract from meta/CLOSEOUT_CONTRACT_v0.md",
+            "4. Recent context from sessions/*/index.json (prefer resumption_score >= 7)"
+          ],
+          "environment_assumptions": "Bash/Python with local file access.",
+          "llm_simulation_placeholder": {
+            "enabled_by_default": false,
+            "description": "For offline testing, replace live LLM calls with deterministic fixture replay from local JSON/text files.",
+            "fixture_path_pattern": "tests/fixtures/llm/<session_id>/<step>.json"
+          }
+        },
+        "execution_phases": {
+          "phase_1_init": {
+            "description": "Parse trigger and initialize session state.",
+            "outputs": [
+              "session_state.json"
+            ]
+          },
+          "phase_2_hyperfast_loop": {
+            "description": "Run constrained 3-5 iteration execution loop using hyperfast checklist/ontology.",
+            "outputs": [
+              "updated session_state.json",
+              "raw_thinking_traces"
+            ]
+          },
+          "phase_3_closeout": {
+            "description": "Generate contract-compliant artifact, validate thresholds, auto-index, suggest scene fold.",
+            "outputs": [
+              "sessions/<tool>/<date>-<slug>.json",
+              "sessions/<tool>/index.json",
+              "scene_suggestions"
+            ]
+          },
+          "phase_4_resumption_primitives": {
+            "description": "Expose deterministic cold-resume and audit hooks for chained sessions.",
+            "outputs": [
+              "resumption bundle",
+              "follow-up trigger"
+            ]
+          }
+        },
+        "error_handling": {
+          "common_failures": [
+            "ID resolution failures",
+            "threshold reject",
+            "file lock conflict"
+          ],
+          "rollback": "Clean temp state and emit failed artifact snapshot."
+        },
+        "metrics_for_delegation": {
+          "success_kpis": [
+            "closeout_pass_rate >= 90%",
+            "cold_resumption_time < 5m",
+            "link_density_growth trend positive"
+          ],
+          "delegability_score_target": "9/10"
+        }
+      }
+    },
+    {
       "id": "artifact/hyperfast_agent_workflow_v0_2026_02_15",
       "type": "artifact",
       "artifact_type": "workflow_spec",
@@ -448,6 +547,12 @@
       "type": "artifact_pointer",
       "label": "Claude session index",
       "path": "sessions/claude/index.json"
+    },
+    {
+      "id": "artifact_pointer/closeout_contract_v0",
+      "type": "artifact_pointer",
+      "label": "Closeout contract v0",
+      "path": "meta/CLOSEOUT_CONTRACT_v0.md"
     },
     {
       "id": "artifact_pointer/codex_session_index",
@@ -673,6 +778,12 @@
       "type": "concept",
       "label": "Deterministic materialization",
       "description": "Same base + same ordered deltas must produce byte-identical output. Delta order: ascending numeric order, tie-break by id lexical order."
+    },
+    {
+      "id": "concept/hyperfast_agent_closeout_protocol_v0",
+      "type": "concept",
+      "label": "Hyperfast agent closeout protocol v0",
+      "definition": "Operational protocol for agent-executed hyperfast sessions with deterministic closeout and graph fold-in hooks."
     },
     {
       "id": "concept/kalshi_phase9_handoff_state",
@@ -1219,6 +1330,11 @@
       "label": "Goose (coding assistant)"
     },
     {
+      "id": "tool/jq",
+      "type": "tool",
+      "label": "jq"
+    },
+    {
       "id": "tool/macwhisper",
       "type": "tool",
       "label": "MacWhisper"
@@ -1252,6 +1368,16 @@
       "id": "tool/postgres",
       "type": "tool",
       "label": "PostgreSQL"
+    },
+    {
+      "id": "tool/sb_closeout",
+      "type": "tool",
+      "label": "sb_closeout.sh"
+    },
+    {
+      "id": "tool/sb_graph_ingest_v0",
+      "type": "tool",
+      "label": "sb_graph_ingest_v0.sh"
     },
     {
       "id": "tool/second_brain_cli_sb",
@@ -1642,6 +1768,66 @@
       "type": "introduces"
     },
     {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "artifact/agent_audit_2026_02_15_v0",
+      "type": "derived_from"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "artifact_pointer/closeout_contract_v0",
+      "type": "implements"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "concept/hyperfast_agent_closeout_protocol_v0",
+      "type": "formalizes"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "pattern/dan_codex_meta_workflow_v1",
+      "type": "integrates_with"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "pattern/hyperfast_agent_session_loop",
+      "type": "extends"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "principle/agent_builds_agent_maintains",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "principle/architecture_portable_tools_not",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "principle/principles_over_rules",
+      "type": "aligned_with"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "advances"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "tool/jq",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "tool/sb_closeout",
+      "type": "executed_by"
+    },
+    {
+      "from": "artifact/hyperfast_agent_closeout_v0_2026_02_15",
+      "to": "tool/sb_graph_ingest_v0",
+      "type": "executed_by"
+    },
+    {
       "from": "artifact/hyperfast_agent_workflow_v0_2026_02_15",
       "to": "pattern/hyperfast_agent_session_loop",
       "type": "codifies"
@@ -1794,6 +1980,11 @@
     {
       "from": "artifact/session_index_claude",
       "to": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+      "type": "indexes_session_artifact"
+    },
+    {
+      "from": "artifact/session_index_codex",
+      "to": "artifact/codex_2026_02_15_agent-owned-vision-audit-loop",
       "type": "indexes_session_artifact"
     },
     {
