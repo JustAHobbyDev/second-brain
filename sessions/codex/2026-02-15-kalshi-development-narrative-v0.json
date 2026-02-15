@@ -1,0 +1,56 @@
+{
+  "artifact_id": "artifact/codex_2026_02_15_kalshi-development-narrative_v0",
+  "session_date": "2026-02-15",
+  "llm_used": "codex",
+  "project_links": [
+    "project/kalshi_15m_btc_pipeline"
+  ],
+  "principle_links": [
+    "principle/principles_over_rules",
+    "principle/explicit_over_inferred",
+    "principle/agent_builds_agent_maintains"
+  ],
+  "pattern_links": [
+    "pattern/session_artifact_resumption_loop"
+  ],
+  "tool_links": [
+    "tool/codex"
+  ],
+  "related_artifact_links": [
+    "artifact/codex_session_2026_02_12_phase8_closeout_handoff",
+    "artifact/codex_session_2026_02_13_quote_data_scope_audit",
+    "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",
+    "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep",
+    "artifact/pressure_test_summary_2026_02_15_v0",
+    "artifact/kalshi_session_history_2026_02_12"
+  ],
+  "summary": "Evidence-only narrative from second-brain artifacts: (1) Phase 8 was closed out on 2026-02-12 with a handoff toward Phase 9 planning. (2) A 2026-02-13 codex audit focused on quote/orderbook scope and tightened robustness/audit framing. (3) Claude closeouts on 2026-02-13 and 2026-02-15 document Phase 10 Tier-1 additive-ladder readiness and governance alignment, but both remain blocked by the same data-sufficiency gate. (4) The pressure-test report on 2026-02-15 confirms gate status as blocked_by_data_gate with 94 usable windows versus 200 required (deficit 106). This indicates the current stop condition is functioning as intended, not a regression in process control.",
+  "key_decisions": [
+    "Narrative constrained to artifacts available in second-brain (no repo-internal or conversational claims outside indexed files).",
+    "Data-gate blocker is represented as current factual state, not inferred pipeline failure.",
+    "Timeline is presented with explicit dates and artifact pointers to preserve replayability.",
+    "A known artifact-id mismatch is preserved as an uncertainty rather than normalized away."
+  ],
+  "open_questions": [
+    "1. The 2026-02-15 Claude closeout references artifact/claude_2026_02_13_phase10-tasks-and-phase9-ladder-exhaust, but the available 2026-02-13 Claude file is 2026-02-13-phase10-ladder-prep-l1-tier1. Is this a naming drift or missing artifact?",
+    "2. When will the Phase 10 data gate reach >=200 usable windows so blocked steps can execute?",
+    "3. Should this narrative be mirrored into a dedicated Kalshi history scene node for one-hop retrieval?"
+  ],
+  "next_steps": [
+    "Run `just phase10-count-windows` in the Kalshi repo to re-check the gate.",
+    "If gate passes, execute the documented Phase 10 pipeline sequence from the Claude closeout artifact.",
+    "Repair artifact-id mismatch if a canonical 2026-02-13 Claude artifact slug is required."
+  ],
+  "thinking_trace_attachments": [
+    "Chronology source set: scenes/kalshi_session_history.scene.json; scenes/kalshi_15m_btc_pipeline.scene.json; sessions/codex/2026-02-12-phase8-closeout-handoff.json; sessions/codex/2026-02-13-quote-data-scope-audit.json; sessions/claude/2026-02-13-phase10-ladder-prep-l1-tier1.json; sessions/claude/2026-02-15-governance-alignment-phase10-ladder-prep.json; reports/pressure_test_summary_2026-02-15_v0.json.",
+    "Gate state used verbatim from report fields: usable_aligned_windows=94, required=200, deficit=106."
+  ],
+  "prompt_lineage": [
+    {
+      "role": "user",
+      "summary": "Craft a summary narrative of the Kalshi development history using only second-brain and no hallucination."
+    }
+  ],
+  "resumption_score": 9,
+  "resumption_notes": "For continuation, load the six Kalshi artifacts and one pressure-test report referenced in thinking_trace_attachments, then re-check whether a newer gate count artifact exists after 2026-02-15."
+}
