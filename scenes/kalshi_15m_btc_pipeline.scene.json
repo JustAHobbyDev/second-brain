@@ -52,6 +52,38 @@
         "dir": "checkpoints/",
         "match": "*.md"
       }
+    },
+    {
+      "id": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep",
+      "type": "artifact",
+      "artifact_type": "session_closeout",
+      "title": "Governance Alignment + Phase10 Ladder Prep",
+      "summary": {
+        "high_level": "Claude closeout capturing governance alignment and Phase 10 ladder readiness under a data-sufficiency gate.",
+        "details": "Documents track-only KPI policy, contracts-first gates, and Phase 10 Tier 1 readiness blocked by 94/200 usable windows."
+      }
+    },
+    {
+      "id": "artifact_pointer/claude_2026_02_15_governance_alignment_phase10_ladder_prep",
+      "type": "artifact_pointer",
+      "label": "Claude closeout 2026-02-15",
+      "path": "sessions/claude/2026-02-15-governance-alignment-phase10-ladder-prep.json"
+    },
+    {
+      "id": "artifact/codex_2026_02_15_kalshi-development-narrative_v0",
+      "type": "artifact",
+      "artifact_type": "session_closeout",
+      "title": "Kalshi Development Narrative v0 (Evidence-Only)",
+      "summary": {
+        "high_level": "Codex closeout that synthesizes Kalshi development chronology strictly from second-brain artifacts.",
+        "details": "Covers Phase 8 closeout, Phase 10 Tier-1 readiness, persistent 94/200 data gate, and explicit record mismatch note."
+      }
+    },
+    {
+      "id": "artifact_pointer/codex_2026_02_15_kalshi_development_narrative_v0",
+      "type": "artifact_pointer",
+      "label": "Codex narrative closeout 2026-02-15",
+      "path": "sessions/codex/2026-02-15-kalshi-development-narrative-v0.json"
     }
   ],
   "edges": [
@@ -62,7 +94,21 @@
     { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_checkpoints_dir", "type": "stores_checkpoints" },
     { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_specs_dir", "type": "stores_specs" },
     { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_scripts_dir", "type": "stores_scripts" },
-    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_reports_dir", "type": "stores_reports" }
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact_pointer/kalshi_15m_reports_dir", "type": "stores_reports" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "type": "has_session_closeout" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "artifact_pointer/claude_2026_02_15_governance_alignment_phase10_ladder_prep", "type": "materializes_to" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "artifact/claude_2026_02_13_phase10-tasks-and-phase9-ladder-exhaust", "type": "extends" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "inv/observability_entropy", "type": "references" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "inv/vision_alignment", "type": "references" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "inv/agent_resumption_min_8", "type": "references" },
+    { "from": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "to": "inv/derived_view_integrity", "type": "references" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "type": "has_session_closeout" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact_pointer/codex_2026_02_15_kalshi_development_narrative_v0", "type": "materializes_to" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/codex_session_2026_02_12_phase8_closeout_handoff", "type": "synthesizes" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/codex_session_2026_02_13_quote_data_scope_audit", "type": "synthesizes" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1", "type": "synthesizes" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "type": "synthesizes" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/pressure_test_summary_2026_02_15_v0", "type": "synthesizes" },
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "inv/structural_legibility_min_band", "type": "references" }
   ]
 }
-
