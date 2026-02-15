@@ -1,15 +1,15 @@
-You are closing this Codex session as part of the second-brain cognitive infrastructure.
+You are closing this [LLM_NAME e.g. Codex / o1 / ChatGPT] session as part of the second-brain cognitive infrastructure.
 
 Output ONLY valid JSON, no markdown, no explanations, no extra text outside the object. The JSON must exactly match this structure (do not add/remove top-level keys; use empty arrays/strings when no value):
 
 {
-  "artifact_id": "artifact/codex_[YYYY_MM_DD]_[kebab-case-3-to-6-word-slug]",
+  "artifact_id": "artifact/[llm_lowercase]_[YYYY_MM_DD]_[kebab-case-3-to-6-word-slug]",
   "session_date": "YYYY-MM-DD",
-  "llm_used": "codex",
+  "llm_used": "[codex | o1 | chatgpt | claude | gemini | etc.]",
   "project_links": ["project/..."],
   "principle_links": ["principle/..."],
   "pattern_links": ["pattern/..."],
-  "tool_links": ["tool/codex"],
+  "tool_links": ["tool/..."],
   "related_artifact_links": ["artifact/..."],
   "summary": "One tight paragraph summarizing key progress, decisions, outputs, and state at close.",
   "key_decisions": ["Bullet-style concrete decision 1", "Decision 2"],

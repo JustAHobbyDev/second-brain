@@ -15,6 +15,15 @@
 - **Status:** Open
 - **Why it matters:** The North Star and Design Charter exist as explicit governance anchors, but if nothing checks the graph against them, they become decorative rather than functional. The system could silently regress into a note-taking system — the exact outcome the Design Charter prohibits.
 
+### OQ-2: Which KPI should anchor the vision-alignment audit first?
+
+- **Raised by:** Dan
+- **Date:** 2026-02-15
+- **Status:** Resolved
+- **Resolution:** Start with `principle_linked_artifact_pct` as the first anchor KPI.
+- **Decision detail:** Measure `% of non-trivial session artifacts with >=1 canonical principle link`.
+- **Initial targets:** pass `>=75%`, stretch `>=85%`.
+
 ---
 
 ## Journal
@@ -58,3 +67,10 @@ The `drift_signals` object in `kalshi_phase_history.scene.json` (fields: `regres
 - **Result:** Script aborted with `API key is required unless running with --dry-run`.
 - **Implication:** Cannot produce a real ASLB benchmark snapshot until `OPENAI_API_KEY` (or compatible `--api-key`) is available.
 - **Next action:** Add a valid key and rerun the command above to capture artifacts under `operations/aslb_runs/2026-02-14-drift-audit/`.
+
+### 2026-02-15 — Codex — Vision-alignment KPI anchor selected
+
+- **Question resolved:** OQ-2 (`Which KPI should anchor the vision-alignment audit first?`)
+- **Selected KPI:** `principle_linked_artifact_pct`
+- **Rationale:** Most directly aligned with principle-grounded agent resumability and computable immediately without requiring full graph ingest maturity.
+- **Targets:** pass `>=75%`, stretch `>=85%` for non-trivial session artifacts.

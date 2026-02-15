@@ -1,0 +1,12 @@
+{
+  "tool": "codex",
+  "artifacts": [
+    {
+      "id": "artifact/codex_2026_02_15_example-session-slug",
+      "date": "2026-02-15",
+      "resumption_score": 8,
+      "summary_snippet": "Example closeout artifact summary snippet."
+    }
+  ],
+  "last_updated": "2026-02-15T00:00:00Z"
+}

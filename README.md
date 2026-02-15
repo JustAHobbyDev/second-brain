@@ -136,7 +136,7 @@ Contains reusable schemas.
 
 Example:
 
-codex_session_template.json
+session_template.json
 session_closing_checklist.md
 
 This defines the structure for session closure artifacts.
@@ -163,7 +163,7 @@ type/identifier
 
 Examples:
 
-artifact/codex_session_2026_02_11_trading_pipeline
+artifact/session_2026_02_11_trading_pipeline
 pattern/dan_codex_meta_workflow_v1
 project/dan_personal_cognitive_infrastructure
 principle/architecture_portable_tools_not
@@ -196,13 +196,13 @@ Architecture > aesthetics.
 
 ## 3. Session Closing Ritual
 
-Every meaningful Codex session should end with:
+Every meaningful assistant session should end with:
 
 1. Request a graph-ready summary using the session template.
 2. Save the JSON file into:
 
 ```bash
-sessions/codex/YYYY-MM-DD-slug.json
+sessions/<assistant_or_tool>/YYYY-MM-DD-slug.json
 ```
 
 3. Ensure links reference:
@@ -212,6 +212,8 @@ sessions/codex/YYYY-MM-DD-slug.json
    * patterns
    * tools
    * related artifacts
+
+4. Update `sessions/<assistant_or_tool>/index.json` automatically on successful closeout (default policy). Use `--no-index` only for rare bulk/rollback cases.
 
 This converts ephemeral conversation into infrastructure.
 

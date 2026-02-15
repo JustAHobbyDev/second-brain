@@ -27,8 +27,8 @@ ROOT
 │   │   ├── Purpose: Reliable, reproducible, auditable data pipeline
 │   │   ├── Phase History: Discovery → Implementation → Stabilization
 │   │   └── Grounding Order: README → PLAN → OPEN_QUESTIONS → AGENTS → Checkpoint
-│   └── Second Brain Build (Community)
-│       └── Purpose: Community project exploring AI-powered second brain implementations
+│   └── Second Brain Build (Deprecated Alias)
+│       └── Alias of: project/dan_personal_cognitive_infrastructure
 │
 ├── PRINCIPLES
 │   ├── Architectural
@@ -204,3 +204,18 @@ ROOT
 - Tools live lower in the hierarchy than principles and concepts.
 - Project direction (North Star + Design Charter) is the root governance context for all patterns and tool choices.
 - Covers all 20 scene files in the `scenes/` directory.
+
+## Canonical Project ID Policy
+- Primary canonical project ID: `project/dan_personal_cognitive_infrastructure`
+- Deprecated project alias: `project/second_brain_build`
+- Alias relation: `project/second_brain_build` -> `project/dan_personal_cognitive_infrastructure`
+
+### Alias Map (v0)
+```json
+{
+  "project/second_brain_build": "project/dan_personal_cognitive_infrastructure"
+}
+```
+
+- Legacy scenes/artifacts remain unchanged for historical truth.
+- New links should use `project/dan_personal_cognitive_infrastructure`.

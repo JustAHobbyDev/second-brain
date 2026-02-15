@@ -147,6 +147,23 @@ This layer ensures:
 Schemas enforce structure.
 Ontologies define meaning.
 
+### Canonical L4 Artifacts (v0)
+
+- `scenes/_schemas/graph_scene_v0.schema.json` — validation contract for graph-native scenes referenced by the Scene Graph Integration Spec.
+- `scenes/_schemas/phase_event_v0.schema.json` — representation for phase event nodes used in phase-history ontologies.
+- `scenes/_schemas/phase_history_v0.schema.json` — representation for whole phase-history scenes (projects, drift signals, ordered events).
+- `templates/session_template.json` — structured session output contract used by closure operations and agents.
+- `templates/session_closing_checklist.md` — deterministic textual checklist ensuring inputs fill the session template consistently.
+
+### Ontology → Schema Reference Matrix (v0)
+
+| L3 Ontology Artifact | L4 Representation Link / Note |
+| --- | --- |
+| `meta/SCENE_GRAPH_INTEGRATION_SPEC_v0.md` | `scenes/_schemas/graph_scene_v0.schema.json` |
+| Phase-history ontology (e.g., `scenes/kalshi_phase_history.scene.json`) | `scenes/_schemas/phase_history_v0.schema.json` + `scenes/_schemas/phase_event_v0.schema.json` |
+| Session closure ritual (session ontology derived from `meta/META_PROGRAM_SPEC_v0.md`) | `templates/session_template.json` + `templates/session_closing_checklist.md` |
+| Prompt lineage ontology (`meta/PROMPT_LINEAGE_ONTOLOGY_SPEC_v0.md`) | *(Schema pending — reference upcoming lineage schema; meanwhile use lineage artifacts + session template context.)* |
+
 ---
 
 # L5 — Instance Layer

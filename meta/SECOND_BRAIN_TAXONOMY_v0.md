@@ -71,3 +71,18 @@ Second Brain (project/dan_personal_cognitive_infrastructure)
 - This taxonomy is conceptual and intentionally technology-agnostic at the top levels.
 - Tools live lower in the hierarchy than principles and concepts.
 - Project direction (North Star + Design Charter) is the root governance context for all patterns and tool choices.
+
+## Canonical Project ID Policy
+- Primary canonical project ID: `project/dan_personal_cognitive_infrastructure`
+- Deprecated project alias: `project/second_brain_build`
+- Alias relation: `project/second_brain_build` -> `project/dan_personal_cognitive_infrastructure`
+
+### Alias Map (v0)
+```json
+{
+  "project/second_brain_build": "project/dan_personal_cognitive_infrastructure"
+}
+```
+
+- Legacy scenes/artifacts remain unchanged for historical truth.
+- New links should use `project/dan_personal_cognitive_infrastructure`.

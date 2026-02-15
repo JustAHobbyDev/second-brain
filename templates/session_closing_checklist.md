@@ -2,7 +2,7 @@
 
 This checklist converts a working session into durable infrastructure.
 
-Use this at the end of every meaningful Codex or ChatGPT session.
+Use this at the end of every meaningful assistant session.
 
 ---
 
@@ -23,21 +23,18 @@ If none of those happened, do not emit an artifact.
 
 ## 2. Request Graph-Ready Summary
 
-In Codex or ChatGPT, say:
+In your current assistant/tool, say:
 
-“Emit a graph-ready session artifact using my standard template.”
+"Emit a graph-ready session artifact using my standard template."
 
 Ensure it includes:
 
-* High-level summary
-* Key decisions
-* Changes made
-* Open questions
-* Links to projects
-* Links to principles
-* Links to patterns
-* Tools touched
-* Notes for future agents
+* `artifact_id`, `session_date`, `llm_used`
+* `summary`, `key_decisions`, `open_questions`, `next_steps`
+* `prompt_lineage` as array objects (`role`, `ref`/`summary`)
+* `resumption_score` (0-10) + `resumption_notes`
+* `project_links`, `principle_links`, `pattern_links`, `tool_links`, `related_artifact_links`
+* `thinking_trace_attachments`
 
 ---
 
@@ -45,12 +42,19 @@ Ensure it includes:
 
 Before saving, check:
 
-* ID follows format:
-  artifact/codex_session_YYYY_MM_DD_slug
-* created_at timestamp exists
-* links.projects contains at least one project
+* `artifact_id` follows format:
+  `artifact/{llm}_{YYYY_MM_DD}_{kebab-case-3-to-6-word-slug}`
+* `llm_used` is populated and matches `artifact_id` prefix
+* `prompt_lineage` has at least one entry with `role` + source context (`ref` or `summary`)
+* resumption_score is populated (0-10)
+* resumption_notes is populated
+* `session_date` exists and is `YYYY-MM-DD`
+* `project_links` contains at least one project
+* `principle_links` has at least 2 entries when relevant (or explain why not)
+* `pattern_links` has at least 1 entry when relevant (or explain why not)
 * No empty arrays where meaningful data exists
 * IDs referenced actually exist in scenes/
+* Open questions are numbered and actionable
 
 If unsure, fix before saving.
 
@@ -61,39 +65,43 @@ If unsure, fix before saving.
 Save to:
 
 ```bash
-sessions/<tool>/YYYY-MM-DD-slug.json
+sessions/<assistant_or_tool>/YYYY-MM-DD-slug.json
 ```
 
 Example:
 
 ```bash
-sessions/codex/2026-02-11-trading-pipeline.json
+sessions/chatgpt/2026-02-11-trading-pipeline.json
 ```
 
 The filename slug should roughly match the artifact ID.
 
 ---
 
-## 5. Update Index (Optional but Recommended)
+## 5. Update Index (Default: Automatic)
 
-Open:
+Default policy:
+* On every successful closeout, update `sessions/<assistant_or_tool>/index.json` automatically.
+* Use `--no-index` only for rare bulk backfills, rollback prep, or controlled migration runs.
 
-sessions/<tool>/index.json
-
-Append the artifact ID.
-
-Example:
+Target index shape:
 
 ```json
 {
-    "codex_sessions": [
-        "artifact/codex_session_2026_02_11_trading_pipeline"
-    ]
+  "tool": "chatgpt",
+  "artifacts": [
+    {
+      "id": "artifact/chatgpt_2026_02_11_trading-pipeline",
+      "date": "2026-02-11",
+      "resumption_score": 8,
+      "summary_snippet": "Established scene-based second-brain architecture and closure ritual."
+    }
+  ],
+  "last_updated": "2026-02-15T00:00:00Z"
 }
-
 ```
 
-This makes traversal easier later.
+This keeps traversal fast and reduces manual grooming debt.
 
 ---
 
@@ -101,7 +109,7 @@ This makes traversal easier later.
 
 Ask yourself:
 
-“If I lost all context except this JSON file, could I resume?”
+"If I lost all context except this JSON file, could I resume?"
 
 If no:
 
@@ -127,5 +135,4 @@ Sessions with links become infrastructure.
 
 The session is now part of your second brain.
 
-Ephemeral thinking → structured artifact → graph node → infrastructure.
-
+Ephemeral thinking -> structured artifact -> graph node -> infrastructure.
