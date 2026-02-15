@@ -7,23 +7,47 @@
       "title": "KPI Dashboard v0",
       "version": "0.1",
       "summary": {
-        "high_level": "File-based KPI dashboard protocol for second-brain health, focused on agent-delegable metrics from sessions/scenes/graph artifacts.",
-        "details": "Computes principle-linked %, closeout pass rate, resumption quality, orphan ratio, and core-project coverage via local file scans. Outputs structured metrics JSON, alert candidates, and trend-ready fields."
+        "high_level": "Defines a file-based KPI dashboard for second-brain health with agent-delegable metrics computed from workflows.",
+        "details": "Computes principle-linked %, closeout pass rate, resumption quality, orphan ratio, core-project coverage, health score, and trend deltas using sessions/scenes/graph outputs. Produces metrics JSON + alert candidates with high cold-start resumability."
       },
+      "core_principles_linked": [
+        "principle/architecture_portable_tools_not",
+        "principle/agent_builds_agent_maintains",
+        "principle/principles_over_rules",
+        "principle/system_as_infrastructure"
+      ],
+      "pattern_links": [
+        "pattern/dan_codex_meta_workflow_v1",
+        "pattern/hyperfast_agent_session_loop",
+        "pattern/kpi_dashboard_audit_loop_v0"
+      ],
+      "tool_links": [
+        "tool/sb_graph_ingest_v0",
+        "tool/sb_kpi_compute_v0",
+        "tool/jq",
+        "tool/bash"
+      ],
+      "project_links": [
+        "project/dan_personal_cognitive_infrastructure"
+      ],
+      "related_artifact_links": [
+        "artifact/vision_alignment_audit_2026_02_15_v0",
+        "artifact/hyperfast_agent_workflow_v0_2026_02_15"
+      ],
       "resumption_score": 9,
-      "resumption_notes": "Load taxonomy + alias policy, sessions/*/index.json, and graph artifacts. Recompute from files in under 2 minutes.",
+      "resumption_notes": "Load taxonomy + alias policy, sessions indexes/artifacts, and graph/canonical outputs. Recompute from scratch in under two minutes.",
       "open_questions": [
         "1. Should dashboard include rolling 7-day and 30-day deltas by default?",
         "2. Should low KPI alerts auto-append to OPEN_QUESTIONS.md or remain agent-internal first?",
-        "3. Should KPI scope expand to project-specific profiles (e.g., kalshi_15m_btc_pipeline)?"
+        "3. Should KPI scope expand to sub-project profiles (for example kalshi_15m_btc_pipeline)?"
       ],
       "next_steps": [
-        "1. Run tools/sb_kpi_compute_v0.sh and validate report output.",
-        "2. Wire optional weekly trigger into meta-program sequence.",
-        "3. Fold dashboard deltas into vision alignment audit closeout."
+        "1. Run tools/sb_kpi_compute_v0.sh and validate metrics/alerts output.",
+        "2. Add optional weekly trigger in meta-program flow for periodic dashboard recompute.",
+        "3. Feed dashboard deltas into vision-alignment audit closeout."
       ],
       "thinking_trace_attachments": [
-        "Goal: keep KPI computation portable and deterministic with file-I/O only; defer external visualization dependencies."
+        "Keep KPI compute portable (file-I/O only), deterministic, and agent-runnable; defer visualization dependencies."
       ],
       "prompt_lineage": [
         {
@@ -33,45 +57,74 @@
         },
         {
           "role": "user",
-          "summary": "Expand KPI dashboard into an agent-runnable protocol with alerts and trend hooks"
+          "summary": "Expand KPI dashboard into agent-consumable protocol with alerts and trends"
         }
       ],
       "kpi_dashboard_protocol": {
-        "overview": "Agent-runnable protocol to compute/store/alert KPIs using local files only.",
+        "overview": "Agent-runnable protocol to compute, store, and alert on KPI health with file-I/O only.",
         "prerequisites": {
           "load_sequence": [
             "1. Taxonomy + canonical alias policy",
-            "2. sessions/*/*.json and sessions/*/index.json",
-            "3. graph/graph.json or graph/canonical.jsonl if available",
+            "2. sessions/*/index.json and sessions/*/*.json",
+            "3. graph/graph.json (or graph/canonical.jsonl)",
             "4. Closeout thresholds from meta/CLOSEOUT_CONTRACT_v0.md"
           ],
-          "assumptions": "No external APIs or databases; Bash/jq/Python allowed."
+          "assumptions": "No external APIs/DB; Bash/jq/Python available locally."
         },
         "computation_phases": {
           "phase_1_aggregate_data": {
-            "description": "Collect raw counts and compute base KPIs from sessions and graph outputs."
+            "description": "Scan raw sources and compute base metrics.",
+            "actions": [
+              "Count total and eligible artifacts",
+              "Compute principle_linked_pct",
+              "Compute closeout_pass_rate and resumption_avg",
+              "Compute orphan_ratio and coverage_from_core when graph is available",
+              "Compute health_score rollup"
+            ],
+            "output": "raw_metrics.json"
           },
           "phase_2_evaluate_and_alert": {
-            "description": "Compare to targets and emit alert candidates when degraded."
+            "description": "Compare metrics to targets and generate alerts.",
+            "targets": {
+              "principle_linked_pct": ">=70%",
+              "closeout_pass_rate": ">=90%",
+              "resumption_avg": ">=7.0",
+              "orphan_ratio": "<=10%",
+              "coverage_from_core": ">=80%",
+              "health_score": ">=8.0"
+            },
+            "actions": [
+              "Mark degraded KPIs",
+              "Generate remediation suggestions",
+              "Escalate repeated declines"
+            ],
+            "output": "alerts.json"
           },
           "phase_3_store_and_visualize": {
-            "description": "Persist structured metrics JSON and optional markdown table for operator scan."
+            "description": "Persist structured metrics and provide lightweight operator-friendly view.",
+            "actions": [
+              "Write reports/kpi_dashboard_metrics_v0.json",
+              "Optionally generate markdown table",
+              "Ingest updated scene/report pointers via graph ingest"
+            ],
+            "output": "metrics JSON + optional markdown"
           }
-        },
-        "targets_v0": {
-          "principle_linked_pct": ">=70%",
-          "closeout_pass_rate": ">=90%",
-          "resumption_avg": ">=7.0",
-          "orphan_ratio": "<=10%",
-          "coverage_from_core": ">=80%",
-          "health_score": ">=8.0"
         },
         "resumption_primitives": {
           "cold_compute": "Run tools/sb_kpi_compute_v0.sh --full-scan",
-          "incremental_update": "Recompute after closeout/ingest events",
-          "audit_integration": "Feed KPI snapshot into vision-alignment audit loop"
+          "incremental_update": "Recompute after closeout or ingest",
+          "audit_integration": "Feed metrics into vision-alignment audit loop"
         },
         "metrics_for_dashboard": {
+          "core_kpis": [
+            "principle_linked_pct",
+            "closeout_pass_rate",
+            "resumption_avg",
+            "orphan_ratio",
+            "coverage_from_core",
+            "health_score"
+          ],
+          "trends": "Track delta vs previous run",
           "dashboard_delegability_score_current": 8,
           "dashboard_delegability_score_target": 9
         }

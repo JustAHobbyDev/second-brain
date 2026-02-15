@@ -43,32 +43,33 @@ import os
 import sys
 from collections import defaultdict, deque
 from datetime import datetime, timezone
+from pathlib import Path
 
 repo_root, sessions_dir, graph_file, out_file, core_id = sys.argv[1:6]
 
 
 def load_json(path):
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-# Canonical principle IDs from scenes
+# Canonical principle IDs from scenes.
 principles = set()
-scenes_dir = os.path.join(repo_root, 'scenes')
+scenes_dir = os.path.join(repo_root, "scenes")
 if os.path.isdir(scenes_dir):
     for n in sorted(os.listdir(scenes_dir)):
-        if not n.endswith('.scene.json'):
+        if not n.endswith(".scene.json"):
             continue
         p = os.path.join(scenes_dir, n)
         try:
             s = load_json(p)
         except Exception:
             continue
-        nodes = s.get('nodes') if isinstance(s, dict) else None
+        nodes = s.get("nodes") if isinstance(s, dict) else None
         if isinstance(nodes, list):
             for node in nodes:
                 if isinstance(node, dict):
-                    nid = node.get('id')
-                    if isinstance(nid, str) and nid.startswith('principle/'):
+                    nid = node.get("id")
+                    if isinstance(nid, str) and nid.startswith("principle/"):
                         principles.add(nid)
 
 artifacts = []
@@ -77,7 +78,7 @@ for tool in sorted(os.listdir(sessions_dir)) if os.path.isdir(sessions_dir) else
     if not os.path.isdir(tdir):
         continue
     for fn in sorted(os.listdir(tdir)):
-        if not fn.endswith('.json') or fn == 'index.json':
+        if not fn.endswith(".json") or fn == "index.json":
             continue
         fp = os.path.join(tdir, fn)
         try:
@@ -86,73 +87,88 @@ for tool in sorted(os.listdir(sessions_dir)) if os.path.isdir(sessions_dir) else
             continue
         if not isinstance(obj, dict):
             continue
-        aid = obj.get('artifact_id') or obj.get('id')
+
+        aid = obj.get("artifact_id") or obj.get("id")
         if not isinstance(aid, str):
             continue
 
         p_links = []
-        if isinstance(obj.get('principle_links'), list):
-            p_links.extend([x for x in obj['principle_links'] if isinstance(x, str)])
-        links = obj.get('links')
-        if isinstance(links, dict) and isinstance(links.get('principles'), list):
-            p_links.extend([x for x in links['principles'] if isinstance(x, str)])
+        if isinstance(obj.get("principle_links"), list):
+            p_links.extend([x for x in obj["principle_links"] if isinstance(x, str)])
+        links = obj.get("links")
+        if isinstance(links, dict) and isinstance(links.get("principles"), list):
+            p_links.extend([x for x in links["principles"] if isinstance(x, str)])
 
+        summary = obj.get("summary")
         has_summary = False
-        s = obj.get('summary')
-        if isinstance(s, str):
-            has_summary = bool(s.strip())
-        elif isinstance(s, dict):
-            hl = s.get('high_level')
+        if isinstance(summary, str):
+            has_summary = bool(summary.strip())
+        elif isinstance(summary, dict):
+            hl = summary.get("high_level")
             has_summary = isinstance(hl, str) and bool(hl.strip())
 
-        has_decisions = isinstance(obj.get('key_decisions'), list) and any(isinstance(x, str) and x.strip() for x in obj.get('key_decisions', []))
-        if not has_decisions and isinstance(s, dict):
-            kd = s.get('key_decisions')
+        has_decisions = isinstance(obj.get("key_decisions"), list) and any(
+            isinstance(x, str) and x.strip() for x in obj.get("key_decisions", [])
+        )
+        if not has_decisions and isinstance(summary, dict):
+            kd = summary.get("key_decisions")
             has_decisions = isinstance(kd, list) and any(isinstance(x, str) and x.strip() for x in kd)
-        has_steps = isinstance(obj.get('next_steps'), list) and any(isinstance(x, str) and x.strip() for x in obj.get('next_steps', []))
 
-        rs = obj.get('resumption_score')
+        has_steps = isinstance(obj.get("next_steps"), list) and any(
+            isinstance(x, str) and x.strip() for x in obj.get("next_steps", [])
+        )
+
+        rs = obj.get("resumption_score")
         rs = rs if isinstance(rs, int) and 0 <= rs <= 10 else None
 
-        artifacts.append({
-            'artifact_id': aid,
-            'principles_total': len(p_links),
-            'principles_canonical': sum(1 for x in p_links if x in principles),
-            'has_principle': any(x in principles for x in p_links),
-            'non_trivial': has_summary and (has_decisions or has_steps),
-            'resumption_score': rs,
-        })
+        artifacts.append(
+            {
+                "artifact_id": aid,
+                "has_principle": any(x in principles for x in p_links),
+                "non_trivial": has_summary and (has_decisions or has_steps),
+                "resumption_score": rs,
+            }
+        )
 
-eligible = [a for a in artifacts if a['non_trivial']]
-with_principle = [a for a in eligible if a['has_principle']]
+eligible = [a for a in artifacts if a["non_trivial"]]
+with_principle = [a for a in eligible if a["has_principle"]]
 principle_linked_pct = round((100.0 * len(with_principle) / len(eligible)), 2) if eligible else 0.0
 
-v1 = [a for a in artifacts if a['resumption_score'] is not None]
-closeout_pass_rate = round((100.0 * len([a for a in v1 if a['resumption_score'] >= 6]) / len(v1)), 2) if v1 else 0.0
-resumption_avg = round(sum(a['resumption_score'] for a in v1) / len(v1), 2) if v1 else 0.0
+with_score = [a for a in artifacts if a["resumption_score"] is not None]
+closeout_pass_rate = (
+    round((100.0 * len([a for a in with_score if a["resumption_score"] >= 6]) / len(with_score)), 2)
+    if with_score
+    else 0.0
+)
+resumption_avg = round(sum(a["resumption_score"] for a in with_score) / len(with_score), 2) if with_score else 0.0
 
 orphan_ratio = None
 coverage_from_core = None
-
 if os.path.isfile(graph_file):
     try:
         g = load_json(graph_file)
-        nodes = g.get('nodes', []) if isinstance(g, dict) else []
-        edges = g.get('edges', []) if isinstance(g, dict) else []
-        node_ids = [n.get('id') for n in nodes if isinstance(n, dict) and isinstance(n.get('id'), str)]
+        nodes = g.get("nodes", []) if isinstance(g, dict) else []
+        edges = g.get("edges", []) if isinstance(g, dict) else []
+
+        node_ids = [n.get("id") for n in nodes if isinstance(n, dict) and isinstance(n.get("id"), str)]
         node_set = set(node_ids)
+
         degree = defaultdict(int)
         adj = defaultdict(set)
         for e in edges:
             if not isinstance(e, dict):
                 continue
-            a = e.get('from'); b = e.get('to')
+            a = e.get("from")
+            b = e.get("to")
             if isinstance(a, str) and isinstance(b, str):
-                degree[a] += 1; degree[b] += 1
+                degree[a] += 1
+                degree[b] += 1
                 adj[a].add(b)
+
         if node_set:
             orphans = [n for n in node_set if degree[n] < 1]
             orphan_ratio = round(100.0 * len(orphans) / len(node_set), 2)
+
             if core_id in node_set:
                 q = deque([core_id])
                 seen = {core_id}
@@ -171,10 +187,10 @@ if os.path.isfile(graph_file):
 # health score out of 10
 norm_principle = principle_linked_pct / 100.0
 norm_pass = closeout_pass_rate / 100.0
-norm_resumption = min(1.0, resumption_avg / 10.0) if resumption_avg is not None else 0.0
+norm_resumption = min(1.0, resumption_avg / 10.0) if isinstance(resumption_avg, (int, float)) else 0.0
 norm_coverage = (coverage_from_core / 100.0) if isinstance(coverage_from_core, (int, float)) else 0.0
 norm_orphan = 1.0 - ((orphan_ratio / 100.0) if isinstance(orphan_ratio, (int, float)) else 0.0)
-health_score = round(10.0 * (0.35*norm_principle + 0.25*norm_pass + 0.2*norm_resumption + 0.1*norm_coverage + 0.1*norm_orphan), 2)
+health_score = round(10.0 * (0.35 * norm_principle + 0.25 * norm_pass + 0.2 * norm_resumption + 0.1 * norm_coverage + 0.1 * norm_orphan), 2)
 
 alerts = []
 if principle_linked_pct < 70:
@@ -188,34 +204,79 @@ if isinstance(orphan_ratio, (int, float)) and orphan_ratio > 10:
 if isinstance(coverage_from_core, (int, float)) and coverage_from_core < 80:
     alerts.append("coverage_from_core below 80%")
 
+# Trend deltas vs previous dashboard file in same report dir.
+report_dir = Path(out_file).resolve().parent
+prior_files = sorted([p for p in report_dir.glob("kpi_dashboard_metrics_v0*.json") if str(p) != str(Path(out_file).resolve())])
+trend = None
+if prior_files:
+    try:
+        prev = load_json(prior_files[-1])
+        prev_metrics = prev.get("metrics", {}) if isinstance(prev, dict) else {}
+
+        def d(key, cur):
+            prev_v = prev_metrics.get(key)
+            if isinstance(prev_v, (int, float)) and isinstance(cur, (int, float)):
+                return round(cur - prev_v, 2)
+            return None
+
+        trend = {
+            "vs_previous_file": prior_files[-1].name,
+            "delta": {
+                "principle_linked_pct": d("principle_linked_pct", principle_linked_pct),
+                "closeout_pass_rate": d("closeout_pass_rate", closeout_pass_rate),
+                "resumption_avg": d("resumption_avg", resumption_avg),
+                "orphan_ratio": d("orphan_ratio", orphan_ratio),
+                "coverage_from_core": d("coverage_from_core", coverage_from_core),
+                "health_score": d("health_score", health_score),
+            },
+        }
+    except Exception:
+        trend = None
+
+dashboard_delegability_score = round(
+    min(
+        10.0,
+        0.4 * (principle_linked_pct / 100.0 * 10.0)
+        + 0.3 * (closeout_pass_rate / 100.0 * 10.0)
+        + 0.2 * resumption_avg
+        + 0.1 * health_score,
+    ),
+    2,
+)
+
 result = {
     "artifact_id": f"artifact/kpi_dashboard_metrics_{datetime.now(timezone.utc).strftime('%Y_%m_%d')}_v0",
-    "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
+    "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
     "targets": {
-      "principle_linked_pct": ">=70%",
-      "closeout_pass_rate": ">=90%",
-      "resumption_avg": ">=7.0",
-      "orphan_ratio": "<=10%",
-      "coverage_from_core": ">=80%",
-      "health_score": ">=8.0"
+        "principle_linked_pct": ">=70%",
+        "closeout_pass_rate": ">=90%",
+        "resumption_avg": ">=7.0",
+        "orphan_ratio": "<=10%",
+        "coverage_from_core": ">=80%",
+        "health_score": ">=8.0",
     },
     "metrics": {
-      "total_artifacts": len(artifacts),
-      "eligible_artifacts": len(eligible),
-      "principle_linked_pct": principle_linked_pct,
-      "closeout_pass_rate": closeout_pass_rate,
-      "resumption_avg": resumption_avg,
-      "orphan_ratio": orphan_ratio,
-      "coverage_from_core": coverage_from_core,
-      "health_score": health_score
+        "total_artifacts": len(artifacts),
+        "eligible_artifacts": len(eligible),
+        "principle_linked_pct": principle_linked_pct,
+        "closeout_pass_rate": closeout_pass_rate,
+        "resumption_avg": resumption_avg,
+        "orphan_ratio": orphan_ratio,
+        "coverage_from_core": coverage_from_core,
+        "health_score": health_score,
     },
-    "alerts": alerts
+    "dashboard_delegability": {
+        "value": dashboard_delegability_score,
+        "target": 9.0,
+    },
+    "alerts": alerts,
+    "trend": trend,
 }
 
 os.makedirs(os.path.dirname(out_file), exist_ok=True)
-with open(out_file, 'w', encoding='utf-8') as f:
+with open(out_file, "w", encoding="utf-8") as f:
     json.dump(result, f, indent=2)
-    f.write('\n')
+    f.write("\n")
 
 print(json.dumps(result, indent=2))
 PY

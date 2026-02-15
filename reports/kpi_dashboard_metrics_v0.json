@@ -1,6 +1,6 @@
 {
   "artifact_id": "artifact/kpi_dashboard_metrics_2026_02_15_v0",
-  "generated_at": "2026-02-15T14:42:01Z",
+  "generated_at": "2026-02-15T14:46:50Z",
   "targets": {
     "principle_linked_pct": ">=70%",
     "closeout_pass_rate": ">=90%",
@@ -19,9 +19,14 @@
     "coverage_from_core": 22.82,
     "health_score": 7.23
   },
+  "dashboard_delegability": {
+    "value": 7.61,
+    "target": 9.0
+  },
   "alerts": [
     "principle_linked_pct below 70%",
     "orphan_ratio above 10%",
     "coverage_from_core below 80%"
-  ]
+  ],
+  "trend": null
 }
