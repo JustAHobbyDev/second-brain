@@ -219,6 +219,20 @@ sessions/<assistant_or_tool>/YYYY-MM-DD-slug.json
 
 4. Update `sessions/<assistant_or_tool>/index.json` automatically on successful closeout (default policy). Use `--no-index` only for rare bulk/rollback cases.
 
+## 4. Pre-Commit Checkpoint Rule
+
+Enable repository hooks once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+After this, each commit auto-generates a staged-change checkpoint report:
+
+* `reports/checkpoints/<UTC_TIMESTAMP>_<work-slug>_checkpoint.md`
+* `reports/checkpoints/LATEST.md`
+* `reports/checkpoints/index.jsonl`
+
 This converts ephemeral conversation into infrastructure.
 
 ---
