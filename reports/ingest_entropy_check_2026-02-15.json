@@ -1,0 +1,47 @@
+{
+  "artifact_id": "artifact/ingest_entropy_check_2026_02_15_v0",
+  "audit_date": "2026-02-15",
+  "scope": {
+    "scenes_reviewed": 5,
+    "selection": "5 most recently modified scene files"
+  },
+  "ingest_entropy": {
+    "non_traversable_ratio_pct": 0.0,
+    "target_max_pct": 20.0,
+    "status": "pass"
+  },
+  "details": [
+    {
+      "scene": "scenes/agent-loop-testing.scene.json",
+      "nodes": 5,
+      "edges": 15,
+      "traversable": true
+    },
+    {
+      "scene": "scenes/kpi-dashboard.scene.json",
+      "nodes": 8,
+      "edges": 14,
+      "traversable": true
+    },
+    {
+      "scene": "scenes/hyperfast-agent-closeout.scene.json",
+      "nodes": 6,
+      "edges": 12,
+      "traversable": true
+    },
+    {
+      "scene": "scenes/deferred-nice-to-haves.scene.json",
+      "nodes": 4,
+      "edges": 7,
+      "traversable": true
+    },
+    {
+      "scene": "scenes/session_index_contract.scene.json",
+      "nodes": 6,
+      "edges": 11,
+      "traversable": true
+    }
+  ],
+  "policy_ref": "meta/GOVERNANCE_GRADIENT_SPEC_v0.md",
+  "generated_at": "2026-02-15T20:19:15Z"
+}

@@ -11,11 +11,13 @@ Compute and persist the first vision-alignment KPI:
 - `principle_linked_artifact_pct`
 
 ## Operation Signature
-`run_vision_alignment_audit(sessions_dir?, out_file?)`
+`run_vision_alignment_audit(sessions_dir?, out_file?, mutate?, trigger_out_file?)`
 
 ## Parameters
 - `sessions_dir` (optional, default `sessions/`): session artifact root.
 - `out_file` (optional, default `reports/vision_alignment_audit_v0.json`): JSON output path.
+- `mutate` (optional, default `no`): `no` = propose only, `yes` = emit remediation trigger file.
+- `trigger_out_file` (optional, default `reports/vision_alignment_audit_trigger_v0.json`): output path for proposed remediation trigger.
 
 ## KPI Definition (v0)
 - `principle_linked_artifact_pct = 100 * artifacts_with_principle_link / eligible_artifacts`
@@ -29,15 +31,21 @@ Compute and persist the first vision-alignment KPI:
 - Stretch: `>=85%`
 
 ## Procedure
-1. Run:
+1. Run (propose-only default):
    ```bash
    python3 scripts/run_vision_alignment_audit.py
    ```
-2. Inspect report at `reports/vision_alignment_audit_v0.json`.
-3. If below pass threshold, prioritize backfilling principle links in low-coverage artifacts.
+2. Optional: generate a remediation trigger (still no direct scene mutation):
+   ```bash
+   python3 scripts/run_vision_alignment_audit.py --mutate yes
+   ```
+3. Inspect report at `reports/vision_alignment_audit_v0.json`.
+4. If below pass threshold, prioritize backfilling principle links in low-coverage artifacts.
+5. If using `--mutate yes`, review `reports/vision_alignment_audit_trigger_v0.json` manually before any changes.
 
 ## Definition of Done
 - [ ] Report JSON generated.
 - [ ] KPI value and status computed.
 - [ ] Missing-principle artifact IDs listed.
 - [ ] Next actions captured.
+- [ ] No automatic scene mutation performed by audit run.
