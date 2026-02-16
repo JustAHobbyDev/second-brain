@@ -7,10 +7,11 @@ OUT_FILE="${REPO_ROOT}/reports/kpi_dashboard_metrics_v0.json"
 SESSIONS_DIR="${REPO_ROOT}/sessions"
 GRAPH_FILE="${REPO_ROOT}/graph/graph.json"
 CORE_ID="project/dan_personal_cognitive_infrastructure"
+COORD_KPI_FILE="${REPO_ROOT}/state/coord_kpi_v0.json"
 
 usage() {
   cat <<USAGE
-Usage: $(basename "$0") [--out-file <path>] [--sessions-dir <path>] [--graph-file <path>] [--core-id <project-id>] [--full-scan]
+Usage: $(basename "$0") [--out-file <path>] [--sessions-dir <path>] [--graph-file <path>] [--core-id <project-id>] [--coord-kpi-file <path>] [--full-scan]
 
 Computes KPI dashboard metrics from local second-brain files.
 USAGE
@@ -26,6 +27,8 @@ while [[ $# -gt 0 ]]; do
       GRAPH_FILE="$2"; shift 2 ;;
     --core-id)
       CORE_ID="$2"; shift 2 ;;
+    --coord-kpi-file)
+      COORD_KPI_FILE="$2"; shift 2 ;;
     --full-scan)
       shift ;;
     -h|--help)
@@ -37,7 +40,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-python3 - "$REPO_ROOT" "$SESSIONS_DIR" "$GRAPH_FILE" "$OUT_FILE" "$CORE_ID" <<'PY'
+python3 - "$REPO_ROOT" "$SESSIONS_DIR" "$GRAPH_FILE" "$OUT_FILE" "$CORE_ID" "$COORD_KPI_FILE" <<'PY'
 import json
 import os
 import sys
@@ -45,7 +48,7 @@ from collections import defaultdict, deque
 from datetime import datetime, timezone
 from pathlib import Path
 
-repo_root, sessions_dir, graph_file, out_file, core_id = sys.argv[1:6]
+repo_root, sessions_dir, graph_file, out_file, core_id, coord_kpi_file = sys.argv[1:7]
 
 
 def load_json(path):
@@ -244,6 +247,24 @@ dashboard_delegability_score = round(
     2,
 )
 
+coord_kpis = {
+    "claims_written": 0,
+    "warnings_emitted": 0,
+    "edits_without_claim": 0,
+}
+if os.path.isfile(coord_kpi_file):
+    try:
+        c = load_json(coord_kpi_file)
+        if isinstance(c, dict):
+            for k in coord_kpis:
+                if isinstance(c.get(k), int):
+                    coord_kpis[k] = c[k]
+    except Exception:
+        pass
+
+if coord_kpis["edits_without_claim"] > 0:
+    alerts.append("edits_without_claim above 0")
+
 result = {
     "artifact_id": f"artifact/kpi_dashboard_metrics_{datetime.now(timezone.utc).strftime('%Y_%m_%d')}_v0",
     "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -254,6 +275,7 @@ result = {
         "orphan_ratio": "<=10%",
         "coverage_from_core": ">=80%",
         "health_score": ">=8.0",
+        "edits_without_claim": "==0",
     },
     "metrics": {
         "total_artifacts": len(artifacts),
@@ -264,6 +286,9 @@ result = {
         "orphan_ratio": orphan_ratio,
         "coverage_from_core": coverage_from_core,
         "health_score": health_score,
+        "claims_written": coord_kpis["claims_written"],
+        "warnings_emitted": coord_kpis["warnings_emitted"],
+        "edits_without_claim": coord_kpis["edits_without_claim"],
     },
     "dashboard_delegability": {
         "value": dashboard_delegability_score,
