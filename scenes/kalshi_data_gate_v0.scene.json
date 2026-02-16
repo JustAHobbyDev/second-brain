@@ -1,0 +1,37 @@
+{
+  "node_id": "scene/kalshi_data_gate_v0",
+  "scene_type": "scoped_hard_gate",
+  "version": "0.2",
+  "summary": "Scoped data window gate for the Kalshi 15m BTC pipeline. Blocks only Kalshi-specific pipeline work until 200/200 usable windows. All other second-brain work is explicitly allowed.",
+  "scope": [
+    "project/kalshi_15m_btc_pipeline"
+  ],
+  "current_status": {
+    "usable_windows": 94,
+    "required": 200,
+    "deficit": 106,
+    "status": "BLOCKED_FOR_KALSHI_ONLY",
+    "last_checked": "2026-02-15"
+  },
+  "rule": "No changes to the Kalshi pipeline, no Phase 10+ ladder steps, no merges into kalshi_15m_btc_pipeline.scene.json until 200/200 usable windows are reached. All other work in the second-brain (governance, meta, tools, other projects, rituals, etc.) is explicitly permitted.",
+  "invariant_links": [
+    "inv/structural_legibility_min_band"
+  ],
+  "project_links": [
+    "project/kalshi_15m_btc_pipeline"
+  ],
+  "principle_links": [
+    "principle/principles_scale_better_than_rigid_rules"
+  ],
+  "pattern_links": [
+    "pattern/hyperfast_session_checklist_v0"
+  ],
+  "next_steps": [
+    "Daily automated window count update via data pipeline",
+    "Alert only when Kalshi-related work is attempted while blocked",
+    "Re-evaluate gate scope if behavior remains overly restrictive"
+  ],
+  "resumption_score": 10,
+  "resumption_notes": "Load this scene + governance.scene.json + gradient_spec to understand current gate state.",
+  "standard_version": "TERMINOLOGY_STANDARD_v0"
+}
