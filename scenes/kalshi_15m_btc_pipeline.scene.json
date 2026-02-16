@@ -84,6 +84,12 @@
       "type": "artifact_pointer",
       "label": "Codex narrative closeout 2026-02-15",
       "path": "sessions/codex/2026-02-15-kalshi-development-narrative-v0.json"
+    },
+    {
+      "id": "scene/kalshi_data_gate_v0",
+      "type": "scene",
+      "label": "Kalshi data gate v0",
+      "summary": "Scoped hard gate enforcing 200/200 usable Kalshi windows before Phase 10+ work."
     }
   ],
   "edges": [
@@ -109,6 +115,7 @@
     { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1", "type": "synthesizes" },
     { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep", "type": "synthesizes" },
     { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "artifact/pressure_test_summary_2026_02_15_v0", "type": "synthesizes" },
-    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "inv/structural_legibility_min_band", "type": "references" }
+    { "from": "artifact/codex_2026_02_15_kalshi-development-narrative_v0", "to": "inv/structural_legibility_min_band", "type": "references" },
+    { "from": "project/kalshi_15m_btc_pipeline", "to": "scene/kalshi_data_gate_v0", "type": "has_gate" }
   ]
 }
