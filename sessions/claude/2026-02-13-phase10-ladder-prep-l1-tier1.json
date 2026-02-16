@@ -57,5 +57,5 @@
     }
   ],
   "resumption_score": 8,
-  "resumption_notes": "Load checkpoint v1.86, read scripts/phase9_feature_ablation_ladder.py (L1_TIER1_COLUMNS + position_plus_l1_tier1_v1 policy), scripts/phase9_anchor_additive_promotion_v5.py, plan file at Claude-plans/plans/purrfect-brewing-fiddle.md. Key state: 94/200 data gate, daemon PID 1111491 may or may not be alive, commit 990f9ff is HEAD. All 4 pipeline steps scripted and tested - just needs data."
+  "resumption_notes": "Load checkpoint v1.86, read scripts/phase9_feature_ablation_ladder.py (L1_TIER1_COLUMNS + position_plus_l1_tier1_v1 policy), scripts/phase9_anchor_additive_promotion_v5.py, plan file `purrfect-brewing-fiddle.md` in the local Claude plans directory. Key state: 94/200 data gate, daemon PID 1111491 may or may not be alive, commit 990f9ff is HEAD. All 4 pipeline steps scripted and tested - just needs data."
 }
