@@ -12,7 +12,13 @@
       "date": "2026-02-15",
       "resumption_score": 8,
       "summary_snippet": "Session aligned repo workflow documentation (AGENTS.md) with canonical second-brain governance invariants (inv/observability_entropy, inv/vision_alignment, i..."
+    },
+    {
+      "id": "artifact/claude_2026_02_15_fix-l1-pipeline-bridge-path",
+      "date": "2026-02-15",
+      "resumption_score": 9,
+      "summary_snippet": "Fixed l1-track1-flow-v2 by pointing bridge at raw/, auto-deriving windows, rerunning full flow (gate 161/200) and emitting checkpoint v1.88."
     }
   ],
-  "last_updated": "2026-02-15T23:59:10Z"
+  "last_updated": "2026-02-16T00:45:00Z"
 }

@@ -1,0 +1,55 @@
+{
+  "artifact_id": "artifact/claude_2026_02_15_fix-l1-pipeline-bridge-path",
+  "session_date": "2026-02-15",
+  "llm_used": "claude",
+  "project_links": ["project/kalshi-15m-btc-pipeline"],
+  "principle_links": [
+    "principle/agent_builds_agent_maintains",
+    "principle/system_as_infrastructure",
+    "principle/architecture_portable_tools_not"
+  ],
+  "pattern_links": [
+    "pattern/session_artifact_resumption_loop",
+    "pattern/dan_codex_meta_workflow_v1"
+  ],
+  "tool_links": ["tool/claude"],
+  "related_artifact_links": [
+    "artifact/checkpoint_v1.88",
+    "artifact/checkpoint_v1.87",
+    "artifact/checkpoint_v1.86"
+  ],
+  "summary": "Diagnosed and fixed the broken l1-track1-flow-v2 pipeline. Root cause: bridge script's default input path pointed at nonexistent `data/kalshi_l1/raw_v1/` while the daemon writes to `data/kalshi_l1/raw/`, and the windows file was stale with no script to regenerate it. Fixed paths_v2.py defaults, created extract_l1_windows.py to auto-derive window boundaries from raw data, and rewired the Justfile flow. Confirmed daemon is live (96,811+ events across 3 days). Data gate at 161/200 usable windows — deficit of 39 windows (~10 hours). Deferred daemon v2 native upgrade to OPEN_QUESTIONS.md; chose Option B (fix bridge path, keep daemon on v1). Full flow verified end-to-end, v2 contract tests passing. Emitted checkpoint v1.88.",
+  "key_decisions": [
+    "Option B for v1-to-v2 migration: keep daemon on v1 schema, fix bridge input path to read from raw/ with l1_ticker_*.jsonl glob",
+    "Created extract_l1_windows.py to eliminate stale/manual windows file — windows are now derived from raw_v2 market IDs on every flow run",
+    "Deferred daemon v2 native upgrade as open question — revisit on next daemon restart or refactor",
+    "Confirmed raw/ (v1 per-ticker) is daemon's authoritative output; raw_v2/ (date-partitioned) is derived by bridge each run"
+  ],
+  "open_questions": [
+    "1. Should the L1 capture daemon be upgraded to write kalshi_l1_raw_v2 schema natively, eliminating the bridge step? Deferred — revisit on next daemon restart.",
+    "2. Data gate at 161/200 — will it pass by Feb 16 morning UTC? Monitor with `just l1-track1-flow-v2` then `just phase10-count-windows`.",
+    "3. What follow-on policy expansion plan after minimal_price_v1 to recover full_v1-level edge? (Carried from prior sessions)"
+  ],
+  "next_steps": [
+    "~Feb 16 morning UTC: run `just l1-track1-flow-v2` then `just phase10-count-windows` to check gate",
+    "On gate pass (>=200): run `just phase10-build-features` → `just phase10-join-features` → `just phase9-anchor-additive-promotion-v5`",
+    "Decision rule: Tier 1 passes robustness gate → implement Tier 2 features; fails → wait for more data"
+  ],
+  "thinking_trace_attachments": [
+    "Bridge failure trace: `No input files matched: data/kalshi_l1/raw_v1/*.jsonl` — daemon writes to data/kalshi_l1/raw/ not raw_v1/",
+    "Gate output: {usable_windows: 161, min_windows_required: 200, gate_passed: false, date_range: '2026-02-13T20:15:00Z → 2026-02-15T16:30:00Z'}",
+    "Flow verified: bridge(97092 rows) → resample(10,340,080 canonical 1s) → extract(183 windows) → align(183 written, 159 tradeable open, 123 tradeable close)"
+  ],
+  "prompt_lineage": [
+    {
+      "role": "system",
+      "ref": "prompts/second_brain_session_preamble.md",
+      "summary": "Second-brain workflow with state transition model and structured artifact closeout"
+    },
+    {"role": "user", "summary": "Review data gate; daemon may have crashed; diagnose pipeline failures"},
+    {"role": "user", "summary": "Clarify raw vs raw_v2 directories; choose migration approach (B: fix bridge, defer daemon upgrade)"},
+    {"role": "user", "summary": "Confirm session complete, emit structured closeout artifact"}
+  ],
+  "resumption_score": 9,
+  "resumption_notes": "Load checkpoints/kalshi-ml-trading-pipeline-progress-v1.88.md first. Key files: scripts/lib/kalshi_l1/paths_v2.py (fixed defaults), scripts/extract_l1_windows.py (new), Justfile (l1-track1-flow-v2 updated). Daemon writes v1 to data/kalshi_l1/raw/, bridge converts to raw_v2/. Single command to rebuild: `just l1-track1-flow-v2`. Gate needs >=200 usable windows; was 161 at session close. PHASE10_SPEC.md has full Phase 10 task list. OPEN_QUESTIONS.md has deferred daemon v2 upgrade."
+}
