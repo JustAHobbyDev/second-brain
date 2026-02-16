@@ -1,0 +1,44 @@
+{
+  "artifact_id": "artifact/terminology_consistency_stress_test_2026_02_15_v0",
+  "audit_date": "2026-02-15",
+  "scope": {
+    "sessions_dir": "/tmp/gauntlet_term_stress_sessions",
+    "artifacts_scanned": 11,
+    "scan_limit": 200
+  },
+  "kpi": {
+    "name": "terminology_fidelity_pct",
+    "definition": "Percent of scanned artifacts without detected terminology-conflation patterns",
+    "target_pct": 100.0,
+    "value_pct": 81.82,
+    "status": "fail"
+  },
+  "violations": [
+    {
+      "artifact_id": "artifact/codex_2026_02_15_term-conflation-stress-two",
+      "artifact_path": "gauntlet_term_stress_sessions/codex/2026-02-15-term-conflation-stress-two.json",
+      "violation_id": "schema_semantics_conflation",
+      "description": "schema referenced as semantic model; likely ontology term intended",
+      "snippet": "e graph is the primary source of truth; schema is the ontology meaning model. conflation test 1. keep? fix wording t"
+    },
+    {
+      "artifact_id": "artifact/codex_2026_02_15_term-conflation-stress-two",
+      "artifact_path": "gauntlet_term_stress_sessions/codex/2026-02-15-term-conflation-stress-two.json",
+      "violation_id": "graph_source_of_truth_conflation",
+      "description": "graph described as source of truth; scenes should be source of truth",
+      "snippet": "Knowledge graph is the primary source of truth; schema is the ontology meaning model."
+    },
+    {
+      "artifact_id": "artifact/codex_2026_02_15_term-conflation-stress-one",
+      "artifact_path": "gauntlet_term_stress_sessions/codex/2026-02-15-term-conflation-stress-one.json",
+      "violation_id": "taxonomy_semantic_conflation",
+      "description": "taxonomy referenced with semantic-edge language; likely ontology/graph term intended",
+      "snippet": "Using taxonomy edges and semantic relationships to define implements/extends behavior. conflation test 1. keep? fix"
+    }
+  ],
+  "next_actions": [
+    "Review flagged snippets and rewrite term usage if conflation is real.",
+    "Run this scan in weekly audits and after terminology standard updates."
+  ],
+  "generated_at": "2026-02-15T21:30:21Z"
+}

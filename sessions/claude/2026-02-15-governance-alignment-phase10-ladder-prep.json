@@ -1,0 +1,61 @@
+{
+  "artifact_id": "artifact/claude_2026_02_15_governance-alignment-phase10-ladder-prep",
+  "session_date": "2026-02-15",
+  "llm_used": "claude",
+  "project_links": [
+    "project/kalshi_15m_btc_pipeline"
+  ],
+  "principle_links": [
+    "principle/principles_over_rules",
+    "principle/system_as_infrastructure",
+    "principle/agent_builds_agent_maintains"
+  ],
+  "pattern_links": [
+    "pattern/session_artifact_resumption_loop",
+    "pattern/dan_codex_meta_workflow_v1"
+  ],
+  "tool_links": [
+    "tool/claude"
+  ],
+  "related_artifact_links": [
+    "artifact/claude_2026_02_13_phase10-tasks-and-phase9-ladder-exhaust"
+  ],
+  "summary": "Session aligned repo workflow documentation (AGENTS.md) with canonical second-brain governance invariants (inv/observability_entropy, inv/vision_alignment, inv/agent_resumption_min_8, inv/derived_view_integrity). Codified KPI behavior as strict track-only (no automatic mutation of artifacts) and confirmed hard gates remain contracts-first. Prepared Phase 10 L1 Tier 1 additive promotion v5 script with position_plus_l1_tier1_v1 policy (4 L1 path features on price_position_only anchor), 11 contract tests, and Justfile task - all blocked on data gate (94 usable windows of 200 needed). Three checkpoints produced (v1.85-v1.87). Session crashed before normal closeout.",
+  "key_decisions": [
+    "KPI outputs are strict track-only: they can alert and propose but never block commits/merges or auto-mutate artifacts",
+    "Hard gates remain contracts-first: contract tests + strict robustness gates + precommit checks are the only blocking mechanisms",
+    "Governance invariant IDs adopted from second-brain canonical mapping (inv/observability_entropy, inv/vision_alignment, inv/agent_resumption_min_8, inv/derived_view_integrity)",
+    "Phase 10 Tier 1 candidate policy defined as position_plus_l1_tier1_v1 (mid_change_rate, rv_front_half, rv_back_half, spread_mean on price_position_only anchor)",
+    "Any KPI-suggested changes must route through OPEN_QUESTIONS.md and explicit human decision before implementation"
+  ],
+  "open_questions": [
+    "1. When will the data gate pass (>= 200 usable aligned windows)? Last count was 94 - estimated ~31 hours remaining at current capture rate",
+    "2. What follow-on policy expansion plan should be used after minimal_price_v1 pass to recover full_v1-level edge without reintroducing stability-budget failures? (OPEN_QUESTIONS.md, unresolved)",
+    "3. What exact Track2 L2 reconstruction contract should be enforced (snapshot cadence, delta replay invariants, checkpoint cadence, recovery policy)? (OPEN_QUESTIONS.md, unresolved)",
+    "4. At what data volume should we switch from JSONL files to a columnar or indexed store? (OPEN_QUESTIONS.md, unresolved)"
+  ],
+  "next_steps": [
+    "Monitor data gate with `just phase10-count-windows` - run when capture daemon has accumulated enough hours",
+    "When gate passes (>= 200 windows): execute full Phase 10 pipeline (phase10-build-features -> phase10-join-features -> phase9-anchor-additive-promotion-v5)",
+    "If Tier 1 passes strict gate: implement Tier 2 L1 features; if fails: wait for more data or re-evaluate feature selection",
+    "Route any KPI-suggested changes through OPEN_QUESTIONS.md per new governance policy"
+  ],
+  "thinking_trace_attachments": [
+    "Phase 9 additive ladder exhausted at price_position_only - volume_derived (delta=-0.022), rows_derived (delta=0.000), missingness_derived (delta=0.000) all keep_anchor under strict +0.10 delta gate",
+    "L1 Tier 1 columns: mid_change_rate, rv_front_half, rv_back_half, spread_mean - derived from 1-second resampled L1 book data",
+    "164/164 tests passing at session end including 11 new v5 promotion contracts"
+  ],
+  "prompt_lineage": [
+    {
+      "role": "system",
+      "ref": "AGENTS.md governance mapping alignment section",
+      "summary": "Canonical governance invariant IDs and KPI/gate policy"
+    },
+    {
+      "role": "user",
+      "summary": "Align workflow docs to second-brain governance invariants and prepare Phase 10 ladder execution"
+    }
+  ],
+  "resumption_score": 8,
+  "resumption_notes": "Load AGENTS.md (governance rules), PLAN.md (phase status), OPEN_QUESTIONS.md (unresolved items), and checkpoints v1.85-v1.87 for full context. Key state: Phase 10 code is fully ready (scripts/phase9_anchor_additive_promotion_v5.py, scripts/join_phase10_features.py) but blocked on data gate (94/200 usable windows). L1 capture daemon should still be running. Next action is checking `just phase10-count-windows` and running the pipeline when gate passes."
+}

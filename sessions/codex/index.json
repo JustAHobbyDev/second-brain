@@ -32,11 +32,23 @@
       "summary_snippet": "Ran agent-owned vision-alignment audit loop. KPI principle_linked_artifact_pct=57.14% with status=fail. Missing-principle artifacts: 3."
     },
     {
+      "id": "artifact/codex_2026_02_15_bootstrap-refactor-simulation-run",
+      "date": "2026-02-15",
+      "resumption_score": 8,
+      "summary_snippet": "Simulated human bootstrap-refactor session to test policy-constrained refactor planning and closure quality."
+    },
+    {
       "id": "artifact/codex_2026_02_15_kalshi-development-narrative_v0",
       "date": "2026-02-15",
       "resumption_score": 9,
       "summary_snippet": "Evidence-only narrative from second-brain artifacts: (1) Phase 8 was closed out on 2026-02-12 with a handoff toward Phase 9 planning. (2) A 2026-02-13 codex ..."
+    },
+    {
+      "id": "artifact/codex_2026_02_15_oq-closeout-simulation-run",
+      "date": "2026-02-15",
+      "resumption_score": 8,
+      "summary_snippet": "Simulated human OQ closeout session to test resumable closure quality under governance constraints."
     }
   ],
-  "last_updated": "2026-02-15T23:57:00Z"
+  "last_updated": "2026-02-15T23:59:10Z"
 }

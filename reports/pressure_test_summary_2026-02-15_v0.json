@@ -1,0 +1,78 @@
+{
+  "artifact_id": "artifact/pressure_test_summary_2026_02_15_v0",
+  "test_date": "2026-02-15",
+  "scope": "Step 4 pressure gauntlet with Kalshi runtime bias",
+  "results": {
+    "agent_loops": [
+      {
+        "id": "agent_loop_happy_path_governance_overlap",
+        "status": "pass",
+        "evidence": "reports/agent_loop_test_run_governance_overlap_2026-02-15.json",
+        "notes": "1 scenario run, matched expectation, no closeout contract regressions."
+      },
+      {
+        "id": "agent_owned_vision_audit_loop",
+        "status": "pass",
+        "evidence": "sessions/codex/2026-02-15-agent-owned-vision-audit-loop.json",
+        "notes": "Audit loop completed with closeout and scene suggestions."
+      },
+      {
+        "id": "terminology_scan_loop_n25",
+        "status": "pass",
+        "evidence": "reports/terminology_consistency_audit_v0_n25.json",
+        "notes": "No terminology conflations detected in scanned artifacts."
+      }
+    ],
+    "human_session_simulations": [
+      {
+        "id": "oq_closeout_simulation",
+        "status": "pass",
+        "evidence": "sessions/codex/2026-02-15-oq-closeout-simulation-run.json"
+      },
+      {
+        "id": "bootstrap_refactor_simulation",
+        "status": "pass",
+        "evidence": "sessions/codex/2026-02-15-bootstrap-refactor-simulation-run.json"
+      }
+    ],
+    "kalshi_runtime_pressure": {
+      "id": "phase10_window_gate",
+      "status": "blocked_by_data_gate",
+      "command": "just phase10-count-windows",
+      "usable_windows": 94,
+      "required_windows": 200,
+      "deficit": 106,
+      "notes": "Gate behavior is correct and explicit; no policy drift observed."
+    },
+    "ingest_and_mapping_integrity": {
+      "status": "pass",
+      "evidence": [
+        "graph/graph.json",
+        "graph/canonical.jsonl"
+      ],
+      "summary": "Mechanism-to-invariant mapping remains 1:1 with zero detected overlaps."
+    },
+    "terminology_refactor_stress_check": {
+      "status": "pass",
+      "evidence": "reports/terminology_consistency_stress_test_2026-02-15.json",
+      "notes": "Injected two synthetic conflation artifacts in isolated temp sessions; scanner detected 3 violations as expected."
+    }
+  },
+  "friction_metrics": {
+    "hard_breaks": 0,
+    "soft_breaks": 1,
+    "soft_break_details": [
+      "Kalshi runtime check required elevated execution for uv cache access in sandbox context."
+    ],
+    "ritual_skips": 0
+  },
+  "remaining_gauntlet_items": [
+    "Run expanded pressure cycle after Kalshi data gate passes (>=200 windows)."
+  ],
+  "fork_decision_bias": {
+    "recommended_path": "B",
+    "label": "kalshi_runtime_pressure_path",
+    "rationale": "Governance and audit semantics held under runtime checks; highest leverage now is data-gated Kalshi execution under stable invariants."
+  },
+  "generated_at": "2026-02-15T21:29:56Z"
+}

@@ -1,6 +1,11 @@
 {
   "artifact_id": "artifact/vision_alignment_audit_2026_02_15_v0",
   "audit_date": "2026-02-15",
+  "mutation_policy": {
+    "mode": "propose_only",
+    "mutate_requested": false,
+    "scene_mutation_performed": false
+  },
   "kpi": {
     "name": "principle_linked_artifact_pct",
     "definition": "Percent of non-trivial session artifacts with >=1 canonical principle link",
