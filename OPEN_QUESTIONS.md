@@ -30,6 +30,7 @@
 - **Date:** 2026-02-15
 - **Status:** Open
 - **Why it matters:** Could prevent scope spill and keep delegated loops aligned with hyperfast constraints.
+- **Related draft mechanism:** `meta/PUBSUB_BUS_SPEC_v0.md` (track-only); if activated later, approval-intent events should stay advisory and must not become an implicit hard gate.
 
 ### OQ-4: How should multi-agent coordination be controlled (audit agent vs execution agent) to avoid scene/file contention?
 
@@ -37,6 +38,9 @@
 - **Date:** 2026-02-15
 - **Status:** Open
 - **Why it matters:** Without locking/ownership rules, concurrent agents can create non-deterministic edits.
+- **Current baseline:** `coord_claims.md` remains the primary single-surface coordination log.
+- **Draft path:** `meta/PUBSUB_BUS_SPEC_v0.md` defines a file-native bus (`state/pubsub/events_v0.ndjson`) and is intentionally `track-only`.
+- **Migration trigger:** consider moving from `coord_claims.md` to pub/sub when there are `>=3` recurring consumers.
 
 ---
 
@@ -88,3 +92,9 @@ The `drift_signals` object in `kalshi_phase_history.scene.json` (fields: `regres
 - **Selected KPI:** `principle_linked_artifact_pct`
 - **Rationale:** Most directly aligned with principle-grounded agent resumability and computable immediately without requiring full graph ingest maturity.
 - **Targets:** pass `>=75%`, stretch `>=85%` for non-trivial session artifacts.
+
+### 2026-02-16 — Codex — Pub/Sub v0 drafted (deferred activation)
+
+- **Context:** Added `meta/PUBSUB_BUS_SPEC_v0.md` plus `tools/sb_pubsub_publish_v0.sh` and `tools/sb_pubsub_poll_v0.sh` as a draft coordination bus.
+- **Decision:** Keep `coord_claims.md` as the active coordination surface for now.
+- **Activation trigger:** Reconsider migration when there are `>=3` recurring consumers and fan-out duplication justifies the extra surface area.

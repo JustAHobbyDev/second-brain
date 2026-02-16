@@ -17,3 +17,4 @@
 {"timestamp":"2026-02-16T06:05:23Z","branch":"main","head_before_commit":"49029ea","report_path":"reports/checkpoints/20260216T060523Z_kalshi-15m-btc-pipeline-scene_checkpoint.md","files_changed":1,"insertions":8,"deletions":1}
 {"timestamp":"2026-02-16T06:05:26Z","branch":"main","head_before_commit":"49029ea","report_path":"reports/checkpoints/20260216T060526Z_kalshi-15m-btc-pipeline-scene_checkpoint.md","files_changed":1,"insertions":8,"deletions":1}
 {"timestamp":"2026-02-16T06:07:09Z","branch":"main","head_before_commit":"57b0af8","report_path":"reports/checkpoints/20260216T060709Z_governance-gradient-spec-v0_checkpoint.md","files_changed":1,"insertions":31,"deletions":0}
+{"timestamp":"2026-02-16T13:22:03Z","branch":"main","head_before_commit":"8dbc7bc","report_path":"reports/checkpoints/20260216T132203Z_open-questions-pubsub-bus-spec-v0-sb-pubsub-poll-v0_checkpoint.md","files_changed":4,"insertions":397,"deletions":0}
