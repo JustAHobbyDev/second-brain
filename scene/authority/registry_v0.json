@@ -1,50 +1,55 @@
 {
   "registry_id": "scene/authority/registry_v0",
-  "version": "0.1",
+  "version": "0.2",
   "status": "active",
   "enforcement_level": 2,
   "enforcement_mode": "track_only",
   "project_scope": "project/dan_personal_cognitive_infrastructure",
+  "blocked_state_ref": {
+    "gate_scene": "scenes/kalshi_data_gate_v0.scene.json",
+    "gate_scope": "project/kalshi_15m_btc_pipeline",
+    "gate_status": "BLOCKED_FOR_KALSHI_ONLY"
+  },
+  "initial_agents": [
+    "agent/orchestrator_v0",
+    "agent/auditor_v0",
+    "agent/maintainer_kalshi_v0"
+  ],
   "authority_tuples": [
     {
-      "authority_id": "auth/orchestrator_task_queue_v0",
+      "authority_id": "auth/orchestrator_routing_v0",
       "agent_id": "agent/orchestrator_v0",
-      "scope": ["scene/task_queue/", "scene/authority/"],
+      "scope": [
+        "scene/task_queue/",
+        "scene/authority/",
+        "scene/agent/"
+      ],
       "allowed_mutations": ["UPDATE"],
-      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "scope_only",
+        "respect_scoped_gates"
+      ],
       "issued_by": "agent/orchestrator_v0",
       "issued_at": "2026-02-16T14:00:00Z",
       "expires_at": null,
       "revocation": null
     },
     {
-      "authority_id": "auth/orchestrator_propose_specs_projects_v0",
+      "authority_id": "auth/orchestrator_governance_proposals_v0",
       "agent_id": "agent/orchestrator_v0",
-      "scope": ["project/", "spec/"],
+      "scope": [
+        "project/",
+        "spec/",
+        "inv/"
+      ],
       "allowed_mutations": ["PROPOSE"],
-      "conditions": ["must_record_mutation", "no_direct_activate_without_authority"],
-      "issued_by": "agent/orchestrator_v0",
-      "issued_at": "2026-02-16T14:00:00Z",
-      "expires_at": null,
-      "revocation": null
-    },
-    {
-      "authority_id": "auth/maintainer_generic_domain_v0",
-      "agent_id": "agent/maintainer_domain_v0",
-      "scope": ["scene/<domain>/"],
-      "allowed_mutations": ["CREATE", "UPDATE", "ARCHIVE"],
-      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
-      "issued_by": "agent/orchestrator_v0",
-      "issued_at": "2026-02-16T14:00:00Z",
-      "expires_at": null,
-      "revocation": null
-    },
-    {
-      "authority_id": "auth/maintainer_propose_elsewhere_v0",
-      "agent_id": "agent/maintainer_domain_v0",
-      "scope": ["project/", "spec/", "inv/"],
-      "allowed_mutations": ["PROPOSE"],
-      "conditions": ["must_record_mutation"],
+      "conditions": [
+        "must_record_mutation",
+        "no_direct_activate_without_authority",
+        "no_global_gate_changes"
+      ],
       "issued_by": "agent/orchestrator_v0",
       "issued_at": "2026-02-16T14:00:00Z",
       "expires_at": null,
@@ -53,9 +58,16 @@
     {
       "authority_id": "auth/auditor_reports_only_v0",
       "agent_id": "agent/auditor_v0",
-      "scope": ["scene/audit_reports/"],
+      "scope": [
+        "scene/audit_reports/v0/"
+      ],
       "allowed_mutations": ["CREATE"],
-      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "scope_only",
+        "track_only_reporting"
+      ],
       "issued_by": "agent/orchestrator_v0",
       "issued_at": "2026-02-16T14:00:00Z",
       "expires_at": null,
@@ -64,9 +76,69 @@
     {
       "authority_id": "auth/auditor_propose_elsewhere_v0",
       "agent_id": "agent/auditor_v0",
-      "scope": ["project/", "spec/", "scene/"],
+      "scope": [
+        "project/",
+        "spec/",
+        "scene/"
+      ],
       "allowed_mutations": ["PROPOSE"],
-      "conditions": ["must_record_mutation"],
+      "conditions": [
+        "must_record_mutation",
+        "no_direct_mutation_outside_reports"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_kalshi_gate_updates_v0",
+      "agent_id": "agent/maintainer_kalshi_v0",
+      "scope": [
+        "scenes/kalshi_data_gate_v0.scene.json"
+      ],
+      "allowed_mutations": ["UPDATE"],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "status_fields_only_update",
+        "respect_scoped_gates"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_kalshi_pipeline_while_blocked_v0",
+      "agent_id": "agent/maintainer_kalshi_v0",
+      "scope": [
+        "project/kalshi_15m_btc_pipeline",
+        "scenes/kalshi_15m_btc_pipeline.scene.json"
+      ],
+      "allowed_mutations": ["PROPOSE"],
+      "conditions": [
+        "gate_status_BLOCKED_FOR_KALSHI_ONLY",
+        "no_direct_mutation_until_windows_200_of_200",
+        "must_record_mutation"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_kalshi_reports_v0",
+      "agent_id": "agent/maintainer_kalshi_v0",
+      "scope": [
+        "scene/audit_reports/v0/"
+      ],
+      "allowed_mutations": ["CREATE", "UPDATE"],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "report_only_artifacts"
+      ],
       "issued_by": "agent/orchestrator_v0",
       "issued_at": "2026-02-16T14:00:00Z",
       "expires_at": null,
