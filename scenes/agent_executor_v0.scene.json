@@ -1,0 +1,98 @@
+{
+  "nodes": [
+    {
+      "id": "project/agent_executor_v0",
+      "type": "project",
+      "label": "Agent Executor v0",
+      "purpose": "Scoped worker for deterministic task execution with cold resume and track-only safeguards.",
+      "enforcement_level_default": 2,
+      "enforcement_mode": "track_only",
+      "grounding_order": [
+        "artifact_pointer/agent_executor_contract_v0",
+        "artifact_pointer/agent_executor_cursor_v0",
+        "artifact_pointer/agent_executor_ledger_v0"
+      ],
+      "notes_for_agents": [
+        "Treat scene and state files as source of truth.",
+        "Do not expand task scope beyond declared constraints.",
+        "Emit warnings only on scoped quality checks; no global hard gate behavior."
+      ]
+    },
+    {
+      "id": "artifact_pointer/agent_executor_contract_v0",
+      "type": "artifact_pointer",
+      "label": "Agent executor contract v0",
+      "path": "meta/AGENT_EXECUTOR_CONTRACT_v0.md"
+    },
+    {
+      "id": "artifact_pointer/agent_executor_ledger_v0",
+      "type": "artifact_pointer",
+      "label": "Agent executor ledger",
+      "path": "state/agent_executor/ledger.jsonl"
+    },
+    {
+      "id": "artifact_pointer/agent_executor_cursor_v0",
+      "type": "artifact_pointer",
+      "label": "Agent executor cursor",
+      "path": "state/agent_executor/cursor.json"
+    },
+    {
+      "id": "artifact_pointer/agent_executor_runbook_v0",
+      "type": "artifact_pointer",
+      "label": "Agent executor runbook v0",
+      "path": "operations/agent_executor_runbook_v0.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "project/agent_executor_v0",
+      "to": "project/dan_personal_cognitive_infrastructure",
+      "type": "scoped_to"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "artifact_pointer/agent_executor_contract_v0",
+      "type": "has_contract"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "artifact_pointer/agent_executor_ledger_v0",
+      "type": "writes_state"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "artifact_pointer/agent_executor_cursor_v0",
+      "type": "writes_state"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "artifact_pointer/agent_executor_runbook_v0",
+      "type": "operated_by"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "inv/agent_resumption_min_8",
+      "type": "constrained_by"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "inv/derived_view_integrity",
+      "type": "constrained_by"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "inv/observability_entropy",
+      "type": "tracks"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "scene/agent_executor_quality_gate_v0",
+      "type": "uses_gate_spec"
+    },
+    {
+      "from": "project/agent_executor_v0",
+      "to": "pattern/session_artifact_resumption_loop",
+      "type": "implements"
+    }
+  ]
+}

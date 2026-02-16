@@ -1,0 +1,49 @@
+{
+  "node_id": "scene/agent_executor_quality_gate_v0",
+  "scene_type": "scoped_track_gate",
+  "version": "0.1",
+  "summary": "Scoped quality checks for project/agent_executor_v0. Track-only Level 2 safeguards; no blocking behavior outside the agent scope.",
+  "scope": [
+    "project/agent_executor_v0"
+  ],
+  "enforcement": {
+    "level": 2,
+    "mode": "track_only",
+    "blocking": false
+  },
+  "rule": "Evaluate path policy, source-link coverage, and terminology compliance for agent outputs. Emit warnings and metrics only. Never auto-mutate and never create global hard gates.",
+  "checks": [
+    {
+      "id": "check/allowed_output_paths",
+      "description": "Outputs must remain under allowed contract paths.",
+      "action_on_fail": "warn"
+    },
+    {
+      "id": "check/source_reference_present",
+      "description": "Output artifacts should reference at least one source scene/task input.",
+      "action_on_fail": "warn"
+    },
+    {
+      "id": "check/terminology_consistency",
+      "description": "Terminology should align with TERMINOLOGY_STANDARD_v0.",
+      "action_on_fail": "warn"
+    }
+  ],
+  "invariant_links": [
+    "inv/agent_resumption_min_8",
+    "inv/derived_view_integrity",
+    "inv/observability_entropy"
+  ],
+  "project_links": [
+    "project/agent_executor_v0",
+    "project/dan_personal_cognitive_infrastructure"
+  ],
+  "next_steps": [
+    "Track warning count trends in reports/kpi_dashboard_metrics_v0.json",
+    "Refine check definitions only via versioned updates",
+    "Keep gate scoped; do not escalate to global hard gate without explicit decision artifact"
+  ],
+  "resumption_score": 9,
+  "resumption_notes": "Load meta/AGENT_EXECUTOR_CONTRACT_v0.md and scenes/agent_executor_v0.scene.json before evaluating output quality.",
+  "standard_version": "TERMINOLOGY_STANDARD_v0"
+}

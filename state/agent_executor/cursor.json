@@ -1,0 +1,8 @@
+{
+  "project_id": "project/agent_executor_v0",
+  "current_task_id": null,
+  "phase": "idle",
+  "status": "ready",
+  "last_updated": "2026-02-16T00:00:00Z",
+  "last_checkpoint_ref": "state/agent_executor/ledger.jsonl"
+}
