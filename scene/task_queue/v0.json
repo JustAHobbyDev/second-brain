@@ -4,6 +4,31 @@
   "status": "active",
   "tasks": [
     {
+      "task_id": "task/project-manager-recurring-cycle-v0",
+      "objective": "Maintain current stage visibility, propose forward ideas, and consult human for refinement before execution proposals.",
+      "inputs": [
+        "scene/agent/project_manager/status_v0.json",
+        "scene/agent/project_manager/ideas_v0.json",
+        "scene/agent/project_manager/consultation_queue_v0.json",
+        "scenes/kalshi_data_gate_v0.scene.json",
+        "OPEN_QUESTIONS.md"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "No global gates",
+        "No direct mutation of Kalshi pipeline while blocked",
+        "Human consultation required before promotion to executable proposal",
+        "PM operates as delegator/planner by default (non-executor)"
+      ],
+      "acceptance_criteria": [
+        "Stage snapshot updated",
+        "3-5 candidate ideas logged with explicit scope",
+        "Pending human consultation queue is non-empty when unresolved decisions remain"
+      ],
+      "state": "queued",
+      "owner_agent": "agent/project_manager_v0"
+    },
+    {
       "task_id": "task/maamv0-bootstrap-validation",
       "objective": "Validate that authority tuples and mutation ledger support cold resume.",
       "inputs": [

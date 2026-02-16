@@ -1,0 +1,15 @@
+{
+  "agent_id": "agent/project_manager_v0",
+  "role_mode": "delegator_planner_non_executor",
+  "phase": "stage_snapshot",
+  "current_cycle_id": "pm_cycle_2026_02_16_01",
+  "current_task_id": "task/project-manager-recurring-cycle-v0",
+  "last_mutation_id": null,
+  "last_updated": "2026-02-16T14:30:00Z",
+  "resumption_inputs": [
+    "scene/agent/project_manager/status_v0.json",
+    "scene/agent/project_manager/ideas_v0.json",
+    "scene/agent/project_manager/consultation_queue_v0.json",
+    "scene/task_queue/v0.json"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "status_id": "scene/agent/project_manager/status_v0",
+  "updated_at": "2026-02-16T14:30:00Z",
+  "project_scope": "project/dan_personal_cognitive_infrastructure",
+  "role_mode": "delegator_planner_non_executor",
+  "stage_summary": {
+    "overall": "infrastructure_hardening",
+    "kalshi_pipeline": "blocked_for_data_windows",
+    "kalshi_blocked_state": {
+      "required_windows": 200,
+      "usable_windows": 94,
+      "status": "BLOCKED_FOR_KALSHI_ONLY",
+      "source": "scenes/kalshi_data_gate_v0.scene.json"
+    }
+  },
+  "signals": {
+    "open_questions_count": 4,
+    "coordination_model": "coord_claims_primary_pubsub_draft",
+    "authority_model": "maam_v0_active"
+  },
+  "next_consultation_due": "2026-02-16T16:00:00Z"
+}

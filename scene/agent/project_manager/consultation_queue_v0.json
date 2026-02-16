@@ -1,0 +1,25 @@
+{
+  "queue_id": "scene/agent/project_manager/consultation_queue_v0",
+  "updated_at": "2026-02-16T14:30:00Z",
+  "items": [
+    {
+      "consultation_id": "consult/pm_v0_001",
+      "question": "Prioritize PM cycle focus for next run: gate monitoring, open-question triage, or resume-readiness audit?",
+      "context_refs": [
+        "scene/agent/project_manager/status_v0.json",
+        "scene/agent/project_manager/ideas_v0.json",
+        "OPEN_QUESTIONS.md"
+      ],
+      "state": "pending"
+    },
+    {
+      "consultation_id": "consult/pm_v0_002",
+      "question": "For blocked Kalshi state, should PM emit only proposals or also queue pre-approved execution plans for post-unblock?",
+      "context_refs": [
+        "scenes/kalshi_data_gate_v0.scene.json",
+        "scene/task_queue/v0.json"
+      ],
+      "state": "pending"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "ideas_id": "scene/agent/project_manager/ideas_v0",
+  "updated_at": "2026-02-16T14:30:00Z",
+  "ideas": [
+    {
+      "idea_id": "idea/pm_v0_kalshi_gate_watcher",
+      "summary": "Automate status snapshot refresh for scenes/kalshi_data_gate_v0.scene.json and mirror into PM status artifact.",
+      "scope": "project/kalshi_15m_btc_pipeline",
+      "stage": "draft",
+      "requires_human_consultation": true,
+      "notes": "Non-mutating monitor only while blocked."
+    },
+    {
+      "idea_id": "idea/pm_v0_open_question_triage",
+      "summary": "Run a weekly triage cadence that maps OPEN_QUESTIONS items to concrete task proposals.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "draft",
+      "requires_human_consultation": true,
+      "notes": "Preserve Level 2 track-only behavior."
+    },
+    {
+      "idea_id": "idea/pm_v0_resume_readiness_audit",
+      "summary": "Score cold-resume readiness of active agents and report gaps in scene/audit_reports/v0.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "draft",
+      "requires_human_consultation": true,
+      "notes": "Uses existing invariants only."
+    }
+  ]
+}
