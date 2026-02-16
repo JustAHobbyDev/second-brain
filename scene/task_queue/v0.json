@@ -1,0 +1,29 @@
+{
+  "queue_id": "scene/task_queue/v0",
+  "version": "0.1",
+  "status": "active",
+  "tasks": [
+    {
+      "task_id": "task/maamv0-bootstrap-validation",
+      "objective": "Validate that authority tuples and mutation ledger support cold resume.",
+      "inputs": [
+        "scene/authority/registry_v0.json",
+        "scene/ledger/mutations_v0.jsonl",
+        "scene/agent/orchestrator/cursor_v0.json",
+        "scene/agent/auditor/cursor_v0.json"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "No global gates",
+        "No mutation outside scoped authority"
+      ],
+      "acceptance_criteria": [
+        "All required scene artifacts parse successfully",
+        "Mutation records remain attributable",
+        "Cold resume sequence is documented"
+      ],
+      "state": "queued",
+      "owner_agent": "agent/orchestrator_v0"
+    }
+  ]
+}

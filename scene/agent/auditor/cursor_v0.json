@@ -1,0 +1,12 @@
+{
+  "agent_id": "agent/auditor_v0",
+  "phase": "ready",
+  "current_task_id": null,
+  "last_mutation_id": null,
+  "last_updated": "2026-02-16T14:00:00Z",
+  "resumption_inputs": [
+    "scene/authority/registry_v0.json",
+    "scene/ledger/mutations_v0.jsonl",
+    "scene/task_queue/v0.json"
+  ]
+}

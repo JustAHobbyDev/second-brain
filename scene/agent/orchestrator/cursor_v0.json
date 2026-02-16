@@ -1,0 +1,12 @@
+{
+  "agent_id": "agent/orchestrator_v0",
+  "phase": "ready",
+  "current_task_id": "task/maamv0-bootstrap-validation",
+  "last_mutation_id": "mut_20260216T140000Z_bootstrap",
+  "last_updated": "2026-02-16T14:00:00Z",
+  "resumption_inputs": [
+    "scene/authority/registry_v0.json",
+    "scene/ledger/mutations_v0.jsonl",
+    "scene/task_queue/v0.json"
+  ]
+}

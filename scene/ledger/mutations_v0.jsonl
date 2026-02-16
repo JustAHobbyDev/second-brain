@@ -1,0 +1,1 @@
+{"mutation_id":"mut_20260216T140000Z_bootstrap","timestamp":"2026-02-16T14:00:00Z","agent_id":"agent/orchestrator_v0","target_path":"scene/authority/registry_v0.json","mutation_type":"CREATE","inputs":["spec/multi_agent_mutation_authority_model_v0.md"],"reason":"Bootstrap authority registry for v0","pre_hash":null,"post_hash":"sha256:bootstrap","gate_status":"not_applicable"}

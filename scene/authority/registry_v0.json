@@ -1,0 +1,76 @@
+{
+  "registry_id": "scene/authority/registry_v0",
+  "version": "0.1",
+  "status": "active",
+  "enforcement_level": 2,
+  "enforcement_mode": "track_only",
+  "project_scope": "project/dan_personal_cognitive_infrastructure",
+  "authority_tuples": [
+    {
+      "authority_id": "auth/orchestrator_task_queue_v0",
+      "agent_id": "agent/orchestrator_v0",
+      "scope": ["scene/task_queue/", "scene/authority/"],
+      "allowed_mutations": ["UPDATE"],
+      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/orchestrator_propose_specs_projects_v0",
+      "agent_id": "agent/orchestrator_v0",
+      "scope": ["project/", "spec/"],
+      "allowed_mutations": ["PROPOSE"],
+      "conditions": ["must_record_mutation", "no_direct_activate_without_authority"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_generic_domain_v0",
+      "agent_id": "agent/maintainer_domain_v0",
+      "scope": ["scene/<domain>/"],
+      "allowed_mutations": ["CREATE", "UPDATE", "ARCHIVE"],
+      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_propose_elsewhere_v0",
+      "agent_id": "agent/maintainer_domain_v0",
+      "scope": ["project/", "spec/", "inv/"],
+      "allowed_mutations": ["PROPOSE"],
+      "conditions": ["must_record_mutation"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/auditor_reports_only_v0",
+      "agent_id": "agent/auditor_v0",
+      "scope": ["scene/audit_reports/"],
+      "allowed_mutations": ["CREATE"],
+      "conditions": ["must_record_mutation", "must_update_cursor", "scope_only"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/auditor_propose_elsewhere_v0",
+      "agent_id": "agent/auditor_v0",
+      "scope": ["project/", "spec/", "scene/"],
+      "allowed_mutations": ["PROPOSE"],
+      "conditions": ["must_record_mutation"],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-16T14:00:00Z",
+      "expires_at": null,
+      "revocation": null
+    }
+  ]
+}
