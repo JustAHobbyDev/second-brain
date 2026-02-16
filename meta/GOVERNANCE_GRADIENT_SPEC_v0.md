@@ -72,5 +72,36 @@ KPI never enforces domain invariants - only tracks/alerts.
 | Meta-Program Loop | inv/agent_resumption_min_8 | Agent resumption >=8 | 3 | Gate on score |
 | Graph Ingest | inv/derived_view_integrity | Derived view integrity | 2 | Dry-run default |
 | Structural Audit (ASLB) | inv/structural_legibility_min_band | Structural legibility score >=16 (band) | 2 | Track + Refactor proposals |
+| Kalshi Data Gate | inv/kalshi_data_windows_min_200 | Usable windows ≥200 for Kalshi pipeline | 3 | Scoped hard gate |
 
 Rule: One mechanism per invariant_id. Overlap -> downgrade secondary to Level 2 unless core_gate=true. Escalate if violation frequency >2 in 7 days.
+
+## Scoped Hard Gates (New Pattern)
+
+**Definition**  
+A **scoped hard gate** is a Level 3 enforcement mechanism that applies **only to a defined project or subsystem**, rather than globally across the entire second-brain.
+
+**Characteristics**
+- Blocks only work within the declared `scope`
+- Explicitly permits all unrelated work
+- Still functions as a true Level 3 gate (reject / fail) inside its scope
+- Prevents over-constraining the broader system
+
+**Canonical Example**
+- `scene/kalshi_data_gate_v0` — blocks all changes to the Kalshi 15m BTC pipeline (Phase 10+ ladder work) until 200/200 usable windows, but allows governance, meta, tools, rituals, and other projects to proceed normally.
+
+**When to Use**
+- Use when a constraint is critical for one project but would create unwanted global paralysis if applied repo-wide.
+- Prefer scoped gates over global ones when the invariant is domain-specific.
+
+**Gradient Placement**
+- Level: **3 (Hard Gate)** inside declared scope
+- Level: **0 (Convention)** outside declared scope
+
+**Rule for Future Gates**
+Any new Level 3 gate must declare an explicit `scope` array. If no scope is declared, it defaults to global (and should be questioned during audit).
+
+**Example in Invariant Mapping Table (add this row)**
+| Mechanism                | Invariant ID                        | Description                              | Level | Action                  |
+|--------------------------|-------------------------------------|------------------------------------------|-------|-------------------------|
+| Kalshi Data Gate        | inv/kalshi_data_windows_min_200    | Usable windows ≥200 for Kalshi pipeline | 3     | Scoped hard gate       |
