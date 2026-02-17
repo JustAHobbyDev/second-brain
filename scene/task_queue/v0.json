@@ -198,8 +198,45 @@
         "Mutation records remain attributable",
         "Cold resume sequence is documented"
       ],
-      "state": "queued",
-      "owner_agent": "agent/orchestrator_v0"
+      "state": "completed",
+      "owner_agent": "agent/orchestrator_v0",
+      "last_progress_at": "2026-02-17T07:13:09Z",
+      "validation_summary_v0": {
+        "checked_at": "2026-02-17T07:13:09Z",
+        "artifacts": {
+          "registry": "scene/authority/registry_v0.json",
+          "ledger": "scene/ledger/mutations_v0.jsonl",
+          "orchestrator_cursor": "scene/agent/orchestrator/cursor_v0.json",
+          "auditor_cursor": "scene/agent/auditor/cursor_v0.json"
+        },
+        "checks": {
+          "registry_parse_ok": true,
+          "authority_tuple_count": 11,
+          "orchestrator_cursor_parse_ok": true,
+          "auditor_cursor_parse_ok": true,
+          "ledger_rows": 65,
+          "ledger_invalid_rows": 0,
+          "ledger_missing_required_key_rows": 0,
+          "ledger_duplicate_mutation_ids": 0,
+          "mutation_records_attributable": true,
+          "cold_resume_ready": true
+        },
+        "cold_resume_sequence": [
+          "Load scene/authority/registry_v0.json",
+          "Load scene/ledger/mutations_v0.jsonl",
+          "Load scene/agent/orchestrator/cursor_v0.json",
+          "Load scene/agent/auditor/cursor_v0.json",
+          "Reconstruct latest mutation IDs and scoped authorities"
+        ]
+      },
+      "execution_history": [
+        {
+          "timestamp": "2026-02-17T07:13:09Z",
+          "agent_id": "agent/orchestrator_v0",
+          "event": "bootstrap_validation_completed",
+          "note": "Validated authority/ledger/cursors for cold resume readiness."
+        }
+      ]
     }
   ]
 }

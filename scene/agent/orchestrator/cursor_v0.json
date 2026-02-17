@@ -1,9 +1,9 @@
 {
   "agent_id": "agent/orchestrator_v0",
-  "phase": "oq1_evaluator_implemented",
-  "current_task_id": "task/oq1-invariant-drift-evaluator-implement-v0",
-  "last_mutation_id": "mut_20260217T070516Z_agent_orchestrator_v0_2",
-  "last_updated": "2026-02-17T07:05:16Z",
+  "phase": "maamv0_bootstrap_validated",
+  "current_task_id": "task/maamv0-bootstrap-validation",
+  "last_mutation_id": "mut_20260217T071309Z_agent_orchestrator_v0_2",
+  "last_updated": "2026-02-17T07:13:09Z",
   "resumption_inputs": [
     "scene/authority/registry_v0.json",
     "scene/ledger/mutations_v0.jsonl",
