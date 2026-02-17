@@ -1,6 +1,6 @@
 {
   "status_id": "scene/agent/project_manager/status_v0",
-  "updated_at": "2026-02-17T07:01:54Z",
+  "updated_at": "2026-02-17T07:48:55Z",
   "project_scope": "project/dan_personal_cognitive_infrastructure",
   "role_mode": "delegator_planner_non_executor",
   "stage_summary": {
@@ -13,12 +13,16 @@
       "source": "scenes/kalshi_data_gate_v0.scene.json"
     },
     "next_focus": "open_question_triage",
-    "next_open_question": "OQ-1",
+    "next_open_question": "OQ-3",
     "oq1_delivery_focus": "spec/invariant_drift_detection_v0",
     "oq1_draft_mode": "scope_acceptance_plus_schema",
     "oq1_next_action": "propose_package_draft",
     "oq1_first_draft_owner": "agent/orchestrator_v0",
-    "oq1_execution_state": "baseline_accepted_task_closed"
+    "oq1_execution_state": "baseline_accepted_task_closed",
+    "oq3_cycle_state": "audit_followups_deferred_next_cycle",
+    "oq3_policy_mode": "scoped_advisory_risk_policy_non_blocking",
+    "oq3_policy_artifact": "spec/oq3_autonomy_risk_policy_v0.md",
+    "oq3_policy_audit_report": "scene/audit_reports/v0/oq3_autonomy_risk_policy_spec_audit_2026-02-17_v0.json"
   },
   "signals": {
     "open_questions_count": 4,
@@ -30,7 +34,7 @@
     "kalshi_gate_last_checked": "2026-02-15",
     "pm_focus": "open_question_triage",
     "kalshi_blocked_execution_mode": "proposals_only",
-    "open_question_priority": "OQ-1",
+    "open_question_priority": "OQ-3",
     "oq1_first_deliverable": "invariant_drift_trigger_spec",
     "oq1_draft_mode": "scope_acceptance_plus_schema",
     "oq1_package_approval": "approved",
@@ -42,9 +46,41 @@
     "oq1_spec_baseline_approval": "approved",
     "oq1_auditor_review_status": "approved_with_followups",
     "oq1_followups_applied": true,
-    "oq1_baseline_finalized": true
+    "oq1_baseline_finalized": true,
+    "oq3_policy_target": "autonomy_first_risk_gated_advisory",
+    "oq3_global_gate_enabled": false,
+    "oq3_human_approval_trigger": "high_impact_only",
+    "oq3_risk_tiers": {
+      "low": "autonomous",
+      "medium": "autonomous_with_post_audit",
+      "high": "human_approval_required"
+    },
+    "oq3_high_impact_list_status": "needs_revision",
+    "oq3_high_impact_policy_v0": {
+      "spec_activation": "human_approval_required",
+      "gate_state_changes": "human_approval_required",
+      "cross_scope_writes": "conditional_high_impact",
+      "external_side_effects": "human_approval_required",
+      "cross_scope_condition": "high if touches spec/, scene/authority/, gate surfaces, or multi-project scope; otherwise medium with post-audit"
+    },
+    "oq3_allowlist_exploration": "pending",
+    "oq3_allowlist_requirements": {
+      "deterministic_output": true,
+      "narrow_scoped_target": true,
+      "idempotent_behavior": true,
+      "no_external_side_effects": true
+    },
+    "oq3_allowlist_policy": "all_four_required",
+    "oq3_allowlist_review_trigger": "if_restrictive_in_practice",
+    "oq3_policy_artifact_present": true,
+    "oq3_policy_baseline_approval": "approved",
+    "oq3_auditor_review_status": "approved_with_followups",
+    "oq3_policy_audit_report": "scene/audit_reports/v0/oq3_autonomy_risk_policy_spec_audit_2026-02-17_v0.json",
+    "oq3_followups_pending": true,
+    "oq3_followups_decision": "deferred_to_next_cycle",
+    "oq3_followups_deferred_at": "2026-02-17T07:48:55Z"
   },
-  "next_consultation_due": "2026-02-18T07:01:54Z",
+  "next_consultation_due": "2026-02-18T07:48:55Z",
   "decision_log": [
     {
       "decision_id": "pm_decision_2026_02_16_focus",
@@ -129,6 +165,66 @@
       "captured_at": "2026-02-17T07:01:54Z",
       "selection": "approved_finalize_and_close",
       "source": "consult/pm_v0_015"
+    },
+    {
+      "decision_id": "pm_cycle_2026_02_17_kickoff",
+      "captured_at": "2026-02-17T07:16:19Z",
+      "selection": "start_OQ-3_triage",
+      "source": "task/project-manager-recurring-cycle-v0"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_autonomy_first",
+      "captured_at": "2026-02-17T07:20:47Z",
+      "selection": "scoped_advisory_risk_policy_non_blocking",
+      "source": "consult/pm_v0_016"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_risk_tiers",
+      "captured_at": "2026-02-17T07:21:45Z",
+      "selection": "approved_tiered_autonomy",
+      "source": "consult/pm_v0_017"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_high_impact_list",
+      "captured_at": "2026-02-17T07:23:16Z",
+      "selection": "revise_before_approval",
+      "source": "consult/pm_v0_018"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_high_impact_final",
+      "captured_at": "2026-02-17T07:31:49Z",
+      "selection": "keep_1_2_4_and_3_conditional",
+      "source": "consult/pm_v0_019"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_allowlist_criteria",
+      "captured_at": "2026-02-17T07:33:56Z",
+      "selection": "require_all_four_with_restriction_review_clause",
+      "source": "consult/pm_v0_020"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_policy_artifact_draft",
+      "captured_at": "2026-02-17T07:35:14Z",
+      "selection": "drafted_spec_oq3_autonomy_risk_policy_v0",
+      "source": "consult/pm_v0_021"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_baseline",
+      "captured_at": "2026-02-17T07:40:20Z",
+      "selection": "approved_baseline",
+      "source": "consult/pm_v0_022"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_audit_review",
+      "captured_at": "2026-02-17T07:43:42Z",
+      "selection": "approved_with_followups",
+      "source": "consult/pm_v0_023"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_17_oq3_followups",
+      "captured_at": "2026-02-17T07:48:55Z",
+      "selection": "defer_to_next_cycle",
+      "source": "consult/pm_v0_024"
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "agent_id": "agent/auditor_v0",
-  "phase": "oq1_spec_review_complete",
-  "current_task_id": "task/oq1-invariant-drift-detection-propose-v0",
-  "last_mutation_id": "mut_20260216T232305Z_agent_auditor_v0_2",
-  "last_updated": "2026-02-16T23:23:05Z",
+  "phase": "audit_review_pass",
+  "current_task_id": "task/oq3-autonomy-risk-policy-propose-v0",
+  "last_mutation_id": "mut_20260217T074315Z_agent_auditor_v0_2",
+  "last_updated": "2026-02-17T07:43:15Z",
   "resumption_inputs": [
     "scene/authority/registry_v0.json",
     "scene/ledger/mutations_v0.jsonl",

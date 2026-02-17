@@ -4,6 +4,106 @@
   "status": "active",
   "tasks": [
     {
+      "task_id": "task/oq3-autonomy-risk-policy-propose-v0",
+      "objective": "Draft OQ-3 autonomy-first risk-tier policy (scoped advisory, non-blocking).",
+      "inputs": [
+        "OPEN_QUESTIONS.md",
+        "scene/agent/project_manager/status_v0.json",
+        "scene/authority/registry_v0.json",
+        "scene/task_queue/v0.json"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "No global hard gate creation",
+        "Human approval required for high-impact tier only"
+      ],
+      "acceptance_criteria": [
+        "Defines low/medium/high tiers",
+        "Defines high-impact operation list",
+        "Remains advisory outside high-impact operations"
+      ],
+      "state": "audit_followups_deferred_next_cycle",
+      "owner_agent": "agent/project_manager_v0",
+      "revision_requests": [
+        "Refine high-impact operation list before approval.",
+        "Clarify boundary examples for cross-scope writes.",
+        "Confirm whether external side effects always require human approval."
+      ],
+      "last_progress_at": "2026-02-17T07:48:55Z",
+      "execution_history": [
+        {
+          "timestamp": "2026-02-17T07:23:16Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "high_impact_list_revision_requested",
+          "note": "consult/pm_v0_018 set to revise before approval."
+        },
+        {
+          "timestamp": "2026-02-17T07:31:49Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "high_impact_list_finalized",
+          "note": "Resolved consult/pm_v0_019 with conditional cross-scope and allowlist follow-up."
+        },
+        {
+          "timestamp": "2026-02-17T07:33:56Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "allowlist_criteria_locked",
+          "note": "consult/pm_v0_020 resolved: all four criteria required with restriction review clause."
+        },
+        {
+          "timestamp": "2026-02-17T07:35:14Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "policy_artifact_drafted",
+          "note": "Drafted OQ-3 autonomy risk policy artifact after consult/pm_v0_021 approval."
+        },
+        {
+          "timestamp": "2026-02-17T07:40:20Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "policy_baseline_approved",
+          "note": "consult/pm_v0_022 resolved as approved baseline."
+        },
+        {
+          "timestamp": "2026-02-17T07:43:42Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "audit_review_completed",
+          "note": "consult/pm_v0_023 approved auditor review with low-severity followups."
+        },
+        {
+          "timestamp": "2026-02-17T07:48:55Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "low_severity_followups_deferred",
+          "note": "consult/pm_v0_024 resolved as defer_to_next_cycle."
+        }
+      ],
+      "high_impact_policy_v0": {
+        "spec_activation": "human_approval_required",
+        "gate_state_changes": "human_approval_required",
+        "cross_scope_writes": "conditional_high_impact",
+        "external_side_effects": "human_approval_required"
+      },
+      "allowlist_followup": "Define safe deterministic recurring command allowlist for no-preapproval path.",
+      "allowlist_criteria_v0": {
+        "deterministic_output": true,
+        "narrow_scoped_target": true,
+        "idempotent_behavior": true,
+        "no_external_side_effects": true
+      },
+      "allowlist_review_clause": "Revisit criteria if restrictive in practice.",
+      "policy_artifact": "spec/oq3_autonomy_risk_policy_v0.md",
+      "human_review_note": "consult/pm_v0_022 approved OQ-3 policy baseline.",
+      "audit_review_note": "consult/pm_v0_023 approved auditor recommendation.",
+      "audit_report_path": "scene/audit_reports/v0/oq3_autonomy_risk_policy_spec_audit_2026-02-17_v0.json",
+      "audit_findings_summary": {
+        "severity_counts": {
+          "low": 2,
+          "medium": 0,
+          "high": 0
+        },
+        "recommendation": "approve_with_followups"
+      },
+      "followups_deferred_at": "2026-02-17T07:48:55Z",
+      "followups_deferred_reason": "consult/pm_v0_024 selected defer_to_next_cycle"
+    },
+    {
       "task_id": "task/oq1-invariant-drift-detection-propose-v0",
       "objective": "PROPOSE-only package for OQ-1: draft spec/invariant_drift_detection_v0.md with scope, acceptance criteria, and candidate artifact schema.",
       "inputs": [

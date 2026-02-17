@@ -1,6 +1,6 @@
 {
   "ideas_id": "scene/agent/project_manager/ideas_v0",
-  "updated_at": "2026-02-16T21:59:02Z",
+  "updated_at": "2026-02-17T07:48:55Z",
   "ideas": [
     {
       "idea_id": "idea/pm_v0_kalshi_gate_watcher",
@@ -18,7 +18,7 @@
       "requires_human_consultation": true,
       "notes": "Preserve Level 2 track-only behavior.",
       "selection_reason": "human_selected_focus_2",
-      "deliverable_focus": "invariant_drift_trigger_spec"
+      "deliverable_focus": "oq3_policy_gate_rule"
     },
     {
       "idea_id": "idea/pm_v0_resume_readiness_audit",
@@ -43,6 +43,16 @@
       "stage": "draft",
       "requires_human_consultation": true,
       "notes": "Track-only governance reinforcement; no new hard gates."
+    },
+    {
+      "idea_id": "idea/pm_v0_oq3_gate_policy_draft",
+      "summary": "Define OQ-3 policy for when human approval is required if next_steps exceeds 3, with scoped non-global behavior.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "followups_deferred_next_cycle",
+      "requires_human_consultation": true,
+      "notes": "Must remain track-only and avoid implicit hard-gate behavior.",
+      "deliverable_focus": "apply_oq3_audit_followups_next_cycle",
+      "selection_reason": "human_approved_all_four_with_restriction_review_clause"
     }
   ]
 }
