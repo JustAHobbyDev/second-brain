@@ -1,0 +1,1 @@
+{"alert_id":"alert_bootstrap_2026_02_17_01","ts":"2026-02-17T14:49:00Z","source":"agent/monitor_v0","severity":"info","category":"health_layer_bootstrap","summary":"Initialized non-mutating health alerts stream.","refs":["spec/overstory_alignment_layer_v0.md"],"status":"closed"}

@@ -1,0 +1,12 @@
+{
+  "index_id": "scene/mailbox/index_v0",
+  "version": "0.1",
+  "status": "active",
+  "source_stream": "scene/mailbox/messages_v0.jsonl",
+  "message_type_counts": {
+    "GATE_STATUS": 1
+  },
+  "open_ack_count": 0,
+  "last_msg_id": "msg_bootstrap_2026_02_17_01",
+  "updated_at": "2026-02-17T14:49:00Z"
+}

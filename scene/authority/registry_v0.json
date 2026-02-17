@@ -1,6 +1,6 @@
 {
   "registry_id": "scene/authority/registry_v0",
-  "version": "0.4",
+  "version": "0.5",
   "status": "active",
   "enforcement_level": 2,
   "enforcement_mode": "track_only",
@@ -28,7 +28,9 @@
         "scene/authority/",
         "scene/agent/"
       ],
-      "allowed_mutations": ["UPDATE"],
+      "allowed_mutations": [
+        "UPDATE"
+      ],
       "conditions": [
         "must_record_mutation",
         "must_update_cursor",
@@ -48,7 +50,9 @@
         "spec/",
         "inv/"
       ],
-      "allowed_mutations": ["PROPOSE"],
+      "allowed_mutations": [
+        "PROPOSE"
+      ],
       "conditions": [
         "must_record_mutation",
         "no_direct_activate_without_authority",
@@ -65,7 +69,9 @@
       "scope": [
         "scene/audit_reports/v0/"
       ],
-      "allowed_mutations": ["CREATE"],
+      "allowed_mutations": [
+        "CREATE"
+      ],
       "conditions": [
         "must_record_mutation",
         "must_update_cursor",
@@ -85,7 +91,9 @@
         "spec/",
         "scene/"
       ],
-      "allowed_mutations": ["PROPOSE"],
+      "allowed_mutations": [
+        "PROPOSE"
+      ],
       "conditions": [
         "must_record_mutation",
         "no_direct_mutation_outside_reports"
@@ -101,7 +109,9 @@
       "scope": [
         "scenes/kalshi_data_gate_v0.scene.json"
       ],
-      "allowed_mutations": ["UPDATE"],
+      "allowed_mutations": [
+        "UPDATE"
+      ],
       "conditions": [
         "must_record_mutation",
         "must_update_cursor",
@@ -120,7 +130,9 @@
         "project/kalshi_15m_btc_pipeline",
         "scenes/kalshi_15m_btc_pipeline.scene.json"
       ],
-      "allowed_mutations": ["PROPOSE"],
+      "allowed_mutations": [
+        "PROPOSE"
+      ],
       "conditions": [
         "gate_status_BLOCKED_FOR_KALSHI_ONLY",
         "no_direct_mutation_until_windows_200_of_200",
@@ -137,7 +149,10 @@
       "scope": [
         "scene/audit_reports/v0/"
       ],
-      "allowed_mutations": ["CREATE", "UPDATE"],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE"
+      ],
       "conditions": [
         "must_record_mutation",
         "must_update_cursor",
@@ -231,6 +246,295 @@
         "state": "active",
         "reason": "default_non_executor_mode"
       }
+    },
+    {
+      "authority_id": "auth/orchestrator_over_align_runtime_coord_v0",
+      "agent_id": "agent/orchestrator_v0",
+      "scope": [
+        "scene/mailbox/",
+        "scene/merge_queue/",
+        "scene/sandbox/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "scope_only",
+        "runtime_coordination_only",
+        "no_canonical_truth_in_runtime_namespace"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-17T14:49:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/auditor_over_align_health_monitoring_v0",
+      "agent_id": "agent/auditor_v0",
+      "scope": [
+        "scene/health/",
+        "scene/audit_reports/v0/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "must_update_cursor",
+        "scope_only",
+        "non_mutating_health_monitoring"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-17T14:49:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/maintainer_kalshi_over_align_merge_request_v0",
+      "agent_id": "agent/maintainer_kalshi_v0",
+      "scope": [
+        "scene/merge_queue/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "scope_only",
+        "domain_scoped_merge_requests_only",
+        "requires_review_before_merge_status"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-17T14:49:00Z",
+      "expires_at": null,
+      "revocation": null
+    },
+    {
+      "authority_id": "auth/project_manager_over_align_coord_v0",
+      "agent_id": "agent/project_manager_v0",
+      "scope": [
+        "scene/mailbox/",
+        "scene/merge_queue/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "scope_only",
+        "track_only_behavior",
+        "delegator_planner_default_no_execution"
+      ],
+      "issued_by": "agent/orchestrator_v0",
+      "issued_at": "2026-02-17T14:49:00Z",
+      "expires_at": null,
+      "revocation": null
+    }
+  ],
+  "authority_bundles": [
+    {
+      "bundle_id": "bundle/orchestrate_v0",
+      "summary": "Route tasks, coordinate runtime queues, and maintain scoped authority state.",
+      "default_allowed_mutations": [
+        "UPDATE",
+        "PROPOSE"
+      ],
+      "canonical_output_paths": [
+        "scene/task_queue/",
+        "scene/authority/",
+        "scene/mailbox/",
+        "scene/merge_queue/"
+      ]
+    },
+    {
+      "bundle_id": "bundle/scout_v0",
+      "summary": "Perform discovery and produce scoped research outputs or proposals.",
+      "default_allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "canonical_output_paths": [
+        "scenes/research/"
+      ]
+    },
+    {
+      "bundle_id": "bundle/build_v0",
+      "summary": "Build within assigned domain scope and prepare merge-ready changes.",
+      "default_allowed_mutations": [
+        "CREATE",
+        "UPDATE",
+        "PROPOSE"
+      ],
+      "canonical_output_paths": [
+        "scenes/<domain>/",
+        "scene/merge_queue/"
+      ]
+    },
+    {
+      "bundle_id": "bundle/review_v0",
+      "summary": "Review and report findings without direct canonical truth mutation.",
+      "default_allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "canonical_output_paths": [
+        "scene/audit_reports/"
+      ]
+    },
+    {
+      "bundle_id": "bundle/merge_v0",
+      "summary": "Operate scoped merge queue and merge-gate state transitions.",
+      "default_allowed_mutations": [
+        "UPDATE",
+        "BLOCK",
+        "UNBLOCK"
+      ],
+      "canonical_output_paths": [
+        "scene/merge_queue/",
+        "scenes/*merge_gate*.scene.json"
+      ]
+    },
+    {
+      "bundle_id": "bundle/monitor_v0",
+      "summary": "Emit health signals and escalation alerts as non-mutating monitoring.",
+      "default_allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "canonical_output_paths": [
+        "scene/health/",
+        "scene/audit_reports/"
+      ]
+    }
+  ],
+  "bundle_assignments": {
+    "agent/orchestrator_v0": [
+      "bundle/orchestrate_v0",
+      "bundle/merge_v0"
+    ],
+    "agent/auditor_v0": [
+      "bundle/review_v0",
+      "bundle/monitor_v0"
+    ],
+    "agent/maintainer_kalshi_v0": [
+      "bundle/build_v0",
+      "bundle/merge_v0"
+    ],
+    "agent/project_manager_v0": [
+      "bundle/orchestrate_v0"
+    ]
+  },
+  "bundle_authority_tuples": [
+    {
+      "tuple_id": "bundle_tuple/orchestrate_runtime_v0",
+      "bundle_id": "bundle/orchestrate_v0",
+      "scope": [
+        "scene/task_queue/",
+        "scene/authority/",
+        "scene/mailbox/",
+        "scene/merge_queue/",
+        "scene/sandbox/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "scope_only",
+        "runtime_coordination_only"
+      ]
+    },
+    {
+      "tuple_id": "bundle_tuple/scout_discovery_v0",
+      "bundle_id": "bundle/scout_v0",
+      "scope": [
+        "scenes/research/",
+        "scene/mailbox/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "research_scope_only"
+      ]
+    },
+    {
+      "tuple_id": "bundle_tuple/build_domain_v0",
+      "bundle_id": "bundle/build_v0",
+      "scope": [
+        "scenes/<domain>/",
+        "scene/merge_queue/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "UPDATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "domain_scope_only",
+        "requires_review_before_merge"
+      ]
+    },
+    {
+      "tuple_id": "bundle_tuple/review_reporting_v0",
+      "bundle_id": "bundle/review_v0",
+      "scope": [
+        "scene/audit_reports/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "report_only_artifacts"
+      ]
+    },
+    {
+      "tuple_id": "bundle_tuple/merge_queue_gate_v0",
+      "bundle_id": "bundle/merge_v0",
+      "scope": [
+        "scene/merge_queue/",
+        "scenes/*merge_gate*.scene.json"
+      ],
+      "allowed_mutations": [
+        "UPDATE",
+        "BLOCK",
+        "UNBLOCK"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "scoped_gate_only",
+        "resolution_note_required_for_merge"
+      ]
+    },
+    {
+      "tuple_id": "bundle_tuple/monitor_health_v0",
+      "bundle_id": "bundle/monitor_v0",
+      "scope": [
+        "scene/health/",
+        "scene/audit_reports/"
+      ],
+      "allowed_mutations": [
+        "CREATE",
+        "PROPOSE"
+      ],
+      "conditions": [
+        "must_record_mutation",
+        "non_mutating_monitoring_only"
+      ]
     }
   ]
 }

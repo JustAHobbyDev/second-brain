@@ -1,0 +1,12 @@
+{
+  "registry_id": "scene/sandbox/registry_v0",
+  "version": "0.1",
+  "status": "active",
+  "default_policy": {
+    "sandbox_grants_authority": false,
+    "sandbox_requires_scope_grant": true,
+    "isolation_mode": "tool_agnostic"
+  },
+  "sandboxes": [],
+  "updated_at": "2026-02-17T14:49:00Z"
+}

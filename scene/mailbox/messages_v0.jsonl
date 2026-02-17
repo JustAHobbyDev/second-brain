@@ -1,0 +1,1 @@
+{"msg_id":"msg_bootstrap_2026_02_17_01","ts":"2026-02-17T14:49:00Z","from_agent":"agent/orchestrator_v0","to":"group/all_agents","type":"GATE_STATUS","refs":["spec/overstory_alignment_layer_v0.md","scene/authority/registry_v0.json"],"body":"Initialized typed runtime mailbox for coordination-only traffic.","requires_ack":false,"status":"closed"}
