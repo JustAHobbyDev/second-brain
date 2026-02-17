@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 REPORT_PATH="${REPO_ROOT}/reports/vision_alignment_audit_v0.json"
+SHELL_REPORT_PATH="${REPO_ROOT}/reports/shell_embedding_audit_v0.json"
 TMP_JSON="$(mktemp)"
 TOOL="${1:-codex}"
 
@@ -12,17 +13,19 @@ trap 'rm -f "${TMP_JSON}"' EXIT
 cd "${REPO_ROOT}"
 
 python3 scripts/run_vision_alignment_audit.py --out-file "${REPORT_PATH}" >/dev/null
+python3 scripts/run_shell_embedding_audit.py --out-file "${SHELL_REPORT_PATH}" >/dev/null
 
-python3 - "${REPORT_PATH}" "${TMP_JSON}" "${TOOL}" <<'PY'
+python3 - "${REPORT_PATH}" "${SHELL_REPORT_PATH}" "${TMP_JSON}" "${TOOL}" <<'PY'
 import json
-import re
 import sys
 from datetime import date
 
-report_path, out_path, tool = sys.argv[1:4]
+report_path, shell_report_path, out_path, tool = sys.argv[1:5]
 
 with open(report_path, "r", encoding="utf-8") as f:
     r = json.load(f)
+with open(shell_report_path, "r", encoding="utf-8") as f:
+    s = json.load(f)
 
 today = date.today().isoformat()
 today_id = today.replace("-", "_")
@@ -31,6 +34,8 @@ artifact_id = f"artifact/{tool}_{today_id}_{slug}"
 
 kpi = r.get("kpi", {}) if isinstance(r, dict) else {}
 coverage = r.get("coverage", {}) if isinstance(r, dict) else {}
+shell_summary = s.get("summary", {}) if isinstance(s, dict) else {}
+shell_alerts = s.get("alerts", []) if isinstance(s, dict) else []
 
 missing = coverage.get("artifacts_missing_principle_link", [])
 if not isinstance(missing, list):
@@ -39,10 +44,14 @@ if not isinstance(missing, list):
 next_actions = r.get("next_actions", [])
 if not isinstance(next_actions, list):
     next_actions = []
+shell_actions = s.get("next_actions", [])
+if not isinstance(shell_actions, list):
+    shell_actions = []
 
 open_questions = [
     "1. Which missing-principle artifacts should be remediated first by business impact?",
     "2. Should closeout require strict canonical-ID existence checks in all environments?",
+    "3. Which top embedded-python offenders should be extracted first for maintainability?",
 ]
 
 payload = {
@@ -64,29 +73,36 @@ payload = {
     ],
     "related_artifact_links": [
         r.get("artifact_id", "artifact/vision_alignment_audit_unknown_v0"),
+        s.get("artifact_id", "artifact/shell_embedding_audit_unknown_v0"),
     ] + [x for x in missing if isinstance(x, str)],
     "summary": (
         f"Ran agent-owned vision-alignment audit loop. KPI {kpi.get('name')}="
         f"{kpi.get('value_pct')}% with status={kpi.get('status')}. "
-        f"Missing-principle artifacts: {len(missing)}."
+        f"Missing-principle artifacts: {len(missing)}. "
+        f"Shell embedding audit: {shell_summary.get('bash_with_embedded_python')}/"
+        f"{shell_summary.get('total_bash_scripts')} bash scripts embed python; "
+        f"status={s.get('status')}."
     ),
     "key_decisions": [
         "Execute audit via script first, then close out via sb_closeout to keep loop deterministic",
         "Use principle_linked_artifact_pct as primary anchor KPI until broader graph KPIs stabilize",
+        "Keep shell embedding audit track-only; extraction remains planned remediation, not a hard gate",
     ],
     "open_questions": open_questions,
     "next_steps": [
         str(x) for x in next_actions[:3]
-    ] or ["Add canonical principle links to missing artifacts listed in report"],
+    ] + [str(x) for x in shell_actions[:2]] or ["Add canonical principle links to missing artifacts listed in report"],
     "thinking_trace_attachments": [
         "reports/vision_alignment_audit_v0.json",
+        "reports/shell_embedding_audit_v0.json",
+        f"shell_alerts={len(shell_alerts)}",
     ],
     "prompt_lineage": [
         {"role": "system", "ref": "prompts/meta_program/50_agent_owned_audit.txt", "summary": "agent-owned audit execution contract"},
         {"role": "user", "summary": "Run agent-owned audit loop end-to-end and persist closeout"},
     ],
     "resumption_score": 8,
-    "resumption_notes": "Load reports/vision_alignment_audit_v0.json first, then remediate listed artifacts and rerun this script.",
+    "resumption_notes": "Load reports/vision_alignment_audit_v0.json and reports/shell_embedding_audit_v0.json first, then remediate listed artifacts and rerun this script.",
 }
 
 with open(out_path, "w", encoding="utf-8") as f:

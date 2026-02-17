@@ -49,3 +49,12 @@ Compute and persist the first vision-alignment KPI:
 - [ ] Missing-principle artifact IDs listed.
 - [ ] Next actions captured.
 - [ ] No automatic scene mutation performed by audit run.
+
+## Recurring Audit Loop Integration
+
+When running `tools/sb_agent_audit_loop.sh`, this vision audit is paired with:
+
+- `scripts/run_shell_embedding_audit.py`
+- Output: `reports/shell_embedding_audit_v0.json`
+
+Both reports are attached to the generated session closeout artifact for recurring review.
