@@ -258,6 +258,22 @@ Add links, not directories.
 
 # Workflow
 
+## Portable Startup
+
+Use one command to bootstrap local skills and run environment checks:
+
+```bash
+./tools/sb_up_v0.sh
+```
+
+Optional `just` entrypoint:
+
+```bash
+just sb-up
+```
+
+Runbook: [Second Brain Portable Bootstrap v0](operations/second_brain_portable_bootstrap_v0.md)
+
 ## Starting Work
 
 * Identify the project ID.
