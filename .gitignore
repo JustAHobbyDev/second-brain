@@ -1,3 +1,6 @@
 misc/
 __pycache__/
 *.pyc
+.env.local
+.env
+.secrets/
