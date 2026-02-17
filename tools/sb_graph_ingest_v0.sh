@@ -4,6 +4,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# Namespace boundary declaration (spec/scene_namespace_boundary_v0.md)
+TARGET_NAMESPACE="mixed"
+ALLOWED_PATH_PREFIXES=("graph/")
+BOUNDARY_JUSTIFICATION="Derived graph export writes to graph/, which is outside scenes/ and scene/ namespaces."
+
 SCENE_INPUT=""
 GRAPH_PATH="${REPO_ROOT}/graph/graph.json"
 CANONICAL_JSONL=""

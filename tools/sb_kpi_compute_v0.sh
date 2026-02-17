@@ -3,6 +3,12 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+# Namespace boundary declaration (spec/scene_namespace_boundary_v0.md)
+TARGET_NAMESPACE="mixed"
+ALLOWED_PATH_PREFIXES=("reports/")
+BOUNDARY_JUSTIFICATION="KPI dashboard outputs are derived metrics persisted under reports/."
+
 OUT_FILE="${REPO_ROOT}/reports/kpi_dashboard_metrics_v0.json"
 SESSIONS_DIR="${REPO_ROOT}/sessions"
 GRAPH_FILE="${REPO_ROOT}/graph/graph.json"

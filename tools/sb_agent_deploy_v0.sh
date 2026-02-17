@@ -4,6 +4,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# Namespace boundary declaration (spec/scene_namespace_boundary_v0.md)
+TARGET_NAMESPACE="mixed"
+ALLOWED_PATH_PREFIXES=("scene/" "spec/")
+BOUNDARY_JUSTIFICATION="Agent deployment writes scoped runtime state under scene/ and contract docs under spec/."
+
 AGENT_ID=""
 PROJECT_SCOPE="project/dan_personal_cognitive_infrastructure"
 ISSUED_BY="agent/orchestrator_v0"

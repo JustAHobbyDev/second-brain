@@ -4,6 +4,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# Namespace boundary declaration (spec/scene_namespace_boundary_v0.md)
+TARGET_NAMESPACE="mixed"
+ALLOWED_PATH_PREFIXES=("scenes/" "scene/agent/")
+BOUNDARY_JUSTIFICATION="Gate watcher updates canonical gate scene plus runtime PM status mirror."
+
 GATE_SCENE="${REPO_ROOT}/scenes/kalshi_data_gate_v0.scene.json"
 PM_STATUS="${REPO_ROOT}/scene/agent/project_manager/status_v0.json"
 SIGNAL_FILE=""
