@@ -1,0 +1,35 @@
+{
+  "artifact_id": "artifact/<run_id>_final_eval_v0",
+  "run_id": "beads_pilot_YYYYMMDD_v0",
+  "scope": "project/dan_personal_cognitive_infrastructure",
+  "status": "draft",
+  "required_artifacts": {
+    "preflight": "scene/audit_reports/v0/<run_id>_preflight_v0.json",
+    "baseline": "scene/audit_reports/v0/<run_id>_baseline_v0.json",
+    "manifest": "scene/beads/<run_id>/manifest_v0.json",
+    "task_selection": "scene/beads/<run_id>/task_selection_v0.json",
+    "cycle_001_log": "scene/beads/<run_id>/cycle_001_log_v0.json",
+    "cycle_001_eval": "scene/audit_reports/v0/<run_id>_cycle_001_eval_v0.json",
+    "cycle_002_log": "scene/beads/<run_id>/cycle_002_log_v0.json",
+    "cycle_002_eval": "scene/audit_reports/v0/<run_id>_cycle_002_eval_v0.json",
+    "cycle_003_log": "scene/beads/<run_id>/cycle_003_log_v0.json",
+    "cycle_003_eval": "scene/audit_reports/v0/<run_id>_cycle_003_eval_v0.json",
+    "materialization": "scene/audit_reports/v0/<run_id>_materialization_v0.json",
+    "boundary_audit": "scene/audit_reports/v0/beads_boundary_audit_<YYYY_MM_DD>_v0.json",
+    "final_eval": "scene/audit_reports/v0/<run_id>_final_eval_v0.json"
+  },
+  "promotion_criteria": {
+    "invariant_violations": 0,
+    "cross_namespace_violations": 0,
+    "blocked_scope_mutations": 0,
+    "materialization_violations": 0,
+    "completed_cycles": 3,
+    "decision_materialization_coverage": 100,
+    "coordination_overhead_reduction_pct_min": 20
+  },
+  "notes": [
+    "All refs are repo-root-relative.",
+    "No canonical truth is recognized from runtime surfaces until materialized in scenes/.",
+    "Pilot remains Level 2 track-only until explicit promotion decision."
+  ]
+}

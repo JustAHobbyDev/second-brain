@@ -51,6 +51,24 @@ Any helper tool introduced for Beads pilot must declare:
 
 If omitted, the tool is invalid under this spec.
 
+## Authority Registry Churn Guardrail (track-only)
+This guardrail applies to Beads-scoped authority tuples only (prospective rule):
+
+- Applies when either condition is true:
+  - `authority_id` starts with `auth/beads_`, or
+  - tuple scope includes `scene/beads/` or `state/beads/`.
+- Scope entries must be repo-root-relative path prefixes.
+- Wildcards are disallowed in Beads-scoped tuple scope (`*` forbidden).
+- Broad scopes are disallowed in Beads-scoped tuple scope:
+  - `scene/`
+  - `state/`
+  - `scenes/`
+  - `project/`
+- Tuple-per-surface discipline:
+  - one mutable runtime surface per tuple (for example one of `scene/beads/` or `state/beads/`, not both).
+
+Enforcement mode remains track-only in v0; violations must be emitted as audit findings.
+
 ## Authority Constraints (pilot)
 - Default operator: `agent/orchestrator_v0` in track-only mode.
 - Optional contributors: domain maintainers in scoped `PROPOSE` mode only unless temporary execution tuple is explicitly minted.
@@ -64,6 +82,7 @@ If omitted, the tool is invalid under this spec.
 ### Run ID rule
 - `run_id = beads_pilot_<YYYYMMDD>_v0`
 - All pilot artifacts must include this exact `run_id`.
+- Use template `templates/beads_pilot_run_template_v0.json` to keep field shape deterministic.
 
 ### Step 0: Preflight boundary check
 - Confirm Kalshi gate status is read from `scenes/kalshi_data_gate_v0.scene.json`.
@@ -114,15 +133,18 @@ Pass condition (per cycle):
 ### Step 5: Canonical materialization
 - For each accepted decision, write a canonical artifact in `scenes/` with refs back to pilot cycle logs.
 - Emit `scene/audit_reports/v0/<run_id>_materialization_v0.json`.
+- Run `python3 scripts/run_beads_boundary_audit.py` and retain report output for disposition.
 
 Pass condition:
 - `decision_materialization_coverage == 100`
+- `materialization_violations == 0` in beads boundary audit output.
 
 ### Step 6: Final evaluation and disposition
 - Emit `scene/audit_reports/v0/<run_id>_final_eval_v0.json` with:
   - invariant violation counts
   - cross-namespace violations
   - blocked scope mutations
+  - materialization violations
   - completed cycles
   - coordination overhead delta
   - recommendation (`promote|extend_pilot|reject`)
