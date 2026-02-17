@@ -1,6 +1,6 @@
 {
   "queue_id": "scene/agent/project_manager/consultation_queue_v0",
-  "updated_at": "2026-02-17T07:48:55Z",
+  "updated_at": "2026-02-17T11:44:37Z",
   "items": [
     {
       "consultation_id": "consult/pm_v0_001",
@@ -264,6 +264,16 @@
       ],
       "state": "resolved",
       "resolution": "defer_to_next_cycle"
+    },
+    {
+      "consultation_id": "consult/pm_v0_025",
+      "question": "For human KMS UX hardening, what build order do you want: (1) sb_status, (2) sb_hub, (3) HOWTO?",
+      "context_refs": [
+        "scene/task_queue/v0.json",
+        "scene/agent/project_manager/ideas_v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "queued"
     }
   ]
 }

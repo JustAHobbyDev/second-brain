@@ -114,7 +114,7 @@ print(int(time.time() * 1000))
 PY
 )"
 
-  if "${REPO_ROOT}/tools/sb_closeout.sh" --tool "${TOOL_LC}" --input "${payload}" --sessions-dir "${SESSIONS_DIR}" >"${stdout_file}" 2>"${stderr_file}"; then
+  if "${REPO_ROOT}/tools/sb_closeout.sh" --tool "${TOOL_LC}" --input "${payload}" --sessions-dir "${SESSIONS_DIR}" --legacy-session-write >"${stdout_file}" 2>"${stderr_file}"; then
     status="pass"
   else
     status="fail"
@@ -215,4 +215,3 @@ out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 print(out_path)
 PY
-

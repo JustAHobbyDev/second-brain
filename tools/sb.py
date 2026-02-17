@@ -179,6 +179,12 @@ def rebuild_indexes() -> None:
 
 
 def cmd_commit_session(args: argparse.Namespace) -> None:
+    if not bool(getattr(args, "legacy_session_write", False)):
+        die(
+            "session writes are deprecated by default in this repository; "
+            "re-run with --legacy-session-write for controlled migration/backfill."
+        )
+
     data = read_json_input(cast(str | None, args.json_file))
     artifact_id = data.get("artifact_id") or data.get("id")
     if not isinstance(artifact_id, str):
@@ -246,11 +252,16 @@ def main() -> None:
 
     s1 = sub.add_parser(
         "commit-session",
-        help="Commit a session artifact from stdin JSON (or --json-file) and rebuild indexes",
+        help="Legacy: commit a session artifact from stdin JSON (or --json-file) and rebuild indexes",
     )
     _ = s1.add_argument("--tool", required=True, help="Session tool name (e.g. codex, chatgpt, claude)")
     _ = s1.add_argument("--filename", help="Override output filename")
     _ = s1.add_argument("--json-file", help="Read input JSON from a file instead of stdin")
+    _ = s1.add_argument(
+        "--legacy-session-write",
+        action="store_true",
+        help="Required opt-in for legacy session writes under sessions/.",
+    )
     s1.set_defaults(func=cmd_commit_session)
 
     s2 = sub.add_parser("commit-scene", help="Commit a scene JSON from stdin (or --json-file)")
@@ -258,10 +269,10 @@ def main() -> None:
     _ = s2.add_argument("--json-file", help="Read input JSON from a file instead of stdin")
     s2.set_defaults(func=cmd_commit_scene)
 
-    s3 = sub.add_parser("validate", help="Validate JSON in scenes/ and sessions/")
+    s3 = sub.add_parser("validate", help="Validate JSON in scenes/ and legacy sessions/")
     s3.set_defaults(func=cmd_validate)
 
-    s4 = sub.add_parser("reindex", help="Rebuild sessions/*/index.json from session artifacts")
+    s4 = sub.add_parser("reindex", help="Legacy: rebuild sessions/*/index.json from session artifacts")
     s4.set_defaults(func=cmd_reindex)
 
     args = p.parse_args()

@@ -1,8 +1,10 @@
 # Session Closing Checklist
 
-This checklist converts a working session into durable infrastructure.
+Status: Legacy (deprecated default in `project/second-brain`)
 
-Use this at the end of every meaningful assistant session.
+This checklist is for controlled migration/backfill only.
+
+Default policy is to rely on git + `reports/checkpoints/*` for provenance.
 
 ---
 
@@ -60,7 +62,7 @@ If unsure, fix before saving.
 
 ---
 
-## 4. Save the Artifact
+## 4. Save the Artifact (legacy only)
 
 Save to:
 
@@ -78,11 +80,10 @@ The filename slug should roughly match the artifact ID.
 
 ---
 
-## 5. Update Index (Default: Automatic)
+## 5. Update Index (Legacy Mode)
 
-Default policy:
-* On every successful closeout, update `sessions/<assistant_or_tool>/index.json` automatically.
-* Use `--no-index` only for rare bulk backfills, rollback prep, or controlled migration runs.
+Legacy policy:
+* Update `sessions/<assistant_or_tool>/index.json` only during controlled backfill/migration runs.
 
 Target index shape:
 
@@ -101,7 +102,7 @@ Target index shape:
 }
 ```
 
-This keeps traversal fast and reduces manual grooming debt.
+This preserves historical continuity for legacy artifacts.
 
 ---
 
@@ -133,6 +134,6 @@ Sessions with links become infrastructure.
 
 # Done
 
-The session is now part of your second brain.
+The legacy session artifact is now archived.
 
-Ephemeral thinking -> structured artifact -> graph node -> infrastructure.
+Canonical infrastructure should still be captured in `scenes/` with stable IDs and source refs.

@@ -1,6 +1,6 @@
 {
-  "artifact_id": "artifact/vision_alignment_audit_2026_02_15_v0",
-  "audit_date": "2026-02-15",
+  "artifact_id": "artifact/vision_alignment_audit_2026_02_17_v0",
+  "audit_date": "2026-02-17",
   "mutation_policy": {
     "mode": "propose_only",
     "mutate_requested": false,
@@ -9,28 +9,28 @@
   "kpi": {
     "name": "principle_linked_artifact_pct",
     "definition": "Percent of non-trivial session artifacts with >=1 canonical principle link",
-    "eligible_artifacts": 7,
-    "artifacts_with_principle_link": 4,
-    "value_pct": 57.14,
+    "eligible_artifacts": 13,
+    "artifacts_with_principle_link": 10,
+    "value_pct": 76.92,
     "targets": {
       "pass": ">=75%",
       "stretch": ">=85%"
     },
-    "status": "fail"
+    "status": "pass"
   },
   "agent_delegability": {
     "name": "agent_delegability_score",
-    "value": 4.74,
+    "value": 7.06,
     "target": 9.0,
     "components": {
-      "principle_linked_artifact_pct": 57.14,
-      "contract_compliance_pct": 28.57,
-      "quality_pass_pct": 14.29,
-      "avg_resumption_score": 8.0
+      "principle_linked_artifact_pct": 76.92,
+      "contract_compliance_pct": 61.54,
+      "quality_pass_pct": 53.85,
+      "avg_resumption_score": 8.38
     }
   },
   "coverage": {
-    "total_artifacts_scanned": 7,
+    "total_artifacts_scanned": 13,
     "canonical_principle_ids_detected": 11,
     "artifacts_missing_principle_link": [
       "artifact/claude_2026_02_13_phase10-ladder-prep-l1-tier1",

@@ -1,4 +1,4 @@
-You are closing this [LLM_NAME e.g. Codex / o1 / ChatGPT] session as part of the second-brain cognitive infrastructure.
+Legacy mode only: you are closing this [LLM_NAME e.g. Codex / o1 / ChatGPT] session artifact for migration/backfill.
 
 Output ONLY valid JSON, no markdown, no explanations, no extra text outside the object. The JSON must exactly match this structure (do not add/remove top-level keys; use empty arrays/strings when no value):
 

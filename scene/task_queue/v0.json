@@ -337,6 +337,47 @@
           "note": "Validated authority/ledger/cursors for cold resume readiness."
         }
       ]
+    },
+    {
+      "task_id": "task/human-kms-interface-hardening-v0",
+      "objective": "Reduce human KMS operational friction by adding a single operator front door, a consolidated status view, and a deterministic how-to.",
+      "inputs": [
+        "README.md",
+        "operations/second_brain_portable_bootstrap_v0.md",
+        "operations/agent_deploy_flow_v0.md",
+        "operations/project_manager_consultation_loop_v0.md",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "No global hard-gate creation",
+        "Preserve scenes/ canonical truth and scene/ runtime boundary",
+        "Do not expand scope beyond operator UX hardening"
+      ],
+      "acceptance_criteria": [
+        "tools/sb_status_v0.sh provides a deterministic stage snapshot",
+        "tools/sb_hub_v0.sh offers intent-based operator entrypoints",
+        "HOWTO.md exists with Day 0 and daily ritual flows",
+        "Each new operator command supports a safe preview mode"
+      ],
+      "state": "queued",
+      "owner_agent": "agent/project_manager_v0",
+      "delivery_plan_v0": [
+        "Implement tools/sb_status_v0.sh first",
+        "Implement tools/sb_hub_v0.sh as single front door",
+        "Draft HOWTO.md mapped to real commands",
+        "Add intent-based mini playbooks in HOWTO",
+        "Run one PM cycle to validate human usability"
+      ],
+      "last_progress_at": "2026-02-17T11:44:37Z",
+      "execution_history": [
+        {
+          "timestamp": "2026-02-17T11:44:37Z",
+          "agent_id": "agent/project_manager_v0",
+          "event": "task_queued",
+          "note": "Added after human request to save human interface hardening plan for further discussion."
+        }
+      ]
     }
   ]
 }

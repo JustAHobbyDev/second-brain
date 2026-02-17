@@ -7,7 +7,7 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # Namespace boundary declaration (spec/scene_namespace_boundary_v0.md)
 TARGET_NAMESPACE="mixed"
 ALLOWED_PATH_PREFIXES=("sessions/")
-BOUNDARY_JUSTIFICATION="Closeout persists session artifacts under sessions/, outside scenes/ and scene/."
+BOUNDARY_JUSTIFICATION="Legacy-only session artifact persistence under sessions/."
 
 TOOL=""
 INPUT=""
@@ -16,13 +16,18 @@ UPDATE_INDEX=1
 ALLOW_SPARSE_LINKS=0
 ALLOW_UNKNOWN_IDS=0
 SUGGEST_SCENES=1
+LEGACY_SESSION_WRITE=0
 
 usage() {
   cat <<USAGE
-Usage: $(basename "$0") --tool <name> [--input <json-file>] [--sessions-dir <path>] [--no-index] [--allow-sparse-links] [--allow-unknown-ids] [--no-scene-suggest]
+Usage: $(basename "$0") --tool <name> [--input <json-file>] [--sessions-dir <path>] [--no-index] [--allow-sparse-links] [--allow-unknown-ids] [--no-scene-suggest] [--legacy-session-write]
 
 Reads closeout JSON (from --input or stdin), validates against v1 ritual contract, writes to:
   sessions/<tool>/YYYY-MM-DD-<slug>.json
+
+Default policy:
+  - Session tracking is deprecated in this repository.
+  - Writes to sessions/ are blocked unless --legacy-session-write is provided.
 
 Default behavior:
   - Auto-updates sessions/<tool>/index.json
@@ -37,6 +42,7 @@ Options:
   --allow-sparse-links   Relax minimum link density checks.
   --allow-unknown-ids    Skip canonical-ID existence checks against scenes.
   --no-scene-suggest     Disable scene fold-in suggestions.
+  --legacy-session-write Explicitly allow legacy write into sessions/.
   -h, --help             Show help.
 USAGE
 }
@@ -71,6 +77,10 @@ while [[ $# -gt 0 ]]; do
       SUGGEST_SCENES=0
       shift
       ;;
+    --legacy-session-write)
+      LEGACY_SESSION_WRITE=1
+      shift
+      ;;
     -h|--help)
       usage
       exit 0
@@ -86,6 +96,12 @@ done
 if [[ -z "${TOOL}" ]]; then
   echo "--tool is required" >&2
   usage >&2
+  exit 1
+fi
+
+if [[ "${LEGACY_SESSION_WRITE}" -ne 1 ]]; then
+  echo "Session artifact writes are deprecated in this repository." >&2
+  echo "Use --legacy-session-write only for controlled migration/backfill workflows." >&2
   exit 1
 fi
 

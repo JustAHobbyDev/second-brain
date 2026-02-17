@@ -90,6 +90,17 @@ This boundary prevents namespace drift, preserves cold resume guarantees, and ke
 - Derived graph exports: `graph/` only (derived, never canonical source).
 - Any violation is boundary drift and must be remediated as an invariant issue.
 
+## External Evidence Ingestion Rule (v0)
+
+Second-brain is infrastructure, not a raw session log sink.
+
+- Do not ingest raw chat/session transcripts as canonical artifacts.
+- Ingest only canonical outcomes into `scenes/`, with:
+  - stable canonical ID,
+  - explicit source references (for example commit hash, checkpoint report path, or immutable report artifact),
+  - short decision rationale.
+- If source references are missing, outcome is advisory only and must not be treated as canonical truth.
+
 ## Tool Requirements (normative contract)
 
 All repository tools that mutate tracked files must declare namespace intent.
@@ -155,4 +166,3 @@ No silent in-place namespace moves are allowed.
 - `scenes/` vs `scene/` semantics are machine-checkable by path rules.
 - Tool declaration requirements are defined for enforceable audits.
 - Cold-resume flow is deterministic and namespace-aware.
-

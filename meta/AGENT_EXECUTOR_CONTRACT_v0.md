@@ -25,7 +25,7 @@ Define a deterministic, low-entropy worker contract for executing scoped tasks w
 - scenes/task_results/*.scene.json
 - state/agent_executor/ledger.jsonl
 - state/agent_executor/cursor.json
-- sessions/<tool>/*.json (only through closeout contract)
+- sessions/<tool>/*.json (legacy-only via explicit opt-in closeout)
 
 ## Stop Condition
 A task run is complete when one of the following is true:

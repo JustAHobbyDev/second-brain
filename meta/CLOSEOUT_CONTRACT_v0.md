@@ -1,14 +1,17 @@
 # Closeout Contract
 
 Version: v0
-Status: Active
+Status: Legacy (deprecated default)
 Inputs:
 - `templates/session_template.json`
 - `prompts/session_ending_prompt.md`
 - `tools/sb_closeout.sh`
 
 ## Purpose
-Define the canonical closeout artifact contract and gating rules for agent/human session closure.
+Define the legacy session-closeout contract for controlled migration/backfill runs.
+
+Session tracking is deprecated by default in `project/second-brain`.
+Primary audit surfaces are git history and `reports/checkpoints/*`.
 
 ## Required Top-Level Keys
 - `artifact_id`
@@ -34,7 +37,7 @@ Define the canonical closeout artifact contract and gating rules for agent/human
 - `llm_used` must match `artifact_id` prefix.
 - `session_date` must be `YYYY-MM-DD` and match `artifact_id` date.
 
-## Quality Gates
+## Quality Gates (legacy runs only)
 - `resumption_score` must be integer `0-10`.
 - Passing closeout requires `resumption_score >= 6`.
 - Default link density gates:
@@ -44,7 +47,7 @@ Define the canonical closeout artifact contract and gating rules for agent/human
 - `open_questions` must be numbered and actionable (`1. ...`).
 - `prompt_lineage` must include at least one object with `role` and `ref` or `summary`.
 
-## Index Policy
+## Index Policy (legacy runs only)
 - On successful closeout, auto-update `sessions/<tool>/index.json` by default.
 - `--no-index` allowed only for controlled backfill/rollback/migration runs.
 
@@ -57,3 +60,4 @@ Define the canonical closeout artifact contract and gating rules for agent/human
 
 ## Reference Implementation
 - `tools/sb_closeout.sh`
+- Requires explicit `--legacy-session-write` opt-in.

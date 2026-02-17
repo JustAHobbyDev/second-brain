@@ -1,0 +1,413 @@
+{
+  "artifact_id": "artifact/shell_embedding_audit_2026_02_17_v0",
+  "audit_date": "2026-02-17",
+  "scope": "project/dan_personal_cognitive_infrastructure",
+  "status": "warning",
+  "summary": {
+    "total_bash_scripts": 21,
+    "bash_with_embedded_python": 17,
+    "embedded_python_pct": 80.95,
+    "embedded_python_blocks": 24,
+    "embedded_python_lines_total": 2778,
+    "max_block_lines": 418,
+    "unclosed_blocks": 0
+  },
+  "alerts": [
+    "At least one embedded python block exceeds 140 lines.",
+    "More than 70% of bash scripts embed python blocks."
+  ],
+  "thresholds": {
+    "embedded_python_pct_warn_gt": 70.0,
+    "max_block_lines_warn_gt": 140,
+    "unclosed_blocks_warn_gt": 0
+  },
+  "top_offenders": [
+    {
+      "path": "tools/sb_graph_ingest_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 418,
+      "max_block_lines": 418,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 95,
+          "end_line": 514,
+          "python_lines": 418,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_closeout.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 340,
+      "max_block_lines": 340,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 130,
+          "end_line": 471,
+          "python_lines": 340,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_kalshi_gate_watcher_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 283,
+      "max_block_lines": 283,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 75,
+          "end_line": 359,
+          "python_lines": 283,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_kpi_compute_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 263,
+      "max_block_lines": 263,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 49,
+          "end_line": 313,
+          "python_lines": 263,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_agent_deploy_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 234,
+      "max_block_lines": 234,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 74,
+          "end_line": 309,
+          "python_lines": 234,
+          "closed": true
+        }
+      ]
+    }
+  ],
+  "offenders": [
+    {
+      "path": "tools/sb_agent_audit_loop.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 118,
+      "max_block_lines": 118,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 47,
+          "end_line": 166,
+          "python_lines": 118,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_agent_deploy_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 234,
+      "max_block_lines": 234,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 74,
+          "end_line": 309,
+          "python_lines": 234,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_agent_run_cycle_v0.sh",
+      "embedded_python_blocks": 4,
+      "embedded_python_lines_total": 168,
+      "max_block_lines": 116,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 95,
+          "end_line": 212,
+          "python_lines": 116,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 238,
+          "end_line": 248,
+          "python_lines": 9,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 259,
+          "end_line": 277,
+          "python_lines": 17,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 291,
+          "end_line": 318,
+          "python_lines": 26,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_bootstrap_skills_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 70,
+      "max_block_lines": 70,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 61,
+          "end_line": 132,
+          "python_lines": 70,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_closeout.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 340,
+      "max_block_lines": 340,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 130,
+          "end_line": 471,
+          "python_lines": 340,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_coord_claim_append_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 76,
+      "max_block_lines": 76,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 56,
+          "end_line": 133,
+          "python_lines": 76,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_coord_claim_preflight_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 122,
+      "max_block_lines": 122,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 83,
+          "end_line": 206,
+          "python_lines": 122,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_doctor_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 127,
+      "max_block_lines": 127,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 52,
+          "end_line": 180,
+          "python_lines": 127,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_graph_ingest_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 418,
+      "max_block_lines": 418,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 95,
+          "end_line": 514,
+          "python_lines": 418,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_invariant_drift_eval_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 199,
+      "max_block_lines": 199,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 59,
+          "end_line": 259,
+          "python_lines": 199,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_kalshi_gate_watcher_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 283,
+      "max_block_lines": 283,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 75,
+          "end_line": 359,
+          "python_lines": 283,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_kpi_compute_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 263,
+      "max_block_lines": 263,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 49,
+          "end_line": 313,
+          "python_lines": 263,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_pubsub_poll_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 100,
+      "max_block_lines": 100,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 68,
+          "end_line": 169,
+          "python_lines": 100,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_pubsub_publish_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 58,
+      "max_block_lines": 58,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 75,
+          "end_line": 134,
+          "python_lines": 58,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_terminology_scan_v0.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 131,
+      "max_block_lines": 131,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 50,
+          "end_line": 182,
+          "python_lines": 131,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/sb_test_agent_loop_v0.sh",
+      "embedded_python_blocks": 5,
+      "embedded_python_lines_total": 66,
+      "max_block_lines": 39,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 111,
+          "end_line": 114,
+          "python_lines": 2,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 123,
+          "end_line": 126,
+          "python_lines": 2,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 134,
+          "end_line": 139,
+          "python_lines": 4,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 142,
+          "end_line": 162,
+          "python_lines": 19,
+          "closed": true
+        },
+        {
+          "tag": "PY",
+          "start_line": 177,
+          "end_line": 217,
+          "python_lines": 39,
+          "closed": true
+        }
+      ]
+    },
+    {
+      "path": "tools/test_sb_closeout_edges.sh",
+      "embedded_python_blocks": 1,
+      "embedded_python_lines_total": 5,
+      "max_block_lines": 5,
+      "blocks": [
+        {
+          "tag": "PY",
+          "start_line": 65,
+          "end_line": 71,
+          "python_lines": 5,
+          "closed": true
+        }
+      ]
+    }
+  ],
+  "next_actions": [
+    "Extract largest embedded python blocks (>140 lines) into scripts/*.py modules.",
+    "Prefer shared python modules for repeated JSON mutation logic across bash wrappers.",
+    "Keep inline python for short, single-purpose glue code only."
+  ],
+  "policy_note": "Track-only audit. No automatic mutation."
+}

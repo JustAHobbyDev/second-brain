@@ -2,8 +2,8 @@
 set -euo pipefail
 
 TARGET_NAMESPACE="mixed"
-ALLOWED_PATH_PREFIXES=("reports/" "sessions/" "scene/audit_reports/" "reports/checkpoints/")
-BOUNDARY_JUSTIFICATION="Runs recurring audits and then emits a closeout artifact with report references."
+ALLOWED_PATH_PREFIXES=("reports/" "scene/audit_reports/" "reports/checkpoints/")
+BOUNDARY_JUSTIFICATION="Runs recurring audits and emits a deterministic report summary; legacy session closeout is opt-in."
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
@@ -12,7 +12,28 @@ SHELL_REPORT_PATH="${REPO_ROOT}/reports/shell_embedding_audit_v0.json"
 NAMESPACE_REPORT_PATH="${REPO_ROOT}/reports/namespace_boundary_audit_v0.json"
 SECRET_REPORT_PATH="${REPO_ROOT}/reports/secret_scan_audit_v0.json"
 TMP_JSON="$(mktemp)"
-TOOL="${1:-codex}"
+TOOL="codex"
+LEGACY_CLOSEOUT=0
+
+for arg in "$@"; do
+  case "$arg" in
+    --legacy-closeout)
+      LEGACY_CLOSEOUT=1
+      ;;
+    --help|-h)
+      cat <<USAGE
+Usage: $(basename "$0") [tool] [--legacy-closeout]
+
+Runs recurring audits and emits reports/agent_audit_loop_summary_<tool>_v0.json.
+Session closeout writes are deprecated by default. Use --legacy-closeout only for controlled migration/backfill workflows.
+USAGE
+      exit 0
+      ;;
+    *)
+      TOOL="$arg"
+      ;;
+  esac
+done
 
 trap 'rm -f "${TMP_JSON}"' EXIT
 
@@ -71,7 +92,7 @@ if not isinstance(sec_actions, list):
 
 open_questions = [
     "1. Which missing-principle artifacts should be remediated first by business impact?",
-    "2. Should closeout require strict canonical-ID existence checks in all environments?",
+    "2. Should recurring audit summaries be promoted to canonical scenes or remain advisory reports?",
     "3. Which top embedded-python offenders should be extracted first for maintainability?",
     "4. Which mutating tools should be prioritized for TARGET_NAMESPACE declaration remediation?",
     "5. Should recurring secret scan move from warning-only to branch-protection requirements?",
@@ -92,7 +113,7 @@ payload = {
     "tool_links": [
         f"tool/{tool}",
         "tool/python3",
-        "tool/sb_closeout",
+        "tool/sb_precommit_checkpoint",
     ],
     "related_artifact_links": [
         r.get("artifact_id", "artifact/vision_alignment_audit_unknown_v0"),
@@ -112,7 +133,7 @@ payload = {
         f"Secret scan: matches={sec_summary.get('matches_found')}; status={sec.get('status')}."
     ),
     "key_decisions": [
-        "Execute audit via script first, then close out via sb_closeout to keep loop deterministic",
+        "Execute audit scripts first, then persist deterministic recurring summary report",
         "Use principle_linked_artifact_pct as primary anchor KPI until broader graph KPIs stabilize",
         "Keep shell embedding audit track-only; extraction remains planned remediation, not a hard gate",
         "Keep namespace-boundary declaration audit track-only; prioritize incremental remediation",
@@ -133,7 +154,7 @@ payload = {
     ],
     "prompt_lineage": [
         {"role": "system", "ref": "prompts/meta_program/50_agent_owned_audit.txt", "summary": "agent-owned audit execution contract"},
-        {"role": "user", "summary": "Run agent-owned audit loop end-to-end and persist closeout"},
+        {"role": "user", "summary": "Run agent-owned audit loop end-to-end and persist recurring audit summary"},
     ],
     "resumption_score": 8,
     "resumption_notes": "Load reports/vision_alignment_audit_v0.json, reports/shell_embedding_audit_v0.json, reports/namespace_boundary_audit_v0.json, and reports/secret_scan_audit_v0.json first, then remediate listed artifacts and rerun this script.",
@@ -144,4 +165,14 @@ with open(out_path, "w", encoding="utf-8") as f:
     f.write("\n")
 PY
 
-./tools/sb_closeout.sh --tool "${TOOL}" --input "${TMP_JSON}" --allow-unknown-ids
+SUMMARY_OUT="${REPO_ROOT}/reports/agent_audit_loop_summary_${TOOL}_v0.json"
+cp "${TMP_JSON}" "${SUMMARY_OUT}"
+echo "${SUMMARY_OUT}"
+
+if [[ "${LEGACY_CLOSEOUT}" -eq 1 ]]; then
+  ./tools/sb_closeout.sh \
+    --tool "${TOOL}" \
+    --input "${TMP_JSON}" \
+    --allow-unknown-ids \
+    --legacy-session-write
+fi

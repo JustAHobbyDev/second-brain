@@ -3,9 +3,9 @@
 Version: v0
 Status: Experimental
 Inputs:
-- Included folders: `sessions/`, `scenes/`, `prompts/`, `operations/`, `meta/`, `profiles/`, `templates/`, `tools/`
+- Included folders: `reports/checkpoints/`, `scenes/`, `prompts/`, `operations/`, `meta/`, `profiles/`, `templates/`, `tools/` (`sessions/` optional legacy)
 - Excluded folders: `.git/`, `graph/` (optional export cache), transient temp files
-- Artifact classes: session artifacts, scene artifacts, operation specs, governance docs, templates
+- Artifact classes: checkpoint artifacts, scene artifacts, operation specs, governance docs, templates (session artifacts = legacy)
 
 ## Operation Signature
 `generate_project_history(scene_id, date_range?, abstraction_level?)`

@@ -103,11 +103,12 @@ Node ID determines type.
 
 ---
 
-## sessions/
+## sessions/ (legacy)
 
-Sessions contain closure artifacts from working conversations.
+`sessions/` is a legacy storage area for historical closeout artifacts.
+New session tracking is externalized by default and should not be the primary audit surface in this repo.
 
-Each meaningful Codex or ChatGPT session should end with a structured JSON artifact.
+Use git history plus `reports/checkpoints/*` as the primary audit trail.
 
 Directory structure:
 
@@ -126,11 +127,11 @@ Example:
 
 Each file contains one artifact node.
 
-These are durable state snapshots.
+These files are historical snapshots retained for continuity.
 
-Index policy:
-* Maintain a separate canonical index per tool at `sessions/<tool>/index.json`.
-* Keep indexing tool-local by default; global rollups should be derived artifacts, not primary indexes.
+Legacy index policy:
+* Keep `sessions/<tool>/index.json` for historical lookup only.
+* Do not treat session indexes as canonical decision provenance.
 
 ---
 
@@ -205,9 +206,9 @@ Default agent constraint:
 
 ---
 
-## 3. Session Closing Ritual
+## 3. Legacy Session Closing (Deprecated)
 
-Every meaningful assistant session should end with:
+Legacy-only workflow (migration/backfill use):
 
 1. Request a graph-ready summary using the session template.
 2. Save the JSON file into:
@@ -224,7 +225,11 @@ sessions/<assistant_or_tool>/YYYY-MM-DD-slug.json
    * tools
    * related artifacts
 
-4. Update `sessions/<assistant_or_tool>/index.json` automatically on successful closeout (default policy). Use `--no-index` only for rare bulk/rollback cases.
+4. Update `sessions/<assistant_or_tool>/index.json` only for legacy backfill runs.
+
+Current default:
+- Do not write new session artifacts into `sessions/` unless explicitly running legacy migration/backfill.
+- Keep canonical outcomes in `scenes/` with stable IDs and source refs.
 
 ## 4. Pre-Commit Checkpoint Rule
 
@@ -283,15 +288,15 @@ Runbook: [Second Brain Portable Bootstrap v0](operations/second_brain_portable_b
 
 ## Ending Work
 
-* Emit structured artifact.
-* Save under sessions/.
-* Link appropriately.
+* Commit changes with checkpoint reports (`reports/checkpoints/*`).
+* Record canonical outcomes in `scenes/` when applicable.
+* Avoid default writes to `sessions/` (legacy only).
 
 ## Resuming Work
 
-* Open the most recent session artifact.
-* Provide it to AI.
-* Ask for next steps.
+* Open the latest checkpoint report and relevant git commits.
+* Open current runtime/canonical state (`scene/*`, `scenes/*`).
+* Ask for next steps based on canonical state, not chat/session logs.
 
 ---
 
@@ -304,7 +309,7 @@ Principles scale better than rigid rules.
 If the agent builds it, the agent can maintain it.
 Your system can be infrastructure, not just a tool.
 
-These are encoded into how sessions, scenes, and artifacts are structured.
+These are encoded into how scenes, checkpoints, and artifacts are structured.
 
 ---
 
@@ -342,8 +347,8 @@ The current focus is architectural discipline.
 
 # Mental Model
 
-Sessions produce artifacts.
-Artifacts link into scenes.
+Changes produce checkpoints.
+Canonical outcomes link into scenes.
 Scenes compose into a graph.
 The graph becomes infrastructure.
 

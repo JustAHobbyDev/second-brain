@@ -52,7 +52,7 @@ cat > "${PASS_JSON}" <<'JSON'
 JSON
 
 # Must fail
-if "${REPO_ROOT}/tools/sb_closeout.sh" --tool codex --input "${FAIL_JSON}" --sessions-dir "${TEST_ROOT}/sessions" >"${TEST_ROOT}/fail.out" 2>"${TEST_ROOT}/fail.err"; then
+if "${REPO_ROOT}/tools/sb_closeout.sh" --tool codex --input "${FAIL_JSON}" --sessions-dir "${TEST_ROOT}/sessions" --legacy-session-write >"${TEST_ROOT}/fail.out" 2>"${TEST_ROOT}/fail.err"; then
   echo "FAIL: low-score artifact unexpectedly passed"
   exit 1
 else
@@ -60,7 +60,7 @@ else
 fi
 
 # Must pass and alias-resolve
-"${REPO_ROOT}/tools/sb_closeout.sh" --tool codex --input "${PASS_JSON}" --sessions-dir "${TEST_ROOT}/sessions" >"${TEST_ROOT}/pass.out"
+"${REPO_ROOT}/tools/sb_closeout.sh" --tool codex --input "${PASS_JSON}" --sessions-dir "${TEST_ROOT}/sessions" --legacy-session-write >"${TEST_ROOT}/pass.out"
 
 python3 - <<'PY' "${TEST_ROOT}/sessions/codex/2026-02-15-alias-and-pass-test.json"
 import json,sys

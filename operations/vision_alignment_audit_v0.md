@@ -3,7 +3,7 @@
 Version: v0
 Status: Experimental
 Inputs:
-- `sessions/*/*.json` session artifacts
+- `sessions/*/*.json` session artifacts (legacy; may be sparse as tracking is externalized)
 - `scenes/*.scene.json` canonical principle IDs
 
 ## Purpose
@@ -59,7 +59,7 @@ When running `tools/sb_agent_audit_loop.sh`, this vision audit is paired with:
 - `scripts/run_namespace_boundary_audit.py`
 - Output: `reports/namespace_boundary_audit_v0.json`
 
-All audit reports are attached to the generated session closeout artifact for recurring review.
+All audit reports are attached to the generated recurring audit summary report for review.
 
 Recurring loop also runs:
 

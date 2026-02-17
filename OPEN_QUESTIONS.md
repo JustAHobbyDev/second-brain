@@ -42,6 +42,14 @@
 - **Draft path:** `meta/PUBSUB_BUS_SPEC_v0.md` defines a file-native bus (`state/pubsub/events_v0.ndjson`) and is intentionally `track-only`.
 - **Migration trigger:** consider moving from `coord_claims.md` to pub/sub when there are `>=3` recurring consumers.
 
+### OQ-5: Should second-brain ingest any external session-tracking data at all?
+
+- **Raised by:** Dan
+- **Date:** 2026-02-17
+- **Status:** Open
+- **Why it matters:** If second-brain is epistemic infrastructure, importing raw session telemetry may add entropy and duplicate provenance surfaces already covered by git + checkpoints.
+- **Decision pressure:** Determine whether second-brain should ingest only canonical outcomes (with stable IDs + source refs) or remain fully isolated from external session-tracker data.
+
 ---
 
 ## Journal

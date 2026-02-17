@@ -8,6 +8,8 @@ Define a restrained governance gradient that reduces entropy without introducing
 - Audits propose; audits do not auto-mutate project state.
 - Ingest only traversable knowledge into graph exports; non-traversable guidance remains in `meta/`.
 - Cross-repo edits are human-gated by default.
+- Primary audit surfaces are git history and `reports/checkpoints/*`.
+- Session closeout artifacts are legacy and non-primary in this repository.
 
 ## Cross-Repo Edit Gate
 Default boundary rule:
@@ -24,7 +26,7 @@ Each invariant must map to one primary enforcement mechanism.
 
 | Invariant | Primary Mechanism | Level | Notes |
 |---|---|---|---|
-| Closeout contract compliance | `meta/CLOSEOUT_CONTRACT_v0.md` + `tools/sb_closeout.sh` | 1 (hard gate) | Rejects invalid session artifacts. |
+| Checkpoint provenance continuity | `.githooks/pre-commit` + `tools/sb_precommit_checkpoint.sh` + git history | 1 (hook gate) | Primary audit surface for mutation provenance. |
 | Vision alignment drift | `scripts/run_vision_alignment_audit.py` + `operations/vision_alignment_audit_v0.md` | 2 (audit/track) | Proposes remediation only. |
 | KPI rollups and health trends | `tools/sb_kpi_compute_v0.sh` + `scenes/kpi-dashboard.scene.json` | 2 (track-only) | No direct mutations. |
 | Terminology consistency | `meta/TERMINOLOGY_STANDARD_v0.md` + `tools/sb_terminology_scan_v0.sh` | 2 (audit/track) | Escalate to level 3 only if repeated failures. |
@@ -45,7 +47,7 @@ Quick check for 1:1 mechanism coverage:
 ```bash
 jq -r '.[] | [.invariant, .primary_mechanism] | @tsv' <<'JSON'
 [
-  {"invariant":"closeout_contract","primary_mechanism":"sb_closeout"},
+  {"invariant":"checkpoint_provenance","primary_mechanism":"sb_precommit_checkpoint"},
   {"invariant":"vision_alignment","primary_mechanism":"run_vision_alignment_audit"},
   {"invariant":"kpi_rollups","primary_mechanism":"sb_kpi_compute"},
   {"invariant":"terminology_consistency","primary_mechanism":"sb_terminology_scan"},
@@ -64,7 +66,7 @@ KPI never enforces domain invariants - only tracks/alerts.
 
 | Mechanism | Invariant ID | Description | Level | Action |
 |---|---|---|---|---|
-| Closeout Contract | inv/link_density_min_2 | Link density >=2 | 3 | Gate only |
+| Checkpoint Reports + Git | inv/checkpoint_provenance_continuity | Every commit emits checkpoint metadata and links to git history | 3 | Gate only |
 | Terminology Standard | inv/term_fidelity_post_v0 | Term fidelity 100% (post-v0) | 2 | Audit + Alert |
 | Usage Ritual | inv/preload_ritual | Pre-load (Direction/Gov/Term) | 1 | Ritual / Checklist |
 | Vision Alignment Audit | inv/vision_alignment | Alignment to core principles | 2 | Propose change |

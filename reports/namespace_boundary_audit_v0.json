@@ -1,0 +1,203 @@
+{
+  "artifact_id": "artifact/namespace_boundary_audit_2026_02_17_v0",
+  "audit_date": "2026-02-17",
+  "scope": "project/dan_personal_cognitive_infrastructure",
+  "status": "warning",
+  "summary": {
+    "scripts_scanned": 28,
+    "mutating_tool_candidates": 28,
+    "declarations_complete": 8,
+    "missing_declaration_count": 20
+  },
+  "thresholds": {
+    "missing_declaration_warn_gt": 0
+  },
+  "missing_declarations": [
+    {
+      "path": "tools/codex_meta_program_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_agent_run_cycle_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_bootstrap_skills_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_coord_claim_append_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_coord_claim_preflight_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_doctor_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_invariant_drift_eval_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_precommit_checkpoint.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_pubsub_poll_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_pubsub_publish_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_terminology_scan_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_test_agent_loop_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/sb_up_v0.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "tools/test_sb_closeout_edges.sh",
+      "script_type": "bash",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "scripts/run_aslb.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "scripts/run_namespace_boundary_audit.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "scripts/run_shell_embedding_audit.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "scripts/run_vision_alignment_audit.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    },
+    {
+      "path": "scripts/update_index.py",
+      "script_type": "python",
+      "target_namespace_detected": null,
+      "missing_fields": [
+        "TARGET_NAMESPACE",
+        "ALLOWED_PATH_PREFIXES"
+      ]
+    }
+  ],
+  "next_actions": [
+    "Add TARGET_NAMESPACE and ALLOWED_PATH_PREFIXES to all mutating tools.",
+    "Use TARGET_NAMESPACE=mixed only with explicit BOUNDARY_JUSTIFICATION.",
+    "Re-run namespace audit each recurring audit loop and reduce missing declarations over time."
+  ],
+  "policy_note": "Track-only audit. No automatic mutation."
+}

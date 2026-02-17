@@ -1,6 +1,6 @@
 {
   "ideas_id": "scene/agent/project_manager/ideas_v0",
-  "updated_at": "2026-02-17T07:48:55Z",
+  "updated_at": "2026-02-17T11:44:37Z",
   "ideas": [
     {
       "idea_id": "idea/pm_v0_kalshi_gate_watcher",
@@ -53,6 +53,14 @@
       "notes": "Must remain track-only and avoid implicit hard-gate behavior.",
       "deliverable_focus": "apply_oq3_audit_followups_next_cycle",
       "selection_reason": "human_approved_all_four_with_restriction_review_clause"
+    },
+    {
+      "idea_id": "idea/pm_v0_human_kms_interface_hardening",
+      "summary": "Create a human-first KMS operator surface: single hub command, deterministic status snapshot, and concise HOWTO.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "queued",
+      "requires_human_consultation": true,
+      "notes": "Scoped UX hardening only; keep governance and invariants unchanged."
     }
   ]
 }
