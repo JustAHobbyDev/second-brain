@@ -24,3 +24,4 @@
 {"timestamp":"2026-02-16T14:15:16Z","branch":"main","head_before_commit":"11909c9","report_path":"reports/checkpoints/20260216T141516Z_registry-v0_checkpoint.md","files_changed":1,"insertions":97,"deletions":25}
 {"timestamp":"2026-02-16T14:27:45Z","branch":"main","head_before_commit":"c29a3e3","report_path":"reports/checkpoints/20260216T142745Z_project-manager-consultation-loop-v0-consultation-queue-v0-cursor-v0_checkpoint.md","files_changed":8,"insertions":288,"deletions":2}
 {"timestamp":"2026-02-16T15:04:33Z","branch":"main","head_before_commit":"3d26321","report_path":"reports/checkpoints/20260216T150433Z_agent-deploy-flow-v0-sb-agent-deploy-v0_checkpoint.md","files_changed":2,"insertions":358,"deletions":0}
+{"timestamp":"2026-02-17T07:07:47Z","branch":"main","head_before_commit":"7a50e55","report_path":"reports/checkpoints/20260217T070747Z_cursor-v0-invariant-drift-report-2026-02-17-v0-v0_checkpoint.md","files_changed":5,"insertions":614,"deletions":4}

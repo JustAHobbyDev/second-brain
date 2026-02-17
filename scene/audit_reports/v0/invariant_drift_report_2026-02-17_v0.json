@@ -1,0 +1,73 @@
+{
+  "artifact_id": "artifact/invariant_drift_report_2026_02_17_v0",
+  "schema_version": "0.1",
+  "generated_at": "2026-02-17T07:04:55Z",
+  "scope": "project/dan_personal_cognitive_infrastructure",
+  "source_artifacts": [
+    "graph/graph.json",
+    "reports/kpi_dashboard_metrics_v0.json",
+    "spec/invariant_drift_detection_v0.md"
+  ],
+  "trigger_events": [
+    {
+      "trigger_id": "trigger/coverage_from_core_below_min",
+      "metric": "coverage_from_core",
+      "source_path": "reports/kpi_dashboard_metrics_v0.json::metrics.coverage_from_core",
+      "observed": 22.82,
+      "threshold": 80.0,
+      "status": "violated",
+      "severity": "high",
+      "evaluator_note": "",
+      "invariant_links": [
+        "inv/vision_alignment",
+        "inv/derived_view_integrity"
+      ]
+    },
+    {
+      "trigger_id": "trigger/orphan_ratio_above_max",
+      "metric": "orphan_ratio",
+      "source_path": "reports/kpi_dashboard_metrics_v0.json::metrics.orphan_ratio",
+      "observed": 10.19,
+      "threshold": 10.0,
+      "status": "violated",
+      "severity": "medium",
+      "evaluator_note": "",
+      "invariant_links": [
+        "inv/derived_view_integrity"
+      ]
+    },
+    {
+      "trigger_id": "trigger/principle_linked_pct_below_min",
+      "metric": "principle_linked_pct",
+      "source_path": "reports/kpi_dashboard_metrics_v0.json::metrics.principle_linked_pct",
+      "observed": 57.14,
+      "threshold": 75.0,
+      "status": "violated",
+      "severity": "high",
+      "evaluator_note": "",
+      "invariant_links": [
+        "inv/vision_alignment"
+      ]
+    }
+  ],
+  "trigger_summary": {
+    "pass": 0,
+    "violated": 3,
+    "warning": 0,
+    "insufficient_input": 0,
+    "overall_status": "review_required"
+  },
+  "affected_artifacts": [],
+  "proposed_remediations": [
+    "Increase principle linkage coverage in non-trivial session artifacts.",
+    "Investigate and connect orphan-like graph nodes to canonical project/principle anchors.",
+    "Raise coverage from core by adding typed links from project/dan_personal_cognitive_infrastructure."
+  ],
+  "invariant_links": [
+    "inv/vision_alignment",
+    "inv/derived_view_integrity",
+    "inv/agents_resume_cold",
+    "inv/scenes_source_of_truth"
+  ],
+  "resumption_score": 7
+}

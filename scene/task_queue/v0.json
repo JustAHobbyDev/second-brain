@@ -4,6 +4,157 @@
   "status": "active",
   "tasks": [
     {
+      "task_id": "task/oq1-invariant-drift-detection-propose-v0",
+      "objective": "PROPOSE-only package for OQ-1: draft spec/invariant_drift_detection_v0.md with scope, acceptance criteria, and candidate artifact schema.",
+      "inputs": [
+        "OPEN_QUESTIONS.md",
+        "scene/agent/project_manager/status_v0.json",
+        "scene/authority/registry_v0.json",
+        "reports/kpi_dashboard_metrics_v0.json"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "PROPOSE-only; no hard gate activation",
+        "No blocking impact to project/kalshi_15m_btc_pipeline",
+        "Use existing invariants only"
+      ],
+      "acceptance_criteria": [
+        "Proposal defines drift detection triggers",
+        "Proposal defines reporting protocol",
+        "Proposal includes candidate artifact schema",
+        "Task remains non-executing until human acceptance"
+      ],
+      "state": "closed_accepted_baseline",
+      "owner_agent": "agent/orchestrator_v0",
+      "assignment_note": "Assigned by PM consultation decision consult/pm_v0_008.",
+      "approval_note": "consult/pm_v0_009 approved reassignment and draft authorization.",
+      "proposal_package_v0": {
+        "proposal_id": "proposal/oq1_invariant_drift_detection_v0",
+        "proposal_type": "PROPOSE_ONLY",
+        "prepared_by": "agent/orchestrator_v0",
+        "prepared_at": "2026-02-16T22:09:17Z",
+        "target_spec_path": "spec/invariant_drift_detection_v0.md",
+        "scope": [
+          "project/dan_personal_cognitive_infrastructure"
+        ],
+        "invariant_links": [
+          "inv/scenes_source_of_truth",
+          "inv/agents_resume_cold",
+          "inv/vision_alignment",
+          "inv/derived_view_integrity"
+        ],
+        "constraints": [
+          "Level 2 track-only only",
+          "No global hard gate changes",
+          "No blocking effect on project/kalshi_15m_btc_pipeline",
+          "Passive monitoring only; no auto-mutation"
+        ],
+        "draft_sections": {
+          "purpose": "Define passive invariant-drift detection for scene/spec alignment to declared vision.",
+          "drift_triggers": [
+            "missing required invariant links in new non-trivial artifacts",
+            "drop in principle-linked artifact percentage below agreed threshold",
+            "increase in orphan-like structural indicators beyond policy threshold"
+          ],
+          "reporting_protocol": [
+            "emit report artifact under scene/audit_reports/v0/",
+            "record timestamp, trigger source, impacted artifact IDs",
+            "propose remediation actions only (non-executing)"
+          ]
+        },
+        "candidate_artifact_schema_v0": {
+          "artifact_id": "artifact/invariant_drift_report_<date>_v0",
+          "generated_at": "<timestamp>",
+          "scope": "project/dan_personal_cognitive_infrastructure",
+          "trigger_events": [
+            {
+              "trigger_id": "<id>",
+              "metric": "<name>",
+              "observed": "<value>",
+              "threshold": "<value>",
+              "status": "violated|warning"
+            }
+          ],
+          "affected_artifacts": [
+            "<artifact_id>"
+          ],
+          "proposed_remediations": [
+            "<action>"
+          ],
+          "invariant_links": [
+            "inv/vision_alignment"
+          ],
+          "resumption_score": 8
+        },
+        "status": "materialized_as_spec_draft_pending_human_review",
+        "materialized_at": "2026-02-16T22:37:53Z"
+      },
+      "last_progress_at": "2026-02-17T07:05:16Z",
+      "execution_history": [
+        {
+          "timestamp": "2026-02-16T22:09:17Z",
+          "agent_id": "agent/orchestrator_v0",
+          "event": "proposal_package_drafted",
+          "note": "First OQ-1 PROPOSE draft cycle executed after consult/pm_v0_010 approval."
+        },
+        {
+          "timestamp": "2026-02-16T22:37:53Z",
+          "agent_id": "agent/orchestrator_v0",
+          "event": "spec_draft_materialized",
+          "note": "Materialized review-only draft spec after consult/pm_v0_011 approval."
+        },
+        {
+          "timestamp": "2026-02-16T23:39:18Z",
+          "agent_id": "agent/orchestrator_v0",
+          "event": "low_severity_followups_applied",
+          "note": "Applied threshold governance note and evaluator implementation task linkage."
+        }
+      ],
+      "materialized_spec_path": "spec/invariant_drift_detection_v0.md",
+      "human_review_note": "consult/pm_v0_012 approved spec draft as baseline.",
+      "audit_review_note": "consult/pm_v0_013 approved auditor recommendation.",
+      "followups_applied_at": "2026-02-16T23:39:18Z",
+      "followups_applied": [
+        "threshold_governance_note_added",
+        "evaluator_implementation_task_added"
+      ],
+      "closure_note": "consult/pm_v0_015 approved final baseline and closure.",
+      "followup_evaluator_task_state": "completed"
+    },
+    {
+      "task_id": "task/oq1-invariant-drift-evaluator-implement-v0",
+      "objective": "Implement track-only evaluator script for invariant drift report generation.",
+      "inputs": [
+        "spec/invariant_drift_detection_v0.md",
+        "reports/kpi_dashboard_metrics_v0.json",
+        "graph/graph.json"
+      ],
+      "constraints": [
+        "Level 2 track-only only",
+        "No auto-mutation",
+        "Emit report to scene/audit_reports/v0 only"
+      ],
+      "acceptance_criteria": [
+        "Script emits deterministic report content",
+        "Missing-input behavior emits insufficient_input status",
+        "Output path conforms to spec"
+      ],
+      "state": "completed",
+      "owner_agent": "agent/orchestrator_v0",
+      "implementation_artifact": "tools/sb_invariant_drift_eval_v0.sh",
+      "evidence_report": "scene/audit_reports/v0/invariant_drift_report_2026-02-17_v0.json",
+      "completion_note": "Evaluator implemented and produced first report run.",
+      "last_progress_at": "2026-02-17T07:05:16Z",
+      "execution_history": [
+        {
+          "timestamp": "2026-02-17T07:05:16Z",
+          "agent_id": "agent/orchestrator_v0",
+          "event": "implementation_completed",
+          "note": "Implemented evaluator script and generated baseline drift report."
+        }
+      ]
+    },
+    {
       "task_id": "task/project-manager-recurring-cycle-v0",
       "objective": "Maintain current stage visibility, propose forward ideas, and consult human for refinement before execution proposals.",
       "inputs": [
