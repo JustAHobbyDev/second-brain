@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+TARGET_NAMESPACE="mixed"
+ALLOWED_PATH_PREFIXES=("reports/" "sessions/" "scene/audit_reports/" "reports/checkpoints/")
+BOUNDARY_JUSTIFICATION="Runs recurring audits and then emits a closeout artifact with report references."
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 REPORT_PATH="${REPO_ROOT}/reports/vision_alignment_audit_v0.json"
 SHELL_REPORT_PATH="${REPO_ROOT}/reports/shell_embedding_audit_v0.json"
 NAMESPACE_REPORT_PATH="${REPO_ROOT}/reports/namespace_boundary_audit_v0.json"
+SECRET_REPORT_PATH="${REPO_ROOT}/reports/secret_scan_audit_v0.json"
 TMP_JSON="$(mktemp)"
 TOOL="${1:-codex}"
 
@@ -16,13 +21,14 @@ cd "${REPO_ROOT}"
 python3 scripts/run_vision_alignment_audit.py --out-file "${REPORT_PATH}" >/dev/null
 python3 scripts/run_shell_embedding_audit.py --out-file "${SHELL_REPORT_PATH}" >/dev/null
 python3 scripts/run_namespace_boundary_audit.py --out-file "${NAMESPACE_REPORT_PATH}" >/dev/null
+python3 scripts/run_secret_scan_audit.py --out-file "${SECRET_REPORT_PATH}" >/dev/null
 
-python3 - "${REPORT_PATH}" "${SHELL_REPORT_PATH}" "${NAMESPACE_REPORT_PATH}" "${TMP_JSON}" "${TOOL}" <<'PY'
+python3 - "${REPORT_PATH}" "${SHELL_REPORT_PATH}" "${NAMESPACE_REPORT_PATH}" "${SECRET_REPORT_PATH}" "${TMP_JSON}" "${TOOL}" <<'PY'
 import json
 import sys
 from datetime import date
 
-report_path, shell_report_path, namespace_report_path, out_path, tool = sys.argv[1:6]
+report_path, shell_report_path, namespace_report_path, secret_report_path, out_path, tool = sys.argv[1:7]
 
 with open(report_path, "r", encoding="utf-8") as f:
     r = json.load(f)
@@ -30,6 +36,8 @@ with open(shell_report_path, "r", encoding="utf-8") as f:
     s = json.load(f)
 with open(namespace_report_path, "r", encoding="utf-8") as f:
     n = json.load(f)
+with open(secret_report_path, "r", encoding="utf-8") as f:
+    sec = json.load(f)
 
 today = date.today().isoformat()
 today_id = today.replace("-", "_")
@@ -42,6 +50,7 @@ shell_summary = s.get("summary", {}) if isinstance(s, dict) else {}
 shell_alerts = s.get("alerts", []) if isinstance(s, dict) else []
 ns_summary = n.get("summary", {}) if isinstance(n, dict) else {}
 ns_missing = n.get("missing_declarations", []) if isinstance(n, dict) else []
+sec_summary = sec.get("summary", {}) if isinstance(sec, dict) else {}
 
 missing = coverage.get("artifacts_missing_principle_link", [])
 if not isinstance(missing, list):
@@ -56,12 +65,16 @@ if not isinstance(shell_actions, list):
 ns_actions = n.get("next_actions", [])
 if not isinstance(ns_actions, list):
     ns_actions = []
+sec_actions = sec.get("next_actions", [])
+if not isinstance(sec_actions, list):
+    sec_actions = []
 
 open_questions = [
     "1. Which missing-principle artifacts should be remediated first by business impact?",
     "2. Should closeout require strict canonical-ID existence checks in all environments?",
     "3. Which top embedded-python offenders should be extracted first for maintainability?",
     "4. Which mutating tools should be prioritized for TARGET_NAMESPACE declaration remediation?",
+    "5. Should recurring secret scan move from warning-only to branch-protection requirements?",
 ]
 
 payload = {
@@ -85,6 +98,7 @@ payload = {
         r.get("artifact_id", "artifact/vision_alignment_audit_unknown_v0"),
         s.get("artifact_id", "artifact/shell_embedding_audit_unknown_v0"),
         n.get("artifact_id", "artifact/namespace_boundary_audit_unknown_v0"),
+        sec.get("artifact_id", "artifact/secret_scan_audit_unknown_v0"),
     ] + [x for x in missing if isinstance(x, str)],
     "summary": (
         f"Ran agent-owned vision-alignment audit loop. KPI {kpi.get('name')}="
@@ -94,31 +108,35 @@ payload = {
         f"{shell_summary.get('total_bash_scripts')} bash scripts embed python; "
         f"status={s.get('status')}. "
         f"Namespace boundary audit: missing_declarations="
-        f"{ns_summary.get('missing_declaration_count')}; status={n.get('status')}."
+        f"{ns_summary.get('missing_declaration_count')}; status={n.get('status')}. "
+        f"Secret scan: matches={sec_summary.get('matches_found')}; status={sec.get('status')}."
     ),
     "key_decisions": [
         "Execute audit via script first, then close out via sb_closeout to keep loop deterministic",
         "Use principle_linked_artifact_pct as primary anchor KPI until broader graph KPIs stabilize",
         "Keep shell embedding audit track-only; extraction remains planned remediation, not a hard gate",
         "Keep namespace-boundary declaration audit track-only; prioritize incremental remediation",
+        "Keep secret scan track-only in recurring loop while treating confirmed secrets as immediate remediation",
     ],
     "open_questions": open_questions,
     "next_steps": [
         str(x) for x in next_actions[:3]
-    ] + [str(x) for x in shell_actions[:2]] + [str(x) for x in ns_actions[:2]] or ["Add canonical principle links to missing artifacts listed in report"],
+    ] + [str(x) for x in shell_actions[:2]] + [str(x) for x in ns_actions[:2]] + [str(x) for x in sec_actions[:2]] or ["Add canonical principle links to missing artifacts listed in report"],
     "thinking_trace_attachments": [
         "reports/vision_alignment_audit_v0.json",
         "reports/shell_embedding_audit_v0.json",
         "reports/namespace_boundary_audit_v0.json",
+        "reports/secret_scan_audit_v0.json",
         f"shell_alerts={len(shell_alerts)}",
         f"namespace_missing_declarations={len(ns_missing)}",
+        f"secret_matches={sec_summary.get('matches_found')}",
     ],
     "prompt_lineage": [
         {"role": "system", "ref": "prompts/meta_program/50_agent_owned_audit.txt", "summary": "agent-owned audit execution contract"},
         {"role": "user", "summary": "Run agent-owned audit loop end-to-end and persist closeout"},
     ],
     "resumption_score": 8,
-    "resumption_notes": "Load reports/vision_alignment_audit_v0.json, reports/shell_embedding_audit_v0.json, and reports/namespace_boundary_audit_v0.json first, then remediate listed artifacts and rerun this script.",
+    "resumption_notes": "Load reports/vision_alignment_audit_v0.json, reports/shell_embedding_audit_v0.json, reports/namespace_boundary_audit_v0.json, and reports/secret_scan_audit_v0.json first, then remediate listed artifacts and rerun this script.",
 }
 
 with open(out_path, "w", encoding="utf-8") as f:

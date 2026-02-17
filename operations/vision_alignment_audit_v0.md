@@ -59,4 +59,9 @@ When running `tools/sb_agent_audit_loop.sh`, this vision audit is paired with:
 - `scripts/run_namespace_boundary_audit.py`
 - Output: `reports/namespace_boundary_audit_v0.json`
 
-Both reports are attached to the generated session closeout artifact for recurring review.
+All audit reports are attached to the generated session closeout artifact for recurring review.
+
+Recurring loop also runs:
+
+- `scripts/run_secret_scan_audit.py`
+- Output: `reports/secret_scan_audit_v0.json`
