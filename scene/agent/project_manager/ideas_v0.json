@@ -1,12 +1,12 @@
 {
   "ideas_id": "scene/agent/project_manager/ideas_v0",
-  "updated_at": "2026-02-16T14:30:00Z",
+  "updated_at": "2026-02-16T21:59:02Z",
   "ideas": [
     {
       "idea_id": "idea/pm_v0_kalshi_gate_watcher",
       "summary": "Automate status snapshot refresh for scenes/kalshi_data_gate_v0.scene.json and mirror into PM status artifact.",
       "scope": "project/kalshi_15m_btc_pipeline",
-      "stage": "draft",
+      "stage": "deferred",
       "requires_human_consultation": true,
       "notes": "Non-mutating monitor only while blocked."
     },
@@ -14,17 +14,35 @@
       "idea_id": "idea/pm_v0_open_question_triage",
       "summary": "Run a weekly triage cadence that maps OPEN_QUESTIONS items to concrete task proposals.",
       "scope": "project/dan_personal_cognitive_infrastructure",
-      "stage": "draft",
+      "stage": "in_progress",
       "requires_human_consultation": true,
-      "notes": "Preserve Level 2 track-only behavior."
+      "notes": "Preserve Level 2 track-only behavior.",
+      "selection_reason": "human_selected_focus_2",
+      "deliverable_focus": "invariant_drift_trigger_spec"
     },
     {
       "idea_id": "idea/pm_v0_resume_readiness_audit",
       "summary": "Score cold-resume readiness of active agents and report gaps in scene/audit_reports/v0.",
       "scope": "project/dan_personal_cognitive_infrastructure",
-      "stage": "draft",
+      "stage": "deferred",
       "requires_human_consultation": true,
       "notes": "Uses existing invariants only."
+    },
+    {
+      "idea_id": "idea/pm_v0_run_cycle_scheduling",
+      "summary": "Introduce a deterministic PM cadence (daily status refresh + consultation cut) using sb_agent_run_cycle_v0 wrapper.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "draft",
+      "requires_human_consultation": true,
+      "notes": "Keeps PM in delegator mode while improving cadence predictability."
+    },
+    {
+      "idea_id": "idea/pm_v0_claim_kpi_review",
+      "summary": "Review coordination claim KPIs weekly and propose corrective policy only if edits_without_claim increases.",
+      "scope": "project/dan_personal_cognitive_infrastructure",
+      "stage": "draft",
+      "requires_human_consultation": true,
+      "notes": "Track-only governance reinforcement; no new hard gates."
     }
   ]
 }

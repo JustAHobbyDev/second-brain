@@ -7,9 +7,9 @@
     "project/kalshi_15m_btc_pipeline"
   ],
   "current_status": {
-    "usable_windows": 94,
+    "usable_windows": 161,
     "required": 200,
-    "deficit": 106,
+    "deficit": 39,
     "status": "BLOCKED_FOR_KALSHI_ONLY",
     "last_checked": "2026-02-15"
   },

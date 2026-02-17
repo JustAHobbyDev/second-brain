@@ -11,6 +11,12 @@ Automates deployment steps 1-4:
 
 ## Tool
 - `tools/sb_agent_deploy_v0.sh`
+- `tools/sb_agent_run_cycle_v0.sh`
+
+## List Deployed Agents
+```bash
+jq -r '.initial_agents[]' scene/authority/registry_v0.json
+```
 
 ## Default Behavior
 - Scope: `project/dan_personal_cognitive_infrastructure`
@@ -52,3 +58,22 @@ tools/sb_agent_deploy_v0.sh --agent-id agent/research_planner_v0 --dry-run
 2. Confirm authority tuples are scoped.
 3. Confirm recurring task owner matches the new agent ID.
 4. Commit and push.
+
+## Run One Cycle (wrapper for steps 3-5)
+```bash
+tools/sb_agent_run_cycle_v0.sh \
+  --agent-id agent/project_manager_v0 \
+  --targets scene/agent/project_manager/status_v0.json,scene/agent/project_manager/ideas_v0.json \
+  --reason \"pm cycle update\" \
+  --task-id task/project-manager-recurring-cycle-v0
+```
+
+Dry run:
+```bash
+tools/sb_agent_run_cycle_v0.sh \
+  --agent-id agent/project_manager_v0 \
+  --targets scene/agent/project_manager/status_v0.json,scene/agent/project_manager/ideas_v0.json \
+  --reason \"pm cycle update\" \
+  --task-id task/project-manager-recurring-cycle-v0 \
+  --dry-run
+```

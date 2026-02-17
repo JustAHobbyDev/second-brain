@@ -1,11 +1,11 @@
 {
   "agent_id": "agent/project_manager_v0",
   "role_mode": "delegator_planner_non_executor",
-  "phase": "stage_snapshot",
-  "current_cycle_id": "pm_cycle_2026_02_16_01",
+  "phase": "decision_captured",
+  "current_cycle_id": "pm_cycle_2026_02_16_02",
   "current_task_id": "task/project-manager-recurring-cycle-v0",
-  "last_mutation_id": null,
-  "last_updated": "2026-02-16T14:30:00Z",
+  "last_mutation_id": "mut_20260217T070154Z_agent_project_manager_v0_4",
+  "last_updated": "2026-02-17T07:01:54Z",
   "resumption_inputs": [
     "scene/agent/project_manager/status_v0.json",
     "scene/agent/project_manager/ideas_v0.json",

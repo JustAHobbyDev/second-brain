@@ -1,9 +1,9 @@
 {
   "agent_id": "agent/auditor_v0",
-  "phase": "ready",
-  "current_task_id": null,
-  "last_mutation_id": null,
-  "last_updated": "2026-02-16T14:00:00Z",
+  "phase": "oq1_spec_review_complete",
+  "current_task_id": "task/oq1-invariant-drift-detection-propose-v0",
+  "last_mutation_id": "mut_20260216T232305Z_agent_auditor_v0_2",
+  "last_updated": "2026-02-16T23:23:05Z",
   "resumption_inputs": [
     "scene/authority/registry_v0.json",
     "scene/ledger/mutations_v0.jsonl",

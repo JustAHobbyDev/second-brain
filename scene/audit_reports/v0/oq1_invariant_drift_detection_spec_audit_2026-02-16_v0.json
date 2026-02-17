@@ -1,0 +1,42 @@
+{
+  "artifact_id": "artifact/oq1_invariant_drift_detection_spec_audit_2026_02_16_v0",
+  "report_type": "spec_review",
+  "generated_at": "2026-02-16T23:23:05Z",
+  "agent_id": "agent/auditor_v0",
+  "scope": "project/dan_personal_cognitive_infrastructure",
+  "target_spec": "spec/invariant_drift_detection_v0.md",
+  "related_task": {
+    "task_id": "task/oq1-invariant-drift-detection-propose-v0",
+    "state": "spec_draft_baseline_approved_pending_audit",
+    "owner_agent": "agent/orchestrator_v0"
+  },
+  "check_results": {
+    "has_policy_thresholds": true,
+    "has_metric_source_map": true,
+    "has_missing_input_behavior": true,
+    "has_deterministic_replay_criterion": true,
+    "preserves_kalshi_non_blocking": true
+  },
+  "findings": [
+    {
+      "severity": "low",
+      "check": "automation_gap",
+      "finding": "Spec is draft-only; evaluator script is not yet implemented.",
+      "recommended_fix": "Implement track-only evaluator that emits scene/audit_reports/v0 artifacts."
+    },
+    {
+      "severity": "low",
+      "check": "threshold_governance",
+      "finding": "Threshold values are embedded in draft and should be version-governed before activation.",
+      "recommended_fix": "Pin threshold ownership/change procedure in the finalized spec."
+    }
+  ],
+  "recommendation": "approve_with_followups",
+  "invariant_links": [
+    "inv/vision_alignment",
+    "inv/derived_view_integrity",
+    "inv/agents_resume_cold",
+    "inv/scenes_source_of_truth"
+  ],
+  "resumption_score": 9
+}

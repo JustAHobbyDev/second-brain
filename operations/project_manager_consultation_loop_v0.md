@@ -24,3 +24,28 @@ Purpose: operationalize agent/project_manager_v0 as a steady planning and consul
 - Respect scenes/kalshi_data_gate_v0.scene.json blocked state for Kalshi pipeline.
 - Role mode is delegator/planner by default, not executor.
 - Any direct execution rights require an explicit temporary authority tuple (issuer, expiry, reason).
+
+## Gate Watcher Automation
+Use this watcher to refresh Kalshi gate state and mirror it into PM status:
+
+```bash
+tools/sb_kalshi_gate_watcher_v0.sh \
+  --signal-latest-kalshi-session
+```
+
+Direct override (when no signal file is available):
+
+```bash
+tools/sb_kalshi_gate_watcher_v0.sh \
+  --usable-windows 161 \
+  --required 200 \
+  --last-checked 2026-02-15
+```
+
+Dry run from signal file:
+
+```bash
+tools/sb_kalshi_gate_watcher_v0.sh \
+  --signal-latest-kalshi-session \
+  --dry-run
+```

@@ -1,6 +1,6 @@
 {
   "queue_id": "scene/agent/project_manager/consultation_queue_v0",
-  "updated_at": "2026-02-16T14:30:00Z",
+  "updated_at": "2026-02-17T07:01:54Z",
   "items": [
     {
       "consultation_id": "consult/pm_v0_001",
@@ -10,7 +10,8 @@
         "scene/agent/project_manager/ideas_v0.json",
         "OPEN_QUESTIONS.md"
       ],
-      "state": "pending"
+      "state": "resolved",
+      "resolution": "open_question_triage"
     },
     {
       "consultation_id": "consult/pm_v0_002",
@@ -19,7 +20,151 @@
         "scenes/kalshi_data_gate_v0.scene.json",
         "scene/task_queue/v0.json"
       ],
-      "state": "pending"
+      "state": "resolved",
+      "resolution": "proposals_only"
+    },
+    {
+      "consultation_id": "consult/pm_v0_003",
+      "question": "Pick PM focus for next cycle: (1) gate watcher automation, (2) open-question triage, or (3) resume-readiness audit?",
+      "context_refs": [
+        "scene/agent/project_manager/status_v0.json",
+        "scene/agent/project_manager/ideas_v0.json",
+        "OPEN_QUESTIONS.md"
+      ],
+      "state": "resolved",
+      "resolution": "open_question_triage"
+    },
+    {
+      "consultation_id": "consult/pm_v0_004",
+      "question": "For open-question triage, prioritize OQ-1 or OQ-3 first?",
+      "context_refs": [
+        "OPEN_QUESTIONS.md",
+        "scene/task_queue/v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "OQ-1_first"
+    },
+    {
+      "consultation_id": "consult/pm_v0_005",
+      "question": "For OQ-1, prioritize first deliverable: (1) invariant drift trigger spec or (2) vision-alignment KPI report skeleton?",
+      "context_refs": [
+        "OPEN_QUESTIONS.md",
+        "reports/kpi_dashboard_metrics_v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "invariant_drift_trigger_spec"
+    },
+    {
+      "consultation_id": "consult/pm_v0_006",
+      "question": "For OQ-1 draft, should PM propose only scope/acceptance criteria now, or include a candidate artifact schema too?",
+      "context_refs": [
+        "OPEN_QUESTIONS.md",
+        "scene/agent/project_manager/status_v0.json",
+        "scene/task_queue/v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "scope_acceptance_plus_schema"
+    },
+    {
+      "consultation_id": "consult/pm_v0_007",
+      "question": "Approve PM to draft a PROPOSE-only OQ-1 package at spec/invariant_drift_detection_v0.md + task queue proposal entry?",
+      "context_refs": [
+        "OPEN_QUESTIONS.md",
+        "scene/agent/project_manager/status_v0.json",
+        "scene/task_queue/v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "approved"
+    },
+    {
+      "consultation_id": "consult/pm_v0_008",
+      "question": "For the OQ-1 PROPOSE package, should PM assign first draft ownership to orchestrator or auditor?",
+      "context_refs": [
+        "scene/task_queue/v0.json",
+        "scene/authority/registry_v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "orchestrator"
+    },
+    {
+      "consultation_id": "consult/pm_v0_009",
+      "question": "Approve reassigning task/oq1-invariant-drift-detection-propose-v0 from PM to orchestrator for drafting now?",
+      "context_refs": [
+        "scene/task_queue/v0.json",
+        "scene/authority/registry_v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "approved"
+    },
+    {
+      "consultation_id": "consult/pm_v0_010",
+      "question": "Authorize orchestrator to execute first OQ-1 PROPOSE draft cycle now?",
+      "context_refs": [
+        "scene/task_queue/v0.json",
+        "scene/authority/registry_v0.json",
+        "scene/agent/project_manager/status_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "approved_execute_now"
+    },
+    {
+      "consultation_id": "consult/pm_v0_011",
+      "question": "Approve OQ-1 PROPOSE package contents and move to formal spec draft file creation?",
+      "context_refs": [
+        "scene/task_queue/v0.json",
+        "scene/agent/project_manager/status_v0.json",
+        "OPEN_QUESTIONS.md"
+      ],
+      "state": "resolved",
+      "resolution": "approved_materialize_spec_draft"
+    },
+    {
+      "consultation_id": "consult/pm_v0_012",
+      "question": "Approve spec/invariant_drift_detection_v0.md draft content as baseline for iterative revision?",
+      "context_refs": [
+        "spec/invariant_drift_detection_v0.md",
+        "scene/task_queue/v0.json",
+        "OPEN_QUESTIONS.md"
+      ],
+      "state": "resolved",
+      "resolution": "approved_baseline"
+    },
+    {
+      "consultation_id": "consult/pm_v0_013",
+      "question": "Run auditor review pass now on spec/invariant_drift_detection_v0.md before final acceptance?",
+      "context_refs": [
+        "spec/invariant_drift_detection_v0.md",
+        "scene/task_queue/v0.json",
+        "scene/authority/registry_v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "approved_with_followups"
+    },
+    {
+      "consultation_id": "consult/pm_v0_014",
+      "question": "Apply low-severity followups now (threshold governance note + evaluator implementation task), or defer to next cycle?",
+      "context_refs": [
+        "scene/audit_reports/v0/oq1_invariant_drift_detection_spec_audit_2026-02-16_v0.json",
+        "spec/invariant_drift_detection_v0.md",
+        "scene/task_queue/v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "apply_now"
+    },
+    {
+      "consultation_id": "consult/pm_v0_015",
+      "question": "Finalize OQ-1 v0 draft as accepted baseline and close task/oq1-invariant-drift-detection-propose-v0?",
+      "context_refs": [
+        "spec/invariant_drift_detection_v0.md",
+        "scene/audit_reports/v0/oq1_invariant_drift_detection_spec_audit_2026-02-16_v0.json",
+        "scene/task_queue/v0.json"
+      ],
+      "state": "resolved",
+      "resolution": "approved_finalize_and_close"
     }
   ]
 }

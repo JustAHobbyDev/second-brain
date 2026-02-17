@@ -1,22 +1,134 @@
 {
   "status_id": "scene/agent/project_manager/status_v0",
-  "updated_at": "2026-02-16T14:30:00Z",
+  "updated_at": "2026-02-17T07:01:54Z",
   "project_scope": "project/dan_personal_cognitive_infrastructure",
   "role_mode": "delegator_planner_non_executor",
   "stage_summary": {
-    "overall": "infrastructure_hardening",
+    "overall": "planning_and_governance_hardening",
     "kalshi_pipeline": "blocked_for_data_windows",
     "kalshi_blocked_state": {
       "required_windows": 200,
-      "usable_windows": 94,
+      "usable_windows": 161,
       "status": "BLOCKED_FOR_KALSHI_ONLY",
       "source": "scenes/kalshi_data_gate_v0.scene.json"
-    }
+    },
+    "next_focus": "open_question_triage",
+    "next_open_question": "OQ-1",
+    "oq1_delivery_focus": "spec/invariant_drift_detection_v0",
+    "oq1_draft_mode": "scope_acceptance_plus_schema",
+    "oq1_next_action": "propose_package_draft",
+    "oq1_first_draft_owner": "agent/orchestrator_v0",
+    "oq1_execution_state": "baseline_accepted_task_closed"
   },
   "signals": {
     "open_questions_count": 4,
     "coordination_model": "coord_claims_primary_pubsub_draft",
-    "authority_model": "maam_v0_active"
+    "authority_model": "maam_v0_active",
+    "kpi_health_score": 7.23,
+    "kpi_alert_count": 3,
+    "kalshi_window_deficit": 39,
+    "kalshi_gate_last_checked": "2026-02-15",
+    "pm_focus": "open_question_triage",
+    "kalshi_blocked_execution_mode": "proposals_only",
+    "open_question_priority": "OQ-1",
+    "oq1_first_deliverable": "invariant_drift_trigger_spec",
+    "oq1_draft_mode": "scope_acceptance_plus_schema",
+    "oq1_package_approval": "approved",
+    "oq1_next_artifact_target": "spec/invariant_drift_detection_v0.md",
+    "oq1_first_draft_owner": "agent/orchestrator_v0",
+    "oq1_reassign_approval": "approved",
+    "oq1_orchestrator_cycle": "executed",
+    "oq1_spec_draft_present": true,
+    "oq1_spec_baseline_approval": "approved",
+    "oq1_auditor_review_status": "approved_with_followups",
+    "oq1_followups_applied": true,
+    "oq1_baseline_finalized": true
   },
-  "next_consultation_due": "2026-02-16T16:00:00Z"
+  "next_consultation_due": "2026-02-18T07:01:54Z",
+  "decision_log": [
+    {
+      "decision_id": "pm_decision_2026_02_16_focus",
+      "captured_at": "2026-02-16T21:51:04Z",
+      "selection": "open_question_triage",
+      "source": "consult/pm_v0_001, consult/pm_v0_003"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_blocked_mode",
+      "captured_at": "2026-02-16T21:51:04Z",
+      "selection": "proposals_only",
+      "source": "consult/pm_v0_002"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq_priority",
+      "captured_at": "2026-02-16T21:53:27Z",
+      "selection": "OQ-1_first",
+      "source": "consult/pm_v0_004"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_deliverable",
+      "captured_at": "2026-02-16T21:59:02Z",
+      "selection": "invariant_drift_trigger_spec",
+      "source": "consult/pm_v0_005"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_draft_mode",
+      "captured_at": "2026-02-16T22:00:39Z",
+      "selection": "scope_acceptance_plus_schema",
+      "source": "consult/pm_v0_006"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_package_approval",
+      "captured_at": "2026-02-16T22:02:32Z",
+      "selection": "approved",
+      "source": "consult/pm_v0_007"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_owner",
+      "captured_at": "2026-02-16T22:05:42Z",
+      "selection": "orchestrator",
+      "source": "consult/pm_v0_008"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_reassign_approval",
+      "captured_at": "2026-02-16T22:07:34Z",
+      "selection": "approved",
+      "source": "consult/pm_v0_009"
+    },
+    {
+      "decision_id": "orch_decision_2026_02_16_oq1_cycle_execute",
+      "captured_at": "2026-02-16T22:09:17Z",
+      "selection": "executed_first_draft_cycle",
+      "source": "consult/pm_v0_010"
+    },
+    {
+      "decision_id": "orch_decision_2026_02_16_oq1_materialize_spec",
+      "captured_at": "2026-02-16T22:37:53Z",
+      "selection": "materialized_review_only_spec_draft",
+      "source": "consult/pm_v0_011"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_spec_baseline",
+      "captured_at": "2026-02-16T23:10:57Z",
+      "selection": "approved",
+      "source": "consult/pm_v0_012"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_audit_review",
+      "captured_at": "2026-02-16T23:24:45Z",
+      "selection": "approved_with_followups",
+      "source": "consult/pm_v0_013"
+    },
+    {
+      "decision_id": "orch_decision_2026_02_16_oq1_followups",
+      "captured_at": "2026-02-16T23:39:18Z",
+      "selection": "applied_now",
+      "source": "consult/pm_v0_014"
+    },
+    {
+      "decision_id": "pm_decision_2026_02_16_oq1_finalize",
+      "captured_at": "2026-02-17T07:01:54Z",
+      "selection": "approved_finalize_and_close",
+      "source": "consult/pm_v0_015"
+    }
+  ]
 }
