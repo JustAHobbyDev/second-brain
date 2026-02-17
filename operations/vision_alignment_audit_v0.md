@@ -56,5 +56,7 @@ When running `tools/sb_agent_audit_loop.sh`, this vision audit is paired with:
 
 - `scripts/run_shell_embedding_audit.py`
 - Output: `reports/shell_embedding_audit_v0.json`
+- `scripts/run_namespace_boundary_audit.py`
+- Output: `reports/namespace_boundary_audit_v0.json`
 
 Both reports are attached to the generated session closeout artifact for recurring review.
